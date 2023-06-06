@@ -1,4 +1,4 @@
-// COnfiguración de Firebase para la aplicación
+// COnfiguración de Firebase para la aplicación (NO TOCAR)
 
 import { initializeApp } from "firebase/app";
 import { getAuth } from "firebase/auth";
