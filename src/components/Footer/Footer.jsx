@@ -1,5 +1,6 @@
 import React from "react";
 import "./Footer.css";
+import { Link } from "react-router-dom";
 
 const Footer =()=>{
     return(
@@ -11,10 +12,10 @@ const Footer =()=>{
                     </div>
                     <div className = "sb__footer-links_div">
                         <div className= "sb__footer-below-links">
-                        <a href= "#"><div><p>Misión</p></div></a>
-                        <a href= "#"><div><p>Visión</p></div></a>
-                        <a href= "#"><div><p>Objetivos</p></div></a>
-                        <a href= "#"><div><p>Contacto</p></div></a>
+                        <Link to="/mision"><div><p>Misión</p></div></Link>
+                        <Link to="/vision"><div><p>Visión</p></div></Link>
+                        <Link to="/objetivos"><div><p>Objetivos</p></div></Link>
+                        <Link to="/contacto"><div><p>Contacto</p></div></Link>
                         </div>
                     </div>
                 </div>

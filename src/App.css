@@ -1,0 +1,20 @@
+.App {
+  text-align: center;
+  background-color: #FFF9EC;
+}
+
+section {
+  margin-top: 100px;
+  margin-bottom: 100px;
+}
+
+.cards-container{
+  column-count: 3;
+  column-gap: 2rem;
+  max-width: 1200px;
+  margin: auto;
+  margin-top: 100px;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}

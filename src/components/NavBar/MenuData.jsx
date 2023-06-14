@@ -1,33 +1,33 @@
 export const MenuData = [
     {
         title: "Misión",
-        url: "#",
+        url: "/mision",
         cName: "nav-links"
 
     },
     {
         title: "Visión",
-        url: "#",
+        url: "/vision",
         cName: "nav-links"
     },
     {
         title: "Objetivos",
-        url: "#",
+        url: "/objetivos",
         cName: "nav-links"
     },
     {
         title: "Contacto",
-        url: "#",
+        url: "/contacto",
         cName: "nav-links"
     },
     {
         title: "Registrarse",
-        url: "#",
+        url: "/registrarse",
         cName: "nav-links-mobile"
     },
     {
-        title: "Inicia Ahora",
-        url: "#",
+        title: "Iniciar",
+        url: "/iniciar",
         cName: "nav-links-mobile-transparent"
     }
 ]
