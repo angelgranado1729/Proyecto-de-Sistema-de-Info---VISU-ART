@@ -1,0 +1,30 @@
+.title-section h1 {
+    font-size: 50px;
+    font-weight: 700;
+    opacity: 70%;
+    text-align: center;
+    text-shadow: 0px 4px 30px rgba(0,0,0,0.4);
+}
+
+.general-info{
+    width: 70%; /* Can be in percentage also. */
+    height: auto;
+    margin: 0 auto;
+    padding: 25px;
+    position: relative;
+}
+
+.title-section p {
+    font-size: 16px;
+    font-weight: 300;
+    text-align: start;
+}
+
+.title-section hr{
+    height: 1px;
+    width: 50%;
+    background-color: orange;
+    border: none;
+    margin: auto;
+}
+

@@ -1,0 +1,49 @@
+.section-hero{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.wrapper{
+    margin: 150px auto;
+    width: 70%;
+}
+
+.text-box{
+    width: 35%;
+    float: left;
+    padding: 20px;
+}
+
+.text-box h2 {
+    font-size: 50px;
+    font-weight: 700;
+    opacity: 70%;
+    text-align: start;
+    text-shadow: 0px 4px 30px rgba(0,0,0,0.4);
+}
+
+.text-box p {
+    font-size: 16px;
+    font-weight: 300;
+    text-align: start;
+}
+
+.slider-container {
+    width: 65%;
+    float: right;
+    padding: 20px;
+}
+
+
+
+@media  screen and (max-width: 850px) {
+    .slider-container {
+        display: none;
+    }
+
+    .text-box{
+        width: 100%;
+        padding: 20px;
+    }
+}

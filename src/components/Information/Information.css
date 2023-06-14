@@ -1,0 +1,49 @@
+.columns {
+  background-color: rgba(26, 62, 90, 1);
+  padding: 20px;
+  margin: auto;
+  border-radius: 45px;
+  width: 70%;
+}
+
+.column {
+    float: left;
+    width: 33.33%;
+}
+  
+  /* Stops the float property from affecting content after the columns */
+.columns:after {
+    content: "";
+    display: table;
+    clear: both;
+}
+
+.column p{
+  font-size: 15px;
+  color: white;
+  text-align: start;
+  padding: 20px;
+}
+
+.column a{
+  font-size: 15px;
+  color: #9FE7F5;
+  text-align: start;
+}
+
+.column {
+  width: 100%;
+}
+
+@media (min-width: 48em) {
+  .column {
+    float: left;
+    width: 33.33%;
+  }
+
+  .columns:after {
+    content: "";
+    display: table;
+    clear: both;
+  }
+}
