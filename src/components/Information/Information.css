@@ -7,22 +7,22 @@
 }
 
 .column {
-    float: left;
-    width: 33.33%;
+  float: left;
+  width: 33.33%;
 }
   
-  /* Stops the float property from affecting content after the columns */
 .columns:after {
-    content: "";
-    display: table;
-    clear: both;
+  content: "";
+  display: table;
+  clear: both;
 }
 
 .column p{
   font-size: 15px;
   color: white;
   text-align: start;
-  padding: 20px;
+  padding: 30px;
+  justify-content: start;
 }
 
 .column a{
@@ -31,9 +31,20 @@
   text-align: start;
 }
 
+.column a:hover{
+  text-decoration: underline;
+}
+
 .column {
   width: 100%;
 }
+
+.column i{
+  color: #9FE7F5;
+  font-size: 15px;
+  padding: 5px;
+}
+
 
 @media (min-width: 48em) {
   .column {

@@ -15,7 +15,7 @@ const Card =()=>{
               Lorem ipsum dolor sit amet consectetur, adipisicing elit. Doloremque
               dolorum ab iste dicta cupiditate, ut doloribus
             </p>
-            <input type="button" value="Leer Más" />
+            <button className="see-more">Ver mas</button>
           </div>
         </div>
       </div>

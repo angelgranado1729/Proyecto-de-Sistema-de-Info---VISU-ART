@@ -7,7 +7,7 @@ const Footer =()=>{
         <div className="footer">
             <div className = "sb__footer section">
                 <div className = "sb__footer-links">
-                    <div className = "sb__footer-links_div">
+                    <div className = "sb__footer-links_div-img">
                         <img src="/images/logos/visuartOrangeLogo.jpg" alt="" />
                     </div>
                     <div className = "sb__footer-links_div">
