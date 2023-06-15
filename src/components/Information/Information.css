@@ -4,6 +4,7 @@
   margin: auto;
   border-radius: 45px;
   width: 70%;
+  max-width: 1200px;
 }
 
 .column {
@@ -20,9 +21,8 @@
 .column p{
   font-size: 15px;
   color: white;
-  text-align: start;
+  text-align: justify;
   padding: 30px;
-  justify-content: start;
 }
 
 .column a{

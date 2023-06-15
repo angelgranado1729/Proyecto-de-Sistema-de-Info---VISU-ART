@@ -10,12 +10,12 @@ const Card =()=>{
             <div className="img-back"></div>
           </div>
           <div className="description">
-            <h2>Tour Jardínes</h2>
+            <h2>TOUR BLA BLA BLA</h2>
             <p>
               Lorem ipsum dolor sit amet consectetur, adipisicing elit. Doloremque
               dolorum ab iste dicta cupiditate, ut doloribus
             </p>
-            <button className="see-more">Ver mas</button>
+            <button className="see-more">Ver más</button>
           </div>
         </div>
       </div>

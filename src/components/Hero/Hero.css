@@ -13,6 +13,7 @@
     width: 35%;
     float: left;
     padding: 20px;
+    margin-top: 50px;
 }
 
 .text-box h2 {
@@ -30,9 +31,10 @@
 }
 
 .slider-container {
-    width: 65%;
+    width: 60%;
     float: right;
     padding: 20px;
+    margin-top: 0px;
 }
 
 .calendar-btn{
@@ -45,17 +47,28 @@
     flex: none;
     order: 4;
     flex-grow: 0;
-    padding: 15px 60px;
+    padding: 12px 60px;
     margin-top: 20px;
     transition: all 0.5s ease;
+    margin-left: -80px;
 }
 
 .calendar-btn:hover{
     background-color: #9FE7F5;
 }
 
+@media  screen and (max-width: 900px) {
+    .wrapper{
+      max-width: 1200px;
+      width: 1200px;
+    }
 
-@media  screen and (max-width: 850px) {
+    .text-box p{
+        
+      }
+  }
+
+@media  screen and (max-width: 760px) {
     .slider-container {
         display: none;
     }
@@ -63,5 +76,31 @@
     .text-box{
         width: 100%;
         padding: 20px;
+    }
+}
+
+@media  screen and (max-width: 900px) {
+    .slider-container {
+        display: none;
+    }
+
+    .text-box{
+        width: 100%;
+        padding: 10px;
+    }
+}
+
+@media  screen and (max-width: 1024px) {
+    .section-hero{
+        width: 110%;
+    }
+
+    .text-box{
+        width: 40%;
+        padding: 10px;
+    }
+
+    .slider-container{
+        width: 60%;
     }
 }

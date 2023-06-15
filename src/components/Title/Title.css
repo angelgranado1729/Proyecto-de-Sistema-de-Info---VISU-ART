@@ -7,7 +7,7 @@
 }
 
 .general-info{
-    width: 70%; /* Can be in percentage also. */
+    width: 70%; 
     height: auto;
     margin: 0 auto;
     padding: 25px;
@@ -29,3 +29,14 @@
     margin: auto;
 }
 
+
+@media  screen and (max-width: 820px) {
+    .general-info{
+        width: 90%; 
+    }
+    
+    .title-section hr{
+        width: 90%;
+    }
+    
+}  

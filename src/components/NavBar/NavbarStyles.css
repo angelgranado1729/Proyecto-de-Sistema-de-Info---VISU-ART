@@ -40,7 +40,6 @@
     opacity: 70%;
 }
 
-/*BOTONES: ARREGLAR*/
 .nav-links-mobile{
     background: #1A3E5A;
     font-weight: 600;
@@ -76,7 +75,6 @@
     border: 3px solid #429EBD;
 }
 
-/* FIN BOTONES*/
 
 .fa-bars, .fa-times{
     color: black;
@@ -88,10 +86,34 @@
 }
 
 /*RESPONSIVE WEB DESIGN*/
-@media screen and (max-width: 850px) {
+@media screen and (max-width: 1300px) {
+    .logo{
+        font-size: 25px;
+    }
+
+    .nav-links{
+        font-size: 15px;
+    }
+
+    .nav-links-mobile{
+        font-size: 15px;
+    }
+    
+    .nav-links-mobile-transparent{
+        font-size: 15px;
+    }
+    
+}
+
+
+@media screen and (max-width: 1100px) {
     .items{
         z-index: 99;
     }   
+
+    .logo.active{
+        color: black;
+    }
     
     .nav-menu{
         display: flex;
@@ -99,11 +121,10 @@
         justify-content: flex-start;
         background-color: #fff;
         box-shadow: 0px 4px 20px rgba(0, 0, 0, 0.35);
-        backdrop-filter: blur;
         width: 100%;
         height: auto;
         position: absolute;
-        top: 0;
+        top: 10px;
         left: -110%;
         align-items: stretch;
         padding: 80px 0 30px 0;
@@ -113,15 +134,16 @@
     }  
 
     .nav-menu.active{
-        left: 0%
+        left: 0%;
     }
 
     .nav-links {
         background-color: #fff;
         display: block;
         widows: 100%;
-        padding: 2rem 0;
+        padding: 1rem 0;
         color: black;
+        font-size: 20px;
     }
 
     .nav-links:hover{
@@ -130,26 +152,39 @@
 
     .menu-hamburger{
         display: block;
+        color: white;
+    }
+
+
+    .nav-links-mobile-transparent{
+        padding: 1.5rem;
+        text-align: center;
+        border-radius: 0px;
+        width: 100%;
+        margin: auto;
+        display: block;
+        widows: 100%;
+        color: black;
+        border: none;
+        box-shadow: none;
+        text-shadow: none;
+        font-weight: 700;
+        font-size: 20px;
     }
 
     .nav-links-mobile{
         padding: 1.5rem;
-        display: block;
         text-align: center;
-        font-size: 1.3rem;
         border-radius: 0px;
-        width: 80%;
+        width: 100%;
         margin: auto;
-    }
-    
-    .nav-links-mobile-transparent{
-        padding: 1.5rem;
+        background-color: #fff;
         display: block;
-        text-align: center;
-        font-size: 1.3rem;
-        border-radius: 0px;
-        margin: auto;
-        width: 80%;
+        widows: 100%;
+        color: black;
+        border: none;
+        box-shadow: none;
+        font-weight: 700;
+        font-size: 20px;
     }
-    
 }

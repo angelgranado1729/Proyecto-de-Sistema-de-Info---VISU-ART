@@ -40,31 +40,52 @@ section {
   margin-bottom: 100px;
 }
 
-.reviews-btn:hover{
+.reviews-btn:hover, .orange-btn:hover, .search-btn:hover{
   background: #F7AD19;
 }
 
-.search-bar{
-  padding: 20px;
-  margin: auto;
-  border-radius: 45px;
-  width: 70%;
+.search-container{
+  text-align:center;
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.search-container .search-bar {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
 }
 
 
 .search-bar input{
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
   padding: 10px;
   gap: 6px;
-  width: 450px;
+  width: 400px;
   height: 45px;
   border-radius: 10px;
   border: .5px;
   border-style: solid;
   box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+  margin-left: 50px;
 }
+
+
+.search-btn{
+  padding: 10px 40px;
+  border: none;
+  font-weight: 900;
+  background-color: #F27F0C;
+  color: white;
+  font-size: 14px;
+  cursor: pointer;
+  border-radius: 5px;
+  transition: all 300ms;
+  box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+  margin-left: 50px;
+}
+
 
 .orange-btn{
   padding: 10px 40px;
@@ -79,4 +100,35 @@ section {
   transition: all 300ms;
   box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
   margin-bottom: 100px;
+}
+
+.tours-section{
+  max-width: 1600px;
+  width: 100%;
+  margin: auto;
+}
+
+@media  screen and (max-width: 820px) {
+  .search-container{
+    text-align:center;
+    width: 100%;
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+  
+  .search-container .search-bar {
+    display: block;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .search-btn{
+    margin: 20px;
+  }
+
+  .search-bar input{
+    width: 350px;
+  }
+  
+  
 }
