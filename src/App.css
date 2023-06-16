@@ -1,9 +1,10 @@
 .App {
   text-align: center;
   background-color: #FFF9EC;
-  min-height: 80vh;
+  min-height: 100vh;
   flex-direction: column;
   display: flex;
+  width: 100vw;
 }
 
 section {
