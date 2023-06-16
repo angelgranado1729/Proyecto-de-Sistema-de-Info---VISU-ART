@@ -1,11 +1,9 @@
 import { Component } from "react";
 import { MenuData } from "./MenuData";
-import "./NavbarStyles.css";
+import "./Navbar.css";
 
 class Navbar extends Component{
 
-    
-    //Cambio de icono: Hamburger Menu
     state = {clicked: false};
     handleClick = () =>{
         this.setState({clicked: !this.state.clicked})
@@ -14,7 +12,7 @@ class Navbar extends Component{
     render(){
         return(
             <nav className="items">
-                <h1 className="logo">VISUART</h1>
+                <img className={this.state.clicked ? "logo active" : "logo"} src="public/images/logos/visuartBlackLogo.jpg" alt="" />
                 <div className="menu-hamburger" onClick={this.handleClick}>
                     <i className ={this.state.clicked ? "fas fa-times" : "fa-solid fa-bars"}></i>
                 </div>

@@ -1,3 +1,4 @@
+/*Estilos del componente Navbar*/
 .items{
     display: flex;
     justify-content: space-between;
@@ -16,6 +17,12 @@
     justify-self: start;
     cursor: pointer;
     font-weight: bolder;
+    height: 60px;
+    width: auto;
+}
+
+.white-logo{
+    display: none;    
 }
 
 .nav-menu{
@@ -75,7 +82,6 @@
     border: 3px solid #429EBD;
 }
 
-
 .fa-bars, .fa-times{
     color: black;
     font-size: 30px;
@@ -85,7 +91,7 @@
     display: none;
 }
 
-/*RESPONSIVE WEB DESIGN*/
+/*Responsive Web Design*/
 @media screen and (max-width: 1300px) {
     .logo{
         font-size: 25px;
@@ -105,14 +111,13 @@
     
 }
 
-
 @media screen and (max-width: 1100px) {
     .items{
         z-index: 99;
     }   
 
     .logo.active{
-        color: black;
+        content: url("public/images/logos/visuartWhiteLogo.jpg");
     }
     
     .nav-menu{
@@ -124,7 +129,7 @@
         width: 100%;
         height: auto;
         position: absolute;
-        top: 10px;
+        top: 8px;
         left: -110%;
         align-items: stretch;
         padding: 80px 0 30px 0;
@@ -135,6 +140,19 @@
 
     .nav-menu.active{
         left: 0%;
+    }
+
+    .black-logo {
+        display: none;
+    }
+    
+    .white-logo{
+        display: block;
+        justify-self: start;
+        cursor: pointer;
+        font-weight: bolder;
+        height: 60px;
+        width: auto;    
     }
 
     .nav-links {

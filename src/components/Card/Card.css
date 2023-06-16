@@ -1,3 +1,4 @@
+/*Estilos de Componente Cards*/
 .container-cards{
     max-width: 1200px;
     margin: auto;
@@ -40,7 +41,6 @@
     top: 0px;
 }
 
-
 .card .img-back{
     border-radius: 20px;
     width: 100%;
@@ -70,6 +70,7 @@
     font-size: 12px;
     box-shadow: rgba(50, 50, 93, 0.25) 0px 50px 100px -20px, rgba(0, 0, 0, 0.3) 0px 30px 60px -30px;
 }
+
 .card:hover .description{
     padding: 40px;
 }
@@ -104,3 +105,5 @@
 .see-more:hover{
     background: #F7AD19;
 }
+
+/*Responsive Web Design*/

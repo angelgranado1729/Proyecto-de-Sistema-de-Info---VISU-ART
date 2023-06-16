@@ -1,9 +1,12 @@
+/*Estilos del componente Reviews*/
 .reviews-container{
     background-color: rgba(25, 26, 35, 1);
     height: 400px;
     border-radius: 20px;
     padding: 20px;
     margin: auto;
-    width: 70%;
+    width: 100%;
 }
+
+/*Responsive Web Design*/
 

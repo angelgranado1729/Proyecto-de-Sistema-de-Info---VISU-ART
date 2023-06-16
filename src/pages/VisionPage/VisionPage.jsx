@@ -1,6 +1,6 @@
 import { useState } from "react";
 import Title from "../../components/Title/Title";
-import "./VisionPage.css"
+import "../MisionPage/MisionPage.css"
 
 
 const VisionPage = () => {

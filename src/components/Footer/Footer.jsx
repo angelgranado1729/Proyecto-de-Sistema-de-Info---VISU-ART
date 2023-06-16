@@ -6,12 +6,13 @@ const Footer =()=>{
     return(
         <div className="footer">
             <div className = "sb__footer section">
-                <div className = "sb__footer-links">
-                    <div className = "sb__footer-links_div-img">
-                        <img src="/images/logos/visuartOrangeLogo.jpg" alt="" />
+                <div className = "footer-links">
+                    <div className = "footer-links_div-img">
+                        <img className= "footer-logo" src="/images/logos/visuartOrangeLogo.jpg" alt="" />
+                        <img className="footer-smalllogo" src="/images/logos/visuartSmallOrangeLogo.jpg" alt="" />
                     </div>
-                    <div className = "sb__footer-links_div">
-                        <div className= "sb__footer-below-links">
+                    <div className = "footer-links_div">
+                        <div className= "footer-below-links">
                         <Link to="/mision"><div><p>Misión</p></div></Link>
                         <Link to="/vision"><div><p>Visión</p></div></Link>
                         <Link to="/objetivos"><div><p>Objetivos</p></div></Link>
@@ -20,8 +21,8 @@ const Footer =()=>{
                     </div>
                 </div>
                 <hr></hr>
-                <div className="sb__footer-below">
-                    <div className ="sb__footer-copyright">
+                <div className="footer-below">
+                    <div className ="footer-copyright">
                         <p>©{new Date().getFullYear()} VisuArt. All rights reserved.</p>
                     </div>
                 </div>

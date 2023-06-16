@@ -1,9 +1,10 @@
+/*Estilos del componente title*/
 .title-section h1 {
     font-size: 50px;
     font-weight: 700;
     opacity: 70%;
     text-align: center;
-    text-shadow: 0px 4px 30px rgba(0,0,0,0.4);
+    text-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
 }
 
 .general-info{
@@ -29,7 +30,7 @@
     margin: auto;
 }
 
-
+/*Responsive Web Design*/
 @media  screen and (max-width: 820px) {
     .general-info{
         width: 90%; 

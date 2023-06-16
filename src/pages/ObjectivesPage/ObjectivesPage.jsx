@@ -1,5 +1,5 @@
 import Title from "../../components/Title/Title";
-import "./ObjectivesPage.css"
+import "../MisionPage/MisionPage.css"
 
 
 const ObjectivesPage = () => {
