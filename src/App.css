@@ -11,6 +11,74 @@ section {
   margin-top: 100px;
 }
 
+/*Estilos de botones generales*/
+.blue-btn{
+  background: #1A3E5A;
+  font-weight: 900;
+  font-size: 15px;
+  text-decoration: none;
+  color: white;
+  box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+  border-radius: 10px;
+  flex: none;
+  order: 4;
+  flex-grow: 0;
+  padding: 15px 60px;
+  border: none;
+}
+
+.blue-btn:hover{
+  background: #9FE7F5;
+}
+
+.reviews-btn {
+  padding: 10px 40px;
+  margin-top: 50px;
+  border: none;
+  font-weight: 900;
+  background-color: #F27F0C;
+  color: white;
+  font-size: 14px;
+  cursor: pointer;
+  border-radius: 5px;
+  transition: all 300ms;
+  box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+  margin-bottom: 100px;
+}
+
+.search-btn{
+  padding: 10px 40px;
+  border: none;
+  font-weight: 900;
+  background-color: #F27F0C;
+  color: white;
+  font-size: 14px;
+  cursor: pointer;
+  border-radius: 5px;
+  transition: all 300ms;
+  box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+  margin-left: 50px;
+}
+
+.orange-btn{
+  padding: 10px 40px;
+  margin-top: 50px;
+  border: none;
+  font-weight: 900;
+  background-color: #F27F0C;
+  color: white;
+  font-size: 14px;
+  cursor: pointer;
+  border-radius: 5px;
+  transition: all 300ms;
+  box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+  margin-bottom: 100px;
+}
+
+.reviews-btn:hover, .orange-btn:hover, .search-btn:hover{
+  background: #F7AD19;
+}
+
 .cards-container{
   column-count: 2;
   column-gap: 3rem;
@@ -29,24 +97,7 @@ section {
   text-shadow: 0px 4px 30px rgba(0,0,0,0.4);
 }
 
-.reviews-btn {
-  padding: 10px 40px;
-  margin-top: 50px;
-  border: none;
-  font-weight: 900;
-  background-color: #F27F0C;
-  color: white;
-  font-size: 14px;
-  cursor: pointer;
-  border-radius: 5px;
-  transition: all 300ms;
-  box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
-  margin-bottom: 100px;
-}
 
-.reviews-btn:hover, .orange-btn:hover, .search-btn:hover{
-  background: #F7AD19;
-}
 
 .search-container{
   text-align:center;
@@ -76,35 +127,7 @@ section {
 }
 
 
-.search-btn{
-  padding: 10px 40px;
-  border: none;
-  font-weight: 900;
-  background-color: #F27F0C;
-  color: white;
-  font-size: 14px;
-  cursor: pointer;
-  border-radius: 5px;
-  transition: all 300ms;
-  box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
-  margin-left: 50px;
-}
 
-
-.orange-btn{
-  padding: 10px 40px;
-  margin-top: 50px;
-  border: none;
-  font-weight: 900;
-  background-color: #F27F0C;
-  color: white;
-  font-size: 14px;
-  cursor: pointer;
-  border-radius: 5px;
-  transition: all 300ms;
-  box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
-  margin-bottom: 100px;
-}
 
 .tours-section{
   max-width: 1600px;

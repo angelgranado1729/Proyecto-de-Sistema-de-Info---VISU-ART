@@ -7,6 +7,7 @@ import MisionPage from "./pages/MisionPage/MisionPage"
 import VisionPage from "./pages/VisionPage/VisionPage"
 import ObjectivesPage from "./pages/ObjectivesPage/ObjectivesPage"
 import AdminPage from "./pages/AdminPage/AdminPage"
+import CalendarPage from "./pages/CalendarPage/CalendarPage"
 
 
 
@@ -19,6 +20,7 @@ function App() {
         <Route path="/vision" element={<VisionPage/>}/>
         <Route path="/objetivos" element={<ObjectivesPage/>}/>
         <Route path="/admin" element={<AdminPage/>}/>
+        <Route path="/calendar" element={<CalendarPage/>}/>
       </Routes>
       <Footer/>
     </>

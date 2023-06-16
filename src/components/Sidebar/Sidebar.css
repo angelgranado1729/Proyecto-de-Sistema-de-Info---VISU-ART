@@ -5,10 +5,6 @@
     position: fixed;
 }
 
-.menu-hamburger{
-    display: none;
-}
-
 .admin-profile{
     height: 10%;
     position: absolute;
@@ -103,15 +99,6 @@
 }
 
 @media screen and (max-width: 1100px) {
-
-    .menu-hamburger{
-        display: block;
-        font-size: 40px;
-        position: absolute;
-        top: 0px;
-        left: 10px;
-        padding: 10px;
-    }
 
     .sidebar{
         font-size: 15px;
