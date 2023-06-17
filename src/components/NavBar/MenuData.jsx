@@ -1,25 +1,25 @@
-import { LOGIN_URL, REGISTER_URL } from "../../constants/urls";
+import { CONTACT_URL, LOGIN_URL, MISION_URL, OBJECTIVES_URL, REGISTER_URL, VISION_URL } from "../../constants/urls";
 
 export const MenuData = [
     {
         title: "Misión",
-        url: "/mision",
+        url: MISION_URL,
         cName: "nav-links"
 
     },
     {
         title: "Visión",
-        url: "/vision",
+        url: VISION_URL,
         cName: "nav-links"
     },
     {
         title: "Objetivos",
-        url: "/objetivos",
+        url: OBJECTIVES_URL,
         cName: "nav-links"
     },
     {
         title: "Contacto",
-        url: "/contacto",
+        url: CONTACT_URL,
         cName: "nav-links"
     },
     {

@@ -3,7 +3,7 @@ import { getStorage, ref, getDownloadURL } from "firebase/storage";
 import styles from "./RegisterPage.module.css";
 import { useEffect, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import { HOME_URL, REGISTER_URL } from "../../constants/urls";
+import { HOME_URL, REGISTER_FORM_URL } from "../../constants/urls";
 import {
     loginWithEmailAndPassword,
     signInWithGoogle,
@@ -12,8 +12,7 @@ import {
     ArrowLeft,
     Google,
     Facebook,
-    EyeFill,
-    EyeSlashFill
+    EnvelopeFill,
 } from "react-bootstrap-icons";
 
 
@@ -66,12 +65,6 @@ export function RegisterPage() {
         });
     };
 
-    const onChange = (event) => {
-        const { name, value } = event.target;
-
-        setFormData((oldData) => ({ ...oldData, [name]: value }));
-    };
-
     const handleGoogleClick = async () => {
         await signInWithGoogle({
             onSuccess: () => navigate(HOME_URL),
@@ -84,17 +77,6 @@ export function RegisterPage() {
         // });
     };
 
-    const handleEmailClick = () => {
-        if (!formData.email) {
-            setErrors((prevErrors) => ({ ...prevErrors, email: true }));
-        }
-    };
-
-    const handlePasswordClick = () => {
-        if (!formData.password) {
-            setErrors((prevErrors) => ({ ...prevErrors, password: true }));
-        }
-    };
 
     return (
         <div className={styles.container}>
@@ -107,7 +89,7 @@ export function RegisterPage() {
             <div className={styles.logoContainer}>
                 <img src={imageUrl} alt="logo" />
             </div>
-            <div className={styles.ButtonsContainer}>
+            <div className={styles.mainContainer}>
                 <h1 className={styles.title}>Crea tu cuenta</h1>
                 <div className={styles.decorationTop}></div>
 
@@ -133,10 +115,18 @@ export function RegisterPage() {
                         </span>
                         <p>Inicia con Google</p>
                     </button>
+                    <button
+                        type="button"
+                        className={styles.emailButton}
+                        onClick={() => navigate(REGISTER_FORM_URL)}
+                    >
+                        <span className={styles.emailIcon}>
+                            <EnvelopeFill size={40} color="#1A3E5A" />
+                        </span>
+                        <p>Ingresa con tu correo</p>
+                    </button>
                 </div>
-
                 <div className={styles.decorationBottom}></div>
-
             </div>
         </div>
     );

@@ -123,7 +123,7 @@ export function LoginPage() {
                             type="email"
                             id="email"
                             name="email"
-                            placeholder="Correo electrónico"
+                            placeholder="correo@ejemplo.com"
                             onClick={handleEmailClick}
                             onChange={onChange}
                         />
@@ -151,11 +151,13 @@ export function LoginPage() {
                                 onChange={onChange}
                                 onClick={handlePasswordClick}
                                 className={styles.passwordInputField}
+                                required
                             />
 
                             <button
                                 type="button"
                                 className={styles.passwordToggle}
+                                required
                                 onClick={() => setShowPassword(!showPassword)}
                             >
                                 {showPassword ? (
