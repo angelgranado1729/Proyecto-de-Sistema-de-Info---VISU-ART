@@ -1,3 +1,4 @@
+/*Estilos del componente Slider*/
 .container-slider {
     max-width: 700px;
     height: 500px;
@@ -7,12 +8,6 @@
     overflow: hidden;
     box-shadow: 0 10px 20px rgba(0,0,0, 0,2);
     border-radius: 10px;
-}
-
-@media screen and (max-width: 950px){
-    .container-slider{
-        display: none;
-    }
 }
 
 .slide {
@@ -62,4 +57,11 @@
     top: 50%;
     right: 20px;
     transform: translateY(-60%);
+}
+
+/*Responsive Web Design*/
+@media screen and (max-width: 950px){
+    .container-slider{
+        display: none;
+    }
 }

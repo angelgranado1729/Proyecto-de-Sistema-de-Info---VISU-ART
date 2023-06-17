@@ -1,3 +1,4 @@
+/*Estilos de Componente Footer*/
 .section{
     padding: 3rem 3rem;
     text-align: center;
@@ -16,7 +17,7 @@
     flex-direction: column;
 }
 
-.sb__footer-links{
+.footer-links{
     display: flex;
     flex-direction: row;
     padding: 0px;
@@ -25,7 +26,7 @@
     margin-bottom: 2rem;
 }
 
-.sb__footer-links_div{
+.footer-links_div{
     width: 150px;
     margin: 1rem;
     display: flex;
@@ -35,7 +36,11 @@
     margin-left: 100px;
 }
 
-.sb__footer-links_div-img{
+.footer-smalllogo{
+    display: none;
+}
+
+.footer-links_div-img{
     width: 150px;
     margin: 1rem;
     display: flex;
@@ -50,32 +55,32 @@ a{
     text-decoration: none;
 }
 
-.sb__footer-links_div h4{
+.footer-links_div h4{
     font-size: 14px;
     line-height: 17px;
     margin-bottom: 0.9rem;
 }
 
-.sb__footer-links_div p{
+.footer-links_div p{
     font-size: 12px;
     line-height: 15px;
     margin: 0.5rem 0;
     cursor: pointer;
 }
 
-.sb__footer-below{
+.footer-below{
     margin-top: 0.2rem;
     text-align: center;
 }
 
-.sb__footer-below-links{
+.footer-below-links{
     display: flex;
     flex-direction: row;
     padding: 1rem;
     justify-content: center;
 }
 
-.sb__footer-below-links p{
+.footer-below-links p{
     font-size: 13px;
     line-height: 15px;
     margin-left: 2rem;
@@ -88,7 +93,7 @@ hr{
     width: 100%;
 }
 
-.sb__footer-copyright p {
+.footer-copyright p {
     font-size: 13px;
     line-height: 15px;
     color: rgb(255, 255, 255);
@@ -96,48 +101,52 @@ hr{
     padding: 2rem;
 }
 
+/*Responsive Web Design*/
 @media screen and (max-width: 850px){
-    .sb__footer-heading h1{
-        font-size: 44px;
-        line-height: 50px;
-    }    
+    
 }
 
 @media screen and (max-width: 550px){
-    .sb__footer-heading h1{
-        font-size: 34px;
-        line-height: 42px;
-    }    
-
-    .sb__footer-links div {
-        margin: 1rem 0;
+    .sb__footer section{
+        text-align: center;
+    }
+    
+    .footer-links_div-img{
+        margin: auto;
+        box-sizing: border-box;
     }
 
-    .sb__footer-btn p {
-        font-size: 14px;
-        line-height: 20px;
+    .footer-logo{
+        display: none;
     }
 
-    .sb__footer-below {
+    .footer-smalllogo{
+        display: flex;
+    }
+
+    .footer-links{
+        display: flex;
         flex-direction: column;
-        justify-content: left;
+        text-align: center;
     }
 
-    .sb__footer-below-links{
-        flex-direction: column;
+    .footer-links_div{
+        margin: auto;
     }
 
-    .sb__footer-below-links p {
-        margin-left: 0rem;
-        margin-top: 1rem;
+    .footer-below-links{
+        width: 75%;
+    }
+
+    hr{
+        color: white !important;
+        width: 70%;
+        margin: auto;
     }
 }
 
 @media screen and (max-width: 400px){
-    .sb__footer-heading h1 {
-        font-size: 27px;
-        line-height: 38px;
-    }
+   
 }
 
 

@@ -1,11 +1,13 @@
 import { useState } from "react";
 import Hero from "../../components/Hero/Hero";
 import Title from "../../components/Title/Title";
+import Subtitle from "../../components/Subtitle/Subtitle";
 import Card from "../../components/Card/Card";
 import Information from "../../components/Information/Information";
 import Reviews from "../../components/Reviews/Reviews";
 import DropdownMenu from "../../components/DropdownMenu/DropdownMenu";
 import Navbar from "../../components/NavBar/Navbar";
+import "./LandingPage.css"
 
 
 const LandingPage = () => {
@@ -36,9 +38,11 @@ const LandingPage = () => {
         </section>
 
         <section className="reviews-section">
-          <h1 className="title-v2">Comparte tu experiencia:</h1>
-          <Reviews/>
-          <button className="reviews-btn">Hacer reseña</button>
+          <div className="reviews">
+            <Subtitle subtitle = "Comparte tu experiencia:"/>
+            <Reviews/>
+          </div>
+          <button className="orange-btn">Hacer reseña</button>
         </section>
       </div>
     )
