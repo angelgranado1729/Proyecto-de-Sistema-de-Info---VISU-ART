@@ -1,0 +1,61 @@
+/*Estilos del componente Information*/
+.columns {
+  background-color: rgba(26, 62, 90, 1);
+  padding: 20px;
+  margin: auto;
+  border-radius: 45px;
+  width: 70%;
+  max-width: 1200px;
+}
+
+.column {
+  float: left;
+  width: 33.33%;
+}
+  
+.columns:after {
+  content: "";
+  display: table;
+  clear: both;
+}
+
+.column p{
+  font-size: 15px;
+  color: white;
+  text-align: justify;
+  padding: 30px;
+}
+
+.column a{
+  font-size: 15px;
+  color: #9FE7F5;
+  text-align: start;
+}
+
+.column a:hover{
+  text-decoration: underline;
+}
+
+.column {
+  width: 100%;
+}
+
+.column i{
+  color: #9FE7F5;
+  font-size: 15px;
+  padding: 5px;
+}
+
+/*Responsive Web Design*/
+@media (min-width: 48em) {
+  .column {
+    float: left;
+    width: 33.33%;
+  }
+
+  .columns:after {
+    content: "";
+    display: table;
+    clear: both;
+  }
+}

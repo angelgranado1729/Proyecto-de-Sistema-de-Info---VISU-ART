@@ -1,0 +1,55 @@
+/* Estilos Página de Calendario*/
+.calendar-section{
+  margin: auto;
+  width: 70%;
+}
+
+.calendar-container{
+  background-color: rgba(25, 26, 35, 1);
+  height: 600px;
+  border-radius: 20px;
+  padding: 20px;
+  width: 100%;
+}
+
+.navegation {
+  padding: 20px;
+  margin: auto;
+  border-radius: 45px;
+  width: 100%;
+  max-width: 1600px;
+}
+  
+.box {
+  float: left;
+  width: 33.33%;
+}
+    
+.box:after {
+  content: "";
+  display: table;
+  clear: both;
+}
+  
+.box p{
+  font-size: 30px;
+  color: black;
+  text-align: center;
+  padding: 30px;
+  font-weight: 900;
+  opacity: 70%;
+}
+  
+/*Responsive Web design*/
+
+@media (max-width: 48em) {
+  .box {
+    width: 100%;
+  }
+
+  .box:after {
+    content: "";
+    display: table;
+    clear: both;
+  }
+}

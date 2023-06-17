@@ -1,0 +1,45 @@
+.back-header {
+  min-height: 100px;
+  width: 100%;
+}
+
+.back-header i {
+  font-size: 40px;
+  position: absolute;
+  top: 50px;
+  left: 50px;
+  padding: 10px;
+}
+
+.text-container {
+  padding: 20px;
+  margin: auto;
+  margin-top: 50px;
+  border-radius: 45px;
+  width: 100%;
+  max-width: 1200px;
+}
+
+.info-container {
+  float: left;
+  width: 50%;
+}
+
+.info-container:after {
+  content: "";
+  display: table;
+  clear: both;
+}
+
+.info-container p {
+  font-size: 15px;
+  text-align: justify;
+  padding: 30px;
+}
+
+/*Responsive Web Design*/
+@media (max-width: 769px) {
+  .info-container {
+    width: 100%;
+  }
+}

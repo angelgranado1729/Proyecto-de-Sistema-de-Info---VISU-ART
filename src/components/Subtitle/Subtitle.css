@@ -1,0 +1,11 @@
+/*Estilos del componente Subtitle*/
+.subtitle-section h1 {
+    font-size: 50px;
+    font-weight: 700;
+    opacity: 70%;
+    text-align: start;
+    text-shadow: 0px 4px 30px rgba(0,0,0,0.4);
+}
+
+/*Responsive Web Design*/
+

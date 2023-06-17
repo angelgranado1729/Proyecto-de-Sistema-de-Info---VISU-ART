@@ -1,0 +1,152 @@
+/*Estilos de Componente Footer*/
+.section{
+    padding: 3rem 3rem;
+    text-align: center;
+    width: 100%;
+}
+
+.footer{
+    background-color: #F27F0C;
+    position: relative;
+    width: 100%;
+    bottom: 0;
+}
+
+.sb__footer{
+    display: flex;
+    flex-direction: column;
+}
+
+.footer-links{
+    display: flex;
+    flex-direction: row;
+    padding: 0px;
+    margin: 0 auto;
+    text-align: left;
+    margin-bottom: 2rem;
+}
+
+.footer-links_div{
+    width: 150px;
+    margin: 1rem;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    color: white;
+    margin-left: 100px;
+}
+
+.footer-smalllogo{
+    display: none;
+}
+
+.footer-links_div-img{
+    width: 150px;
+    margin: 1rem;
+    display: flex;
+    margin-left: -100px;
+    justify-content: center;
+    flex-direction: column;
+    color: white;
+}
+
+a{
+    color: white;
+    text-decoration: none;
+}
+
+.footer-links_div h4{
+    font-size: 14px;
+    line-height: 17px;
+    margin-bottom: 0.9rem;
+}
+
+.footer-links_div p{
+    font-size: 12px;
+    line-height: 15px;
+    margin: 0.5rem 0;
+    cursor: pointer;
+}
+
+.footer-below{
+    margin-top: 0.2rem;
+    text-align: center;
+}
+
+.footer-below-links{
+    display: flex;
+    flex-direction: row;
+    padding: 1rem;
+    justify-content: center;
+}
+
+.footer-below-links p{
+    font-size: 13px;
+    line-height: 15px;
+    margin-left: 2rem;
+    color: white;
+    font-weight: 900;
+}
+
+hr{
+    color: white !important;
+    width: 100%;
+}
+
+.footer-copyright p {
+    font-size: 13px;
+    line-height: 15px;
+    color: rgb(255, 255, 255);
+    font-weight: 900;
+    padding: 2rem;
+}
+
+/*Responsive Web Design*/
+@media screen and (max-width: 850px){
+    
+}
+
+@media screen and (max-width: 550px){
+    .sb__footer section{
+        text-align: center;
+    }
+    
+    .footer-links_div-img{
+        margin: auto;
+        box-sizing: border-box;
+    }
+
+    .footer-logo{
+        display: none;
+    }
+
+    .footer-smalllogo{
+        display: flex;
+    }
+
+    .footer-links{
+        display: flex;
+        flex-direction: column;
+        text-align: center;
+    }
+
+    .footer-links_div{
+        margin: auto;
+    }
+
+    .footer-below-links{
+        width: 75%;
+    }
+
+    hr{
+        color: white !important;
+        width: 70%;
+        margin: auto;
+    }
+}
+
+@media screen and (max-width: 400px){
+   
+}
+
+
