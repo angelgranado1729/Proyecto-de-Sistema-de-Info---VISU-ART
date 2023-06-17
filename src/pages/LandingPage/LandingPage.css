@@ -24,15 +24,15 @@
 }
 
 .search-bar input{
-    padding: 10px;
-    gap: 6px;
-    width: 400px;
-    height: 45px;
-    border-radius: 10px;
-    border: .5px;
-    border-style: solid;
-    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
-    margin-left: 50px;
+  padding: 10px;
+  gap: 6px;
+  width: 400px;
+  height: 45px;
+  border-radius: 10px;
+  border: .5px;
+  border-style: solid;
+  box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+  margin-left: 50px;
 }
   
 .tours-section{
