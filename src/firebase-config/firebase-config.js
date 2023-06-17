@@ -6,12 +6,13 @@ import { getStorage } from "firebase/storage";
 import { getFirestore } from "@firebase/firestore";
 
 const firebaseConfig = {
-  apiKey: `${import.meta.env.REACT_APP_APIKEY}`,
-  authDomain: `${import.meta.env.REACT_APP_AUTHDOMAIN}`,
-  projectId: `${import.meta.env.REACT_APP_PROJECTID}`,
-  storageBucket: `${import.meta.env.REACT_APP_STORAGEBUCKET}`,
-  messagingSenderId: `${import.meta.env.REACT_APP_MESSAGINGSENDERID}`,
-  appId: `${import.meta.env.REACT_APP_APPID}`
+  apiKey: "AIzaSyCIugAdflCiFftbQIVAHp1gBuuk3q5uTC0",
+  authDomain: "visuart-17959.firebaseapp.com",
+  projectId: "visuart-17959",
+  storageBucket: "visuart-17959.appspot.com",
+  messagingSenderId: "116309438163",
+  appId: "1:116309438163:web:b68dcdae45b77b073eee26",
+  measurementId: "G-FH6HFY195G"
 };
 
 // Initialize Firebase
