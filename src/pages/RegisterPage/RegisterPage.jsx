@@ -1,15 +1,101 @@
-import { useState } from "react";
-import { Link } from "react-router-dom";
+import 'firebase/firestore';
+import { getStorage, ref, getDownloadURL } from "firebase/storage";
 import styles from "./RegisterPage.module.css";
-import { HOME_URL } from "../../constants/urls";
-import { ArrowLeft } from "react-bootstrap-icons";
-import { Button } from "react-bootstrap";
-import { Facebook, Google, Envelope } from "react-bootstrap-icons";
-
+import { useEffect, useState } from "react";
+import { Link, useNavigate } from "react-router-dom";
+import { HOME_URL, REGISTER_URL } from "../../constants/urls";
+import {
+    loginWithEmailAndPassword,
+    signInWithGoogle,
+} from "../../firebase/auth";
+import {
+    ArrowLeft,
+    Google,
+    Facebook,
+    EyeFill,
+    EyeSlashFill
+} from "react-bootstrap-icons";
 
 
 
 export function RegisterPage() {
+    const [imageUrl, setImageUrl] = useState('');
+
+    const storage = getStorage();
+    const imageRef = ref(storage, import.meta.env.VITE_IMG_VISUARTE_LOGO);
+
+    useEffect(() => {
+        getDownloadURL(imageRef)
+            .then((url) => {
+                setImageUrl(url);
+            })
+            .catch((error) => {
+                console.log("Error al obtener la URL de descarga de la imagen:", error);
+            });
+    }, []);
+
+
+    const navigate = useNavigate();
+    const [formData, setFormData] = useState({
+        email: "",
+        password: "",
+    });
+    const [errors, setErrors] = useState({
+        email: false,
+        password: false,
+    });
+    const [loginError, setLoginError] = useState(false);
+    const [showPassword, setShowPassword] = useState(false);
+
+    const onSuccess = () => {
+        navigate(HOME_URL);
+    };
+
+    const onFail = (_error) => {
+        setLoginError(true);
+    };
+
+    const onSubmit = async (event) => {
+        event.preventDefault();
+
+        setLoginError(false);
+        await loginWithEmailAndPassword({
+            userData: formData,
+            onSuccess,
+            onFail,
+        });
+    };
+
+    const onChange = (event) => {
+        const { name, value } = event.target;
+
+        setFormData((oldData) => ({ ...oldData, [name]: value }));
+    };
+
+    const handleGoogleClick = async () => {
+        await signInWithGoogle({
+            onSuccess: () => navigate(HOME_URL),
+        });
+    };
+
+    const handleFacebookClick = async () => {
+        // await signInWithGoogle({
+        //     onSuccess: () => navigate(HOME_URL),
+        // });
+    };
+
+    const handleEmailClick = () => {
+        if (!formData.email) {
+            setErrors((prevErrors) => ({ ...prevErrors, email: true }));
+        }
+    };
+
+    const handlePasswordClick = () => {
+        if (!formData.password) {
+            setErrors((prevErrors) => ({ ...prevErrors, password: true }));
+        }
+    };
+
     return (
         <div className={styles.container}>
             <div className={styles.backButton}>
@@ -19,59 +105,38 @@ export function RegisterPage() {
             </div>
 
             <div className={styles.logoContainer}>
-                <img src="https://i.imgur.com/2nY3dJp.png" alt="logo" />
+                <img src={imageUrl} alt="logo" />
             </div>
-            <div className={styles.loginTitle}>
-                <h1>Crea tu cuenta</h1>
-            </div>
-
-            <div className={styles.mainContainer}>
+            <div className={styles.ButtonsContainer}>
+                <h1 className={styles.title}>Crea tu cuenta</h1>
                 <div className={styles.decorationTop}></div>
 
-
-                <div className={styles.loginContainer}>
-                    <form className={styles.loginForm}>
-                        <div className={styles.inputContainer}>
-                            <label htmlFor="email">Email</label>
-                            <input type="email" id="email" name="email" />
-                        </div>
-                        <div className={styles.inputContainer}>
-                            <label htmlFor="password">Password</label>
-                            <input type="password" id="password" name="password" />
-                        </div>
-                        <div className={styles.buttonContainer}>
-                            <Button type="submit">Iniciar Sesión</Button>
-                        </div>
-                        <div className={styles.forgotPassword}>
-                            <p>¿Olvidaste tu contraseña?</p>
-                        </div>
-
-                        <div className={styles.buttonsLogin}>
-                            <div className={styles.facebookButton}>
-                                <div className={styles.buttonContainer}>
-                                    <button>
-                                        <div className={styles.facebookIcon}>
-                                            <Facebook size={43} color="#429EBD" />
-                                        </div>
-                                        <p>Inicia con Facebook</p>
-                                    </button>
-                                </div>
-                            </div>
-
-                            <div className={styles.googleButton}>
-                                <div className={styles.buttonContainer}>
-                                    <button>
-                                        <div className={styles.googleIcon}>
-                                            <Google size={43} color="#F7AD19" />
-                                        </div>
-                                        <p>Inicia con Google</p>
-                                    </button>
-                                </div>
-                            </div>
-                        </div>
-                    </form>
+                {/* Facebook Google Buttons */}
+                <div className={styles.buttonsLoginContainer}>
+                    <button
+                        type="button"
+                        className={styles.facebookButton}
+                        onClick={handleFacebookClick}
+                    >
+                        <span className={styles.facebookIcon}>
+                            <Facebook size={40} color="#429EBD" />
+                        </span>
+                        <p>Inicia con Facebook</p>
+                    </button>
+                    <button
+                        type="button"
+                        className={styles.googleButton}
+                        onClick={handleGoogleClick}
+                    >
+                        <span className={styles.googleIcon}>
+                            <Google size={40} color="#F7AD19" />
+                        </span>
+                        <p>Inicia con Google</p>
+                    </button>
                 </div>
+
                 <div className={styles.decorationBottom}></div>
+
             </div>
         </div>
     );

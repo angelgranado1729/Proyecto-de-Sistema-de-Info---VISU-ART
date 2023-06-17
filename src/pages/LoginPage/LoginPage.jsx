@@ -1,15 +1,99 @@
-import { useState } from "react";
-import { Link, useNavigate } from "react-router-dom";
+import 'firebase/firestore';
+import { getStorage, ref, getDownloadURL } from "firebase/storage";
 import styles from "./LoginPage.module.css";
+import { useEffect, useState } from "react";
+import { Link, useNavigate } from "react-router-dom";
 import { HOME_URL, REGISTER_URL } from "../../constants/urls";
-import { Button } from "react-bootstrap";
-import { Facebook, Google, ArrowLeft } from "react-bootstrap-icons";
+import {
+    loginWithEmailAndPassword,
+    signInWithGoogle,
+} from "../../firebase/auth";
+import {
+    ArrowLeft,
+    Google,
+    Facebook,
+    EyeFill,
+    EyeSlashFill
+} from "react-bootstrap-icons";
+
+
 
 export function LoginPage() {
-    const [passwordVisible, setPasswordVisible] = useState(false);
+    const [imageUrl, setImageUrl] = useState('');
 
-    const togglePasswordVisibility = () => {
-        setPasswordVisible(!passwordVisible);
+    const storage = getStorage();
+    const imageRef = ref(storage, import.meta.env.VITE_IMG_VISUARTE_LOGO);
+
+    useEffect(() => {
+        getDownloadURL(imageRef)
+            .then((url) => {
+                setImageUrl(url);
+            })
+            .catch((error) => {
+                console.log("Error al obtener la URL de descarga de la imagen:", error);
+            });
+    }, []);
+
+
+    const navigate = useNavigate();
+    const [formData, setFormData] = useState({
+        email: "",
+        password: "",
+    });
+    const [errors, setErrors] = useState({
+        email: false,
+        password: false,
+    });
+    const [loginError, setLoginError] = useState(false);
+    const [showPassword, setShowPassword] = useState(false);
+
+    const onSuccess = () => {
+        navigate(HOME_URL);
+    };
+
+    const onFail = (_error) => {
+        setLoginError(true);
+    };
+
+    const onSubmit = async (event) => {
+        event.preventDefault();
+
+        setLoginError(false);
+        await loginWithEmailAndPassword({
+            userData: formData,
+            onSuccess,
+            onFail,
+        });
+    };
+
+    const onChange = (event) => {
+        const { name, value } = event.target;
+
+        setFormData((oldData) => ({ ...oldData, [name]: value }));
+    };
+
+    const handleGoogleClick = async () => {
+        await signInWithGoogle({
+            onSuccess: () => navigate(HOME_URL),
+        });
+    };
+
+    const handleFacebookClick = async () => {
+        // await signInWithGoogle({
+        //     onSuccess: () => navigate(HOME_URL),
+        // });
+    };
+
+    const handleEmailClick = () => {
+        if (!formData.email) {
+            setErrors((prevErrors) => ({ ...prevErrors, email: true }));
+        }
+    };
+
+    const handlePasswordClick = () => {
+        if (!formData.password) {
+            setErrors((prevErrors) => ({ ...prevErrors, password: true }));
+        }
     };
 
     return (
@@ -20,79 +104,124 @@ export function LoginPage() {
                 </Link>
             </div>
 
-            <div className={styles.logoContainer}>
-                <img src="https://i.imgur.com/2nY3dJp.png" alt="logo" />
-            </div>
-            <div className={styles.loginTitle}>
-                <h1>Bienvenido de nuevo</h1>
-            </div>
-
-            <div className={styles.mainContainer}>
+            <div className={styles.formContainer}>
+                <div className={styles.logoContainer}>
+                    <img src={imageUrl} alt="logo" />
+                </div>
+                <h1 className={styles.title}>Bienvenido de nuevo</h1>
                 <div className={styles.decorationTop}></div>
+                <form className={styles.form} onSubmit={onSubmit}>
+                    {/* EMAIL FIELD */}
+                    <div
+                        className={`${styles.inputContainer} ${errors.email ? styles.errorInput : ""
+                            }`}
+                    >
+                        <label htmlFor="email">
+                            <span>Email</span>
+                        </label>
+                        <input
+                            type="email"
+                            id="email"
+                            name="email"
+                            placeholder="Correo electrónico"
+                            onClick={handleEmailClick}
+                            onChange={onChange}
+                        />
+                        {errors.email && (
+                            <span className={styles.errorMsg}>
+                                Por favor ingresa su correo electrónico.
+                            </span>
+                        )}
+                    </div>
 
-                <div className={styles.loginContainer}>
-                    <form className={styles.loginForm}>
-                        <div className={styles.inputContainer}>
-                            <label htmlFor="email">Email</label>
-                            <input type="email" id="email" name="email" />
+                    {/* PASSWORD FIELD */}
+                    <div
+                        className={styles.inputContainer}
+                    >
+                        <label htmlFor="password">
+                            <span>Contraseña</span>
+                        </label>
+
+                        <div className={`${styles.passwordInput} ${errors.password ? styles.errorInputPassword : ""}`}>
+                            <input
+                                type={showPassword ? "text" : "password"}
+                                name="password"
+                                id="password"
+                                placeholder="***************"
+                                onChange={onChange}
+                                onClick={handlePasswordClick}
+                                className={styles.passwordInputField}
+                            />
+
+                            <button
+                                type="button"
+                                className={styles.passwordToggle}
+                                onClick={() => setShowPassword(!showPassword)}
+                            >
+                                {showPassword ? (
+                                    <EyeSlashFill size={20} color="background: #00000080" />
+                                ) : (
+                                    <EyeFill size={20} color="#00000080" />
+                                )}
+                            </button>
                         </div>
-                        <div className={styles.inputContainer}>
-                            <label htmlFor="password">Password</label>
-                            <div className={styles.passwordInputContainer}>
-                                <input
-                                    type={passwordVisible ? "text" : "password"}
-                                    id="password"
-                                    name="password"
-                                />
-                                <div
-                                    className={styles.passwordToggle}
-                                    onClick={togglePasswordVisibility}
-                                >
-                                    {passwordVisible ? (
-                                        <i className="bi bi-eye-slash-fill"></i>
-                                    ) : (
-                                        <i className="bi bi-eye-fill"></i>
-                                    )}
-                                </div>
-                            </div>
+                        {errors.password && (
+                            <span className={styles.errorMsg}>
+                                Por favor ingresa su contraseña.
+                            </span>
+                        )}
+                    </div>
+
+                    <button type="submit" className={styles.submitBtn}>
+                        Iniciar sesión
+                    </button>
+
+                    {loginError && (
+                        <div className={styles.errorMessage}>
+                            Lo sentimos, no encontramos una cuenta con esta dirección de correo electrónico.
+                            Por favor, inténtalo de nuevo o crea una
+                            <Link to={REGISTER_URL} className={styles.registerLink}>
+                                nueva cuenta
+                            </Link>.
                         </div>
-                        <div className={styles.buttonContainer}>
-                            <Button type="submit">Iniciar Sesión</Button>
-                        </div>
-                    </form>
+                    )}
 
                     <div className={styles.forgotPassword}>
                         <p>¿Olvidaste tu contraseña?</p>
                     </div>
-                    <div className={styles.buttonsLogin}>
-                        <div className={styles.facebookButton}>
-                            <button>
-                                <div className={styles.facebookIcon}>
-                                    <Facebook size={35} color="#429EBD" />
-                                </div>
-                                Inicia con Facebook
-                            </button>
-                        </div>
 
-                        <div className={styles.googleButton}>
-                            <button>
-                                <div className={styles.googleIcon}>
-                                    <Google size={35} color="#F7AD19" />
-                                </div>
-                                Inicia con Google
-                            </button>
-                        </div>
+                    {/* Facebook Google Buttons */}
+                    <div className={styles.buttonsLoginContainer}>
+                        <button
+                            type="button"
+                            className={styles.facebookButton}
+                            onClick={handleFacebookClick}
+                        >
+                            <span className={styles.facebookIcon}>
+                                <Facebook size={40} color="#429EBD" />
+                            </span>
+                            <p>Inicia con Facebook</p>
+                        </button>
+
+                        <button
+                            type="button"
+                            className={styles.googleButton}
+                            onClick={handleGoogleClick}
+                        >
+                            <span className={styles.googleIcon}>
+                                <Google size={40} color="#F7AD19" />
+                            </span>
+                            <p>Inicia con Google</p>
+                        </button>
                     </div>
-                </div>
+                </form>
                 <div className={styles.decorationBottom}></div>
-            </div>
-            <div className={styles.registerContainer}>
-                <p>¿No tienes cuenta?</p>
-                <div className={styles.registerLink}>
-                    <Link to={REGISTER_URL}>
-                        <p>Regístrate aquí</p>
+                <p className={styles.loginRedirect}>
+                    ¿Aún no tienes una cuenta?
+                    <Link to={REGISTER_URL} className={styles.redirectLink}>
+                        Regístrate aquí
                     </Link>
-                </div>
+                </p>
             </div>
         </div>
     );

@@ -1,10 +1,10 @@
-import { useState } from "react";
-import { Link, useNavigate } from "react-router-dom";
-import styles from "./LandingPage.module.css";
+import { useEffect } from "react";
+import "./LandingPage";
 
-export function LadingPage() {
+export function LandingPage() {
     return (
         <>
+            <p>Landing Page</p>
         </>
     );
 }
