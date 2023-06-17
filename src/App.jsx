@@ -8,6 +8,8 @@ import VisionPage from "./pages/VisionPage/VisionPage"
 import ObjectivesPage from "./pages/ObjectivesPage/ObjectivesPage"
 import AdminPage from "./pages/AdminPage/AdminPage"
 import CalendarPage from "./pages/CalendarPage/CalendarPage"
+import ContactPage from "./pages/ContactPage/ContactPage"
+import ReservePage from "./pages/ReservePage/ReservePage"
 
 
 
@@ -21,6 +23,8 @@ function App() {
         <Route path="/objetivos" element={<ObjectivesPage/>}/>
         <Route path="/admin" element={<AdminPage/>}/>
         <Route path="/calendar" element={<CalendarPage/>}/>
+        <Route path="/contact" element={<ContactPage/>}/>
+        <Route path="/reserve" element={<ReservePage/>}/>
       </Routes>
       <Footer/>
     </>

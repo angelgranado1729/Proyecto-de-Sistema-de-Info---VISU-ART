@@ -16,7 +16,7 @@ const Footer =()=>{
                         <Link to="/mision"><div><p>Misión</p></div></Link>
                         <Link to="/vision"><div><p>Visión</p></div></Link>
                         <Link to="/objetivos"><div><p>Objetivos</p></div></Link>
-                        <Link to="/contacto"><div><p>Contacto</p></div></Link>
+                        <Link to="/contact"><div><p>Contacto</p></div></Link>
                         </div>
                     </div>
                 </div>

@@ -1,0 +1,55 @@
+body{
+    background-color: #FFF9EC;
+    color:black;
+}
+
+.formArea{
+    display: flex;
+    flex-direction: column;
+    margin-left: 10vw;
+    margin-right: 10vw;
+    padding-left: 15vw;
+    padding-right: 10vw;
+    gap: 4vh;
+}
+
+.fTitle {
+    text-align: center;
+    margin-bottom: -30px;
+}
+
+.fLine{
+    border: 1px solid #F27F0C;
+    background-color: #F27F0C;
+    width: 85vw;
+}
+
+/*Ajustes a posicion de boton general*/
+.blue-btn{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 2vh;
+
+}
+
+/*Ajustes responsive*/
+@media  screen and (max-width: 820px){
+    .blue-btn{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: 50%;
+        height: 6vh;
+        margin-top: 2vh;
+    
+    }
+
+    .formArea{
+        display: flex;
+        flex-direction: column;
+        margin-left: -5vw;
+        margin-right: 0vw;
+        gap: 4vh;
+    }
+}

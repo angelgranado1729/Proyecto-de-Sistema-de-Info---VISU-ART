@@ -17,7 +17,7 @@ export const MenuData = [
     },
     {
         title: "Contacto",
-        url: "/contacto",
+        url: "/contact",
         cName: "nav-links"
     },
     {
