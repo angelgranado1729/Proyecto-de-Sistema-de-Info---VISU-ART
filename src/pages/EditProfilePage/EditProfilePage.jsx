@@ -28,7 +28,7 @@ const EditProfilePage = () => {
                         <div className="input">
                             <label>Contraseña</label>
                             <input type="text"/>
-                            <span>Más de dígitos e incluya carácteres especiales</span>
+                            <span>Más 6 de dígitos e incluya carácteres especiales</span>
                         </div>
                         
                     </div>
@@ -46,7 +46,7 @@ const EditProfilePage = () => {
                         <div className="input">
                             <label>Verifica tu contraseña</label>
                             <input type="text"/>
-                            <span>Más de dígitos e incluya carácteres especiales</span>
+                            <span>Más 6 de dígitos e incluya carácteres especiales</span>
                         </div> 
                     </div>
                 </div>

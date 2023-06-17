@@ -1,3 +1,4 @@
+/*Estilos Página Editar Perfil*/
 .App-v2{
     text-align: center;
     background-color: #D1E4EB;
@@ -95,12 +96,16 @@
     }
 
     .back-header img{
-        display: none;
+        height: 40px;
+        width: auto;
+        top: 35px;
+        left: 80px;
     }
 
     .editprofile-container{
         width: 80%;
         padding: 70px;
+        margin-bottom: 100px;
     }
 
     .input-container{
@@ -111,5 +116,55 @@
       display: table;
       clear: both;
     }
-  }
+}
+
+@media (max-width: 768px) {
+   .editprofile-container{
+    margin-top: 100px;
+    margin-bottom: 100px;
+   } 
+
+}
+
+@media (max-width: 820px) {
+    .editprofile-container{
+     margin-top: 100px;
+     margin-bottom: 100px;
+    } 
+
+    .back-header img{
+        height: 40px;
+        width: auto;
+        top: 60px;
+        left: 120px;
+    }
+ }
+
+@media (max-width: 480px) {
+    .editprofile-container{
+        width: 90%;
+        padding: 50px;
+        margin-bottom: 100px;
+    }
+
+    .profile-img{
+        background-color: white;
+        border: 1px solid white;
+        border-radius: 100px;
+        width: 150px;
+        height: 150px;
+        box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+        margin: 0px auto;
+        margin-bottom: 30px;
+        margin-top: -100px;
+    }
+
+    .back-header img{
+        height: 40px;
+        width: auto;
+        top: 40px;
+        left: 80px;
+    }
+}
+
   
