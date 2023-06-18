@@ -1,13 +1,16 @@
 import React, { useState, useEffect } from "react";
 import { app, auth, db, storage } from '/src/firebase-config/firebase-config.js';
-
 import { getDocs, query, collection, where } from "firebase/firestore";
-
 import Sidebar from "../../components/Sidebar/Sidebar";
 import Title from "../../components/Title/Title";
 import "./ReserveAdminPage.css";
 import { Table } from "reactstrap";
+import { Button } from 'reactstrap';
 
+/* Página de administración de reservas
+   Se obtiene la información de la coleccion de Reservas  y con los  ID de tour y usuario accedemos
+   a las colecciones de Tours y Usuarios para obtener sus nombres y mostrarlos en la tabla.
+ */
 
 const ReserveAdminPage = () => {
   const [reservations, setReservations] = useState([]);
@@ -15,7 +18,7 @@ const ReserveAdminPage = () => {
   const [users, setUsers] = useState({});
   
   
-
+// Obtener la data de las reservas
   useEffect(() => {
     const fetchReservations = async () => {
         try {
@@ -28,11 +31,11 @@ const ReserveAdminPage = () => {
             }));
             setReservations(reservationsData);
       
-            // Obtener los datos de los tours y usuarios
+            // Obtener los IDs de los tours y usuarios
             const tourIds = reservationsData.map((reservation) => reservation.tour_id);
             const userIds = reservationsData.map((reservation) => reservation.user_id);
       
-            // Obtener los datos de los tours
+            // Obtener la info de tour
             const toursQuery = query(collection(db, "Tours"), where("__name__", "in", tourIds));
             const toursSnapshot = await getDocs(toursQuery);
             if (!toursSnapshot.empty) {
@@ -44,7 +47,7 @@ const ReserveAdminPage = () => {
               setTours(toursData);
             }
       
-            // Obtener los datos de los usuarios
+            // Obtener la info de usuario
             const usersQuery = query(collection(db, "users"), where("__name__", "in", userIds));
             const usersSnapshot = await getDocs(usersQuery);
             if (!usersSnapshot.empty) {
@@ -57,7 +60,7 @@ const ReserveAdminPage = () => {
             }
           }
         } catch (error) {
-          console.error("Error fetching data", error);
+          console.error("Error obteniendo la data", error);
         }
       };
 
@@ -65,6 +68,7 @@ const ReserveAdminPage = () => {
   }, []);
 
 
+  // Estructura de la Tabla de reporte.  
   return (
     <div className="App">
       <Sidebar />
@@ -77,6 +81,7 @@ const ReserveAdminPage = () => {
               <th>Usuario</th>
               <th>Tour</th>
               <th>Fecha</th>
+              <th>Editar</th>
             </tr>
           </thead>
           <tbody>
@@ -86,6 +91,8 @@ const ReserveAdminPage = () => {
                 <td>{users[reservation.user_id]}</td>
                 <td>{tours[reservation.tour_id]}</td>
                 <td>{reservation.fecha}</td>
+                <td> <Button color="primary">Editar</Button> </td>
+                
               </tr>
             ))}
           </tbody>

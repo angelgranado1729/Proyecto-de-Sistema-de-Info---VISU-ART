@@ -12,6 +12,9 @@ import CalendarPage from "./pages/CalendarPage/CalendarPage"
 import ReserveAdminPage from "./pages/ReserveAdminPage/ReserveAdminPage"
 
 import EditProfilePage from "./pages/EditProfilePage/EditProfilePage"
+import ArtAdmin from "./pages/ArtAdmin/ArtAdmin"
+import ArtEdit from "./pages/ArtEdit/ArtEdit"
+import CreateArt from "./pages/CreateArtAdmin/CreateArt"
 
 
 
@@ -28,8 +31,12 @@ function App() {
         <Route path="/calendar" element={<CalendarPage/>}/>
 
         <Route path="/adminreserve" element={<ReserveAdminPage/>}/>
+        <Route path="/adminobras" element={<ArtAdmin/>}/>
+        <Route path="/editar-obra/:nombre" element={<ArtEdit/>}/>
+        <Route path="/createart" element={<CreateArt/>}/>
 
         <Route path="/editprofile" element={<EditProfilePage/>}/>
+        
 
       </Routes>
       <Footer/>
