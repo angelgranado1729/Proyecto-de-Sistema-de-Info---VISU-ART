@@ -19,7 +19,7 @@ function ContactPage() {
 
 
             <div className="iAmOutOfNames">
-                <button name="finishContact" type="button" className="blue-btn"><p className='buttonText'>Enviar</p></button>
+                <button name="finishContact" type="button" className="blue-btn">Enviar</button>
             </div>
 
         </div>
