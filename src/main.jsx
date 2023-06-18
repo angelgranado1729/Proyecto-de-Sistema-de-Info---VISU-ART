@@ -23,137 +23,140 @@ import ArtAdmin from './pages/ArtAdmin/ArtAdmin'
 import ArtEdit from './pages/ArtEdit/ArtEdit'
 import CreateArt from './pages/CreateArtAdmin/CreateArt'
 import ReservePage from './pages/ReservePage/ReservePage'
+import { TourContextProvider } from './contexts/TourContext'
 
 ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>
     <BrowserRouter>
       <UserContextProvider>
-        <Routes>
+        <TourContextProvider>
+          <Routes>
 
-          <Route path={HOME_URL}
-            element={
-              <LandingPage />
+            <Route path={HOME_URL}
+              element={
+                <LandingPage />
+              }
+            />
+
+            <Route path={MISION_URL}
+              element={
+                <MisionPage />
+              }
+            />
+
+            <Route path={VISION_URL}
+              element={
+                <VisionPage />
+              }
+            />
+
+            <Route path={OBJECTIVES_URL}
+              element={
+                <ObjectivesPage />
+              }
+            />
+
+            <Route path={CONTACT_URL}
+              element={
+                <ContactPage />
+              }
+            />
+
+            {/* CREO QUE EL CALENDARIO ES UNA VISTA PRIVADA,
+            DESPUES LO VERIFICO JEJEJEJEJEJE */}
+            <Route path={CALENDAR_URL}
+              element={
+                <PrivateRoute>
+                  <CalendarPage />
+                </PrivateRoute>
+              }
+            />
+
+
+            <Route path={REGISTER_URL}
+              element={
+                <PublicRoute>
+                  <RegisterPage />
+                </PublicRoute>
+              }
+            />
+
+            <Route path={REGISTER_FORM_URL}
+              element={
+                <PublicRoute>
+                  <RegisterFormPage />
+                </PublicRoute>
+              }
+            />
+
+            <Route path={LOGIN_URL}
+              element={
+                <PublicRoute>
+                  <LoginPage />
+                </PublicRoute>
+
+              }
+            />
+
+            <Route
+              path={ADMIN_URL}
+              element={
+                <AdminRoute>
+                  <AdminPage />
+                </AdminRoute>
+              }
+            />
+
+            <Route
+              path={ADMIN_RESERVE_URL}
+              element={
+                <AdminRoute>
+                  <ReserveAdminPage />
+                </AdminRoute>
+              }
+            />
+
+            <Route
+              path={ADMIN_OBRAS_URL}
+              element={
+                <AdminRoute>
+                  <ArtAdmin />
+                </AdminRoute>
+              }
+            />
+
+            <Route
+              path={ADMIN_EDIT_OBRAS_URL}
+              element={
+                <AdminRoute>
+                  <ArtEdit />
+                </AdminRoute>
+              }
+            />
+
+            <Route
+              path={ADMIN_CREATE_OBRAS_URL}
+              element={
+                <AdminRoute>
+                  <CreateArt />
+                </AdminRoute>
+              }
+            />
+
+            <Route path={ERROR_404}
+              element={
+                <NotFoundPage />
+              }
+            />
+
+            <Route path={"/reserve"}
+              element={
+                <ReservePage/>
             }
           />
 
-          <Route path={MISION_URL}
-            element={
-              <MisionPage />
-            }
-          />
-
-          <Route path={VISION_URL}
-            element={
-              <VisionPage />
-            }
-          />
-
-          <Route path={OBJECTIVES_URL}
-            element={
-              <ObjectivesPage />
-            }
-          />
-
-          <Route path={CONTACT_URL}
-            element={
-              <ContactPage />
-            }
-          />
-
-          {/* CREO QUE EL CALENDARIO ES UNA VISTA PRIVADA,
-           DESPUES LO VERIFICO JEJEJEJEJEJE */}
-          <Route path={CALENDAR_URL}
-            element={
-              <PrivateRoute>
-                <CalendarPage />
-              </PrivateRoute>
-            }
-          />
-
-
-          <Route path={REGISTER_URL}
-            element={
-              <PublicRoute>
-                <RegisterPage />
-              </PublicRoute>
-            }
-          />
-
-          <Route path={REGISTER_FORM_URL}
-            element={
-              <PublicRoute>
-                <RegisterFormPage />
-              </PublicRoute>
-            }
-          />
-
-          <Route path={LOGIN_URL}
-            element={
-              <PublicRoute>
-                <LoginPage />
-              </PublicRoute>
-
-            }
-          />
-
-          <Route
-            path={ADMIN_URL}
-            element={
-              <AdminRoute>
-                <AdminPage />
-              </AdminRoute>
-            }
-          />
-
-          <Route
-            path={ADMIN_RESERVE_URL}
-            element={
-              <AdminRoute>
-                <ReserveAdminPage />
-              </AdminRoute>
-            }
-          />
-
-          <Route
-            path={ADMIN_OBRAS_URL}
-            element={
-              <AdminRoute>
-                <ArtAdmin />
-              </AdminRoute>
-            }
-          />
-
-          <Route
-            path={ADMIN_EDIT_OBRAS_URL}
-            element={
-              <AdminRoute>
-                <ArtEdit />
-              </AdminRoute>
-            }
-          />
-
-          <Route
-            path={ADMIN_CREATE_OBRAS_URL}
-            element={
-              <AdminRoute>
-                <CreateArt />
-              </AdminRoute>
-            }
-          />
-
-          <Route path={ERROR_404}
-            element={
-              <NotFoundPage />
-            }
-          />
-
-          <Route path={"/reserve"}
-            element={
-              <ReservePage/>
-          }
-        />
-
-        </Routes>
+          </Routes>
+        </TourContextProvider>
       </UserContextProvider>
     </BrowserRouter>
   </React.StrictMode >
