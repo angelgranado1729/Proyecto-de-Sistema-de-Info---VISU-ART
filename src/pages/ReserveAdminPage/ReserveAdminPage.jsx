@@ -7,18 +7,11 @@ import "./ReserveAdminPage.css";
 import { Table } from "reactstrap";
 import { Button } from 'reactstrap';
 
-/* Página de administración de reservas
-   Se obtiene la información de la coleccion de Reservas  y con los  ID de tour y usuario accedemos
-   a las colecciones de Tours y Usuarios para obtener sus nombres y mostrarlos en la tabla.
- */
-
 const ReserveAdminPage = () => {
   const [reservations, setReservations] = useState([]);
   const [tours, setTours] = useState({});
   const [users, setUsers] = useState({});
 
-
-  // Obtener la data de las reservas
   useEffect(() => {
     const fetchReservations = async () => {
       try {
@@ -42,7 +35,7 @@ const ReserveAdminPage = () => {
             const toursData = {};
             toursSnapshot.docs.forEach((doc) => {
               const tourData = doc.data();
-              toursData[doc.id] = tourData.name;
+              toursData[doc.id] = tourData.nombre;
             });
             setTours(toursData);
           }
@@ -54,7 +47,7 @@ const ReserveAdminPage = () => {
             const usersData = {};
             usersSnapshot.docs.forEach((doc) => {
               const userData = doc.data();
-              usersData[doc.id] = userData.name;
+              usersData[doc.id] = userData.email;
             });
             setUsers(usersData);
           }
@@ -67,13 +60,11 @@ const ReserveAdminPage = () => {
     fetchReservations();
   }, []);
 
-
-  // Estructura de la Tabla de reporte.  
   return (
     <div className="App">
       <Sidebar />
-      <div className="main-admin">
-        <Title title="Gestor de Reservas " />
+      <div className="main-admin" style={{ width: "60%" }}>
+        <Title title="Gestor de Reservas" />
         <Table>
           <thead>
             <tr>
@@ -81,7 +72,6 @@ const ReserveAdminPage = () => {
               <th>Usuario</th>
               <th>Tour</th>
               <th>Fecha</th>
-              <th>Editar</th>
             </tr>
           </thead>
           <tbody>
@@ -91,8 +81,6 @@ const ReserveAdminPage = () => {
                 <td>{users[reservation.user_id]}</td>
                 <td>{tours[reservation.tour_id]}</td>
                 <td>{reservation.fecha}</td>
-                <td> <Button color="primary">Editar</Button> </td>
-
               </tr>
             ))}
           </tbody>
