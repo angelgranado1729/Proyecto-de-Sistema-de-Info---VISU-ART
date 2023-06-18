@@ -11,6 +11,8 @@ const EditProfilePage = () => {
             </header>
 
             <div className="editprofile-container">
+            <div className="decoration up-container"></div>
+            <div className="decoration down-container"></div>
                 <div className="profile-img"></div>
                 <i class="fa-solid fa-pen-to-square"></i>
                 <Subtitle subtitle="Edita tus datos:"/>
@@ -28,7 +30,7 @@ const EditProfilePage = () => {
                         <div className="input">
                             <label>Contraseña</label>
                             <input type="text"/>
-                            <span>Más de dígitos e incluya carácteres especiales</span>
+                            <span>Más 6 de dígitos e incluya carácteres especiales</span>
                         </div>
                         
                     </div>
@@ -46,7 +48,7 @@ const EditProfilePage = () => {
                         <div className="input">
                             <label>Verifica tu contraseña</label>
                             <input type="text"/>
-                            <span>Más de dígitos e incluya carácteres especiales</span>
+                            <span>Más 6 de dígitos e incluya carácteres especiales</span>
                         </div> 
                     </div>
                 </div>
