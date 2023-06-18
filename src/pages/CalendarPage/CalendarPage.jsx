@@ -1,16 +1,19 @@
 import Subtitle from "../../components/Subtitle/Subtitle";
-import "./CalendarPage.css"
-
+import Calendario from '../../components/Calendar/Calendar';
+import "./CalendarPage.css";
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faArrowLeft } from '@fortawesome/free-solid-svg-icons'
 
 const CalendarPage = () => {
     return (
         <div className="App">
             <header className="back-header">
-            <i class="fa-solid fa-arrow-left"></i>
+                <FontAwesomeIcon icon={faArrowLeft} />
             </header>
             <div className="calendar-section">
                 <Subtitle subtitle="Calendario de eventos"/>
                 <div className="calendar-container">
+                    <Calendario /> {}
                 </div>
             </div>
             <div className="navegation">
@@ -30,4 +33,4 @@ const CalendarPage = () => {
     )
 }
 
-export default CalendarPage
+export default CalendarPage;
