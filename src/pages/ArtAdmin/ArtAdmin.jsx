@@ -6,8 +6,7 @@ import Sidebar from "../../components/Sidebar/Sidebar";
 import Title from "../../components/Title/Title";
 import "./ArtAdmin.css";
 import 'bootstrap/dist/css/bootstrap.css';
-import { Table } from "reactstrap";
-import { Button } from 'reactstrap';
+import { Table, Button, Popover, PopoverBody } from "reactstrap";
 
 const ArtAdmin = () => {
   const [obras, setObras] = useState([]);
@@ -31,15 +30,11 @@ const ArtAdmin = () => {
   }, [reload]);
 
   const handleEditarObra = (obra) => {
-
     navigate(`/admin-edit/${obra.nombre}`, { state: obra });
-
   };
 
   const handleCrearObra = () => {
-
     navigate(`/admin-create`);
-
   };
 
   const handleDelete = async (nombre) => {
@@ -68,53 +63,56 @@ const ArtAdmin = () => {
     <div className="App">
       <Sidebar />
       <div className="main-admin">
-        <Title title="Administrador de obras " />
+        <Title title="Administrador de obras" />
 
         <Button color="success" onClick={() => handleCrearObra()}>
-          Agregar nueva obra</Button>{' '}
+          Agregar nueva obra
+        </Button>{" "}
         <br />
         <br />
 
         <Table>
-
           <thead>
             <tr>
               <th>#</th>
               <th>Nombre</th>
-
               <th>Año</th>
               <th>Autor</th>
-
               <th></th>
               <th></th>
             </tr>
           </thead>
           <tbody>
-            {obras.map((obra, index) => (
-              <tr key={index}>
-                <td>{index + 1}</td>
-                <td>{obra.nombre}</td>
-
-                <td>{obra.año}</td>
-                <td>{obra.autor}</td>
-
-                <td>
-                  <Button
-                    color="primary"
-                    onClick={() => handleEditarObra(obra)}
-                    style={{ marginRight: '5px' }}
-                  >
-                    ✏️
-                  </Button>
-                </td>
-                <td>
-                  <Button style={{ marginRight: '5px' }} color="danger" onClick={() => handleDelete(obra.nombre)}>
-                    🗑️
-                  </Button>
-                </td>
-              </tr>
-            ))}
-          </tbody>
+    {obras.map((obra, index) => (
+      <tr key={index}>
+        {/* Celdas de la tabla */}
+        <td style={{ width: '10%' }}>{index + 1}</td>
+       
+        <td style={{ width: '20%' }}>{obra.nombre}</td>
+       
+        <td style={{ width: '20%' }}>{obra.año}</td>
+        <td style={{ width: '20%' }}>{obra.autor}</td>
+        <td>
+          <div style={{ display: 'flex', alignItems: 'center' }}>
+            <Button
+              color="primary"
+              onClick={() => handleEditarObra(obra)}
+              style={{ marginRight: "15%" }}
+            >
+              ✏️
+            </Button>
+            <Button
+              style={{ marginRight: "15%" }}
+              color="danger"
+              onClick={() => handleDelete(obra.nombre)}
+            >
+              🗑️
+            </Button>
+          </div>
+        </td>
+      </tr>
+    ))}
+  </tbody>
         </Table>
       </div>
     </div>
