@@ -11,6 +11,8 @@ const EditProfilePage = () => {
             </header>
 
             <div className="editprofile-container">
+            <div className="decoration up-container"></div>
+            <div className="decoration down-container"></div>
                 <div className="profile-img"></div>
                 <i class="fa-solid fa-pen-to-square"></i>
                 <Subtitle subtitle="Edita tus datos:"/>
