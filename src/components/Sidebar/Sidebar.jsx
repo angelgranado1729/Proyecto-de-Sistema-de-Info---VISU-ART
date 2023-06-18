@@ -1,18 +1,26 @@
 import React from "react";
 import "./Sidebar.css";
 import  {SiderbarData} from './SidebarData'
+import { useState } from "react";
 
 
 const Sidebar=()=>{
 
-
-
+    const [openSidebar, setOpenSidebar] = useState(false);
+    
+    const handleOpenSidebar =() =>{
+        setOpenSidebar(!openSidebar);
+    }
+    
     return(
         <div className="container-12">
-            <div className="menu-hamburger" >
-                    <i className ="fa-solid fa-bars"></i>
-            </div>
-        <div className="sidebar">
+            <button className={openSidebar === false ? "settings": "inactive"} onClick={handleOpenSidebar}>
+                 <i className ="fas fa-bars"></i>
+            </button>
+        <div className={openSidebar === false ? "sidebar": "sidebar actived"}>
+            <button className="settings" onClick={handleOpenSidebar}>
+                    <i className ="fas fa-times icon"></i>
+                </button>
             <div className="admin-profile">
                 <div className="img">
                 </div>
