@@ -6,7 +6,7 @@ const EditProfilePage = () => {
     return (
         <div className="App-v2">
             <header className="back-header">
-            <i class="fa-solid fa-arrow-left"></i>
+            <i className="fa-solid fa-arrow-left"></i>
             <img src="public/images/logos/visuartBlueLogo.jpg" alt="" />
             </header>
 
@@ -14,7 +14,7 @@ const EditProfilePage = () => {
             <div className="decoration up-container"></div>
             <div className="decoration down-container"></div>
                 <div className="profile-img"></div>
-                <i class="fa-solid fa-pen-to-square"></i>
+                <i className="fa-solid fa-pen-to-square"></i>
                 <Subtitle subtitle="Edita tus datos:"/>
                 <div className="input-container">
                     <div className="column">
