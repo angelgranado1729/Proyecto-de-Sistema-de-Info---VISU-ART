@@ -1,33 +1,35 @@
+import { CONTACT_URL, LOGIN_URL, MISION_URL, OBJECTIVES_URL, REGISTER_URL, VISION_URL } from "../../constants/urls";
+
 export const MenuData = [
     {
         title: "Misión",
-        url: "/mision",
+        url: MISION_URL,
         cName: "nav-links"
 
     },
     {
         title: "Visión",
-        url: "/vision",
+        url: VISION_URL,
         cName: "nav-links"
     },
     {
         title: "Objetivos",
-        url: "/objetivos",
+        url: OBJECTIVES_URL,
         cName: "nav-links"
     },
     {
         title: "Contacto",
-        url: "/contact",
+        url: CONTACT_URL,
         cName: "nav-links"
     },
     {
         title: "Registrarse",
-        url: "/registrarse",
+        url: REGISTER_URL,
         cName: "nav-links-mobile"
     },
     {
         title: "Iniciar",
-        url: "/iniciar",
+        url: LOGIN_URL,
         cName: "nav-links-mobile-transparent"
     }
 ]
