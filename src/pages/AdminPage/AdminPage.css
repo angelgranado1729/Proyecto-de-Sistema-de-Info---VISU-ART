@@ -1,8 +1,15 @@
 /*Estilos Página Administrador*/
 .main-admin{
-    margin-left: 300px;
     text-align: justify;
     padding: 50px;
+    width: 100%;
+    left: 0;
+}
+
+
+.main-admin.moved{
+    margin-left: 300px;
+    width: calc(100%-300px);
 }
 
 /*Responsive Web Design*/

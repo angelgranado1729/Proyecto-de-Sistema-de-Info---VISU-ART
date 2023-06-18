@@ -22,7 +22,7 @@
     max-width: 1200px;
     position: relative;
     box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
-    z-index: 100;
+    z-index: 3;
 }
 
 .editprofile-container i {
@@ -44,7 +44,6 @@
     right: -90px;
     border-radius: 70px 0px;
     background: linear-gradient(218.41deg, rgba(66, 158, 189, 0.57) 50.04%, rgba(97, 184, 252, 0.2394) 93.35%);
-    z-index: ;
 }
 
 .down-container{
@@ -52,7 +51,7 @@
     top: 600px;
     left: -90px;
     border-radius: 70px 0px;
-    z-index: -100;
+    z-index: -1;
     background: linear-gradient(218.41deg, rgba(66, 158, 189, 0.57) 50.04%, rgba(97, 184, 252, 0.2394) 93.35%);
 }
 
@@ -116,6 +115,21 @@
 @media (max-width: 980px) {
     .column {
       width: 100%;
+    }
+
+    .decoration{
+        width: 150px;
+        height: 129px;
+    }
+
+    .up-container{
+        top: -100px;
+        right: -60px;
+    }
+
+    .down-container{
+        top: 950px;
+        left: -80px;
     }
 
     .editprofile-container{

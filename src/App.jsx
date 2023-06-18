@@ -9,6 +9,7 @@ import ObjectivesPage from "./pages/ObjectivesPage/ObjectivesPage"
 import AdminPage from "./pages/AdminPage/AdminPage"
 import CalendarPage from "./pages/CalendarPage/CalendarPage"
 import EditProfilePage from "./pages/EditProfilePage/EditProfilePage"
+import FeedbackPage from "./pages/FeedbackPage/FeedbackPage"
 
 
 
@@ -23,6 +24,7 @@ function App() {
         <Route path="/admin" element={<AdminPage/>}/>
         <Route path="/calendar" element={<CalendarPage/>}/>
         <Route path="/editprofile" element={<EditProfilePage/>}/>
+        <Route path="/feedback" element={<FeedbackPage/>}/>
       </Routes>
       <Footer/>
     </>
