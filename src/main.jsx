@@ -20,6 +20,7 @@ import { AdminRoute } from './components/AdminRoute/AdminRoute'
 import ReserveAdminPage from './pages/ReserveAdminPage/ReserveAdminPage'
 import ArtAdmin from './pages/ArtAdmin/ArtAdmin'
 import ArtEdit from './pages/ArtEdit/ArtEdit'
+import CreateArt from './pages/CreateArtAdmin/CreateArt'
 
 ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>
@@ -127,7 +128,7 @@ ReactDOM.createRoot(document.getElementById('root')).render(
             path={ADMIN_CREATE_OBRAS_URL}
             element={
               <AdminRoute>
-                <ArtEdit />
+                <CreateArt />
               </AdminRoute>
             }
           />
