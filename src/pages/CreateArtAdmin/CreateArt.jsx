@@ -1,11 +1,14 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { collection, addDoc } from "firebase/firestore";
+import { collection, doc, setDoc, query, where, getDocs,addDoc } from "firebase/firestore";
+import { getStorage, ref, uploadBytes, getDownloadURL } from "firebase/storage";
 import { db } from "../../firebase/firebase-config";
 import 'bootstrap/dist/css/bootstrap.css';
-import { Button, Form, FormGroup, Label, Input } from 'reactstrap';
+import { Button, Form, FormGroup, Label, Input,Col, Row } from 'reactstrap';
 import Title from "../../components/Title/Title";
 import Sidebar from "../../components/Sidebar/Sidebar";
+
+const storage = getStorage();
 
 const CreateArt = () => {
   const navigate = useNavigate();
@@ -16,12 +19,26 @@ const CreateArt = () => {
     año: "",
     autor: "",
     tecnica: "",
-    dimensiones: ""
+    dimensiones: "",
+    imagen: ""
   });
+
+  const [imagen, setImagen] = useState(null);
 
   const handleInputChange = (e) => {
     const { name, value } = e.target;
     setObra((prevObra) => ({ ...prevObra, [name]: value }));
+  };
+
+  const handleImageUpload = (e) => {
+    const file = e.target.files[0];
+    const storageRef = ref(storage, `images/${file.name}`);
+
+    uploadBytes(storageRef, file).then((snapshot) => {
+      getDownloadURL(snapshot.ref).then((url) => {
+        setObra((prevObra) => ({ ...prevObra, imagen: url }));
+      });
+    });
   };
 
   const handleSubmit = async (e) => {
@@ -29,7 +46,16 @@ const CreateArt = () => {
 
     try {
       const obrasCollection = collection(db, "Obras");
-      await addDoc(obrasCollection, obra);
+      await addDoc(obrasCollection, {
+        nombre: obra.nombre,
+        ubicacion: obra.ubicacion,
+        año: obra.año,
+        autor: obra.autor,
+        tecnica: obra.tecnica,
+        dimensiones: obra.dimensiones,
+        imagen: obra.imagen
+      });
+
       alert("Obra creada exitosamente");
       navigate("/admin-obras");
     } catch (error) {
@@ -44,9 +70,10 @@ const CreateArt = () => {
   return (
     <div className="App">
       <Sidebar />
-      <div className="main-admin">
+      <div className="main-admin" style={{ maxWidth: "60%", margin: "0 auto" }}>
         <Title title="Administrar obras" />
-
+        <Row>
+          <Col md={6}>
         <Form onSubmit={handleSubmit}>
           <FormGroup>
             <Label for="nombre">Nombre</Label>
@@ -98,9 +125,8 @@ const CreateArt = () => {
               onChange={handleInputChange}
             />
           </FormGroup>
-
           <FormGroup>
-            <Label for="tecnica">Dimensiones</Label>
+            <Label for="dimensiones">Dimensiones</Label>
             <Input
               type="text"
               name="dimensiones"
@@ -109,14 +135,34 @@ const CreateArt = () => {
               onChange={handleInputChange}
             />
           </FormGroup>
+          <FormGroup>
+            <Label for="imagen">Imagen</Label>
+            <Input
+              type="file"
+              name="imagen"
+              id="imagen"
+              onChange={handleImageUpload}
+            />
+          </FormGroup>
 
-          <Button color="primary" type="submit" style={{ marginRight: '5px' }} >
+          <Button color="primary" type="submit" style={{ marginRight: '5px' }}>
             Guardar
           </Button>
           <Button color="dark" style={{ marginLeft: '5px' }} onClick={handleGoBack}>
             Volver
           </Button>
         </Form>
+        </Col>
+        <Col md={6}>
+            {obra.imagen && (
+              <img
+                src={obra.imagen}
+                alt="Imagen actual"
+                style={{ maxWidth: "55%" }}
+              />
+            )}
+          </Col>
+        </Row>
       </div>
     </div>
   );
