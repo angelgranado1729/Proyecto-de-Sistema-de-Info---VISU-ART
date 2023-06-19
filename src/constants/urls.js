@@ -13,6 +13,7 @@ export const USER_PROFILE_EDIT_URL = "/user-profile-edit";
 export const CALENDAR_URL = "/calendar";
 export const OBJECTIVES_URL = "/objectives";
 export const CONTACT_URL = "/contact";
+export const RESERVE_URL = "/reserve";
 
 export const ADMIN_RESERVE_URL = "/admin-reserve";
 export const ADMIN_OBRAS_URL = "/admin-obras";
