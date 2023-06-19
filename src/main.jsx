@@ -20,6 +20,7 @@ import {
   OBJECTIVES_URL,
   REGISTER_FORM_URL,
   REGISTER_URL,
+  USER_PROFILE_EDIT_URL,
   USER_PROFILE_URL,
   VISION_URL
 } from './constants/urls'
@@ -77,6 +78,15 @@ ReactDOM.createRoot(document.getElementById('root')).render(
               <CalendarPage />
             }
           />
+
+          <Route path={USER_PROFILE_EDIT_URL}
+            element={
+              <PrivateRoute>
+                <EditProfilePage />
+              </PrivateRoute>
+            }
+          />
+
 
 
           <Route path={REGISTER_URL}
@@ -160,7 +170,7 @@ ReactDOM.createRoot(document.getElementById('root')).render(
             path={ADMIN_CREATE_OBRAS_URL}
             element={
               <AdminRoute>
-                <ArtEdit />
+                <CreateArt />
               </AdminRoute>
             }
           />
@@ -179,7 +189,6 @@ ReactDOM.createRoot(document.getElementById('root')).render(
               </AdminRoute>
             }
           />
-
 
         </Routes>
       </UserContextProvider>

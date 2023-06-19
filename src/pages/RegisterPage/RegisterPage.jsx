@@ -1,7 +1,6 @@
 import 'firebase/firestore';
-import { getStorage, ref, getDownloadURL } from "firebase/storage";
 import styles from "./RegisterPage.module.css";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { HOME_URL, REGISTER_FORM_URL } from "../../constants/urls";
 import {
