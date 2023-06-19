@@ -41,20 +41,7 @@
     text-align: justify;
 }
 
-Button{
-    background-color: orange;
-    font-family: 'Poppins';
-    font-style: normal;
-    font-weight: 700;
-    font-size: 18px;
-    line-height: 20px;
-    margin-bottom: 3vh;
-    color: white;
-}
 
-Button:hover{
-    background-color: wheat;
-}
 
 .buttonArea{
     margin-top: 0;

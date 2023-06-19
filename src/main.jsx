@@ -20,6 +20,7 @@ import {
   OBJECTIVES_URL,
   REGISTER_FORM_URL,
   REGISTER_URL,
+  RESERVE_URL,
   USER_PROFILE_EDIT_URL,
   USER_PROFILE_URL,
   VISION_URL
@@ -42,6 +43,7 @@ import CreateArt from './pages/CreateArtAdmin/CreateArt'
 import EditProfilePage from './pages/EditProfilePage/EditProfilePage'
 import { TourPage } from './pages/TourPage/TourPage'
 import FeedbackPage from './pages/FeedbackPage/FeedbackPage'
+import ReservePage from './pages/ReservePage/ReservePage'
 
 ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>
@@ -170,8 +172,14 @@ ReactDOM.createRoot(document.getElementById('root')).render(
             path={ADMIN_CREATE_OBRAS_URL}
             element={
               <AdminRoute>
-                <CreateArt />
+                <ArtEdit />
               </AdminRoute>
+            }
+          />
+
+          <Route path={RESERVE_URL}
+            element={
+              <ReservePage />
             }
           />
 

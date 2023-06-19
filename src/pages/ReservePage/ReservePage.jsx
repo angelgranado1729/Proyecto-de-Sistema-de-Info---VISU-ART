@@ -1,15 +1,27 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import styles from './ReservePage.css'
 import FormItem from '../../components/FormItem/FormItem'
 import Title from '../../components/Title/Title'
 import Subtitle from '../../components/Subtitle/Subtitle'
 import DropdownMenu from '../../components/DropdownMenu/DropdownMenu'
+import { userTour } from '../../contexts/TourContext'
+import { useTourList } from '../../hooks/useTourList'
+import DropdownTour from '../../components/DropdownTour/DropdownTour'
 
 function ReservePage() {
+  const { tourList, listLoading, getTourList } = useTourList();
+
+    useEffect( () => {
+        //Fetch de lista de tours
+        getTourList();
+    }, [])
+
+
+    console.log(tourList);
   return (
     <div className="App">
         <header className="back-header">
-            <i class="fa-solid fa-arrow-left"></i>
+            <i className="fa-solid fa-arrow-left"></i>
         </header>
 
     <div className='centeredArea'>
@@ -18,8 +30,12 @@ function ReservePage() {
         
         <section className='rForm'>
             <div className='inpArea'>
-                    <DropdownMenu/>
-                <DropdownMenu/>
+                {listLoading &&(<h1>Cargando...</h1>)}
+
+                {!listLoading && tourList &&(
+                    <DropdownTour tours = {tourList}/>
+                )}
+
             </div>
 
             <div className='textArea'>

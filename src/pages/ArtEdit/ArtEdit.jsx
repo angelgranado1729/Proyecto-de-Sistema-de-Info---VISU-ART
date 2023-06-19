@@ -3,9 +3,13 @@ import { useParams, useNavigate } from "react-router-dom";
 import { collection, doc, setDoc, query, where, getDocs } from "firebase/firestore";
 import { getStorage, ref, uploadBytes, getDownloadURL } from "firebase/storage";
 import { db } from "../../firebase/firebase-config";
+<<<<<<< HEAD
 import 'bootstrap/dist/css/bootstrap.css';
 import { Button, Form, FormGroup, Label, Input, Col, Row } from 'reactstrap';
 
+=======
+import { Button, Form, FormGroup, Label, Input } from 'reactstrap';
+>>>>>>> c8af9acf16aef2a7d2a4deecc277bfc1e4bddc1d
 import Slider from "../../components/Slider/Slider";
 import Title from "../../components/Title/Title";
 import Sidebar from "../../components/Sidebar/Sidebar";
@@ -90,7 +94,7 @@ const ArtEdit = () => {
   };
 
   const handleGoBack = () => {
-    navigate("/admin-obras");
+    navigate("/adminobras");
   };
 
   return (

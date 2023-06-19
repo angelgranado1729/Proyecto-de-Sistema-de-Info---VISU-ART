@@ -5,8 +5,13 @@ import { getDocs, query, collection, where, deleteDoc } from "firebase/firestore
 import Sidebar from "../../components/Sidebar/Sidebar";
 import Title from "../../components/Title/Title";
 import "./ArtAdmin.css";
+<<<<<<< HEAD
 import 'bootstrap/dist/css/bootstrap.css';
 import { Table, Button, Popover, PopoverBody } from "reactstrap";
+=======
+import { Table } from "reactstrap";
+import { Button } from 'reactstrap';
+>>>>>>> c8af9acf16aef2a7d2a4deecc277bfc1e4bddc1d
 
 const ArtAdmin = () => {
   const [obras, setObras] = useState([]);
@@ -30,11 +35,23 @@ const ArtAdmin = () => {
   }, [reload]);
 
   const handleEditarObra = (obra) => {
+<<<<<<< HEAD
     navigate(`/admin-edit/${obra.nombre}`, { state: obra });
   };
 
   const handleCrearObra = () => {
     navigate(`/admin-create`);
+=======
+
+    navigate(`/editar-obra/${obra.nombre}`, { state: obra });
+
+  };
+
+  const handleCrearObra = () => {
+
+    navigate(`/createart`);
+
+>>>>>>> c8af9acf16aef2a7d2a4deecc277bfc1e4bddc1d
   };
 
   const handleDelete = async (nombre) => {
