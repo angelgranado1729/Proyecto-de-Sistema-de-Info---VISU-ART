@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from "react";
-import { app, auth, db, storage } from "../../firebase/firebase-config";
+import { app, auth, db, storage } from "../../../firebase/firebase-config";
 import { getDocs, query, collection, where } from "firebase/firestore";
-import Sidebar from "../../components/Sidebar/Sidebar";
-import Title from "../../components/Title/Title";
+import Sidebar from "../../../components/Sidebar/Sidebar";
+import Title from "../../../components/Title/Title";
 import "./ReserveAdminPage.css";
 import { Table } from "reactstrap";
 import { Button } from 'reactstrap';

@@ -2,11 +2,11 @@ import 'firebase/firestore';
 import styles from "./RegisterPage.module.css";
 import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import { HOME_URL, REGISTER_FORM_URL } from "../../constants/urls";
+import { HOME_URL, REGISTER_FORM_URL } from "../../../constants/urls";
 import {
     loginWithEmailAndPassword,
     signInWithGoogle,
-} from "../../firebase/auth";
+} from "../../../firebase/auth";
 import {
     ArrowLeft,
     Google,

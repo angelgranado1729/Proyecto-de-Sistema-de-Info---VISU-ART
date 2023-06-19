@@ -65,9 +65,9 @@
 //si hay que añadir mas campos se debe agregar un estado para cada campo, un input para que el usuario pueda editar el valor
 //, y luego incluye el valor en el objeto que se pasa a "updateUser"
 import React, { useState } from 'react';
-import { useUserContext } from "../../contexts/UserContext";
-import { updateUser } from "../../firebase/users";
-import Subtitle from "../../components/Subtitle/Subtitle";
+import { useUserContext } from "../../../contexts/UserContext";
+import { updateUser } from "../../../firebase/users";
+import Subtitle from "../../../components/Subtitle/Subtitle";
 import "./EditProfilePage.css"
 
 const EditProfilePage = () => {

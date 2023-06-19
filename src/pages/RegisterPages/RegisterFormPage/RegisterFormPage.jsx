@@ -3,7 +3,7 @@ import { useNavigate, Link } from "react-router-dom";
 import { ArrowLeft, EyeFill, EyeSlashFill } from "react-bootstrap-icons";
 import { getStorage, ref, getDownloadURL } from "firebase/storage";
 import styles from "./RegisterFormPage.module.css";
-import { HOME_URL } from "../../constants/urls";
+import { HOME_URL } from "../../../constants/urls";
 
 export function RegisterFormPage() {
     const [showPassword, setShowPassword] = useState(false);
