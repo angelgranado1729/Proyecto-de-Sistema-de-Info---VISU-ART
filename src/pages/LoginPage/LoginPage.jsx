@@ -1,7 +1,5 @@
-import 'firebase/firestore';
-import { getStorage, ref, getDownloadURL } from "firebase/storage";
 import styles from "./LoginPage.module.css";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { HOME_URL, REGISTER_URL } from "../../constants/urls";
 import {
@@ -15,37 +13,27 @@ import {
     EyeFill,
     EyeSlashFill
 } from "react-bootstrap-icons";
+import { useUserContext } from "../../contexts/UserContext";
 
 
 
 export function LoginPage() {
-    const [imageUrl, setImageUrl] = useState('');
 
-    const storage = getStorage();
-    const imageRef = ref(storage, import.meta.env.VITE_IMG_VISUARTE_LOGO);
+    const { user, isLoadingUser } = useUserContext();
 
-    useEffect(() => {
-        getDownloadURL(imageRef)
-            .then((url) => {
-                setImageUrl(url);
-            })
-            .catch((error) => {
-                console.log("Error al obtener la URL de descarga de la imagen:", error);
-            });
-    }, []);
-
-
+    const [loginError, setLoginError] = useState(false);
+    const [showPassword, setShowPassword] = useState(false);
     const navigate = useNavigate();
+
     const [formData, setFormData] = useState({
         email: "",
         password: "",
     });
+
     const [errors, setErrors] = useState({
         email: false,
         password: false,
     });
-    const [loginError, setLoginError] = useState(false);
-    const [showPassword, setShowPassword] = useState(false);
 
     const onSuccess = () => {
         navigate(HOME_URL);
@@ -59,11 +47,7 @@ export function LoginPage() {
         event.preventDefault();
 
         setLoginError(false);
-        await loginWithEmailAndPassword({
-            userData: formData,
-            onSuccess,
-            onFail,
-        });
+        await loginWithEmailAndPassword({ userData: formData, onSuccess, onFail });
     };
 
     const onChange = (event) => {
@@ -78,12 +62,6 @@ export function LoginPage() {
         });
     };
 
-    const handleFacebookClick = async () => {
-        // await signInWithGoogle({
-        //     onSuccess: () => navigate(HOME_URL),
-        // });
-    };
-
     const handleEmailClick = () => {
         if (!formData.email) {
             setErrors((prevErrors) => ({ ...prevErrors, email: true }));
@@ -96,6 +74,14 @@ export function LoginPage() {
         }
     };
 
+    const handleFacebookClick = async () => {
+        // await signInWithGoogle({
+        //     onSuccess: () => navigate(HOME_URL),
+        // });
+    };
+
+
+
     return (
         <div className={styles.container}>
             <div className={styles.backButton}>
@@ -103,10 +89,9 @@ export function LoginPage() {
                     <ArrowLeft size={40} color="#000000" />
                 </Link>
             </div>
-
             <div className={styles.formContainer}>
                 <div className={styles.logoContainer}>
-                    <img src={imageUrl} alt="logo" />
+                    <img src="public\images\logos\visuartGrayLogo.png" alt="logo" />
                 </div>
                 <h1 className={styles.title}>Bienvenido de nuevo</h1>
                 <div className={styles.decorationTop}></div>

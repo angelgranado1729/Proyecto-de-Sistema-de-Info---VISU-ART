@@ -1,104 +1,104 @@
 /*Estilos del componente Hero*/
-.section-hero{
-    display: flex;
-    justify-content: center;
-    align-items: center;
+.section-hero {
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
-.wrapper{
-    margin: 150px;
-    width: 1200px;
+.wrapper {
+  margin: 150px;
+  width: 1200px;
 }
 
-.text-box{
-    width: 35%;
-    float: left;
-    padding: 20px;
-    margin-top: 50px;
+.text-box {
+  width: 35%;
+  float: left;
+  padding: 20px;
+  margin-top: 50px;
 }
 
 .text-box h2 {
-    font-size: 50px;
-    font-weight: 700;
-    opacity: 70%;
-    text-align: start;
-    text-shadow: 0px 4px 30px rgba(0,0,0,0.4);
+  font-size: 50px;
+  font-weight: 700;
+  opacity: 70%;
+  text-align: start;
+  text-shadow: 0px 4px 30px rgba(0, 0, 0, 0.4);
 }
 
 .text-box p {
-    font-size: 16px;
-    font-weight: 500;
-    text-align: justify;
+  font-size: 16px;
+  font-weight: 500;
+  text-align: justify;
 }
 
 .slider-container {
-    width: 60%;
-    float: right;
-    padding: 20px;
-    margin-top: 0px;
+  width: 60%;
+  float: right;
+  padding: 20px;
+  margin-top: 0px;
 }
 
-.calendar-btn{
-    background: #1A3E5A;
-    font-weight: 600;
-    color: white;
-    border: none;
-    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
-    border-radius: 10px;
-    flex: none;
-    order: 4;
-    flex-grow: 0;
-    padding: 12px 60px;
-    margin-top: 20px;
-    transition: all 0.5s ease;
-    margin-left: -80px;
+.calendar-btn {
+  background: #1a3e5a;
+  font-weight: 600;
+  color: white;
+  border: none;
+  box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+  border-radius: 10px;
+  flex: none;
+  order: 4;
+  flex-grow: 0;
+  padding: 12px 60px;
+  margin-top: 20px;
+  transition: all 0.5s ease;
+  margin-left: -80px;
 }
 
-.calendar-btn:hover{
-    background-color: #9FE7F5;
+.calendar-btn:hover {
+  background-color: #9fe7f5;
 }
 
 /*Responsive Web Design*/
-@media  screen and (max-width: 900px) {
-    .wrapper{
-      max-width: 1200px;
-      width: 1200px;
-    }
+@media screen and (max-width: 900px) {
+  .wrapper {
+    max-width: 1200px;
+    width: 1200px;
+  }
 }
 
-@media  screen and (max-width: 760px) {
-    .slider-container {
-        display: none;
-    }
+@media screen and (max-width: 760px) {
+  .slider-container {
+    display: none;
+  }
 
-    .text-box{
-        width: 100%;
-        padding: 20px;
-    }
+  .text-box {
+    width: 100%;
+    padding: 20px;
+  }
 }
 
-@media  screen and (max-width: 900px) {
-    .slider-container {
-        display: none;
-    }
+@media screen and (max-width: 900px) {
+  .slider-container {
+    display: none;
+  }
 
-    .text-box{
-        width: 100%;
-        padding: 10px;
-    }
+  .text-box {
+    width: 100%;
+    padding: 10px;
+  }
 }
 
-@media  screen and (max-width: 1024px) {
-    .section-hero{
-        width: 110%;
-    }
+@media screen and (max-width: 1024px) {
+  .section-hero {
+    width: 110%;
+  }
 
-    .text-box{
-        width: 40%;
-        padding: 10px;
-    }
+  .text-box {
+    width: 40%;
+    padding: 10px;
+  }
 
-    .slider-container{
-        width: 60%;
-    }
+  .slider-container {
+    width: 60%;
+  }
 }
