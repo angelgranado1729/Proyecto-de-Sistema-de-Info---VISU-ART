@@ -5,8 +5,8 @@ import styles from "./DropdownTour.css";
 
 function DropdownTour({tours}) {
     return (
-        <div className="dropdown">
-            <button className="dropbtn"><p>Filtrar por:</p>
+        <div className="droptour">
+            <button className="dropbtnt"><p>Filtrar por:</p>
                 <i className="fa-solid fa-angle-down"></i>
             </button>
             <div className="dropdown-content">

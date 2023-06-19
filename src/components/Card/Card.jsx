@@ -1,7 +1,7 @@
 import React from "react";
 import "./Card.css";
 
-const Card =()=>{
+const Card =({tour})=>{
     return(
         <div className="container-cards">
         <div className="card">
@@ -10,10 +10,9 @@ const Card =()=>{
             <div className="img-back"></div>
           </div>
           <div className="description">
-            <h2>TOUR BLA BLA BLA</h2>
+            <h2>{tour.data.nombre}</h2>
             <p>
-              Lorem ipsum dolor sit amet consectetur, adipisicing elit. Doloremque
-              dolorum ab iste dicta cupiditate, ut doloribus
+              {tour.data.descripcion}
             </p>
             <button className="see-more">Ver más</button>
           </div>
