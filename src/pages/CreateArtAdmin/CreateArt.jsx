@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { collection, addDoc } from "firebase/firestore";
 import { db } from "../../firebase/firebase-config";
+import 'bootstrap/dist/css/bootstrap.css';
 import { Button, Form, FormGroup, Label, Input } from 'reactstrap';
 import Title from "../../components/Title/Title";
 import Sidebar from "../../components/Sidebar/Sidebar";
@@ -30,14 +31,14 @@ const CreateArt = () => {
       const obrasCollection = collection(db, "Obras");
       await addDoc(obrasCollection, obra);
       alert("Obra creada exitosamente");
-      navigate("/adminobras");
+      navigate("/admin-obras");
     } catch (error) {
       alert("Error al crear la obra:", error);
     }
   };
 
   const handleGoBack = () => {
-    navigate("/adminobras");
+    navigate("/admin-obras");
   };
 
   return (

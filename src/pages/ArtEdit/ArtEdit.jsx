@@ -3,6 +3,7 @@ import { useParams, useNavigate } from "react-router-dom";
 import { collection, doc, setDoc, query, where, getDocs } from "firebase/firestore";
 
 import { db } from "../../firebase/firebase-config";
+import 'bootstrap/dist/css/bootstrap.css';
 import { Button, Form, FormGroup, Label, Input } from 'reactstrap';
 import Slider from "../../components/Slider/Slider";
 import Title from "../../components/Title/Title";
@@ -74,7 +75,7 @@ const ArtEdit = () => {
   };
 
   const handleGoBack = () => {
-    navigate("/adminobras");
+    navigate("/admin-obras");
   };
 
   return (

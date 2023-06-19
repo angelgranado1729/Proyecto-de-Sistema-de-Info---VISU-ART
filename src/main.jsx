@@ -37,7 +37,6 @@ import {
   USER_PROFILE_URL,
   VISION_URL
 } from './constants/urls'
-import { Layout } from './components/Layout/Layout'
 
 ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>
