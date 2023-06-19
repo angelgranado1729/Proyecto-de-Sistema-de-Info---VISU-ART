@@ -53,3 +53,8 @@
     clear: both;
   }
 }
+
+.calendar-section{
+  margin: auto;
+  width: 70%;
+}
