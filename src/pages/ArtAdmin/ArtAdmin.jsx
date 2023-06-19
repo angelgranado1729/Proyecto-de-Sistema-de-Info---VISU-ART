@@ -5,7 +5,6 @@ import { getDocs, query, collection, where, deleteDoc } from "firebase/firestore
 import Sidebar from "../../components/Sidebar/Sidebar";
 import Title from "../../components/Title/Title";
 import "./ArtAdmin.css";
-import 'bootstrap/dist/css/bootstrap.css';
 import { Table } from "reactstrap";
 import { Button } from 'reactstrap';
 
@@ -32,13 +31,13 @@ const ArtAdmin = () => {
 
   const handleEditarObra = (obra) => {
 
-    navigate(`/admin-edit/${obra.nombre}`, { state: obra });
+    navigate(`/editar-obra/${obra.nombre}`, { state: obra });
 
   };
 
   const handleCrearObra = () => {
 
-    navigate(`/admin-create`);
+    navigate(`/createart`);
 
   };
 

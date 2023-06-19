@@ -7,17 +7,9 @@ import Reviews from "../../components/Reviews/Reviews";
 import DropdownMenu from "../../components/DropdownMenu/DropdownMenu";
 import Navbar from "../../components/NavBar/Navbar";
 import "./LandingPage.css"
-import { useTourList } from '../../hooks/useTourList'
-import { useEffect } from "react";
+
 
 const LandingPage = () => {
-  const { tourList, listLoading, getTourList } = useTourList();
-
-    useEffect( () => {
-        //Fetch de lista de tours
-        getTourList();
-    }, [])
-
   return (
     <div className="App">
       <Navbar />
@@ -32,16 +24,10 @@ const LandingPage = () => {
           </div>
         </div>
         <div className="cards-container">
-          {listLoading &&(<h1>Cargando...</h1>)}
-
-          {!listLoading && tourList &&(
-            <>
-              <Card tour={tourList[0]}/>
-              <Card tour={tourList[1]}/>
-              <Card tour={tourList[2]}/>
-              <Card tour={tourList[3]}/>
-            </>
-          )}
+          <Card />
+          <Card />
+          <Card />
+          <Card />
         </div>
       </section>
 

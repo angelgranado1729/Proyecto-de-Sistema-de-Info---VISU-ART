@@ -9,7 +9,6 @@ import { useTourList } from '../../hooks/useTourList'
 import DropdownTour from '../../components/DropdownTour/DropdownTour'
 
 function ReservePage() {
-  const { tour } = userTour();
   const { tourList, listLoading, getTourList } = useTourList();
 
     useEffect( () => {

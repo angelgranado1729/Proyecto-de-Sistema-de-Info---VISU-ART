@@ -16,5 +16,5 @@ export const CONTACT_URL = "/contact";
 
 export const ADMIN_RESERVE_URL = "/admin-reserve";
 export const ADMIN_OBRAS_URL = "/admin-obras";
-export const ADMIN_EDIT_OBRAS_URL = "/admin-edit/:nombre";
+export const ADMIN_EDIT_OBRAS_URL = "/admin-edit/:obra_id";
 export const ADMIN_CREATE_OBRAS_URL = "/admin-create";

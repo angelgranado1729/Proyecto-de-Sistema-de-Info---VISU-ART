@@ -1,12 +1,10 @@
 import React from "react";
-import styles from "./DropdownTour.css";
+import "./DropdownTour.css";
 
-
-
-function DropdownTour({tours}) {
+const DropdownTour = ({tours}) => {
     return (
-        <div className="droptour">
-            <button className="dropbtnt"><p>Filtrar por:</p>
+        <div className="dropdown">
+            <button className="dropbtn"><p>Filtrar por:</p>
                 <i className="fa-solid fa-angle-down"></i>
             </button>
             <div className="dropdown-content">
@@ -18,4 +16,4 @@ function DropdownTour({tours}) {
     )
 }
 
-export default DropdownTour
+export default DropdownTour;
