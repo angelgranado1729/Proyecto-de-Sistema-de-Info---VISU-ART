@@ -1,3 +1,4 @@
+/* Estilos Página de Misión*/
 .back-header {
   min-height: 100px;
   width: 100%;
@@ -39,21 +40,13 @@
 
 /*Responsive Web Design*/
 @media (max-width: 769px) {
-<<<<<<< HEAD
   .info-container {
     width: 100%;
   }
-}
-=======
-    .info-container{
-        width: 100%;
-    }
 
-    .back-header i{
-        font-size: 35px;
-        top: 30px;
-        left: 25px;
-    }
+  .back-header i {
+    font-size: 35px;
+    top: 30px;
+    left: 25px;
+  }
 }
-  
->>>>>>> f61b2165f180a5cbf4461849442ca339dcb071f9

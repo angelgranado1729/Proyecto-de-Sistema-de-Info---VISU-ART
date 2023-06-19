@@ -18,3 +18,6 @@ export const ADMIN_RESERVE_URL = "/admin-reserve";
 export const ADMIN_OBRAS_URL = "/admin-obras";
 export const ADMIN_EDIT_OBRAS_URL = "/admin-edit/:nombre";
 export const ADMIN_CREATE_OBRAS_URL = "/admin-create";
+export const ADMIN_TOURS_URL = "/admin-tours";
+
+export const FEEDBACK_URL = "/feedback";

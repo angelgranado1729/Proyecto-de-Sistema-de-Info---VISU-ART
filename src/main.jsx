@@ -5,6 +5,24 @@ import LandingPage from './pages/LandingPage/LandingPage'
 import { BrowserRouter, Route, Routes } from 'react-router-dom'
 import { LoginPage } from './pages/LoginPage/LoginPage'
 import { RegisterPage } from './pages/RegisterPage/RegisterPage'
+import {
+  ADMIN_CREATE_OBRAS_URL,
+  ADMIN_EDIT_OBRAS_URL,
+  ADMIN_OBRAS_URL,
+  ADMIN_RESERVE_URL,
+  ADMIN_TOURS_URL,
+  ADMIN_URL, CALENDAR_URL,
+  ERROR_404,
+  FEEDBACK_URL,
+  HOME_URL,
+  LOGIN_URL,
+  MISION_URL,
+  OBJECTIVES_URL,
+  REGISTER_FORM_URL,
+  REGISTER_URL,
+  USER_PROFILE_URL,
+  VISION_URL
+} from './constants/urls'
 import AdminPage from './pages/AdminPage/AdminPage'
 import { NotFoundPage } from "./pages/NotFoundPage/NotFoundPage";
 import { PublicRoute } from './components/PublicRoute/PublicRoute'
@@ -19,24 +37,10 @@ import { AdminRoute } from './components/AdminRoute/AdminRoute'
 import ReserveAdminPage from './pages/ReserveAdminPage/ReserveAdminPage'
 import ArtAdmin from './pages/ArtAdmin/ArtAdmin'
 import ArtEdit from './pages/ArtEdit/ArtEdit'
+import CreateArt from './pages/CreateArtAdmin/CreateArt'
 import EditProfilePage from './pages/EditProfilePage/EditProfilePage'
-import {
-  ADMIN_CREATE_OBRAS_URL,
-  ADMIN_EDIT_OBRAS_URL,
-  ADMIN_OBRAS_URL,
-  ADMIN_RESERVE_URL,
-  ADMIN_URL,
-  CALENDAR_URL,
-  ERROR_404,
-  HOME_URL,
-  LOGIN_URL,
-  MISION_URL,
-  OBJECTIVES_URL,
-  REGISTER_FORM_URL,
-  REGISTER_URL,
-  USER_PROFILE_URL,
-  VISION_URL
-} from './constants/urls'
+import { TourPage } from './pages/TourPage/TourPage'
+import FeedbackPage from './pages/FeedbackPage/FeedbackPage'
 
 ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>
@@ -82,7 +86,6 @@ ReactDOM.createRoot(document.getElementById('root')).render(
               </PublicRoute>
             }
           />
-
           <Route path={REGISTER_FORM_URL}
             element={
               <PublicRoute>
@@ -145,6 +148,15 @@ ReactDOM.createRoot(document.getElementById('root')).render(
           />
 
           <Route
+            path={ADMIN_TOURS_URL}
+            element={
+              <AdminRoute>
+                <TourPage />
+              </AdminRoute>
+            }
+          />
+
+          <Route
             path={ADMIN_CREATE_OBRAS_URL}
             element={
               <AdminRoute>
@@ -158,6 +170,16 @@ ReactDOM.createRoot(document.getElementById('root')).render(
               <NotFoundPage />
             }
           />
+
+          <Route
+            path={FEEDBACK_URL}
+            element={
+              <AdminRoute>
+                <FeedbackPage />
+              </AdminRoute>
+            }
+          />
+
 
         </Routes>
       </UserContextProvider>
