@@ -1,18 +1,8 @@
-import React, { useState } from 'react';
-import { Calendar, momentLocalizer } from 'react-big-calendar';
-import DatePicker from 'react-date-picker';
-import DatePickerReact from 'react-datepicker';
-import moment from 'moment';
-import 'react-big-calendar/lib/css/react-big-calendar.css';
-import 'react-datepicker/dist/react-datepicker.css';
 import Subtitle from "../../components/Subtitle/Subtitle";
 import "./CalendarPage.css"
 
-const localizer = momentLocalizer(moment);
 
 const CalendarPage = () => {
-    const [date, setDate] = useState(new Date());
-
     return (
         <div className="App">
             <header className="back-header">
@@ -21,20 +11,6 @@ const CalendarPage = () => {
             <div className="calendar-section">
                 <Subtitle subtitle="Calendario de eventos" />
                 <div className="calendar-container">
-                    <Calendar
-                        localizer={localizer}
-                        events={[]}
-                        startAccessor="start"
-                        endAccessor="end"
-                    />
-                    <DatePicker
-                        onChange={setDate}
-                        value={date}
-                    />
-                    <DatePickerReact
-                        selected={date}
-                        onChange={setDate}
-                    />
                 </div>
             </div>
             <div className="navegation">
@@ -54,4 +30,4 @@ const CalendarPage = () => {
     )
 }
 
-export default CalendarPage;
+export default CalendarPage

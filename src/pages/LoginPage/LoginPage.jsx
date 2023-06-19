@@ -1,7 +1,6 @@
 import 'firebase/firestore';
-import { getStorage, ref, getDownloadURL } from "firebase/storage";
 import styles from "./LoginPage.module.css";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { HOME_URL, REGISTER_URL } from "../../constants/urls";
 import {
@@ -19,22 +18,6 @@ import {
 
 
 export function LoginPage() {
-    const [imageUrl, setImageUrl] = useState('');
-
-    const storage = getStorage();
-    const imageRef = ref(storage, import.meta.env.VITE_IMG_VISUARTE_LOGO);
-
-    useEffect(() => {
-        getDownloadURL(imageRef)
-            .then((url) => {
-                setImageUrl(url);
-            })
-            .catch((error) => {
-                console.log("Error al obtener la URL de descarga de la imagen:", error);
-            });
-    }, []);
-
-
     const navigate = useNavigate();
     const [formData, setFormData] = useState({
         email: "",
@@ -106,7 +89,7 @@ export function LoginPage() {
 
             <div className={styles.formContainer}>
                 <div className={styles.logoContainer}>
-                    <img src={imageUrl} alt="logo" />
+                    <img src="public\images\logos\visuartGrayLogo.png" alt="logo" />
                 </div>
                 <h1 className={styles.title}>Bienvenido de nuevo</h1>
                 <div className={styles.decorationTop}></div>

@@ -3,25 +3,11 @@ import { useNavigate, Link } from "react-router-dom";
 import { ArrowLeft, EyeFill, EyeSlashFill } from "react-bootstrap-icons";
 import { getStorage, ref, getDownloadURL } from "firebase/storage";
 import styles from "./RegisterFormPage.module.css";
-import { HOME_URL } from "../../constants/urls";
+import { HOME_URL } from "../../../constants/urls";
 
 export function RegisterFormPage() {
-    const [imageUrl, setImageUrl] = useState("");
     const [showPassword, setShowPassword] = useState(false);
     const navigate = useNavigate();
-
-    const storage = getStorage();
-    const imageRef = ref(storage, import.meta.env.VITE_IMG_VISUARTE_LOGO);
-
-    useEffect(() => {
-        getDownloadURL(imageRef)
-            .then((url) => {
-                setImageUrl(url);
-            })
-            .catch((error) => {
-                console.log("Error al obtener la URL de descarga de la imagen:", error);
-            });
-    }, []);
 
     const [formData, setFormData] = useState({
         firstName: "",
@@ -63,7 +49,7 @@ export function RegisterFormPage() {
             </div>
 
             <div className={styles.logoContainer}>
-                <img src={imageUrl} alt="logo" />
+                <img src="public\images\logos\visuartGrayLogo.png" alt="logo" />
             </div>
 
             <div className={styles.formContainer}>

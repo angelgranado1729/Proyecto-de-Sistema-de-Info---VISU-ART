@@ -32,7 +32,7 @@
 //                             <input type="text"/>
 //                             <span>Más 6 de dígitos e incluya carácteres especiales</span>
 //                         </div>
-                        
+
 //                     </div>
 //                     <div className="column"><p></p></div>
 //                     <div className="column">
@@ -65,16 +65,15 @@
 //si hay que añadir mas campos se debe agregar un estado para cada campo, un input para que el usuario pueda editar el valor
 //, y luego incluye el valor en el objeto que se pasa a "updateUser"
 import React, { useState } from 'react';
-import { useUserContext } from "../../contexts/UserContext";
-import { updateUser } from "../../firebase/users";
-import Subtitle from "../../components/Subtitle/Subtitle";
+import { useUserContext } from "../../../contexts/UserContext";
+import { updateUser } from "../../../firebase/users";
+import Subtitle from "../../../components/Subtitle/Subtitle";
 import "./EditProfilePage.css"
 
 const EditProfilePage = () => {
     const { user } = useUserContext();
     const [name, setName] = useState(user.name);
     const [email, setEmail] = useState(user.email);
-    // Agrega más estados según los campos que necesites
 
     const handleSubmit = async (e) => {
         e.preventDefault();
@@ -89,15 +88,15 @@ const EditProfilePage = () => {
     return (
         <div className="App-v2">
             <header className="back-header">
-            <i className="fa-solid fa-arrow-left"></i>
-            <img src="public/images/logos/visuartBlueLogo.jpg" alt="" />
+                <i className="fa-solid fa-arrow-left"></i>
+                <img src="public/images/logos/visuartBlueLogo.jpg" alt="" />
             </header>
             <div className="editprofile-container">
-            <div className="decoration up-container"></div>
-            <div className="decoration down-container"></div>
+                <div className="decoration up-container"></div>
+                <div className="decoration down-container"></div>
                 <div className="profile-img"></div>
                 <i className="fa-solid fa-pen-to-square"></i>
-                <Subtitle subtitle="Edita tus datos:"/>
+                <Subtitle subtitle="Edita tus datos:" />
                 <div className="input-container">
                     <div className="column">
                         <div className="input">
@@ -117,7 +116,7 @@ const EditProfilePage = () => {
                     </div>
                 </div>
                 <button className="blue-btn" onClick={handleSubmit}>Guardar Cambios</button>
-            </div>  
+            </div>
         </div>
     )
 }
