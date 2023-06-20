@@ -1,26 +1,55 @@
-import React, { useState } from "react";
-import { useNavigate } from "react-router-dom";
-import { collection, addDoc } from "firebase/firestore";
+import React, { useState, useEffect } from "react";
+import { useParams, useNavigate } from "react-router-dom";
+import { collection, doc, setDoc, query, where, getDocs } from "firebase/firestore";
 import { getStorage, ref, uploadBytes, getDownloadURL } from "firebase/storage";
-import { db } from "../../firebase/firebase-config";
-import "bootstrap/dist/css/bootstrap.css";
-import { Button, Form, FormGroup, Label, Input, Col, Row } from "reactstrap";
-import Title from "../../components/Title/Title";
-import Sidebar from "../../components/Sidebar/Sidebar";
+import {  app, auth, db } from "../../../firebase/firebase-config";
+import 'bootstrap/dist/css/bootstrap.css';
+import { Button, Form, FormGroup, Label, Input, Col, Row } from 'reactstrap';
+
+import Slider from "../../../components/Slider/Slider";
+import Title from "../../../components/Title/Title";
+import Sidebar from "../../../components/Sidebar/Sidebar";
 
 const storage = getStorage();
 
-const CreateTour = () => {
+const TourEdit = () => {
+  const { nombre } = useParams();
   const navigate = useNavigate();
 
   const [tour, setTour] = useState({
     nombre: "",
-    ubicacion: "",
-    descripcion: "",
     fecha: "",
+    descripcion: "",
+    ubicacion: "",
     imagen: "",
-    obras: [],
   });
+
+  useEffect(() => {
+    const fetchTour = async () => {
+      try {
+        if (!nombre) {
+          alert("El nombre del tour no está definido.");
+          return;
+        }
+
+        const toursCollectionRef = collection(db, "Tours");
+        const q = query(toursCollectionRef, where("nombre", "==", nombre));
+        const tourSnapshot = await getDocs(q);
+
+        if (!tourSnapshot.empty) {
+          tourSnapshot.forEach((doc) => {
+            setTour(doc.data());
+          });
+        } else {
+          alert("El tour no existe.");
+        }
+      } catch (error) {
+        alert("Error al obtener el tour:", error);
+      }
+    };
+
+    fetchTour();
+  }, [nombre]);
 
   const handleInputChange = (e) => {
     const { name, value } = e.target;
@@ -42,20 +71,19 @@ const CreateTour = () => {
     e.preventDefault();
 
     try {
-      const toursCollection = collection(db, "Tours");
-      await addDoc(toursCollection, {
-        nombre: tour.nombre,
-        ubicacion: tour.ubicacion,
-        descripcion: tour.descripcion,
-        fecha: tour.fecha,
-        imagen: tour.imagen,
-        obras: tour.obras,
-      });
+      const toursCollectionRef = collection(db, "Tours");
+      const q = query(toursCollectionRef, where("nombre", "==", nombre));
+      const querySnapshot = await getDocs(q);
 
-      alert("Tour creado exitosamente");
-      navigate("/admin-tours");
+      if (!querySnapshot.empty) {
+        const tourDoc = querySnapshot.docs[0];
+        await setDoc(tourDoc.ref, tour);
+        alert("Tour actualizado exitosamente");
+      } else {
+        alert("El tour no existe.");
+      }
     } catch (error) {
-      alert("Error al crear el tour:", error);
+      alert("Error al actualizar el tour:", error);
     }
   };
 
@@ -63,14 +91,14 @@ const CreateTour = () => {
     navigate("/admin-tours");
   };
 
+  
+
   return (
     <div className="App">
       <Sidebar />
-      <div
-        className="main-admin"
-        style={{ maxWidth: "60%", margin: "0 auto" }}
-      >
-        <Title title="Administrar tours" />
+      <div className="main-admin" style={{ maxWidth: "60%", margin: "0 auto" }}>
+        <Title title="Editando Tour" />
+
         <Row>
           <Col md={6}>
             <Form onSubmit={handleSubmit}>
@@ -85,26 +113,6 @@ const CreateTour = () => {
                 />
               </FormGroup>
               <FormGroup>
-                <Label for="ubicacion">Ubicación</Label>
-                <Input
-                  type="text"
-                  name="ubicacion"
-                  id="ubicacion"
-                  value={tour.ubicacion}
-                  onChange={handleInputChange}
-                />
-              </FormGroup>
-              <FormGroup>
-                <Label for="descripcion">Descripción</Label>
-                <Input
-                  type="text"
-                  name="descripcion"
-                  id="descripcion"
-                  value={tour.descripcion}
-                  onChange={handleInputChange}
-                />
-              </FormGroup>
-              <FormGroup>
                 <Label for="fecha">Fecha</Label>
                 <Input
                   type="text"
@@ -115,7 +123,28 @@ const CreateTour = () => {
                 />
               </FormGroup>
               <FormGroup>
-                <Label for="imagen">Imagen</Label>
+                <Label for="descripcion">Descripción</Label>
+                <Input
+                  type="textarea"
+                  name="descripcion"
+                  id="descripcion"
+                  value={tour.descripcion}
+                  onChange={handleInputChange}
+                />
+              </FormGroup>
+              <FormGroup>
+                <Label for="ubicacion">Ubicación</Label>
+                <Input
+                  type="text"
+                  name="ubicacion"
+                  id="ubicacion"
+                  value={tour.ubicacion}
+                  onChange={handleInputChange}
+                />
+              </FormGroup>
+
+              <FormGroup>
+                <Label for="imagen">Imagen de Portada </Label>
                 <Input
                   type="file"
                   name="imagen"
@@ -124,20 +153,15 @@ const CreateTour = () => {
                 />
               </FormGroup>
 
-              <Button
-                color="primary"
-                type="submit"
-                style={{ marginRight: "5px" }}
-              >
+              
+
+              <Button color="primary" type="submit" style={{ marginRight: '7px' }}>
                 Guardar
               </Button>
-              <Button
-                color="dark"
-                style={{ marginLeft: "5px" }}
-                onClick={handleGoBack}
-              >
+              <Button color="dark" style={{ marginRight: '7px' }} onClick={handleGoBack}>
                 Volver
               </Button>
+              
             </Form>
           </Col>
           <Col md={6}>
@@ -155,4 +179,4 @@ const CreateTour = () => {
   );
 };
 
-export default CreateTour;
+export default TourEdit;

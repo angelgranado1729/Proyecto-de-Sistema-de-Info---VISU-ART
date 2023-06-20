@@ -29,15 +29,15 @@ const TourAdmin = () => {
   }, [reload]);
 
   const handleEditarObra = (Tour) => {
-    navigate(`/admin-edit-tours/${Tour.nombre}`, { state: Tour });
+    navigate(`/admin-tours-edit/${Tour.nombre}`, { state: Tour });
   };
 
   const handleEditarTourObra = (Tour) => {
-    navigate(`/admin-edit-tour-obras/${Tour.nombre}`, { state: Tour });
+    navigate(`/admin-tours-edit-art/${Tour.nombre}`, { state: Tour });
   };
 
   const handleCrearObra = () => {
-    navigate(`/admin-create-tours`);
+    navigate(`/admin-tour-create`);
   };
 
 
