@@ -1,73 +1,72 @@
 /*Estilos Página Principal*/
-.cards-container{
-    column-count: 2;
-    column-gap: 3rem;
-    max-width: 1000px;
-    margin: auto;
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-}
- 
-.search-container{
-    text-align:center;
-    width: 100%;
-    max-width: 1200px;
-    margin: 0 auto;
-}
-  
-.search-container .search-bar {
-    display: flex;
-    flex-direction: row;
-    justify-content: center;
-    align-items: center;
+.cards-container {
+  column-count: 2;
+  column-gap: 3rem;
+  max-width: 1000px;
+  margin: auto;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
 }
 
-.search-bar input{
+.search-container {
+  text-align: center;
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.search-container .search-bar {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+}
+
+.search-bar input {
   padding: 10px;
   gap: 6px;
   width: 400px;
   height: 45px;
   border-radius: 10px;
-  border: .5px;
+  border: 0.5px;
   border-style: solid;
   box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
   margin-left: 50px;
 }
-  
-.tours-section{
-    max-width: 1600px;
-    width: 100%;
-    margin: auto;
+
+.tours-section {
+  max-width: 1600px;
+  width: 100%;
+  margin: auto;
 }
 
-.reviews{
-    margin: auto;
-    width: 70%;
-    max-width: 1200px;
+.reviews {
+  margin: auto;
+  width: 70%;
+  max-width: 1200px;
 }
 
 /*Responsive Web Design*/
-@media  screen and (max-width: 820px) {
-    .search-container{
-      text-align:center;
-      width: 100%;
-      max-width: 1200px;
-      margin: 0 auto;
-    }
-    
-    .search-container .search-bar {
-      display: block;
-      justify-content: center;
-      align-items: center;
-    }
-  
-    .search-btn{
-      margin: 20px;
-    }
-  
-    .search-bar input{
-      width: 350px;
-    }
- 
+@media screen and (max-width: 820px) {
+  .search-container {
+    text-align: center;
+    width: 100%;
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+
+  .search-container .search-bar {
+    display: block;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .search-btn {
+    margin: 20px;
+  }
+
+  .search-bar input {
+    width: 350px;
+  }
 }

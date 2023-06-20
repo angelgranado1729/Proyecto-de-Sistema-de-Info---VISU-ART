@@ -1,9 +1,9 @@
 import React, { useState, useEffect } from "react";
 import { Link, Route, useNavigate } from "react-router-dom";
-import { app, auth, db, storage } from "../../firebase/firebase-config"
+import { app, auth, db, storage } from "../../../firebase/firebase-config"
 import { getDocs, query, collection, where, deleteDoc } from "firebase/firestore";
-import Sidebar from "../../components/Sidebar/Sidebar";
-import Title from "../../components/Title/Title";
+import Sidebar from "../../../components/Sidebar/Sidebar";
+import Title from "../../../components/Title/Title";
 import 'bootstrap/dist/css/bootstrap.css';
 import { Table, Button, Popover, PopoverBody } from "reactstrap";
 

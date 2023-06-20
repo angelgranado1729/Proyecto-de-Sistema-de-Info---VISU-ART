@@ -1,13 +1,12 @@
 import 'firebase/firestore';
-import { getStorage, ref, getDownloadURL } from "firebase/storage";
 import styles from "./RegisterPage.module.css";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import { HOME_URL, REGISTER_FORM_URL } from "../../constants/urls";
+import { HOME_URL, REGISTER_FORM_URL } from "../../../constants/urls";
 import {
     loginWithEmailAndPassword,
     signInWithGoogle,
-} from "../../firebase/auth";
+} from "../../../firebase/auth";
 import {
     ArrowLeft,
     Google,
@@ -18,22 +17,6 @@ import {
 
 
 export function RegisterPage() {
-    const [imageUrl, setImageUrl] = useState('');
-
-    const storage = getStorage();
-    const imageRef = ref(storage, import.meta.env.VITE_IMG_VISUARTE_LOGO);
-
-    useEffect(() => {
-        getDownloadURL(imageRef)
-            .then((url) => {
-                setImageUrl(url);
-            })
-            .catch((error) => {
-                console.log("Error al obtener la URL de descarga de la imagen:", error);
-            });
-    }, []);
-
-
     const navigate = useNavigate();
     const [formData, setFormData] = useState({
         email: "",
@@ -87,7 +70,7 @@ export function RegisterPage() {
             </div>
 
             <div className={styles.logoContainer}>
-                <img src={imageUrl} alt="logo" />
+                <img src="public\images\logos\visuartGrayLogo.png" alt="logo" />
             </div>
             <div className={styles.mainContainer}>
                 <h1 className={styles.title}>Crea tu cuenta</h1>

@@ -22,6 +22,9 @@ export const signInWithGoogle = async ({ onSuccess, onFail }) => {
         email,
         name: displayName,
         age: "",
+        favoriteTours: [],
+        reservations: [],
+        type: "user",
       });
     }
 
@@ -38,6 +41,7 @@ export const signInWithGoogle = async ({ onSuccess, onFail }) => {
 
     if (onFail) {
       onFail();
+      console.error("SIGN IN WITH GOOGLE FAILED", { error });
     }
 
     console.error("FAILED SIGN IN WITH GOOGLE", {
@@ -67,6 +71,9 @@ export const registerWithEmailAndPassword = async ({
       ...restData,
       email,
       uid: firebaseResult.user.uid,
+      favoriteTours: [],
+      reservations: [],
+      type: "user",
     });
 
     // SUCCESS CALLBACK
