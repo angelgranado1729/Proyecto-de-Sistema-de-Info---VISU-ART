@@ -6,6 +6,7 @@ import { HOME_URL, REGISTER_URL } from "../../constants/urls";
 import {
     loginWithEmailAndPassword,
     signInWithGoogle,
+    signInWithFacebook,
 } from "../../firebase/auth";
 import {
     ArrowLeft,
@@ -62,9 +63,9 @@ export function LoginPage() {
     };
 
     const handleFacebookClick = async () => {
-        // await signInWithGoogle({
-        //     onSuccess: () => navigate(HOME_URL),
-        // });
+        await signInWithFacebook({
+            onSuccess: () => navigate(HOME_URL),
+        });
     };
 
     const handleEmailClick = () => {

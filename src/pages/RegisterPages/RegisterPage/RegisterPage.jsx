@@ -5,6 +5,7 @@ import { Link, useNavigate } from "react-router-dom";
 import { HOME_URL, REGISTER_FORM_URL } from "../../../constants/urls";
 import {
     loginWithEmailAndPassword,
+    signInWithFacebook,
     signInWithGoogle,
 } from "../../../firebase/auth";
 import {
@@ -55,9 +56,9 @@ export function RegisterPage() {
     };
 
     const handleFacebookClick = async () => {
-        // await signInWithGoogle({
-        //     onSuccess: () => navigate(HOME_URL),
-        // });
+        await signInWithFacebook({
+            onSuccess: () => navigate(HOME_URL),
+        });
     };
 
 

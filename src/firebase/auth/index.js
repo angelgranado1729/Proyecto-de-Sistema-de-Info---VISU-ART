@@ -1,12 +1,14 @@
 import {
   signInWithPopup,
   GoogleAuthProvider,
+  FacebookAuthProvider,
   createUserWithEmailAndPassword,
   signInWithEmailAndPassword,
   signOut,
   getAdditionalUserInfo,
+  sendPasswordResetEmail,
 } from "firebase/auth";
-import { auth, googleProvider } from "../firebase-config";
+import { auth, googleProvider, facebookProvider } from "../firebase-config";
 import { createUser } from "../users";
 
 // HANDLE SING IN OR REGISTER USING GOOGLE PROVIDER
@@ -17,6 +19,7 @@ export const signInWithGoogle = async ({ onSuccess, onFail }) => {
 
     if (isNewUser) {
       const { uid, email, displayName } = result.user;
+      console.log(result.user);
       await createUser({
         uid,
         email,
@@ -45,6 +48,50 @@ export const signInWithGoogle = async ({ onSuccess, onFail }) => {
     }
 
     console.error("FAILED SIGN IN WITH GOOGLE", {
+      errorCode,
+      errorMessage,
+      email,
+      credential,
+    });
+  }
+};
+
+//HANDLE FACEBOOK LOGIN
+export const signInWithFacebook = async ({ onSuccess, onFail }) => {
+  try {
+    const result = await signInWithPopup(auth, facebookProvider);
+    const { isNewUser } = getAdditionalUserInfo(result);
+
+    if (isNewUser) {
+      const { uid, email, displayName } = result.user;
+      await createUser({
+        uid,
+        email,
+        name: displayName,
+        age: "",
+        favoriteTours: [],
+        reservations: [],
+        type: "user",
+      });
+    }
+
+    if (onSuccess) {
+      onSuccess();
+    }
+  } catch (error) {
+    const errorCode = error?.code;
+    const errorMessage = error?.message;
+    // The email of the user's account used.
+    const email = error?.email;
+    // The AuthCredential type that was used.
+    const credential = FacebookAuthProvider.credentialFromError(error);
+
+    if (onFail) {
+      onFail();
+      console.error("SIGN IN WITH FACEBOOK FAILED", { error });
+    }
+
+    console.error("FAILED SIGN IN WITH FACEBOOK", {
       errorCode,
       errorMessage,
       email,
@@ -103,6 +150,23 @@ export const loginWithEmailAndPassword = async ({
     }
   } catch (error) {
     console.error("LOGIN FAILED", { error });
+
+    if (onFail) {
+      onFail();
+    }
+  }
+};
+
+// HANDLE PASSWORD RESET
+export const resetPassword = async ({ email, onSuccess, onFail }) => {
+  try {
+    await sendPasswordResetEmail(auth, email);
+
+    if (onSuccess) {
+      onSuccess();
+    }
+  } catch (error) {
+    console.error("PASSWORD RESET FAILED", { error });
 
     if (onFail) {
       onFail();
