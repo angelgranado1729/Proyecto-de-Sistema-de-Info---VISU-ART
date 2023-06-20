@@ -6,7 +6,7 @@ import { useState } from "react";
 
 const Sidebar=()=>{
 
-    const [openSidebar, setOpenSidebar] = useState(false);
+    const [openSidebar, setOpenSidebar] = useState(true);
     
     const handleOpenSidebar =() =>{
         setOpenSidebar(!openSidebar);

@@ -12,27 +12,27 @@
   float: left;
   width: 33.33%;
 }
-  
+
 .columns:after {
   content: "";
   display: table;
   clear: both;
 }
 
-.column p{
+.column p {
   font-size: 15px;
   color: white;
   text-align: justify;
   padding: 30px;
 }
 
-.column a{
+.column a {
   font-size: 15px;
-  color: #9FE7F5;
+  color: #9fe7f5;
   text-align: start;
 }
 
-.column a:hover{
+.column a:hover {
   text-decoration: underline;
 }
 
@@ -40,8 +40,8 @@
   width: 100%;
 }
 
-.column i{
-  color: #9FE7F5;
+.column i {
+  color: #9fe7f5;
   font-size: 15px;
   padding: 5px;
 }

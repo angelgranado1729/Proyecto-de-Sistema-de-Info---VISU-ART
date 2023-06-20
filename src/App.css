@@ -1,6 +1,6 @@
 .App {
   text-align: center;
-  background-color: #FFF9EC;
+  background-color: #fff9ec;
   min-height: 100vh;
   flex-direction: column;
   display: flex;
@@ -12,8 +12,8 @@ section {
 }
 
 /*Estilos de botones generales*/
-.blue-btn{
-  background: #1A3E5A;
+.blue-btn {
+  background: #1a3e5a;
   font-weight: 900;
   font-size: 15px;
   text-decoration: none;
@@ -27,15 +27,15 @@ section {
   border: none;
 }
 
-.blue-btn:hover{
-  background: #9FE7F5;
+.blue-btn:hover {
+  background: #9fe7f5;
 }
 
-.search-btn{
+.search-btn {
   padding: 10px 40px;
   border: none;
   font-weight: 900;
-  background-color: #F27F0C;
+  background-color: #f27f0c;
   color: white;
   font-size: 14px;
   cursor: pointer;
@@ -45,12 +45,12 @@ section {
   margin-left: 50px;
 }
 
-.orange-btn{
+.orange-btn {
   padding: 10px 40px;
   margin-top: 50px;
   border: none;
   font-weight: 900;
-  background-color: #F27F0C;
+  background-color: #f27f0c;
   color: white;
   font-size: 14px;
   cursor: pointer;
@@ -60,7 +60,7 @@ section {
   margin-bottom: 100px;
 }
 
-.orange-btn:hover, .search-btn:hover{
-  background: #F7AD19;
+.orange-btn:hover,
+.search-btn:hover {
+  background: #f7ad19;
 }
-

@@ -1,0 +1,284 @@
+.container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  background: #fff9ec;
+  flex-direction: column;
+}
+
+.mainContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  max-width: 800px;
+  width: 100%;
+  height: 550px;
+  position: relative;
+  z-index: 2;
+  margin-top: 10px;
+}
+
+.backButton {
+  position: absolute;
+  top: 0;
+  left: 0;
+  margin: 1rem;
+  padding: 0.5rem 1rem;
+  border: none;
+  border-radius: 0.5rem;
+  cursor: pointer;
+}
+
+.logoContainer {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 1rem;
+  margin-top: 2rem;
+  z-index: 3;
+}
+
+.logoContainer img {
+  height: 60px;
+  margin-bottom: -50px;
+}
+
+.title {
+  font-size: 60px;
+  text-align: center;
+  letter-spacing: -2%;
+  line-height: 75px;
+  font-weight: 700;
+  color: #000000b2;
+  flex: none;
+  margin-bottom: -5px;
+}
+
+.decorationTop {
+  position: absolute;
+  width: 140px;
+  height: 130px;
+  background: linear-gradient(
+    152.49deg,
+    #f27f0c -11.42%,
+    rgba(242, 127, 12, 0) 118.1%
+  );
+  border-radius: 30px 60px 12px;
+  z-index: 0;
+  top: 45px;
+  left: 0px;
+}
+
+.decorationBottom {
+  position: absolute;
+  width: 140px;
+  height: 130px;
+  background: linear-gradient(
+    218.41deg,
+    rgba(242, 127, 12, 0.57) 50.04%,
+    rgba(247, 173, 25, 0) 93.35%
+  );
+  border-radius: 55px 15px 50px;
+  z-index: -1;
+  bottom: 25px;
+  right: 0px;
+}
+
+.container .mainContainer .buttonsLoginContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  max-width: 650px;
+  width: 100%;
+  height: 400px;
+  background: #ffffff;
+  box-shadow: 0px 4px 30px 10px rgba(0, 0, 0, 0.2);
+  row-gap: 40px;
+  margin-top: 20px;
+  margin-bottom: 15px;
+  z-index: 0;
+  flex-wrap: wrap;
+  padding: 2rem 8rem;
+}
+
+.facebookButton,
+.googleButton,
+.emailButton {
+  width: 400px;
+  height: 65px;
+  padding: 0.5rem 1.4rem;
+  background: #ffffff;
+  font-family: "Poppins";
+  font-weight: 700;
+  font-size: 18px;
+  line-height: 20px;
+  cursor: pointer;
+  border-radius: 10px;
+  margin-top: 2px;
+  box-shadow: none;
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  border: 2px solid;
+}
+
+.facebookButton p,
+.googleButton p,
+.emailButton p {
+  margin: 0;
+  padding: 0;
+  font-size: 18px;
+  font-weight: 700;
+  line-height: 20px;
+  text-align: center;
+  flex: none;
+  order: 0;
+  flex-grow: 0;
+  margin-right: 10px;
+  margin-top: 0px;
+  margin-bottom: 0px;
+  flex-basis: auto;
+  align-self: auto;
+  flex-shrink: 1;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.facebookButton {
+  border-color: #429ebd;
+  color: #429ebd;
+}
+
+.googleButton {
+  border-color: #f7ad19;
+  color: #f7ad19;
+}
+
+.emailButton {
+  border-color: #1a3e5a;
+  color: #1a3e5a;
+}
+
+.facebookButton:hover,
+.googleButton:hover,
+.emailButton:hover {
+  transform: scale(1.05);
+  transition: 0.2s ease-in-out;
+  background-color: #ffffff;
+  opacity: 0.8;
+}
+
+/* Media Queries */
+@media (max-width: 768px) {
+  .container {
+    padding-top: 4rem;
+    padding-bottom: 4rem;
+    min-height: 50vh;
+    flex-direction: column;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .backButton {
+    top: 1rem;
+    left: 1rem;
+    margin: 0;
+  }
+
+  .logoContainer {
+    margin-top: 2rem;
+    margin-bottom: 2.5rem;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .mainContainer {
+    margin-top: 2rem;
+    height: auto;
+    margin-top: 5vh;
+    width: 23rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .title {
+    font-size: 2.5rem;
+    line-height: 2.6rem;
+    margin-bottom: 1rem;
+    width: 20rem;
+  }
+
+  .container .mainContainer .buttonsLoginContainer {
+    height: auto;
+    max-width: 100%;
+    width: 16.5rem;
+    flex-wrap: wrap;
+    padding: 4rem 0rem;
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .facebookButton,
+  .googleButton,
+  .emailButton {
+    width: 220px;
+    justify-content: space-around;
+    padding: 0 0.5rem;
+  }
+
+  .googleButton p,
+  .facebookButton p {
+    width: 100px;
+    font-size: 17px;
+  }
+
+  .emailButton p {
+    width: 100px;
+    font-size: 15.9px;
+  }
+
+  .decorationTop {
+    width: 130px;
+    height: 130px;
+    background: linear-gradient(
+      152.49deg,
+      #f27f0c -11.42%,
+      rgba(242, 127, 12, 0) 118.1%
+    );
+    border-radius: 7.8rem 13.2rem 1.8rem;
+    left: 0;
+    top: 40px;
+  }
+
+  .decorationBottom {
+    width: 130px;
+    height: 130px;
+    background: linear-gradient(
+      152.49deg,
+      #f27f0c -11.42%,
+      rgba(242, 127, 12, 0) 118.1%
+    );
+    border-radius: 50px 70px 12px;
+    transform: matrix(-1, 0, 0, 1, 0, 0);
+    bottom: 5px;
+    left: auto;
+    right: 0;
+  }
+}

@@ -6,10 +6,10 @@ const CalendarPage = () => {
     return (
         <div className="App">
             <header className="back-header">
-            <i class="fa-solid fa-arrow-left"></i>
+                <i className="fa-solid fa-arrow-left"></i>
             </header>
             <div className="calendar-section">
-                <Subtitle subtitle="Calendario de eventos"/>
+                <Subtitle subtitle="Calendario de eventos" />
                 <div className="calendar-container">
                 </div>
             </div>
@@ -22,11 +22,11 @@ const CalendarPage = () => {
                     <p></p>
                 </div>
                 <div className="box">
-                <p>Todavía no estas seguro?</p>
+                    <p>Todavía no estas seguro?</p>
                     <button className="blue-btn">Revisar Tours</button>
                 </div>
+            </div>
         </div>
-      </div>
     )
 }
 
