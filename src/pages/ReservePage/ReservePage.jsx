@@ -4,12 +4,13 @@ import FormItem from '../../components/FormItem/FormItem'
 import Title from '../../components/Title/Title'
 import Subtitle from '../../components/Subtitle/Subtitle'
 import DropdownMenu from '../../components/DropdownMenu/DropdownMenu'
-import { userTour } from '../../contexts/TourContext'
+import { useTour } from '../../contexts/TourContext'
 import { useTourList } from '../../hooks/useTourList'
 import DropdownTour from '../../components/DropdownTour/DropdownTour'
 
 function ReservePage() {
   const { tourList, listLoading, getTourList } = useTourList();
+  const { tour, tourId, setTourID } = useTour();
 
     useEffect( () => {
         //Fetch de lista de tours
@@ -17,7 +18,6 @@ function ReservePage() {
     }, [])
 
 
-    console.log(tourList);
   return (
     <div className="App">
         <header className="back-header">
