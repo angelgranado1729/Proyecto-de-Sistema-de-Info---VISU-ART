@@ -19,5 +19,8 @@ export const ADMIN_OBRAS_URL = "/admin-obras";
 export const ADMIN_EDIT_OBRAS_URL = "/admin-edit/:nombre";
 export const ADMIN_CREATE_OBRAS_URL = "/admin-create";
 export const ADMIN_TOURS_URL = "/admin-tours";
+export const ADMIN_EDIT_TOURS_URL = "/admin-edit-tours/:nombre";
+export const ADMIN_CREATE_TOURS_URL = "/admin-create-tours";
+export const ADMIN_EDIT_TOURSOBRAS_URL = "/admin-edit-tour-obras/:nombre";
 
 export const FEEDBACK_URL = "/feedback";

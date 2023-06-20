@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import { collection, doc, setDoc, query, where, getDocs } from "firebase/firestore";
 import { getStorage, ref, uploadBytes, getDownloadURL } from "firebase/storage";
@@ -12,50 +12,50 @@ import Sidebar from "../../components/Sidebar/Sidebar";
 
 const storage = getStorage();
 
-const ArtEdit = () => {
+
+
+const TourEdit = () => {
   const { nombre } = useParams();
   const navigate = useNavigate();
 
-  const [obra, setObra] = useState({
+  const [tour, setTour] = useState({
     nombre: "",
+    fecha: "",
+    descripcion: "",
     ubicacion: "",
-    año: "",
-    autor: "",
-    tecnica: "",
-    dimensiones: "",
-    imagen: ""
+    imagen: "",
   });
 
   useEffect(() => {
-    const fetchObra = async () => {
+    const fetchTour = async () => {
       try {
         if (!nombre) {
-          alert("El nombre de la obra no está definido.");
+          alert("El nombre del tour no está definido.");
           return;
         }
 
-        const obrasCollectionRef = collection(db, "Obras");
-        const q = query(obrasCollectionRef, where("nombre", "==", nombre));
-        const obraSnapshot = await getDocs(q);
+        const toursCollectionRef = collection(db, "Tours");
+        const q = query(toursCollectionRef, where("nombre", "==", nombre));
+        const tourSnapshot = await getDocs(q);
 
-        if (!obraSnapshot.empty) {
-          obraSnapshot.forEach((doc) => {
-            setObra(doc.data());
+        if (!tourSnapshot.empty) {
+          tourSnapshot.forEach((doc) => {
+            setTour(doc.data());
           });
         } else {
-          alert("La obra no existe.");
+          alert("El tour no existe.");
         }
       } catch (error) {
-        alert("Error al obtener la obra:", error);
+        alert("Error al obtener el tour:", error);
       }
     };
 
-    fetchObra();
+    fetchTour();
   }, [nombre]);
 
   const handleInputChange = (e) => {
     const { name, value } = e.target;
-    setObra((prevObra) => ({ ...prevObra, [name]: value }));
+    setTour((prevTour) => ({ ...prevTour, [name]: value }));
   };
 
   const handleImageUpload = (e) => {
@@ -64,7 +64,7 @@ const ArtEdit = () => {
 
     uploadBytes(storageRef, file).then((snapshot) => {
       getDownloadURL(snapshot.ref).then((url) => {
-        setObra((prevObra) => ({ ...prevObra, imagen: url }));
+        setTour((prevTour) => ({ ...prevTour, imagen: url }));
       });
     });
   };
@@ -73,31 +73,33 @@ const ArtEdit = () => {
     e.preventDefault();
 
     try {
-      const obrasCollectionRef = collection(db, "Obras");
-      const q = query(obrasCollectionRef, where("nombre", "==", nombre));
+      const toursCollectionRef = collection(db, "Tours");
+      const q = query(toursCollectionRef, where("nombre", "==", nombre));
       const querySnapshot = await getDocs(q);
 
       if (!querySnapshot.empty) {
-        const obraDoc = querySnapshot.docs[0];
-        await setDoc(obraDoc.ref, obra);
-        alert("Obra actualizada exitosamente");
+        const tourDoc = querySnapshot.docs[0];
+        await setDoc(tourDoc.ref, tour);
+        alert("Tour actualizado exitosamente");
       } else {
-        alert("La obra no existe.");
+        alert("El tour no existe.");
       }
     } catch (error) {
-      alert("Error al actualizar la obra:", error);
+      alert("Error al actualizar el tour:", error);
     }
   };
 
   const handleGoBack = () => {
-    navigate("/admin-obras");
+    navigate("/admin-tours");
   };
+
+  
 
   return (
     <div className="App">
       <Sidebar />
       <div className="main-admin" style={{ maxWidth: "60%", margin: "0 auto" }}>
-        <Title title="Administrar obras" />
+        <Title title="Editando Tour" />
 
         <Row>
           <Col md={6}>
@@ -108,7 +110,27 @@ const ArtEdit = () => {
                   type="text"
                   name="nombre"
                   id="nombre"
-                  value={obra.nombre}
+                  value={tour.nombre}
+                  onChange={handleInputChange}
+                />
+              </FormGroup>
+              <FormGroup>
+                <Label for="fecha">Fecha</Label>
+                <Input
+                  type="text"
+                  name="fecha"
+                  id="fecha"
+                  value={tour.fecha}
+                  onChange={handleInputChange}
+                />
+              </FormGroup>
+              <FormGroup>
+                <Label for="descripcion">Descripción</Label>
+                <Input
+                  type="textarea"
+                  name="descripcion"
+                  id="descripcion"
+                  value={tour.descripcion}
                   onChange={handleInputChange}
                 />
               </FormGroup>
@@ -118,53 +140,13 @@ const ArtEdit = () => {
                   type="text"
                   name="ubicacion"
                   id="ubicacion"
-                  value={obra.ubicacion}
-                  onChange={handleInputChange}
-                />
-              </FormGroup>
-              <FormGroup>
-                <Label for="año">Año</Label>
-                <Input
-                  type="text"
-                  name="año"
-                  id="año"
-                  value={obra.año}
-                  onChange={handleInputChange}
-                />
-              </FormGroup>
-              <FormGroup>
-                <Label for="autor">Autor</Label>
-                <Input
-                  type="text"
-                  name="autor"
-                  id="autor"
-                  value={obra.autor}
-                  onChange={handleInputChange}
-                />
-              </FormGroup>
-              <FormGroup>
-                <Label for="tecnica">Técnica</Label>
-                <Input
-                  type="text"
-                  name="tecnica"
-                  id="tecnica"
-                  value={obra.tecnica}
-                  onChange={handleInputChange}
-                />
-              </FormGroup>
-              <FormGroup>
-                <Label for="dimensiones">Dimensiones</Label>
-                <Input
-                  type="text"
-                  name="dimensiones"
-                  id="dimensiones"
-                  value={obra.dimensiones}
+                  value={tour.ubicacion}
                   onChange={handleInputChange}
                 />
               </FormGroup>
 
               <FormGroup>
-                <Label for="imagen">Imagen</Label>
+                <Label for="imagen">Imagen de Portada </Label>
                 <Input
                   type="file"
                   name="imagen"
@@ -172,18 +154,22 @@ const ArtEdit = () => {
                   onChange={handleImageUpload}
                 />
               </FormGroup>
-              <Button color="primary" type="submit" style={{ marginRight: '5px' }}>
+
+              
+
+              <Button color="primary" type="submit" style={{ marginRight: '7px' }}>
                 Guardar
               </Button>
-              <Button color="dark" style={{ marginLeft: '5px' }} onClick={handleGoBack}>
+              <Button color="dark" style={{ marginRight: '7px' }} onClick={handleGoBack}>
                 Volver
               </Button>
+              
             </Form>
           </Col>
           <Col md={6}>
-            {obra.imagen && (
+            {tour.imagen && (
               <img
-                src={obra.imagen}
+                src={tour.imagen}
                 alt="Imagen actual"
                 style={{ maxWidth: "55%" }}
               />
@@ -195,4 +181,4 @@ const ArtEdit = () => {
   );
 };
 
-export default ArtEdit;
+export default TourEdit;
