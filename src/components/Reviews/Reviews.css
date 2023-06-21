@@ -6,6 +6,19 @@
     padding: 20px;
     margin: auto;
     width: 100%;
+    position: relative;
+    z-index: 1;
+    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+}
+
+.reviews-decoration1{
+    position: absolute;
+    width: 188px;
+    height: 173px;
+    left: -100px;
+    top: 300px;
+    background: linear-gradient(152.49deg, #F27F0C -11.42%, rgba(242, 127, 12, 0) 118.1%);
+    border-radius: 50px 70px 12px;
 }
 
 /*Responsive Web Design*/
