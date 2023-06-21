@@ -6,8 +6,11 @@ import { Link } from "react-router-dom";
 
 const Reviews =()=>{
     return(
-        <div className="reviews-container">
-            <div className="reviews-decoration1"></div>
+        <div className="reviews-section">
+        <div className="reviews-decoration1"></div>
+        <div className="reviews-decoration2"></div>
+            <div className="reviews-container">
+            </div>
         </div>
     )
 }
