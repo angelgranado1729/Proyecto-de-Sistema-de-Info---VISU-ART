@@ -22,7 +22,7 @@ import { RegisterPage } from "./pages/RegisterPages/RegisterPage/RegisterPage";
 import { RegisterFormPage } from "./pages/RegisterPages/RegisterFormPage/RegisterFormPage";
 import { NotFoundPage } from "./pages/NotFoundPage/NotFoundPage";
 import { PrivateRoute } from "./components/PrivateRoute/PrivateRoute";
-import { UserProfilePage } from "./pages/UserPages/UserProfile/UserProfilePage";
+import UserProfilePage  from "./pages/UserPages/UserProfile/UserProfilePage";
 import {
   ADMIN_CREATE_OBRAS_URL,
   ADMIN_EDIT_OBRAS_URL,
