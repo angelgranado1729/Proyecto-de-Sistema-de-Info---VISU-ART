@@ -39,12 +39,6 @@
     position: relative;
 }
 
-.up-decoration{
-    left: 1600px;
-    background: linear-gradient(218.41deg, rgba(242, 127, 12, 0.57) 50.04%, rgba(247, 173, 25, 0) 93.35%);
-    border-radius: 70px 0px;
-}
-
 .feedback-decoration1{
     position: absolute;
     width: 188px;

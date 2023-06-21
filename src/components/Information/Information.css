@@ -6,9 +6,9 @@
   border-radius: 45px;
   width: 70%;
   max-width: 1200px;
+  box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
   position: relative;
   z-index: 1;
-  box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
 }
 
 .column {
@@ -61,8 +61,8 @@
   left: -30px;
   top: -55px;
   border-radius: 50px 70px 12px;
-  background: linear-gradient(218.41deg, rgba(66, 158, 189, 0.57) 50.04%, rgba(97, 184, 252, 0.2394) 93.35%);
   z-index: 0;
+  background: linear-gradient(218.41deg, rgba(66, 158, 189, 0.57) 50.04%, rgba(97, 184, 252, 0.2394) 93.35%);
   transform: rotate(260deg);
 }
 .information-decoration2{
