@@ -3,10 +3,7 @@ import Footer from "./components/Footer/Footer";
 import LandingPage from "./pages/LandingPage/LandingPage";
 import AdminPage from "./pages/AdminPages/AdminPage/AdminPage";
 import ReserveAdminPage from "./pages/AdminPages/ReserveAdminPage/ReserveAdminPage";
-// import ArtAdmin from "./pages/AdminPages/ArtAdmin/ArtAdmin";
-// import ArtEdit from "./pages/AdminPages/ArtEdit/ArtEdit";
-// import CreateArt from "./pages/AdminPages/CreateArtAdmin/CreateArt";
-// import AdminTours from "./pages/AdminPages/AdminTours/AdminTours";
+
 import VisionPage from "./pages/VisionPage/VisionPage";
 import MisionPage from "./pages/MisionPage/MisionPage";
 import ObjectivesPage from "./pages/ObjectivesPage/ObjectivesPage";
@@ -23,12 +20,25 @@ import { RegisterFormPage } from "./pages/RegisterPages/RegisterFormPage/Registe
 import { NotFoundPage } from "./pages/NotFoundPage/NotFoundPage";
 import { PrivateRoute } from "./components/PrivateRoute/PrivateRoute";
 import { UserProfilePage } from "./pages/UserPages/UserProfile/UserProfilePage";
+
+import ArtAdmin from "./pages/AdminPages/ArtAdmin/ArtAdmin";
+import ArtEdit from "./pages/AdminPages/ArtEdit/ArtEdit";
+import CreateArt from "./pages/AdminPages/CreateArtAdmin/CreateArt";
+import TourAdmin from "./pages/AdminPages/AdminTours/AdminTours";
+import TourEdit from "./pages/AdminPages/EditTour/EditTour";
+import CreateTour from "./pages/AdminPages/CreateTour/CreateTour";
+import TourEditObras from "./pages/AdminPages/EditTour/EditTourArt";
+
+
 import {
   ADMIN_CREATE_OBRAS_URL,
   ADMIN_EDIT_OBRAS_URL,
   ADMIN_OBRAS_URL,
   ADMIN_RESERVE_URL,
   ADMIN_TOURS_URL,
+  ADMIN_TOURS_EDIT_URL,
+  ADMIN_TOURS_EDIT_ART,
+  ADMIN_TOUR_CREATE_URL,
   ADMIN_URL,
   CALENDAR_URL,
   CONTACT_URL,
@@ -155,7 +165,7 @@ function App() {
           />
 
 
-
+          
 
           <Route
             path={ADMIN_RESERVE_URL}
@@ -166,12 +176,11 @@ function App() {
             }
           />
 
-          {/* 
           <Route
             path={ADMIN_OBRAS_URL}
             element={
               <PrivateRoute>
-                <ArtAdmin />
+                <ArtAdmin/>
               </PrivateRoute>
             }
           />
@@ -180,7 +189,7 @@ function App() {
             path={ADMIN_EDIT_OBRAS_URL}
             element={
               <PrivateRoute>
-                <ArtEdit />
+                <ArtEdit/>
               </PrivateRoute>
             }
           />
@@ -189,7 +198,7 @@ function App() {
             path={ADMIN_CREATE_OBRAS_URL}
             element={
               <PrivateRoute>
-                <CreateArt />
+                <CreateArt/>
               </PrivateRoute>
             }
           />
@@ -198,10 +207,37 @@ function App() {
             path={ADMIN_TOURS_URL}
             element={
               <PrivateRoute>
-                <AdminTours />
+                <TourAdmin />
               </PrivateRoute>
             }
-          /> */}
+          />
+
+          <Route
+            path={ADMIN_TOUR_CREATE_URL}
+            element={
+              <PrivateRoute>
+                <CreateTour />
+              </PrivateRoute>
+            }
+          />
+
+          <Route
+            path={ADMIN_TOURS_EDIT_URL}
+            element={
+              <PrivateRoute>
+                <TourEdit />
+              </PrivateRoute>
+            }
+          />
+
+          <Route
+            path={ADMIN_TOURS_EDIT_ART}
+            element={
+              <PrivateRoute>
+                <TourEditObras/>
+              </PrivateRoute>
+            }
+          />
 
           {/* User Pages */}
           <Route

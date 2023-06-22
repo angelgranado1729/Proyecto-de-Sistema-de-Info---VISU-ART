@@ -28,13 +28,18 @@ const TourAdmin = () => {
     fetchObras();
   }, [reload]);
 
-  const handleEditarObra = (obra) => {
-    navigate(`/admin-edit/${obra.nombre}`, { state: obra });
+  const handleEditarObra = (Tour) => {
+    navigate(`/admin-tours-edit/${Tour.nombre}`, { state: Tour });
+  };
+
+  const handleEditarTourObra = (Tour) => {
+    navigate(`/admin-tours-edit-art/${Tour.nombre}`, { state: Tour });
   };
 
   const handleCrearObra = () => {
-    navigate(`/admin-create`);
+    navigate(`/admin-tour-create`);
   };
+
 
   const handleDelete = async (nombre) => {
     if (window.confirm("¿Estás seguro de que deseas borrar esta obra?")) {
@@ -75,7 +80,6 @@ const TourAdmin = () => {
             <tr>
               <th>#</th>
               <th>Nombre</th>
-              <th>Ubicacion</th>
               <th>Fecha</th>
 
               <th></th>
@@ -92,17 +96,25 @@ const TourAdmin = () => {
 
         <td style={{ width: '20%' }}>{tour.fecha}</td>
        
-        <td style={{ width: '20%' }}>{tour.ubicacion}</td>
 
         <td>
           <div style={{ display: 'flex', alignItems: 'center' }}>
             <Button
               color="primary"
-              onClick={() => handleEditarObra(obra)}
+              onClick={() => handleEditarObra(tour)}
               style={{ marginRight: "15%" }}
             >
               ✏️
             </Button>
+            
+            <Button
+              style={{ marginRight: "15%" }}
+              color="success"
+              onClick={() => handleEditarTourObra(tour)}
+            >
+              🎨
+            </Button>
+            
             <Button
               style={{ marginRight: "15%" }}
               color="danger"
@@ -110,6 +122,10 @@ const TourAdmin = () => {
             >
               🗑️
             </Button>
+
+
+            
+
           </div>
         </td>
       </tr>
