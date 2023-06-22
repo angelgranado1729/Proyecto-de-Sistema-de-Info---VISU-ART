@@ -3,17 +3,26 @@ import "./DropdownTour.css";
 import { TourContext, useTour } from "../../contexts/TourContext";
 
 const DropdownTour = ({tours}) => {
-    const { tour, tourId, changeId } = useContext(TourContext);
+    /*Se toman los datos del context de tour (reserva)*/
+    const { tour, tourId, changeId, changeTour } = useContext(TourContext);
 
-    function getTourID(tourIdentificator, tourName) {
+    /***Esta funcion se encarga de actualizar el componente para indicar la seleccion del tour
+     * y para cambiar el context indicando el proceso actual de la reserva, estos corresponderan
+     * al id, sus fechas y el usuario actual
+    ***/
+    function getTour(tourIdentificator, tourItem) {
         const selfID = document.getElementById("toursDrop")
-        selfID.innerHTML = tourName;
+        selfID.innerHTML = tourItem.nombre;
         const tempId = {
             id: tourIdentificator,
         }
         changeId(tempId)
+        changeTour(tourItem, tourIdentificator)
     }
 
+    /***El componente creara tantas etiquetas a como tours existan en la base de datos
+     * no se supone que haya 0 tours, pero en tal caso si algo como eso sucede, F por ahora
+     */
     return (
         <div className="dropdown">
             <button className="dropbtn"><p id='toursDrop'>Seleccionar tour:</p>
@@ -21,7 +30,7 @@ const DropdownTour = ({tours}) => {
             </button>
             <div className="dropdown-content">
                 {tours.map((tour) => (
-                    <a value={tour.id} key={tour.id} onClick={() => {getTourID(tour.id, tour.data.nombre)}}>{tour.data.nombre}</a>
+                    <a value={tour.id} key={tour.id} onClick={() => {getTour(tour.id, tour.data)}}>{tour.data.nombre}</a>
                     ))}
             </div>
         </div>
@@ -29,3 +38,35 @@ const DropdownTour = ({tours}) => {
 }
 
 export default DropdownTour;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/*Si lees esto, lo leiste*/

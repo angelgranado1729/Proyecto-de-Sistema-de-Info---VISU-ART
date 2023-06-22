@@ -7,6 +7,7 @@ import DropdownMenu from '../../components/DropdownMenu/DropdownMenu'
 import { useTour } from '../../contexts/TourContext'
 import { useTourList } from '../../hooks/useTourList'
 import DropdownTour from '../../components/DropdownTour/DropdownTour'
+import DropdownDates from '../../components/DropdownDates/DropdownDates'
 
 function ReservePage() {
   const { tourList, listLoading, getTourList } = useTourList();
@@ -17,7 +18,16 @@ function ReservePage() {
         getTourList();
     }, [])
 
-
+/***
+ * La pagina de reservas es una vista privada que requiere de una sesion activa para acceder
+ * toma los datos de tour e id del context, que deberian iniciar como null y vacio inicialmente,
+ * tambien realiza una llamada al hook del listado de tours para adquirir la lista de tours necesaria
+ * para renderizar la version de Dropdown menu para tours, si se encuentra cargando, se mostrara 
+ * un texto que indica el estado, si no, renderiza el componente de DropdownTour y DropdownDates, donde habra un listado
+ * con los tours actuales en la coleccion, una vez el usuario seleccione un tour, DropdownDates se actualizara con las
+ * fechas que tiene dicho tour, al salir de la pagina se debera reiniciar el context de tours (reserva) a menos que 
+ * la vista sea el siguiente paso de la reserva. El usuario no debe poder ir al siguiente paso si no ha seleccionado una fecha.
+ */
   return (
     <div className="App">
         <header className="back-header">
@@ -34,6 +44,12 @@ function ReservePage() {
 
                 {!listLoading && tourList &&(
                     <DropdownTour tours = {tourList}/>
+                )}
+
+                {listLoading &&(<h1>Cargando...</h1>)}
+
+                {!listLoading &&(
+                    <DropdownDates/>
                 )}
 
             </div>
@@ -56,3 +72,36 @@ function ReservePage() {
 }
 
 export default ReservePage
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/*Creo que deberia buscar mejores nombres para las variables*/
