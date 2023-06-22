@@ -15,6 +15,7 @@ import {
     EyeFill,
     EyeSlashFill
 } from "react-bootstrap-icons";
+import { facebookProvider } from '../../firebase/firebase-config';
 
 
 
