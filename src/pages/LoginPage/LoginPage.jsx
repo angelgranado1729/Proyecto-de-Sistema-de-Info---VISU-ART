@@ -165,8 +165,7 @@ export function LoginPage() {
 
                     {loginError && (
                         <div className={styles.errorMessage}>
-                            Lo sentimos, no encontramos una cuenta con esta dirección de correo electrónico.
-                            Por favor, inténtalo de nuevo o crea una
+                            Correo o contraseña incorrecta. Por favor intenta de nuevo o crea una{" "}
                             <Link to={REGISTER_URL} className={styles.registerLink}>
                                 nueva cuenta
                             </Link>.

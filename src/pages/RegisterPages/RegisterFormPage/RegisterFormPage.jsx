@@ -1,7 +1,8 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import { useNavigate, Link } from "react-router-dom";
 import { ArrowLeft, EyeFill, EyeSlashFill } from "react-bootstrap-icons";
-import { getStorage, ref, getDownloadURL } from "firebase/storage";
+import { Dropdown } from "react-bootstrap";
+
 import styles from "./RegisterFormPage.module.css";
 import { HOME_URL } from "../../../constants/urls";
 
@@ -13,18 +14,17 @@ export function RegisterFormPage() {
         firstName: "",
         lastName: "",
         email: "",
+        confirmEmail: "",
         confirmPassword: "",
         password: "",
         birthDate: "",
-        gender: ""
+        gender: "",
     });
 
     const [errors, setErrors] = useState({
         email: false,
-        password: false
+        password: false,
     });
-
-    const [loginError, setLoginError] = useState(false);
 
     const onSubmit = (event) => {
         event.preventDefault();
@@ -39,6 +39,9 @@ export function RegisterFormPage() {
     const handlePasswordClick = () => {
         setShowPassword(!showPassword);
     };
+
+    const { firstName, lastName, email, confirmEmail, confirmPassword, password, birthDate, gender } = formData;
+    const { email: emailError, password: passwordError } = errors;
 
     return (
         <div className={styles.container}>
@@ -64,7 +67,7 @@ export function RegisterFormPage() {
                             id="firstName"
                             name="firstName"
                             placeholder="Nombre"
-                            value={formData.firstName}
+                            value={firstName}
                             onChange={onChange}
                             required
                         />
@@ -77,16 +80,13 @@ export function RegisterFormPage() {
                             id="lastName"
                             name="lastName"
                             placeholder="Apellido"
-                            value={formData.lastName}
+                            value={lastName}
                             onChange={onChange}
                             required
                         />
                     </div>
 
-                    <div
-                        className={`${styles.inputContainer} ${errors.email ? styles.errorInput : ""
-                            }`}
-                    >
+                    <div className={`${styles.inputContainer} ${emailError ? styles.errorInput : ""}`}>
                         <label htmlFor="email">
                             <span>Email</span>
                         </label>
@@ -95,14 +95,10 @@ export function RegisterFormPage() {
                             id="email"
                             name="email"
                             placeholder="correo@ejemplo.com"
-                            value={formData.email}
+                            value={email}
                             onChange={onChange}
                         />
-                        {errors.email && (
-                            <span className={styles.errorMsg}>
-                                Por favor ingresa su correo electrónico.
-                            </span>
-                        )}
+                        {emailError && <span className={styles.errorMsg}>Por favor ingresa su correo electrónico.</span>}
                     </div>
 
                     <div className={styles.inputContainer}>
@@ -112,58 +108,48 @@ export function RegisterFormPage() {
                             id="confirmEmail"
                             name="confirmEmail"
                             placeholder="correo@ejemplo.com"
-                            value={formData.confirmEmail}
+                            value={confirmEmail}
                             onChange={onChange}
                             required
                         />
                     </div>
 
-                    <div
-                        className={`${styles.passwordInput} ${errors.password ? styles.errorInputPassword : ""
-                            }`}
-                    >
+                    <div className={`${styles.passwordInput} ${passwordError ? styles.errorInputPassword : ""}`}>
+                        <label htmlFor="password">Contraseña</label>
                         <input
                             type={showPassword ? "text" : "password"}
                             name="password"
                             id="password"
                             placeholder="***************"
-                            value={formData.password}
+                            value={password}
                             onChange={onChange}
                             onClick={handlePasswordClick}
                             className={styles.passwordInputField}
                             required
                         />
 
-                        <button
-                            type="button"
-                            className={styles.passwordToggle}
-                            required
-                            onClick={handlePasswordClick}
-                        >
-                            {showPassword ? (
-                                <EyeSlashFill size={20} color="background: #00000080" />
-                            ) : (
-                                <EyeFill size={20} color="#00000080" />
-                            )}
+                        <button type="button" className={styles.passwordToggle} required onClick={handlePasswordClick}>
+                            {showPassword ? <EyeSlashFill size={20} color="#00000080" /> : <EyeFill size={20} color="#00000080" />}
                         </button>
                     </div>
-                    {errors.password && (
-                        <span className={styles.errorMsg}>
-                            Por favor ingresa su contraseña.
-                        </span>
-                    )}
 
-                    <div className={styles.inputContainer}>
-                        <label htmlFor="confirmPassword">Confirmar contraseña</label>
+                    <div className={`${styles.passwordInput} ${passwordError ? styles.errorInputPassword : ""}`}>
+                        <label htmlFor="password">Confirmar Contraseña</label>
                         <input
-                            type="password"
-                            id="confirmPassword"
-                            name="confirmPassword"
+                            type={showPassword ? "text" : "password"}
+                            name="password"
+                            id="password"
                             placeholder="***************"
-                            value={formData.confirmPassword}
+                            value={confirmPassword}
                             onChange={onChange}
+                            onClick={handlePasswordClick}
+                            className={styles.passwordInputField}
                             required
                         />
+
+                        <button type="button" className={styles.passwordToggle} required onClick={handlePasswordClick}>
+                            {showPassword ? <EyeSlashFill size={20} color="#00000080" /> : <EyeFill size={20} color="#00000080" />}
+                        </button>
                     </div>
 
                     <div className={styles.inputContainer}>
@@ -173,7 +159,7 @@ export function RegisterFormPage() {
                             id="birthDate"
                             name="birthDate"
                             placeholder="dd/mm/aaaa"
-                            value={formData.birthDate}
+                            value={birthDate}
                             onChange={onChange}
                             required
                         />
@@ -181,13 +167,28 @@ export function RegisterFormPage() {
 
                     <div className={styles.inputContainer}>
                         <label htmlFor="gender">Género</label>
-                        <input
-                            type="text"
-                            id="gender"
-                            name="gender"
-                            value={formData.gender}
-                            onChange={onChange}
-                        />
+                        <Dropdown>
+                            <Dropdown.Toggle variant="primary" id="dropdown-gender">
+                                Seleccionar género
+                            </Dropdown.Toggle>
+                            <Dropdown.Menu>
+                                <Dropdown.Item
+                                    as="button"
+                                    onSelect={() => setFormData((prevState) => ({ ...prevState, gender: "Masculino" }))}
+                                >
+                                    Masculino
+                                </Dropdown.Item>
+                                <Dropdown.Item
+                                    as="button"
+                                    onSelect={() => setFormData((prevState) => ({ ...prevState, gender: "Femenino" }))}
+                                >
+                                    Femenino
+                                </Dropdown.Item>
+                                <Dropdown.Item as="button" onSelect={() => setFormData((prevState) => ({ ...prevState, gender: "Otro" }))}>
+                                    Otro
+                                </Dropdown.Item>
+                            </Dropdown.Menu>
+                        </Dropdown>
                     </div>
 
                     <button type="submit">Registrarse</button>
