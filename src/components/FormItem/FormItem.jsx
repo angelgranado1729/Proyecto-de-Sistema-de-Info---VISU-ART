@@ -1,5 +1,5 @@
-import React from 'react';
-import './FormItem.css';
+import React from 'react'
+import styles from './FormItem.css'
 
 function FormItem(props) {
   return (

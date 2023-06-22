@@ -19,7 +19,12 @@ export const signInWithGoogle = async ({ onSuccess, onFail }) => {
 
     if (isNewUser) {
       const { uid, email, displayName } = result.user;
+
+      // Quitar esto jejejeje
       console.log(result.user);
+
+      //
+
       await createUser({
         uid,
         email,

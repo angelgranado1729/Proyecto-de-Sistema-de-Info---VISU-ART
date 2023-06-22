@@ -8,4 +8,15 @@
 }
 
 /*Responsive Web Design*/
-
+@media screen and (max-width: 769px) {
+    .subtitle-section h1 {
+        font-size: 45px;
+    }
+}
+  
+@media screen and (max-width: 480px) {
+    .subtitle-section h1 {
+        font-size: 40px;
+    }
+}
+  
