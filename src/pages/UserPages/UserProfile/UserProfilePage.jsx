@@ -42,7 +42,7 @@
 // }
 
 // export default UserProfilePage
-
+// Arriba es el codigo usando module.css
 
 
 import Subtitle from "../../../components/Subtitle/Subtitle";
