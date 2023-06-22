@@ -1,12 +1,13 @@
 import React, { useState, useEffect } from "react";
 import { Link, Route, useNavigate } from "react-router-dom";
-import { app, auth, db, storage } from "../../firebase/firebase-config"
+import { app, auth, db, storage } from "../../../firebase/firebase-config"
 import { getDocs, query, collection, where, deleteDoc } from "firebase/firestore";
-import Sidebar from "../../components/Sidebar/Sidebar";
-import Title from "../../components/Title/Title";
+import Sidebar from "../../../components/Sidebar/Sidebar";
+import Title from "../../../components/Title/Title";
 import "./ArtAdmin.css";
-import { Table } from "reactstrap";
-import { Button } from 'reactstrap';
+import 'bootstrap/dist/css/bootstrap.css';
+import { Table, Button, Popover, PopoverBody } from "reactstrap";
+import { ADMIN_CREATE_OBRAS_URL, ADMIN_EDIT_OBRAS_BASE_URL } from "../../../constants/urls";
 
 const ArtAdmin = () => {
   const [obras, setObras] = useState([]);
@@ -30,15 +31,11 @@ const ArtAdmin = () => {
   }, [reload]);
 
   const handleEditarObra = (obra) => {
-
-    navigate(`/editar-obra/${obra.nombre}`, { state: obra });
-
+    navigate(`${ADMIN_EDIT_OBRAS_BASE_URL}${obra.nombre}`, { state: obra });
   };
 
   const handleCrearObra = () => {
-
-    navigate(`/createart`);
-
+    navigate(ADMIN_CREATE_OBRAS_URL);
   };
 
   const handleDelete = async (nombre) => {
@@ -67,23 +64,21 @@ const ArtAdmin = () => {
     <div className="App">
       <Sidebar />
       <div className="main-admin">
-        <Title title="Administrador de obras " />
+        <Title title="Administrador de obras" />
 
         <Button color="success" onClick={() => handleCrearObra()}>
-          Agregar nueva obra</Button>{' '}
+          Agregar nueva obra
+        </Button>{" "}
         <br />
         <br />
 
         <Table>
-
           <thead>
             <tr>
               <th>#</th>
               <th>Nombre</th>
-
               <th>Año</th>
               <th>Autor</th>
-
               <th></th>
               <th></th>
             </tr>
@@ -91,25 +86,30 @@ const ArtAdmin = () => {
           <tbody>
             {obras.map((obra, index) => (
               <tr key={index}>
-                <td>{index + 1}</td>
-                <td>{obra.nombre}</td>
+                {/* Celdas de la tabla */}
+                <td style={{ width: '10%' }}>{index + 1}</td>
 
-                <td>{obra.año}</td>
-                <td>{obra.autor}</td>
+                <td style={{ width: '20%' }}>{obra.nombre}</td>
 
+                <td style={{ width: '20%' }}>{obra.año}</td>
+                <td style={{ width: '20%' }}>{obra.autor}</td>
                 <td>
-                  <Button
-                    color="primary"
-                    onClick={() => handleEditarObra(obra)}
-                    style={{ marginRight: '5px' }}
-                  >
-                    ✏️
-                  </Button>
-                </td>
-                <td>
-                  <Button style={{ marginRight: '5px' }} color="danger" onClick={() => handleDelete(obra.nombre)}>
-                    🗑️
-                  </Button>
+                  <div style={{ display: 'flex', alignItems: 'center' }}>
+                    <Button
+                      color="primary"
+                      onClick={() => handleEditarObra(obra)}
+                      style={{ marginRight: "15%" }}
+                    >
+                      ✏️
+                    </Button>
+                    <Button
+                      style={{ marginRight: "15%" }}
+                      color="danger"
+                      onClick={() => handleDelete(obra.nombre)}
+                    >
+                      🗑️
+                    </Button>
+                  </div>
                 </td>
               </tr>
             ))}

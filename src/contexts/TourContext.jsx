@@ -9,41 +9,29 @@ export function TourContextProvider({ children }) {
         id: null,
     });
 
-    /*Use effect quizas se elimine, por ahora ID y tour cambian independientemente*/
-    useEffect(() => {
-        if(tourId.id){
-/*          Funcion sin implementar
-            const tempTour = fetchTour(tourId.id);
-            console.log(tempTour)
-            setTour({
-                id: tempTour.id,
-                fecha: tempTour.fecha,
-                user: '',
-            });*/
-            console.log('temporal')
-
-        }else{
-            setTour(null)
-        }
-
-    }, [tourId])
-
-
     /* Funcion para modificar el ID del context en componentes o vistas*/
     const changeId = (newId) => {
         setTourId(newId);
     }
 
     /* Funcion para modificar el tour (datos de reserva) en componentes o vistas*/
-    const changeTour = (newTour, newId) => {
+    const changeTour = (newTour, newId, newFecha, userId) => {
         setTour({
             id: newId,
             fecha: newTour.fecha,
-            user: '',
+            user: userId,
+            chosenFecha: newFecha,
         })
     }
 
-    return <TourContext.Provider value={{tour, tourId, changeId, changeTour}}>{children}</TourContext.Provider>
+    const resetTour = () => {
+        setTourId({
+            id: null,
+        });
+        setTour(null);
+    }
+
+    return <TourContext.Provider value={{tour, tourId, changeId, changeTour, resetTour}}>{children}</TourContext.Provider>
 }
 
 export function useTour() {

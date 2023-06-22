@@ -1,208 +1,207 @@
 /*Estilos del componente Navbar*/
-.items{
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    font-size: 1.2rem;
-    padding: 0 30px;
-    width: 95%;
-    height: 80px;
-    position: absolute;
-    top: 50px;
-    left: 50%;
-    transform: translate(-50%);
+.items {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 1.2rem;
+  padding: 0 30px;
+  width: 95%;
+  height: 80px;
+  position: absolute;
+  top: 50px;
+  left: 50%;
+  transform: translate(-50%);
 }
 
 .logo {
+  justify-self: start;
+  cursor: pointer;
+  font-weight: bolder;
+  height: 60px;
+  width: auto;
+}
+
+.white-logo {
+  display: none;
+}
+
+.nav-menu {
+  display: grid;
+  grid-template-columns: repeat(6, auto);
+  grid-gap: 20px;
+  list-style: none;
+  align-items: center;
+  text-align: center;
+  justify-content: end;
+}
+
+.nav-links {
+  text-decoration: none;
+  color: black;
+  font-weight: bolder;
+  padding: 0.7rem 1rem;
+  white-space: nowrap;
+}
+
+.nav-links:hover {
+  opacity: 70%;
+}
+
+.nav-links-mobile {
+  background: #1a3e5a;
+  font-weight: 600;
+  text-decoration: none;
+  color: white;
+  box-shadow: 0px 4px 20px rgba(0, 0, 0, 0.35);
+  border-radius: 10px;
+  flex: none;
+  order: 4;
+  flex-grow: 0;
+  padding: 15px 60px;
+}
+
+.nav-links-mobile-transparent {
+  font-weight: bolder;
+  text-decoration: none;
+  color: #1a3e5a;
+  border: 3px solid #1a3e5a;
+  filter: drop-shadow(0px 4px 20px rgba(0, 0, 0, 0.35));
+  border-radius: 10px;
+  flex: none;
+  order: 4;
+  flex-grow: 0;
+  padding: 15px 60px;
+}
+
+.nav-links-mobile:hover {
+  background: #429ebd;
+}
+
+.nav-links-mobile-transparent:hover {
+  color: #429ebd;
+  border: 3px solid #429ebd;
+}
+
+.fa-bars,
+.fa-times {
+  color: black;
+  font-size: 30px;
+}
+
+.menu-hamburger {
+  display: none;
+}
+
+/*Responsive Web Design*/
+@media screen and (max-width: 1300px) {
+  .logo {
+    font-size: 25px;
+  }
+
+  .nav-links {
+    font-size: 15px;
+  }
+
+  .nav-links-mobile {
+    font-size: 15px;
+  }
+
+  .nav-links-mobile-transparent {
+    font-size: 15px;
+  }
+}
+
+@media screen and (max-width: 1100px) {
+  .items {
+    z-index: 99;
+  }
+
+  .logo.active {
+    content: url("public/images/logos/visuartWhiteLogo.jpg");
+  }
+
+  .nav-menu {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    background-color: #fff;
+    box-shadow: 0px 4px 20px rgba(0, 0, 0, 0.35);
+    width: 100%;
+    height: auto;
+    position: absolute;
+    top: 8px;
+    left: -110%;
+    align-items: stretch;
+    padding: 80px 0 30px 0;
+    margin: 0;
+    z-index: -1;
+    border-radius: 10px;
+  }
+
+  .nav-menu.active {
+    left: 0%;
+  }
+
+  .black-logo {
+    display: none;
+  }
+
+  .white-logo {
+    display: block;
     justify-self: start;
     cursor: pointer;
     font-weight: bolder;
     height: 60px;
     width: auto;
-}
+  }
 
-.white-logo{
-    display: none;    
-}
-
-.nav-menu{
-    display: grid;
-    grid-template-columns: repeat(6,auto);
-    grid-gap: 20px;
-    list-style: none;
-    align-items: center;
-    text-align: center;
-    justify-content: end;
-}
-
-.nav-links{
-    text-decoration: none;
+  .nav-links {
+    background-color: #fff;
+    display: block;
+    widows: 100%;
+    padding: 1rem 0;
     color: black;
-    font-weight: bolder;
-    padding: 0.7rem 1rem;
-    white-space: nowrap;
-}
+    font-size: 20px;
+  }
 
-.nav-links:hover{
-    opacity: 70%;
-}
+  .nav-links:hover {
+    opacity: 60%;
+  }
 
-.nav-links-mobile{
-    background: #1A3E5A;
-    font-weight: 600;
-    text-decoration: none;
+  .menu-hamburger {
+    display: block;
     color: white;
-    box-shadow: 0px 4px 20px rgba(0, 0, 0, 0.35);
-    border-radius: 10px;
-    flex: none;
-    order: 4;
-    flex-grow: 0;
-    padding: 15px 60px;
-}
+  }
 
-.nav-links-mobile-transparent{
-    font-weight: bolder;
-    text-decoration: none;
-    color: #1A3E5A;
-    border: 3px solid #1A3E5A;
-    filter: drop-shadow(0px 4px 20px rgba(0, 0, 0, 0.35));
-    border-radius: 10px;
-    flex: none;
-    order: 4;
-    flex-grow: 0;
-    padding: 15px 60px;
-}
-
-.nav-links-mobile:hover{
-    background: #429EBD;
-}
-
-.nav-links-mobile-transparent:hover{
-    color: #429EBD;
-    border: 3px solid #429EBD;
-}
-
-.fa-bars, .fa-times{
+  .nav-links-mobile-transparent {
+    padding: 1.5rem;
+    text-align: center;
+    border-radius: 0px;
+    width: 100%;
+    margin: auto;
+    display: block;
+    widows: 100%;
     color: black;
-    font-size: 30px;
-}
+    border: none;
+    box-shadow: none;
+    text-shadow: none;
+    font-weight: 700;
+    font-size: 20px;
+  }
 
-.menu-hamburger{
-    display: none;
-}
-
-/*Responsive Web Design*/
-@media screen and (max-width: 1300px) {
-    .logo{
-        font-size: 25px;
-    }
-
-    .nav-links{
-        font-size: 15px;
-    }
-
-    .nav-links-mobile{
-        font-size: 15px;
-    }
-    
-    .nav-links-mobile-transparent{
-        font-size: 15px;
-    }
-    
-}
-
-@media screen and (max-width: 1100px) {
-    .items{
-        z-index: 99;
-    }   
-
-    .logo.active{
-        content: url("public/images/logos/visuartWhiteLogo.jpg");
-    }
-    
-    .nav-menu{
-        display: flex;
-        flex-direction: column;
-        justify-content: flex-start;
-        background-color: #fff;
-        box-shadow: 0px 4px 20px rgba(0, 0, 0, 0.35);
-        width: 100%;
-        height: auto;
-        position: absolute;
-        top: 8px;
-        left: -110%;
-        align-items: stretch;
-        padding: 80px 0 30px 0;
-        margin: 0;
-        z-index: -1;
-        border-radius: 10px;
-    }  
-
-    .nav-menu.active{
-        left: 0%;
-    }
-
-    .black-logo {
-        display: none;
-    }
-    
-    .white-logo{
-        display: block;
-        justify-self: start;
-        cursor: pointer;
-        font-weight: bolder;
-        height: 60px;
-        width: auto;    
-    }
-
-    .nav-links {
-        background-color: #fff;
-        display: block;
-        widows: 100%;
-        padding: 1rem 0;
-        color: black;
-        font-size: 20px;
-    }
-
-    .nav-links:hover{
-        opacity: 60%;
-    }
-
-    .menu-hamburger{
-        display: block;
-        color: white;
-    }
-
-
-    .nav-links-mobile-transparent{
-        padding: 1.5rem;
-        text-align: center;
-        border-radius: 0px;
-        width: 100%;
-        margin: auto;
-        display: block;
-        widows: 100%;
-        color: black;
-        border: none;
-        box-shadow: none;
-        text-shadow: none;
-        font-weight: 700;
-        font-size: 20px;
-    }
-
-    .nav-links-mobile{
-        padding: 1.5rem;
-        text-align: center;
-        border-radius: 0px;
-        width: 100%;
-        margin: auto;
-        background-color: #fff;
-        display: block;
-        widows: 100%;
-        color: black;
-        border: none;
-        box-shadow: none;
-        font-weight: 700;
-        font-size: 20px;
-    }
+  .nav-links-mobile {
+    padding: 1.5rem;
+    text-align: center;
+    border-radius: 0px;
+    width: 100%;
+    margin: auto;
+    background-color: #fff;
+    display: block;
+    widows: 100%;
+    color: black;
+    border: none;
+    box-shadow: none;
+    font-weight: 700;
+    font-size: 20px;
+  }
 }

@@ -1,13 +1,28 @@
-import React from "react";
-import "./Calendar.css";
+// import React from 'react';
+// import './Calendar.css'; 
 
-const Calendar =()=>{
-    return(
-    <div className="wrapper">
-        
-    </div>
+// class Calendario extends React.Component {
+//   constructor(props) {
+//     super(props);
+//     this.state = {
+//       date: new Date(),
+//     };
+//   }
 
-    )
-}
+//   render() {
+//     const year = this.state.date.getFullYear();
+//     const month = this.state.date.getMonth();
+//     const daysInMonth = new Date(year, month + 1, 0).getDate();
+//     const days = Array.from({length: daysInMonth}, (_, i) => i + 1);
 
-export default Calendar;
+//     return (
+//       <div className="calendar-grid">
+//         {days.map(day => (
+//           <div className="calendar-day" key={day}>{day}</div>
+//         ))}
+//       </div>
+//     );
+//   }
+// }
+
+// export default Calendario;
