@@ -53,3 +53,26 @@
     clear: both;
   }
 }
+.calendar-container {
+  height: 500px;
+}
+
+.navegation {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 20px;
+}
+
+.box {
+  flex: 1;
+  text-align: center;
+}
+
+.blue-btn {
+  background-color: blue;
+  color: white;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
