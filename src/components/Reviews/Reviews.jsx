@@ -61,7 +61,7 @@ const Reviews =()=>{
                         </article>
                     )
                 })}
-                <div className="navegation-reviews">
+                <div className="reviews-navegation">
                     <button className="prev" onClick ={() => setIndex(index - 1)}>
                         <i className="fa-solid fa-arrow-left"></i>
                     </button>

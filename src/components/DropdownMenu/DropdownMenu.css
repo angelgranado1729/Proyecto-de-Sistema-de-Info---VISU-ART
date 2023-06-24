@@ -1,14 +1,15 @@
 /*Estilos de Componente Dropdown Menu*/
-.dropdownNew {
+.dropdownM-container {
   overflow: hidden;
   background-color: none;
-  width: 300px;
+  width: 30%;
+  height: 50px;
   border-radius: 10px;
   border: 1px black;
   border-style: solid;
 }
 
-.dropdownNew .dropbtnNew {
+.dropdownM-container .dropdownM-btn {
   font-size: 16px;
   border: none;
   outline: none;
@@ -17,24 +18,35 @@
   background-color: inherit;
 }
 
-.dropbtnNew {
+.dropdownM-btn {
   display: flex;
+  align-items: center;
   flex-direction: row;
   justify-content: space-between;
+  width: 100%;
   gap: 160px;
-  align-items: center;
 }
 
-.dropdown-contentNew {
+.dropdownM-default{
+  vertical-align: middle;
+}
+
+.fa-angle-down {
+  font-size: 12px;
+  vertical-align: middle;
+}
+
+.dropdownM-content{
   display: none;
   position: absolute;
   background-color: white;
   min-width: 300px;
   box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
   z-index: 1;
+  margin-top: -7px;
 }
 
-.dropdown-contentNew a {
+.dropdownM-content option {
   float: none;
   color: black;
   padding: 12px 16px;
@@ -43,30 +55,61 @@
   text-align: left;
 }
 
-.dropdown-contentNew a:hover {
+.dropdownM-content option:hover {
   background-color: #ddd;
 }
 
-.dropdownNew:hover .dropdown-contentNew {
+.dropdownM-container:hover .dropdownM-content {
   display: block;
 }
 
 /*Responsive Web Design*/
+@media screen and (max-width: 1000px) {
+  .dropdownM-container {
+    width: 100%;
+  }
+  .dropdownM-content{
+    width: 80%;
+  }
+}
+
 @media screen and (max-width: 769px) {
-  .dropdown-contentNew a {
+  .dropdownM-content option {
     font-size: 15px;
   }
-  .dropdownNew .dropbtnNew {
+  .dropdownM-container .dropdownM-btn {
     font-size: 15px;
+  }
+  .dropdownM-container {
+    width: 100%;
   }
 }
 
 @media screen and (max-width: 480px) {
-  .dropdown-contentNew a {
+  .dropdownM-content option {
     font-size: 12px;
   }
-  .dropdownNew .dropbtnNew {
+  .dropdownM-container .dropdownM-btn {
     font-size: 12px;
   }
 }
 
+@media screen and (max-width: 320px) {
+  .dropdownM-container {
+    width: 100%;
+    height: 35px;
+  }
+  .dropdownM-content{
+    min-width: 100px;
+    margin-top: -15px;
+  }
+  .dropdownM-content option {
+    font-size: 12px;
+  }
+  .fa-angle-down{
+    font-size: 10px;
+  }
+  .dropdownM-container .dropdownM-btn {
+    font-size: 10px;
+  }
+}

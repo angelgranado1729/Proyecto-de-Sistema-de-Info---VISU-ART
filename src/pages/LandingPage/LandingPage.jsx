@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { useEffect } from 'react';
 import { useNavigate } from "react-router-dom";
 import Hero from "../../components/Hero/Hero";
 import Title from "../../components/Title/Title";
@@ -11,6 +12,25 @@ import Navbar from "../../components/NavBar/Navbar";
 import "./LandingPage.css";
 
 const LandingPage = () => {
+  const [tours, setTours] = useState([]);
+
+  useEffect(() => {
+    const fetchTours = async () => {
+      try {
+        const toursCollection = collection(db, "Tours");
+        const toursSnapshot = await getDocs(toursCollection);
+        const toursData = toursSnapshot.docs.map((doc) => doc.data());
+        setTours(toursData);
+      } catch (error) {
+        console.error("Error fetching tours:", error);
+      }
+    };
+
+    fetchTours();
+  }, []);
+
+
+  {/*Feedback*/}
   const [showFeedback, setShowFeedback] = useState(false);
   const navigate = useNavigate();
 
@@ -34,8 +54,8 @@ const LandingPage = () => {
       <Hero />
       <section className="tours-section">
         <Title
-          title="Tours disponibles"
-          description="Lorem ipsum dolor sit amet consectetur, adipisicing elit. Aperiam placeat sint consequuntur officiis alias dolore. Numquam debitis vel amet odio unde vitae velit repellendus. Porro adipisci enim eveniet laborum mollitia! Lorem ipsum dolor sit amet consectetur adipisicing elit. Quaerat veniam repudiandae provident architecto nihil consequuntur a cumque cupiditate ad. Corporis veniam rerum velit pariatur porro qui eos quasi suscipit eius?"
+          title="Tours Disponibles"
+          description="En esta sección podrás encontrar los tours que se ofrecen para conocer las diferentes obras de arte que se encuentran en la Universidad Metropolitana. Nuestros recorridos se realizan por los distintos salones y exposiciones disponibles en nuestra casa de estudios, por lo que sientasé libre de disfrutar de estos eventos y conozca más de nuestra gran variedad de representaciones artísticas de múltiples pintores y escultores."
         />
         <div className="landing-decoration1"></div>
         <div className="search-container">
@@ -50,7 +70,10 @@ const LandingPage = () => {
           <div className="landing-decoration3"></div>
           <div className="landing-decoration4"></div>
           <div className="landing-decoration5"></div>
-          <Card />
+        {tours.map((tour) => (
+          <h1> {tour.nombre}</h1>
+        ))}
+          <Card/>
           <Card />
           <Card />
           <Card />

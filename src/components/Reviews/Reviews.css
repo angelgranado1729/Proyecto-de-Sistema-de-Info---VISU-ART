@@ -129,13 +129,14 @@ article.nextSlide{
 }
 
 /*Contenedor de las flechas*/
-.navegation-reviews{
+.reviews-navegation{
     bottom: 30px;
     position:absolute;
     width: 100%;
+    margin-top: 40px;
 }
 
-.navegation-reviews button{
+.reviews-navegation button{
     background: none;
     border: none;
     color: white;
@@ -146,13 +147,16 @@ article.nextSlide{
     margin-right: 40%;
 }
 
-.navegation-reviews button:hover{
+.reviews-navegation button:hover{
     color: #F27F0C;
 }
 
 
 /*Responsive Web Design*/
 @media (max-width: 769px) {
+    .reviews-container{
+        height: 550px;
+    }
     .reviews-decoration1{
         width: 148px;
         height: 133px;
@@ -177,9 +181,8 @@ article.nextSlide{
         font-weight: 400;
         margin: 20px;
     }
-    .navegation-reviews button{
+    .reviews-navegation button{
         font-size: 25px;
     }
     
 }
-

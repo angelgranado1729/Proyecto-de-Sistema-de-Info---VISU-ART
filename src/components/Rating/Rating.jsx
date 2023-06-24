@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import {useEffect} from 'react';
 import "./Rating.css";
 import {FaStar} from "react-icons/fa"
 

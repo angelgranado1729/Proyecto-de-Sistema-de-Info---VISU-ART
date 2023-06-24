@@ -14,14 +14,14 @@ const Footer = () => {
                     </div>
                     <div className="footer-links_div">
                         <div className="footer-below-links">
-                            <Link to={MISION_URL}><div><p>Misión</p></div></Link>
-                            <Link to={VISION_URL}><div><p>Visión</p></div></Link>
-                            <Link to={OBJECTIVES_URL}><div><p>Objetivos</p></div></Link>
-                            <Link to={CONTACT_URL}><div><p>Contacto</p></div></Link>
+                            <Link className="below-links" to={MISION_URL}><div><p>Misión</p></div></Link>
+                            <Link className="below-links" to={VISION_URL}><div><p>Visión</p></div></Link>
+                            <Link className="below-links" to={OBJECTIVES_URL}><div><p>Objetivos</p></div></Link>
+                            <Link className="below-links" to={CONTACT_URL}><div><p>Contacto</p></div></Link>
                         </div>
                     </div>
                 </div>
-                <hr></hr>
+                <hr className="footer-separator"></hr>
                 <div className="footer-below">
                     <div className="footer-copyright">
                         <p>©{new Date().getFullYear()} VisuArt. All rights reserved.</p>

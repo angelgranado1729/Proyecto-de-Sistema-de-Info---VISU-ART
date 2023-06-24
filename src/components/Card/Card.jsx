@@ -1,21 +1,24 @@
 import React from "react";
 import "./Card.css";
 
-const Card = () => {
+const Card = (props) => {
+  const tourTitle = props.tourTitle;
+  const tourDescription = props.tourDescription;
+  const tourImage = props.tourImage;
+
   return (
     <div className="container-cards">
-      <div className="card1">
-        <div className="cover1">
+      <div className="card-wrapper">
+        <div className="card-cover">
           <img src="/images/cards/p1.png" alt="" />
           <div className="img-back"></div>
         </div>
-        <div className="description1">
-          <h2>TOUR BLA BLA BLA</h2>
-          <p>
-            Lorem ipsum dolor sit amet consectetur, adipisicing elit. Doloremque
-            dolorum ab iste dicta cupiditate, ut doloribus
+        <div className="card-description">
+          <h2>{tourTitle}</h2>
+          <p className="tour-info">
+            {tourDescription}
           </p>
-          <button className="see-more">Ver más</button>
+          <button className="see-more-btn">Ver más</button>
         </div>
       </div>
     </div>
