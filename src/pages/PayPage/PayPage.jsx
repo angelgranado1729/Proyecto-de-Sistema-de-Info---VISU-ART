@@ -6,7 +6,7 @@ function PayPage() {
   const [amount, setState] = useState(0);
 
   return (
-    <container>
+    <section>
     <div className={styles.container}>
       <h2>Puedes donar la cantidad que consideres</h2>
       <div className={styles.decorationTop}></div>
@@ -36,7 +36,7 @@ function PayPage() {
       <button className={styles.nextButton}>Siguiente</button>
     </div>
     <div className={styles.decorationBottom}></div>
-    </container>
+    </section>
     
   );
 }
