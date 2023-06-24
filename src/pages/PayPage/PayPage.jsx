@@ -18,10 +18,9 @@ function PayPage() {
         className={styles.input}
       />
       <div className={styles.paypalButtonContainer}>
+        <h1>hola</h1>
         <PayPalButton
           amount={amount}
-
-          // Replace "YOUR_CLIENT_ID" with your actual client ID
           options={{
             clientId: "AahTwK0XBqo78fYEB9J4lukg3f8rcCOx0NkFxxwOj2WSNT3GnY20e5Q3T_jnyGPc7zbXE5wn4u41CEd5",
             currency: "USD",
