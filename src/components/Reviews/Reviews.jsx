@@ -55,7 +55,7 @@ const Reviews =()=>{
                             </div>
                             <div className="bubble-decoration"></div>
                             <div className="review-userinfo">
-                                <h4>{name}</h4>
+                                <h4 className="review-username">{name}</h4>
                                 <p className="tour-name">Sobre {tour}</p>
                             </div>
                         </article>

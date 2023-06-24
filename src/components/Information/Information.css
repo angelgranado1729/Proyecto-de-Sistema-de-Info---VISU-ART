@@ -29,10 +29,11 @@
   padding: 30px;
 }
 
-.column a {
+.information-links {
   font-size: 15px;
   color: #9fe7f5;
   text-align: start;
+  text-decoration: none;
 }
 
 .info-section{
@@ -41,7 +42,7 @@
   z-index: 1;
 }
 
-.column a:hover {
+.information-links:hover {
   text-decoration: underline;
 }
 
