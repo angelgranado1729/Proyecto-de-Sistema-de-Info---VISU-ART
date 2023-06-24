@@ -1,4 +1,4 @@
-import DropdownMenu from "../../components/DropdownMenu/DropdownMenu";
+import FeedbackDropdownMenu from "../../components/DropdownMenu/FeedbackDropdownMenu";
 import Rating from "../../components/Rating/Rating";
 import Subtitle from "../../components/Subtitle/Subtitle";
 import "./FeedbackPage.css"
@@ -16,7 +16,7 @@ const FeedbackPage = () => {
                 <div className="feedback-container">
                     <div className="feedback-menu">
                     <label htmlFor="">Sobre que tour nos quieres contar?</label>
-                    <DropdownMenu/>
+                    <FeedbackDropdownMenu/>
                     </div>
                     <div className="rating-menu">
                         <p>Puntaje: </p>
