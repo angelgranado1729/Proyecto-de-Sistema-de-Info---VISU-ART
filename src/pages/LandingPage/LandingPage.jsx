@@ -20,7 +20,8 @@ const LandingPage = () => {
           <div className="landing-decoration1"></div>
           <div className="search-container">
             <div className="search-bar">
-              <DropdownMenu className="dropdown-menu"/>
+            <DropdownMenu className="dropdownnew" />
+
               <input type="text" placeholder="Ingresa tu búsqueda"/>
               <button className="search-btn">Buscar</button>
             </div>

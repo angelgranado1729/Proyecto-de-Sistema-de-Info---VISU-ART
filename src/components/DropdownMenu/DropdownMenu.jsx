@@ -3,11 +3,11 @@ import "./DropdownMenu.css";
 
 const DropdownMenu = () => {
     return (
-        <div className="dropdown">
-            <button className="dropbtn"><p>Filtrar por:</p>
+        <div className="dropdownnew">
+            <button className="dropbtnnew"><p>Filtrar por:</p>
                 <i className="fa-solid fa-angle-down"></i>
             </button>
-            <div className="dropdown-content">
+            <div className="dropdown-contentnew">
                 <a href="#">Nombre</a>
                 <a href="#">Obras</a>
                 <a href="#">Autores</a>

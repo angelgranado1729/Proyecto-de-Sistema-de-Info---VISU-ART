@@ -1,5 +1,5 @@
 /*Estilos de Componente Dropdown Menu*/
-.dropdown {
+.dropdownnew {
   overflow: hidden;
   background-color: none;
   width: 300px;
@@ -8,7 +8,7 @@
   border-style: solid;
 }
 
-.dropdown .dropbtn {
+.dropdownnew .dropbtnnew {
   font-size: 16px;
   border: none;
   outline: none;
@@ -17,7 +17,7 @@
   background-color: inherit;
 }
 
-.dropbtn {
+.dropbtnnew {
   display: flex;
   flex-direction: row;
   justify-content: space-between;
@@ -25,7 +25,7 @@
   align-items: center;
 }
 
-.dropdown-content {
+.dropdown-contentnew {
   display: none;
   position: absolute;
   background-color: white;
@@ -34,7 +34,7 @@
   z-index: 1;
 }
 
-.dropdown-content a {
+.dropdown-contentnew a {
   float: none;
   color: black;
   padding: 12px 16px;
@@ -43,29 +43,29 @@
   text-align: left;
 }
 
-.dropdown-content a:hover {
+.dropdown-contentnew a:hover {
   background-color: #ddd;
 }
 
-.dropdown:hover .dropdown-content {
+.dropdownnew:hover .dropdown-contentnew {
   display: block;
 }
 
 /*Responsive Web Design*/
 @media screen and (max-width: 769px) {
-  .dropdown-content a {
+  .dropdown-contentnew a {
     font-size: 15px;
   }
-  .dropdown .dropbtn {
+  .dropdownnew .dropbtnnew {
     font-size: 15px;
   }
 }
 
 @media screen and (max-width: 480px) {
-  .dropdown-content a {
+  .dropdown-contentnew a {
     font-size: 12px;
   }
-  .dropdown .dropbtn {
+  .dropdownnew .dropbtnnew {
     font-size: 12px;
   }
 }
