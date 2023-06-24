@@ -23,3 +23,4 @@ export const ADMIN_EDIT_OBRAS_URL = "/admin-edit/:obra_id";
 export const ADMIN_EDIT_OBRAS_BASE_URL = "/admin-edit/";
 export const ADMIN_CREATE_OBRAS_URL = "/admin-create";
 export const ADMIN_TOURS_URL = "/admin-tours";
+export const PAY_PAGE_URL = "/paypage"

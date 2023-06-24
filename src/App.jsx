@@ -23,6 +23,7 @@ import { RegisterFormPage } from "./pages/RegisterPages/RegisterFormPage/Registe
 import { NotFoundPage } from "./pages/NotFoundPage/NotFoundPage";
 import { PrivateRoute } from "./components/PrivateRoute/PrivateRoute";
 import UserProfilePage  from "./pages/UserPages/UserProfile/UserProfilePage";
+import  PayPage  from "./pages/PayPage/PayPage";
 import {
   ADMIN_CREATE_OBRAS_URL,
   ADMIN_EDIT_OBRAS_URL,
@@ -38,12 +39,14 @@ import {
   LOGIN_URL,
   MISION_URL,
   OBJECTIVES_URL,
+  PAY_PAGE_URL,
   REGISTER_FORM_URL,
   REGISTER_URL,
   RESERVE_URL,
   USER_PROFILE_EDIT_URL,
   USER_PROFILE_URL,
-  VISION_URL
+  VISION_URL,
+  
 } from "./constants/urls";
 import "./App.css";
 import { TourContextProvider } from "./contexts/TourContext";
@@ -138,7 +141,15 @@ function App() {
                 </PublicRoute>
               }
             />
-
+            
+            <Route
+              path={PAY_PAGE_URL}
+              element={
+                <PublicRoute>
+                  <PayPage />
+                </PublicRoute>
+              }
+            />
             <Route
               path={ERROR_404}
               element={
