@@ -146,6 +146,7 @@ const Calendario = () => {
 
   useEffect(() => {
     const q = query(collection(db, 'Tours'));
+    console.log(q);
     const unsubscribe = onSnapshot(q, (querySnapshot) => {
       let eventsArray = [];
       querySnapshot.forEach((doc) => {
