@@ -8,7 +8,6 @@
     overflow: hidden;
     box-shadow: 0 10px 20px rgba(0,0,0, 0,2);
     border-radius: 10px;
-    z-index: 1;
 }
 
 .slide {
@@ -61,8 +60,8 @@
 }
 
 /*Responsive Web Design*/
-@media screen and (max-width: 1400px){
-    .container-slider {
-        height: 600px;
+@media screen and (max-width: 950px){
+    .container-slider{
+        display: none;
     }
 }

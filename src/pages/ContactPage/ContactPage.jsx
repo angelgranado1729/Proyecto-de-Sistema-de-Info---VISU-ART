@@ -10,7 +10,7 @@ function ContactPage() {
             <i class="fa-solid fa-arrow-left"></i>
         </header>
 
-        <Title title = "Contáctanos"/>
+        <Title title = "Contactanos"/>
 
         <div className="formArea">
             <FormItem labelFor={"fName"} labelName={"firstName"} labelDesc={"Nombre:"} labelClass={"fInp"} formType={"text"}/>
