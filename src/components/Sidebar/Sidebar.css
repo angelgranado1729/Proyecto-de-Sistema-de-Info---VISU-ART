@@ -1,7 +1,7 @@
 /*Estilos del componente Sidebar*/
 .sidebar.actived {
   left: 0;
-  transition: 350ms;
+  transition: 850ms;
 }
 
 .sidebar {
@@ -15,8 +15,14 @@
   transition: 850ms;
 }
 
+.container-12{
+  z-index: 1;
+  overflow-y: auto;
+}
+
 .inactive {
   display: none;
+  z-index: 0;
 }
 
 .icon {
@@ -30,6 +36,7 @@
   left: 20px;
   border: none;
   background: none;
+  z-index: 1;
 }
 
 .admin-profile {
@@ -105,7 +112,6 @@
 }
 
 .admin-settings {
-  height: auto;
   position: absolute;
   top: 60%;
   width: 100%;
@@ -126,16 +132,45 @@
 }
 
 /*Responsive Web Design*/
-@media screen and (max-height: 700px) {
+@media screen and (max-width: 769px) {
   .sidebar {
     font-size: 15px;
-    width: 250px;
-    height: 100%;
+    width: 60%;
     overflow-y: auto;
+    min-height: 1000px;
+    scroll-behavior: smooth;
   }
-
   .admin-profile {
-    position: absolute;
-    height: 200px;
+    top: 6%;
+  }
+  .admin-settings{
+    top: 70%;
   }
 }
+
+@media screen and (max-width: 480px) {
+  .sidebar {
+    font-size: 12px;
+    width: 100%;
+    height: 100%;
+    overflow-y: scroll;
+    position: absolute;
+  }
+  .introduction-text{
+    font-size: 12px;
+  }
+  .admin-profile {
+    top: 2%;
+    padding: 5px;
+  }
+  .admin-settings{
+    top: 53%;
+  }
+  .sidebar-links {
+    top: 26%;
+  }
+  .sidebar-links .link {
+    height: 20px;
+  }
+}
+
