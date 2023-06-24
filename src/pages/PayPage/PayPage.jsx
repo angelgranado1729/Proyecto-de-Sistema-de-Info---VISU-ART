@@ -1,95 +1,39 @@
-// import  { useContext, useEffect } from 'react'
-// import styles from './PayPage.module.css'
-// //import FormItem from '../../components/FormItem/FormItem'
-// //import Title from '../../components/Title/Title'
-// import Subtitle from '../../components/Subtitle/Subtitle'
-// //import DropdownMenu from '../../components/DropdownMenu/DropdownMenu'
-// import { TourContext, useTour } from '../../contexts/TourContext'
-// import { useTourList } from '../../hooks/useTourList'
-// //import DropdownTour from '../../components/DropdownTour/DropdownTour'
-// //import DropdownDates from '../../components/DropdownDates/DropdownDates'
-// import { PayPalButton } from "react-paypal-button-v2"; // Importa el botón de PayPal
-
-// function PayPage() {
-//     const { tourList, listLoading, getTourList } = useTourList();
-//     const { tour, tourId, changeId, changeTour, resetTour} = useContext(TourContext);
-
-//     useEffect( () => {
-//     //Fetch de lista de tours
-//     getTourList();
-//     }, [])
-
-//     return (
-//     <div className="App">
-//         <header className="back-header">
-//         <i className="fa-solid fa-arrow-left"></i>
-//         </header>
-
-//         <div className={styles.centeredArea}>
-//         <Subtitle subtitle = "Reservar tu Tour"/>
-//         <p className={styles.reserveSubSubtitle}>Terminos y condiciones de la reservacion bla bla hola</p>
-        
-//         <section className={styles.rForm}>
-//             <button className={styles.bluebtn}>Ver Calendario</button>
-//             <button className={styles.bluebtn}>Ver otros tours</button>
-//             <PayPalButton
-//             amount="0.01" // Aquí puedes poner el monto a pagar
-//             // El ID del cliente de PayPal se obtiene de tu cuenta de PayPal
-//             options={{
-//                 clientId: "YOUR_CLIENT_ID"
-//             }}
-//             onSuccess={(details, data) => {
-//                 alert("Transaction completed by " + details.payer.name.given_name);
-//             }}
-//             />
-//             <button className={styles.orangebtn}>Siguiente</button>
-//         </section>
-
-//         </div>
-
-//     </div>
-//     )
-// }
-
-// export default PayPage
-
 import { useState } from 'react';
 import { PayPalButton } from 'react-paypal-button-v2';
-import './PayPage.css';
+import styles from './PayPage.module.css';
 
 function PayPage() {
-  const [amount, setAmount] = useState(0);
-
-  const handleAmountChange = (e) => {
-    const value = e.target.value;
-    if (value < 0) {
-      setAmount(0);
-    } else {
-      setAmount(value);
-    }
-  };
+  const [amount, setState] = useState(0);
 
   return (
-    <div className="container">
+    <div className={styles.container}>
       <h2>Puedes donar la cantidad que consideres</h2>
+      <div className={styles.decorationTop}></div>
       <input 
         type="number" 
         value={amount} 
-        onChange={handleAmountChange} 
+        onChange={(e) => setState(e.target.value)}
         placeholder="Enter donation amount"
+        className={styles.input}
       />
-      <div className="paypal-button-container">
+      <div className={styles.paypalButtonContainer}>
         <PayPalButton
           amount={amount}
+
           // Replace "YOUR_CLIENT_ID" with your actual client ID
           options={{
-            clientId: "Aa7gc7m_V_etm5Hx5mEea3twoTcD6QAWjLLf-uM5ZHTNLmPaiDeV4YgYCoWW9obxYPL3CHukT3bKbh2s"
+            clientId: "AahTwK0XBqo78fYEB9J4lukg3f8rcCOx0NkFxxwOj2WSNT3GnY20e5Q3T_jnyGPc7zbXE5wn4u41CEd5",
+            currency: "USD",
           }}
           onSuccess={(details, data) => {
-            alert("Transaction completed by " + details.payer.name.given_name);
+            alert("Transacción completada por " + details.payer.name.given_name);
           }}
+          onError={() => alert('La transferencia falló intenta de nuevo, Si no deseas donar nada puedes dar al botón "Siguiente"')}
+          className={styles.paypalButton}
         />
       </div>
+      <button className={styles.nextButton}>Siguiente</button>
+      <div className={styles.decorationBottom}></div>
     </div>
   );
 }

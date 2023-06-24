@@ -1,0 +1,84 @@
+.container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  
+  input[type="number"] {
+    padding: 10px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+    margin-bottom: 10px;
+    width: 100%;
+    max-width: 300px;
+  }
+  
+  button[type="submit"] {
+    background-color: #0070ba;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    padding: 10px 20px;
+    cursor: pointer;
+  }
+  
+  button[type="submit"]:hover {
+    background-color: #005c8c;
+  }
+  
+  .paypal-button-container {
+    display: flex;
+    justify-content: center;
+    margin-top: 10px;
+    
+  }
+
+  .decorationBottom {
+    width: 130px;
+    height: 130px;
+    background: linear-gradient(
+      152.49deg,
+      #f27f0c -11.42%,
+      rgba(242, 127, 12, 0) 118.1%
+    );
+    border-radius: 50px 70px 12px;
+    transform: matrix(-1, 0, 0, 1, 0, 0);
+    bottom: 10vh;
+    left: auto;
+    right: 0;
+  }
+
+  .decorationTop {
+    position: absolute;
+    width: 140px;
+    height: 130px;
+    background: linear-gradient(
+      218.41deg,
+      rgba(242, 127, 12, 0.57) 50.04%,
+      rgba(247, 173, 25, 0) 93.35%
+    );
+    border-radius: 50px 12px 60px;
+    z-index: 0;
+    top: 45px;
+    right: 0px;
+  }
+  .nextButton {
+    width: 300px;
+    height: 50px;
+    margin-top: 8px;
+    margin-bottom: 2px;
+    padding: 1rem;
+    border: none;
+    border-radius: 0.5rem;
+    background: #f27f0c;
+    box-shadow: 0px 4px 20px rgba(0, 0, 0, 0.35);
+    border-radius: 10px;
+    font-family: "Poppins";
+    font-style: normal;
+    font-weight: 700;
+    font-size: 16px;
+    line-height: 20px;
+    color: #ffffff;
+    cursor: pointer;
+  }
+  
