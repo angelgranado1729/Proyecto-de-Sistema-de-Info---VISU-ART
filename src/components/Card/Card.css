@@ -8,40 +8,24 @@
   justify-content: center;
 }
 
-<<<<<<< HEAD
-.card1 {
-=======
 .card-wrapper {
->>>>>>> 2855123a52b3b8a19985b861a6a456e8c6566866
   width: 300px;
   margin: 10px;
   transition: all 300ms;
 }
 
-<<<<<<< HEAD
-.card1:hover {
-  width: 350px;
-}
-
-.card1 .cover1 {
-=======
 .card-wrapper:hover {
   width: 350px;
 }
 
 .card-wrapper .card-cover {
->>>>>>> 2855123a52b3b8a19985b861a6a456e8c6566866
   width: 100%;
   height: 250px;
   position: relative;
   overflow: hidden;
 }
 
-<<<<<<< HEAD
-.card1 .cover1 img {
-=======
 .card-wrapper .card-cover img {
->>>>>>> 2855123a52b3b8a19985b861a6a456e8c6566866
   width: 200px;
   display: block;
   margin: auto;
@@ -52,19 +36,11 @@
   transition: all 400ms;
 }
 
-<<<<<<< HEAD
-.card1:hover .cover1 img {
-  top: 0px;
-}
-
-.card1 .img-back {
-=======
 .card-wrapper:hover .card-cover img {
   top: 10px;
 }
 
 .card-wrapper .img-back {
->>>>>>> 2855123a52b3b8a19985b861a6a456e8c6566866
   border-radius: 20px;
   width: 100%;
   height: 200px;
@@ -75,11 +51,7 @@
   transition: all 300ms;
 }
 
-<<<<<<< HEAD
-.card1:hover .img-back {
-=======
 .card-wrapper:hover .img-back {
->>>>>>> 2855123a52b3b8a19985b861a6a456e8c6566866
   bottom: -40px;
 }
 
@@ -87,11 +59,7 @@
   background-image: url("/public/images/cards/bg1.jpg");
 }
 
-<<<<<<< HEAD
-.card1 .description1 {
-=======
 .card-wrapper .card-description {
->>>>>>> 2855123a52b3b8a19985b861a6a456e8c6566866
   background: rgb(240, 191, 135);
   margin-top: -10px;
   padding: 20px;
@@ -103,11 +71,7 @@
     rgba(0, 0, 0, 0.3) 0px 30px 60px -30px;
 }
 
-<<<<<<< HEAD
-.card1:hover .description1 {
-=======
-.card-wrapper:hover .card-description  {
->>>>>>> 2855123a52b3b8a19985b861a6a456e8c6566866
+.card-wrapper:hover .card-description {
   padding: 40px;
 }
 
@@ -119,22 +83,18 @@
   text-transform: uppercase;
 }
 
-<<<<<<< HEAD
-.card1 .description1 p {
-=======
-.fa-location-dot{
+.fa-location-dot {
   font-size: 15px;
   padding: 10px;
 }
 
-.tour-location{
+.tour-location {
   text-align: start;
   font-size: 12px;
   font-weight: 500;
 }
 
 .tour-description {
->>>>>>> 2855123a52b3b8a19985b861a6a456e8c6566866
   margin-bottom: 10px;
   font-weight: 500;
   text-align: start;
@@ -176,12 +136,12 @@
   .card-wrapper:hover .card-cover img {
     top: 60px;
   }
-  .card-wrapper .card-description  h2 {
+  .card-wrapper .card-description h2 {
     font-size: 18px;
   }
   .see-more-btn {
     margin-top: 10px;
     font-size: 12px;
     margin-left: -70px;
-  } 
+  }
 }

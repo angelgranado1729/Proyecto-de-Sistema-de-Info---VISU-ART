@@ -47,22 +47,15 @@
   padding: 12px 60px;
   margin-top: 20px;
   transition: all 0.5s ease;
-<<<<<<< HEAD
-=======
   width: 90%;
->>>>>>> 2855123a52b3b8a19985b861a6a456e8c6566866
 }
 
 .calendar-btn:hover {
   background-color: #9fe7f5;
 }
 
-<<<<<<< HEAD
-.hero-decoration1 {
-=======
 /*Decoraciones*/
-.hero-decoration1{
->>>>>>> 2855123a52b3b8a19985b861a6a456e8c6566866
+.hero-decoration1 {
   position: absolute;
   width: 135px;
   height: 280px;
@@ -138,7 +131,7 @@
     height: 101px;
   }
 }
-@media screen and (max-width: 1200px){
+@media screen and (max-width: 1200px) {
   .hero-text-container {
     width: 40%;
   }
@@ -154,21 +147,12 @@
     min-width: 100%;
     padding: 20px;
   }
-<<<<<<< HEAD
-  .text-box {
+  .hero-text-container {
     width: 100%;
     align-self: center;
   }
-  .text-box p {
-    font-size: 20px;
-=======
-  .hero-text-container{
-    width: 100%;
-    align-self: center;
-  }
-  .hero-text{
+  .hero-text {
     font-size: 18px;
->>>>>>> 2855123a52b3b8a19985b861a6a456e8c6566866
     text-align: justify;
   }
   .calendar-btn {
@@ -190,19 +174,11 @@
   .slider-container {
     display: none;
   }
-<<<<<<< HEAD
-  .text-box {
+  .hero-text-container {
     min-width: 20px;
     align-self: center;
   }
-  .text-box p {
-=======
-  .hero-text-container{
-    min-width: 20px;
-    align-self: center;
-  }
-  .hero-text{
->>>>>>> 2855123a52b3b8a19985b861a6a456e8c6566866
+  .hero-text {
     font-size: 15px;
     text-align: justify;
   }
@@ -216,34 +192,21 @@
 }
 
 @media screen and (max-width: 480px) {
-<<<<<<< HEAD
-  .section-hero {
-=======
-  .hero-section{
->>>>>>> 2855123a52b3b8a19985b861a6a456e8c6566866
+  .hero-section {
     max-width: 100%;
   }
   .hero-container {
     width: 100%;
     padding: 0px;
   }
-<<<<<<< HEAD
-  .text-box h2 {
-    font-size: 35px;
-    line-height: 40px;
-  }
-  .text-box p {
-=======
-  .hero-text{
->>>>>>> 2855123a52b3b8a19985b861a6a456e8c6566866
+  .hero-text {
     font-size: 12px;
     text-align: justify;
   }
 }
 
 @media screen and (max-width: 320px) {
-  .hero-section{
+  .hero-section {
     margin-top: -60px;
   }
 }
-
