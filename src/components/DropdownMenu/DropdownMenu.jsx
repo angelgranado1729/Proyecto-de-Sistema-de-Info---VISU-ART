@@ -2,12 +2,18 @@ import React from "react";
 import "./DropdownMenu.css";
 
 const DropdownMenu = () => {
+
+    const applyFilter = (e) => {
+        return(e.value.target)
+    }
+
     return (
-        <select className="dropdownM-container">
+        <select onChange={applyFilter} className="dropdownM-container">
                 <option>Filtrar por:</option>
-                <option>Nombre</option>
-                <option>Obras</option>
-                <option>Autores</option>
+                <option value="Nombre">Nombre</option>
+                <option value="Obras">Obras</option>
+                <option value="Autores">Autores</option>
+                <option value="Ubicación">Ubicación</option>
         </select>
     )
 }

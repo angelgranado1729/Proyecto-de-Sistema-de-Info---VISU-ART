@@ -34,10 +34,18 @@ const LandingPage = () => {
   }, []);
 
   {/*Busqueda por filtro*/}
+  const applyFilter = (e) => {
+    if(e.target.value === "Nombre"){
+      console.log("nombre")
+    }
+    if(e.target.value === "Ubicacion"){
+      console.log("ubicacion")
+    }
+}
+
   const finder = (e) => {
     setSearch(e.target.value);
   }
-
 
   /*Busqueda por nombre*/
   const results = !search ? tours : tours.filter((tour) =>
@@ -88,9 +96,15 @@ const LandingPage = () => {
         <div className="landing-decoration1"></div>
         <div className="search-container">
           <div className="search-bar">
-            <DropdownMenu className="dropdownNew" />
+            {/*<DropdownMenu className="dropdownNew" />*/}
+            <select onChange={applyFilter} className="dropdownM-container">
+                <option>Filtrar por:</option>
+                <option value="Nombre">Nombre</option>
+                <option value="Obras">Obras</option>
+                <option value="Autores">Autores</option>
+                <option value="Ubicación">Ubicación</option>
+            </select>
             <input value={search} onChange={finder} type="text" placeholder="Ingresa tu búsqueda" />
-            <button className="search-btn">Buscar</button>
           </div>
         </div>
         <div className="cards-container">
