@@ -15,6 +15,7 @@ import "./LandingPage.css";
 
 const LandingPage = () => {
   const [tours, setTours] = useState([]);
+  const [search, setSearch] = useState("");
 
   useEffect(() => {
     const fetchTours = async () => {
@@ -32,6 +33,30 @@ const LandingPage = () => {
     fetchTours();
   }, []);
 
+  {/*Busqueda por filtro*/}
+  const finder = (e) => {
+    setSearch(e.target.value);
+  }
+
+
+  /*Busqueda por nombre*/
+  const results = !search ? tours : tours.filter((tour) =>
+  tour.nombre.toLowerCase().includes(search.toLowerCase()))
+
+  /*Busqueda por ubicacion
+  const results = !search ? tours : tours.filter((tour) =>
+  tour.ubicacion.toLowerCase().includes(search.toLowerCase()))*/
+
+
+  function checkResults(){
+    if(results.length === 0){
+      return(
+        <div className="noresults-container">
+        <h1 className="cards-noresults">No hay resultados!</h1>
+        </div>
+      )
+    }
+  }
 
   {/*Feedback*/}
   const [showFeedback, setShowFeedback] = useState(false);
@@ -64,7 +89,7 @@ const LandingPage = () => {
         <div className="search-container">
           <div className="search-bar">
             <DropdownMenu className="dropdownNew" />
-            <input type="text" placeholder="Ingresa tu búsqueda" />
+            <input value={search} onChange={finder} type="text" placeholder="Ingresa tu búsqueda" />
             <button className="search-btn">Buscar</button>
           </div>
         </div>
@@ -75,7 +100,8 @@ const LandingPage = () => {
           <div className="landing-decoration5"></div>
           <div className="landing-decoration6"></div>
           <div className="landing-decoration7"></div>
-          {tours.map((tour) => (
+          {checkResults()}
+          {results.map((tour) => (
             <Card tourTitle={tour.nombre} tourDescription={tour.resumen} tourImage={tour.imagen} tourLocation={tour.ubicacion}/>
           ))}
         </div>

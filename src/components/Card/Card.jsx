@@ -16,7 +16,7 @@ const Card = (props) => {
         </div>
         <div className="card-description">
           <h2 className="tour-title">{tourTitle}</h2>
-          <p className="tour-location"><i class="fa-solid fa-location-dot"></i><strong>Ubicación:</strong> {tourLocation}</p>
+          <p className="tour-location"><i className="fa-solid fa-location-dot"></i><strong>Ubicación:</strong> {tourLocation}</p>
           <p className="tour-description">
             {tourDescription}
           </p>

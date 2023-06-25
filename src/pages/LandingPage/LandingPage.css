@@ -120,6 +120,19 @@
   transform: matrix(0.51, 0.86, 0.86, -0.51, 0, 0);
 }
 
+.noresults-container{
+  width: 100%;
+  text-align: center;
+  justify-content: center;
+  padding: 50px;
+}
+
+.cards-noresults{
+  font-size: 20px;
+  font-weight: 700;
+  opacity: 85%;
+}
+
 /*Responsive Web Design*/
 @media screen and (max-width: 1000px) {
   .search-container {

@@ -112,35 +112,33 @@ article.nextSlide{
     text-align: start;
     max-width: 700px;
     margin-left: 20%;
-    margin-top: 10px;
 }
 
 .review-username{
     text-transform: capitalize;
-    font-weight: 300;
+    font-weight: 500;
     color: #F27F0C;
-    font-size: 16px;
-    font-weight: 300;
+    font-size: 15px;
 }
 
 .tour-name{
+    margin-top: -20px;
     font-size: 12px;
     font-weight: 600;
 }
 
 /*Contenedor de las flechas*/
 .reviews-navegation{
-    bottom: 10px;
-    position:absolute;
+    bottom: 0px;
+    position: absolute;
     width: 100%;
-    margin-top: 40px;
 }
 
 .reviews-navegation button{
     background: none;
     border: none;
     color: white;
-    font-size: 18px;
+    font-size: 25px;
 }
 
 .prev{
@@ -185,5 +183,11 @@ article.nextSlide{
         font-size: 25px;
     }
     
+}
+
+@media (max-width: 320px) {
+    .reviews-container{
+        height: 600px;
+    }
 }
 
