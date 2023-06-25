@@ -72,7 +72,7 @@
   width: 135px;
   height: 135px;
   left: 55px;
-  top: 700px;
+  top: 870px;
   border-radius: 50px 70px 12px;
   transform: rotate(180);
   background: linear-gradient(152.49deg, #F27F0C -11.42%, rgba(242, 127, 12, 0) 118.1%);
@@ -83,12 +83,22 @@
   width: 135px;
   height: 135px;
   left: 850px;
-  top: 720px;
+  top: 870px;
   background: linear-gradient(152.49deg, #F27F0C -11.42%, rgba(242, 127, 12, 0) 118.1%);
   border-radius: 50px 70px 12px;
   transform: matrix(-1, 0, 0, 1, 0, 0);
 }
 .landing-decoration5{
+  position: absolute;
+  width: 135px;
+  height: 135px;
+  left: 850px;
+  top: 1700px;
+  background: linear-gradient(152.49deg, #F27F0C -11.42%, rgba(242, 127, 12, 0) 118.1%);
+  border-radius: 50px 70px 12px;
+  transform: matrix(-1, 0, 0, 1, 0, 0);
+}
+.landing-decoration6{
   position: absolute;
   width: 120px;
   height: 112px;
@@ -97,6 +107,17 @@
   background: linear-gradient(152.49deg, #F27F0C -11.42%, rgba(242, 127, 12, 0) 118.1%);
   border-radius: 50px 70px 12px;
   transform: rotate(55.01deg);
+}
+.landing-decoration7{
+  position: absolute;
+  width: 135px;
+  height: 135px;
+  left: 55px;
+  top: 1700px;
+  border-radius: 50px 70px 12px;
+  transform: rotate(180);
+  background: linear-gradient(152.49deg, #F27F0C -11.42%, rgba(242, 127, 12, 0) 118.1%);
+  transform: matrix(0.51, 0.86, 0.86, -0.51, 0, 0);
 }
 
 /*Responsive Web Design*/

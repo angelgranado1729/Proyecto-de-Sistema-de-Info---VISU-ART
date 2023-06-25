@@ -10,23 +10,25 @@ import Reviews from "../../components/Reviews/Reviews";
 import DropdownMenu from "../../components/DropdownMenu/DropdownMenu";
 import Navbar from "../../components/NavBar/Navbar";
 import { db } from "../../firebase/firebase-config";
-import { collection, doc, setDoc , getDoc} from "firebase/firestore"; 
+import { collection, query, where, updateDoc, doc, getDocs} from "firebase/firestore"; 
 import "./LandingPage.css";
 
 const LandingPage = () => {
   const [tours, setTours] = useState([]);
-  const fetchTours = async () => {
-    try {
-      const toursCollection = collection(db, "Tours");
-      const toursSnapshot = await getDoc(toursCollection);
-      const toursData = toursSnapshot.docs.map((doc) => doc.data());
-      setTours(toursData);
-    } catch (error) {
-      console.error("Error fetching tours:", error);
-    }
-  };
 
   useEffect(() => {
+    const fetchTours = async () => {
+      try {
+        const toursCollection = collection(db, "Tours");
+        const toursSnapshot = await getDocs(toursCollection);
+        const toursData = toursSnapshot.docs.map((doc) => doc.data());
+        setTours(toursData);
+        console.log(tours);
+      } catch (error) {
+        console.error("Error fetching tours:", error);
+      }
+    };
+  
     fetchTours();
   }, []);
 
@@ -71,13 +73,11 @@ const LandingPage = () => {
           <div className="landing-decoration3"></div>
           <div className="landing-decoration4"></div>
           <div className="landing-decoration5"></div>
-        {tours.map((tour) => (
-          <h1> {tour.nombre}</h1>
-        ))}
-          <Card/>
-          <Card />
-          <Card />
-          <Card />
+          <div className="landing-decoration6"></div>
+          <div className="landing-decoration7"></div>
+          {tours.map((tour) => (
+            <Card tourTitle={tour.nombre} tourDescription={tour.resumen} tourImage={tour.imagen} tourLocation={tour.ubicacion}/>
+          ))}
         </div>
       </section>
 
