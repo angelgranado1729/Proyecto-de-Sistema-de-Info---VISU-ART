@@ -31,13 +31,13 @@
   margin: auto;
   position: relative;
   z-index: 1;
-  top: 40px;
+  top: 50px;
   filter: drop-shadow(5px 5px 4px rgba(0, 0, 0, 0.5));
   transition: all 400ms;
 }
 
 .card-wrapper:hover .card-cover img {
-  top: 0px;
+  top: 10px;
 }
 
 .card-wrapper .img-back {
