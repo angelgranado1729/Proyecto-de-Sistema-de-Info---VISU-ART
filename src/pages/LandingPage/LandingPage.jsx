@@ -9,23 +9,24 @@ import Information from "../../components/Information/Information";
 import Reviews from "../../components/Reviews/Reviews";
 import DropdownMenu from "../../components/DropdownMenu/DropdownMenu";
 import Navbar from "../../components/NavBar/Navbar";
+import { db } from "../../firebase/firebase-config";
+import { collection, doc, setDoc , getDoc} from "firebase/firestore"; 
 import "./LandingPage.css";
 
 const LandingPage = () => {
   const [tours, setTours] = useState([]);
+  const fetchTours = async () => {
+    try {
+      const toursCollection = collection(db, "Tours");
+      const toursSnapshot = await getDoc(toursCollection);
+      const toursData = toursSnapshot.docs.map((doc) => doc.data());
+      setTours(toursData);
+    } catch (error) {
+      console.error("Error fetching tours:", error);
+    }
+  };
 
   useEffect(() => {
-    const fetchTours = async () => {
-      try {
-        const toursCollection = collection(db, "Tours");
-        const toursSnapshot = await getDocs(toursCollection);
-        const toursData = toursSnapshot.docs.map((doc) => doc.data());
-        setTours(toursData);
-      } catch (error) {
-        console.error("Error fetching tours:", error);
-      }
-    };
-
     fetchTours();
   }, []);
 

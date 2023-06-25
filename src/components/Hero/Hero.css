@@ -115,7 +115,11 @@
     height: 101px;
   }
 }
-
+@media screen and (max-width: 1200px){
+  .hero-text-container {
+    width: 40%;
+  }
+}
 @media screen and (max-width: 1000px) {
   .slider-container {
     display: none;
@@ -184,7 +188,7 @@
 
 @media screen and (max-width: 320px) {
   .hero-section{
-    margin-top: -70px;
+    margin-top: -60px;
   }
 }
 
