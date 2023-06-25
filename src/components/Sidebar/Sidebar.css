@@ -13,11 +13,15 @@
   top: 0;
   left: -100%;
   transition: 850ms;
+<<<<<<< HEAD
   min-height: 1200px;
+=======
+>>>>>>> 2855123a52b3b8a19985b861a6a456e8c6566866
 }
 
 .container-12 {
   z-index: 1;
+  overflow-y: auto;
 }
 
 .inactive {
@@ -112,7 +116,6 @@
 }
 
 .admin-settings {
-  height: auto;
   position: absolute;
   top: 60%;
   width: 100%;
@@ -138,8 +141,7 @@
     font-size: 15px;
     width: 60%;
     overflow-y: auto;
-    min-height: 900px;
-    overflow: scroll;
+    min-height: 1000px;
     scroll-behavior: smooth;
   }
   .admin-profile {
@@ -154,18 +156,33 @@
   .sidebar {
     font-size: 12px;
     width: 100%;
+    height: 100%;
+    overflow-y: scroll;
+    position: absolute;
   }
   .introduction-text {
     font-size: 12px;
   }
   .admin-profile {
-    top: 4%;
-    padding: 10px;
+    top: 2%;
+    padding: 5px;
   }
+<<<<<<< HEAD
   .admin-settings {
     top: 60%;
   }
   .sidebar-links .link {
     height: 50px;
+=======
+  .admin-settings{
+    top: 53%;
+  }
+  .sidebar-links {
+    top: 26%;
+  }
+  .sidebar-links .link {
+    height: 20px;
+>>>>>>> 2855123a52b3b8a19985b861a6a456e8c6566866
   }
 }
+

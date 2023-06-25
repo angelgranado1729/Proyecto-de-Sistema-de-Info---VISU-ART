@@ -19,7 +19,7 @@ import { RegisterPage } from "./pages/RegisterPages/RegisterPage/RegisterPage";
 import { RegisterFormPage } from "./pages/RegisterPages/RegisterFormPage/RegisterFormPage";
 import { NotFoundPage } from "./pages/NotFoundPage/NotFoundPage";
 import { PrivateRoute } from "./components/PrivateRoute/PrivateRoute";
-import { UserProfilePage } from "./pages/UserPages/UserProfile/UserProfilePage";
+import UserProfilePage from "./pages/UserPages/UserProfile/UserProfilePage";
 
 import ArtAdmin from "./pages/AdminPages/ArtAdmin/ArtAdmin";
 import ArtEdit from "./pages/AdminPages/ArtEdit/ArtEdit";

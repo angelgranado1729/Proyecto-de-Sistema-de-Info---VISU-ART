@@ -29,19 +29,28 @@
   padding: 30px;
 }
 
-.column a {
+.information-links {
   font-size: 15px;
   color: #9fe7f5;
   text-align: start;
+  text-decoration: none;
 }
 
+<<<<<<< HEAD
 .info-section {
+=======
+.info-section{
+>>>>>>> 2855123a52b3b8a19985b861a6a456e8c6566866
   width: 100%;
   position: relative;
   z-index: 1;
 }
 
+<<<<<<< HEAD
 .column a:hover {
+=======
+.information-links:hover {
+>>>>>>> 2855123a52b3b8a19985b861a6a456e8c6566866
   text-decoration: underline;
 }
 

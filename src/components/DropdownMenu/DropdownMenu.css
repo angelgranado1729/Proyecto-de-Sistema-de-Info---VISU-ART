@@ -1,13 +1,15 @@
 /*Estilos de Componente Dropdown Menu*/
-.dropdown {
+.dropdownM-container {
   overflow: hidden;
-  background-color: none;
-  width: 300px;
+  background-color: #fff9ec;
+  width: 30%;
+  height: 50px;
   border-radius: 10px;
   border: 1px black;
   border-style: solid;
 }
 
+<<<<<<< HEAD
 .dropdown .dropbtn {
   font-size: 16px;
   border: none;
@@ -51,21 +53,25 @@
   display: block;
 }
 
+=======
+>>>>>>> 2855123a52b3b8a19985b861a6a456e8c6566866
 /*Responsive Web Design*/
-@media screen and (max-width: 769px) {
-  .dropdown-content a {
-    font-size: 15px;
-  }
-  .dropdown .dropbtn {
-    font-size: 15px;
+@media screen and (max-width: 1000px) {
+  .dropdownM-container {
+    width: 100%;
   }
 }
 
-@media screen and (max-width: 480px) {
-  .dropdown-content a {
-    font-size: 12px;
+@media screen and (max-width: 769px) {
+  .dropdownM-container {
+    width: 100%;
   }
-  .dropdown .dropbtn {
+}
+
+@media screen and (max-width: 320px) {
+  .dropdownM-container {
+    width: 100%;
+    height: 35px;
     font-size: 12px;
   }
 }

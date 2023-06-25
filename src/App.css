@@ -67,3 +67,20 @@ section {
 .search-btn:hover {
   background: #f7ad19;
 }
+
+/*Responsive Web Design*/
+@media screen and (max-width: 320px) {
+  .orange-btn{
+    font-size: 12px;
+    width: 150px;
+    margin: 0px auto;
+    margin-top: 20px;
+    margin-bottom: 50px;
+  }
+  .search-btn {
+    font-size: 12px;
+    margin: 0px auto;
+    margin-top: 20px;
+  }
+  
+}

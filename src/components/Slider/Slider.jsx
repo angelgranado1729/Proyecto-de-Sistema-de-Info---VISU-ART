@@ -30,7 +30,7 @@ export default function Slider(){
                     <div 
                     key={obj.id}
                     className = {slideIndex === index + 1 ? "slide active-anim" : "slide"}>
-                        <img src = {`/images/slider/img${index + 1}.jpg`}/>
+                        <img src = {obj.link}/>
                     </div>
                 )
             })}

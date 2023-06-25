@@ -1,5 +1,5 @@
 /*Estilos del componente Hero*/
-.section-hero {
+.hero-section {
   display: flex;
   justify-content: center;
   align-items: center;
@@ -8,27 +8,19 @@
   max-width: 1600px;
 }
 
-.wrapper {
+.hero-container {
   width: 100%;
   margin: 150px;
 }
 
-.text-box {
+.hero-text-container {
   width: 35%;
   float: left;
   padding: 20px;
   margin-top: 50px;
 }
 
-.text-box h2 {
-  font-size: 50px;
-  font-weight: 700;
-  opacity: 70%;
-  text-align: start;
-  text-shadow: 0px 4px 30px rgba(0, 0, 0, 0.4);
-}
-
-.text-box p {
+.hero-text {
   font-size: 16px;
   font-weight: 500;
   text-align: justify;
@@ -44,6 +36,7 @@
 .calendar-btn {
   background: #1a3e5a;
   font-weight: 600;
+  font-size: 15px;
   color: white;
   border: none;
   box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
@@ -54,13 +47,22 @@
   padding: 12px 60px;
   margin-top: 20px;
   transition: all 0.5s ease;
+<<<<<<< HEAD
+=======
+  width: 90%;
+>>>>>>> 2855123a52b3b8a19985b861a6a456e8c6566866
 }
 
 .calendar-btn:hover {
   background-color: #9fe7f5;
 }
 
+<<<<<<< HEAD
 .hero-decoration1 {
+=======
+/*Decoraciones*/
+.hero-decoration1{
+>>>>>>> 2855123a52b3b8a19985b861a6a456e8c6566866
   position: absolute;
   width: 135px;
   height: 280px;
@@ -136,30 +138,44 @@
     height: 101px;
   }
 }
-
+@media screen and (max-width: 1200px){
+  .hero-text-container {
+    width: 40%;
+  }
+}
 @media screen and (max-width: 1000px) {
   .slider-container {
     display: none;
   }
-  .wrapper {
+  .hero-container {
     display: flex;
     justify-content: center;
     align-items: center;
     min-width: 100%;
     padding: 20px;
   }
+<<<<<<< HEAD
   .text-box {
     width: 100%;
     align-self: center;
   }
   .text-box p {
     font-size: 20px;
+=======
+  .hero-text-container{
+    width: 100%;
+    align-self: center;
+  }
+  .hero-text{
+    font-size: 18px;
+>>>>>>> 2855123a52b3b8a19985b861a6a456e8c6566866
     text-align: justify;
   }
   .calendar-btn {
     display: block;
     margin: 0 auto;
     width: 50%;
+
     margin-top: 50px;
   }
   .hero-decoration1,
@@ -174,11 +190,19 @@
   .slider-container {
     display: none;
   }
+<<<<<<< HEAD
   .text-box {
     min-width: 20px;
     align-self: center;
   }
   .text-box p {
+=======
+  .hero-text-container{
+    min-width: 20px;
+    align-self: center;
+  }
+  .hero-text{
+>>>>>>> 2855123a52b3b8a19985b861a6a456e8c6566866
     font-size: 15px;
     text-align: justify;
   }
@@ -187,23 +211,39 @@
     margin: 0 auto;
     width: 100%;
     margin-top: 50px;
+    font-size: 12px;
   }
 }
 
 @media screen and (max-width: 480px) {
+<<<<<<< HEAD
   .section-hero {
+=======
+  .hero-section{
+>>>>>>> 2855123a52b3b8a19985b861a6a456e8c6566866
     max-width: 100%;
   }
-  .wrapper {
+  .hero-container {
     width: 100%;
     padding: 0px;
   }
+<<<<<<< HEAD
   .text-box h2 {
     font-size: 35px;
     line-height: 40px;
   }
   .text-box p {
+=======
+  .hero-text{
+>>>>>>> 2855123a52b3b8a19985b861a6a456e8c6566866
     font-size: 12px;
     text-align: justify;
   }
 }
+
+@media screen and (max-width: 320px) {
+  .hero-section{
+    margin-top: -60px;
+  }
+}
+

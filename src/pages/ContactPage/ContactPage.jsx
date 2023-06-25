@@ -7,7 +7,7 @@ function ContactPage() {
   return (
     <div className="App">
       <header className="back-header">
-        <i class="fa-solid fa-arrow-left"></i>
+        <i className="fa-solid fa-arrow-left"></i>
       </header>
 
       <Title title="Contáctanos" />

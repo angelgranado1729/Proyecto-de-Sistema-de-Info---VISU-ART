@@ -47,10 +47,18 @@
     border: 1px solid #676b6e;
     border-radius: 10px;
     box-shadow: 0px 4.98px 4.98px rgba(0, 0, 0, 0.18);
+<<<<<<< HEAD
   }
 
   .fCom {
     width: 80vw;
+=======
+
+}
+
+.fCom{
+    width: 50vw;
+>>>>>>> 2855123a52b3b8a19985b861a6a456e8c6566866
     height: 14vh;
     color: black;
     background-color: white;
