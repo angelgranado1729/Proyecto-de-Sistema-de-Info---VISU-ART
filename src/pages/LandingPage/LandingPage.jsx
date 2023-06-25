@@ -34,27 +34,30 @@ const LandingPage = () => {
   }, []);
 
   {/*Busqueda por filtro*/}
+  let results = [];
+  if(!search) {
+    /*Default*/
+    results = tours;
+  }
   const applyFilter = (e) => {
+    if(e.target.value === "Filtrar por"){
+      results = tours;
+  }
     if(e.target.value === "Nombre"){
-      console.log("nombre")
+      /*Busqueda por nombre*/
+      results = tours.filter((tour) =>
+      tour.nombre.toLowerCase().includes(search.toLowerCase()))
     }
-    if(e.target.value === "Ubicacion"){
-      console.log("ubicacion")
+    if(e.target.value === "Ubicación"){
+      /*Busqueda por ubicacion*/
+      results = tours.filter((tour) =>
+      tour.ubicacion.toLowerCase().includes(search.toLowerCase()))
     }
 }
 
-  const finder = (e) => {
-    setSearch(e.target.value);
+  const finder = (b) => {
+    setSearch(b.target.value);
   }
-
-  /*Busqueda por nombre*/
-  const results = !search ? tours : tours.filter((tour) =>
-  tour.nombre.toLowerCase().includes(search.toLowerCase()))
-
-  /*Busqueda por ubicacion
-  const results = !search ? tours : tours.filter((tour) =>
-  tour.ubicacion.toLowerCase().includes(search.toLowerCase()))*/
-
 
   function checkResults(){
     if(results.length === 0){
@@ -104,7 +107,7 @@ const LandingPage = () => {
                 <option value="Autores">Autores</option>
                 <option value="Ubicación">Ubicación</option>
             </select>
-            <input value={search} onChange={finder} type="text" placeholder="Ingresa tu búsqueda" />
+            <input id= "search-input"value={search} onChange={finder} type="text" placeholder="Ingresa tu búsqueda" />
           </div>
         </div>
         <div className="cards-container">
