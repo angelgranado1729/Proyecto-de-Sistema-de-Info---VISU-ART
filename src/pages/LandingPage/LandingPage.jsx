@@ -89,12 +89,6 @@ const LandingPage = () => {
         <div className="search-container">
           <div className="search-bar">
             <DropdownMenu className="dropdownNew" />
-            <select>
-              <option value="Selecciona">Selecciona</option>
-              <option value="Nombres">Nombres</option>
-              <option value="Autor">Autor</option>
-              <option value="Obras">Obras</option>
-            </select>
             <input value={search} onChange={finder} type="text" placeholder="Ingresa tu búsqueda" />
             <button className="search-btn">Buscar</button>
           </div>
