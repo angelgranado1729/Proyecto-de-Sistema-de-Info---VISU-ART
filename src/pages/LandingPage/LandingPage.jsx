@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-import { useEffect } from 'react';
 import { useNavigate } from "react-router-dom";
 import Hero from "../../components/Hero/Hero";
 import Title from "../../components/Title/Title";
@@ -12,25 +11,6 @@ import Navbar from "../../components/NavBar/Navbar";
 import "./LandingPage.css";
 
 const LandingPage = () => {
-  const [tours, setTours] = useState([]);
-
-  useEffect(() => {
-    const fetchTours = async () => {
-      try {
-        const toursCollection = collection(db, "Tours");
-        const toursSnapshot = await getDocs(toursCollection);
-        const toursData = toursSnapshot.docs.map((doc) => doc.data());
-        setTours(toursData);
-      } catch (error) {
-        console.error("Error fetching tours:", error);
-      }
-    };
-
-    fetchTours();
-  }, []);
-
-
-  {/*Feedback*/}
   const [showFeedback, setShowFeedback] = useState(false);
   const navigate = useNavigate();
 
@@ -70,10 +50,7 @@ const LandingPage = () => {
           <div className="landing-decoration3"></div>
           <div className="landing-decoration4"></div>
           <div className="landing-decoration5"></div>
-        {tours.map((tour) => (
-          <h1> {tour.nombre}</h1>
-        ))}
-          <Card/>
+          <Card />
           <Card />
           <Card />
           <Card />

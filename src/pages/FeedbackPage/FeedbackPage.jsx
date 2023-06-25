@@ -7,7 +7,7 @@ import FeedbackDropdownMenu from "../../components/DropdownMenu/FeedbackDropdown
 import Rating from "../../components/Rating/Rating";
 import Subtitle from "../../components/Subtitle/Subtitle";
 import "./FeedbackPage.css";
-import { collection, query, where, updateDoc, doc, getDocs } from "firebase/firestore";
+import { collection, query, where, updateDoc, doc, getDocs,getDoc,addDoc } from "firebase/firestore";
 import { useParams, useNavigate } from "react-router-dom";
 
 const FeedbackPage = () => {
@@ -22,8 +22,15 @@ const FeedbackPage = () => {
     setRatingValues(value);
   };
 
+  // Variable para limitar la cantidad de caracteres en el campo de opinion
+  const maxOpinioLength = 440;
+
+
   const handleOpinionChange = (event) => {
-    setOpinion(event.target.value);
+    const value = event.target.value;
+    if (value.length <= maxOpinioLength) {
+      setOpinion(value);
+    }
   };
 
   const handleFormSubmit = async () => {
@@ -36,6 +43,7 @@ const FeedbackPage = () => {
         return;
     }
 
+    let feedbackData = { rating: ratingValues, opinion, tour: selectedTour };
     // Comunicacion con Firebase para actualizacion de la BD con el nuevo feedback
     const toursCollectionRef = collection(db, "Tours");
     const q = query(toursCollectionRef, where("nombre", "==", selectedTour));
@@ -56,6 +64,25 @@ const FeedbackPage = () => {
       await updateDoc(tourRef, {
         feedback: [...existingFeedback, newFeedback],
       });
+
+
+      const feedbackCollectionRef = collection(db, "Feedback");
+      const feedbackQuerySnapshot = await getDocs(feedbackCollectionRef);
+  
+      if (feedbackQuerySnapshot.empty) {
+        // No hay documentos en la colección "Feedback", crear uno nuevo
+        await addDoc(feedbackCollectionRef, { feedback: [feedbackData] });
+      } else {
+        // Hay documentos en la colección "Feedback", actualizar el primer documento
+        const feedbackDocRef = feedbackQuerySnapshot.docs[0].ref;
+        const feedbackDoc = await getDoc(feedbackDocRef);
+        const existingFeedbackData = feedbackDoc.data().feedback || [];
+        
+        await updateDoc(feedbackDocRef, {
+          feedback: [...existingFeedbackData, feedbackData],
+        });
+      }
+
       alert("Enviado Correctamente. \n¡Muchas Gracias por tu feedback!");
       navigate("/");
     } catch (error) {
@@ -66,7 +93,7 @@ const FeedbackPage = () => {
   // HTML  
   return (
     <div className="App">
-      <header className="back-header">
+      <header className="back-header" onClick={() => navigate("/")}>
         <i className="fa-solid fa-arrow-left"></i>
       </header>
       <div className="feedback-section">
@@ -84,12 +111,13 @@ const FeedbackPage = () => {
           <div className="feedback-decoration1"></div>
           <div className="feedback-decoration2"></div>
           <input
-            type="text"
-            className="input-feedback"
-            placeholder="Añade tus opiniones"
-            value={opinion}
-            onChange={handleOpinionChange}
-          />
+          type="text"
+          className="input-feedback"
+          placeholder="Añade tus opiniones"
+          value={opinion}
+          onChange={handleOpinionChange}
+          maxLength={maxOpinioLength}
+        />
         </div>
         <button className="blue-btn" onClick={handleFormSubmit}>
           Enviar

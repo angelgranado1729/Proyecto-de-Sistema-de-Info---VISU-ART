@@ -130,7 +130,7 @@ article.nextSlide{
 
 /*Contenedor de las flechas*/
 .reviews-navegation{
-    bottom: 30px;
+    bottom: 10px;
     position:absolute;
     width: 100%;
     margin-top: 40px;
@@ -140,7 +140,7 @@ article.nextSlide{
     background: none;
     border: none;
     color: white;
-    font-size: 30px;
+    font-size: 18px;
 }
 
 .prev{
@@ -186,3 +186,4 @@ article.nextSlide{
     }
     
 }
+
