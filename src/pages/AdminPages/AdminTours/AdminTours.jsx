@@ -1,3 +1,6 @@
+// Administrar de Tours 
+// En esta página, el administrador podrá dejar su crear, modificar o eliminar un tour. 
+
 import React, { useState, useEffect } from "react";
 import { Link, Route, useNavigate } from "react-router-dom";
 import { app, auth, db, storage } from "../../../firebase/firebase-config"
@@ -5,30 +8,32 @@ import { getDocs, query, collection, where, deleteDoc } from "firebase/firestore
 import Sidebar from "../../../components/Sidebar/Sidebar";
 import Title from "../../../components/Title/Title";
 import 'bootstrap/dist/css/bootstrap.css';
-import { Table, Button, Popover, PopoverBody } from "reactstrap";
+import { Table, Button} from "reactstrap";
 
 const TourAdmin = () => {
   const [Tours, setTours] = useState([]);
   const navigate = useNavigate();
   const [reload, setReload] = useState(false);
 
+  // Conexión con Firebase para obtener la colección de tours de la BD. 
   useEffect(() => {
-    const fetchObras = async () => {
+    const fetchTours = async () => {
       try {
-        const obrasCollection = collection(db, "Tours");
-        const obrasSnapshot = await getDocs(obrasCollection);
-        const obrasData = obrasSnapshot.docs.map((doc) => doc.data());
-        setTours(obrasData);
+        const toursCollection = collection(db, "Tours");
+        const toursSnapshot = await getDocs(toursCollection);
+        const toursData = toursSnapshot.docs.map((doc) => doc.data());
+        setTours(toursData);
         setReload(false);
       } catch (error) {
         console.error("Error fetching obras:", error);
       }
     };
 
-    fetchObras();
+    fetchTours();
   }, [reload]);
 
-  const handleEditarObra = (Tour) => {
+  // Navigate a las paginas correspondientes de acuerdo al requisito. 
+  const handleEditarTour = (Tour) => {
     navigate(`/admin-tours-edit/${Tour.nombre}`, { state: Tour });
   };
 
@@ -36,40 +41,40 @@ const TourAdmin = () => {
     navigate(`/admin-tours-edit-art/${Tour.nombre}`, { state: Tour });
   };
 
-  const handleCrearObra = () => {
+  const handleCrearTour = () => {
     navigate(`/admin-tour-create`);
   };
 
-
   const handleDelete = async (nombre) => {
-    if (window.confirm("¿Estás seguro de que deseas borrar esta obra?")) {
+    if (window.confirm("¿Está seguro de que desea borrar este Tour?")) {
       try {
-        const obrasCollection = collection(db, "Tours");
-        const q = query(obrasCollection, where("nombre", "==", nombre));
+        const toursCollection = collection(db, "Tours");
+        const q = query(toursCollection, where("nombre", "==", nombre));
         const querySnapshot = await getDocs(q);
 
         if (!querySnapshot.empty) {
-          const obraDoc = querySnapshot.docs[0];
-          await deleteDoc(obraDoc.ref);
-          alert("Obra eliminada exitosamente");
+          const tourDoc = querySnapshot.docs[0];
+          await deleteDoc(tourDoc.ref);
+          alert("Tour eliminado exitosamente");
           setReload(true);
         } else {
-          alert("La obra no existe.");
+          alert("El tour no existe.");
         }
       } catch (error) {
-        alert("Error al eliminar la obra:", error);
+        alert("Error al eliminar el tour:", error);
         console.log(error);
       }
     }
   };
 
+  // HTML
   return (
     <div className="App">
       <Sidebar />
       <div className="main-admin">
         <Title title="Administrador de Tours" />
 
-        <Button color="success" onClick={() => handleCrearObra()}>
+        <Button color="success" onClick={() => handleCrearTour()}>
           Agregar nuevo Tour
         </Button>{" "}
         <br />
@@ -101,7 +106,7 @@ const TourAdmin = () => {
           <div style={{ display: 'flex', alignItems: 'center' }}>
             <Button
               color="primary"
-              onClick={() => handleEditarObra(tour)}
+              onClick={() => handleEditarTour(tour)}
               style={{ marginRight: "15%" }}
             >
               ✏️
