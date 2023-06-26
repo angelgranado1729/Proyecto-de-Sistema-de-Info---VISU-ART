@@ -7,6 +7,7 @@ import {
   signOut,
   getAdditionalUserInfo,
   sendPasswordResetEmail,
+  confirmPasswordReset,
 } from "firebase/auth";
 import { auth, googleProvider, facebookProvider } from "../firebase-config";
 import { createUser } from "../users";
@@ -168,6 +169,7 @@ export const loginWithEmailAndPassword = async ({
   }
 };
 
+// HANDLE PASSWORD RESET
 export function forgotPassword(email) {
   return sendPasswordResetEmail(auth, email, {
     url: `${BASE_URL}${LOGIN_URL}`,
@@ -175,21 +177,9 @@ export function forgotPassword(email) {
 }
 
 // HANDLE PASSWORD RESET
-export const resetPassword = async ({ email, onSuccess, onFail }) => {
-  try {
-    await sendPasswordResetEmail(auth, email);
-
-    if (onSuccess) {
-      onSuccess();
-    }
-  } catch (error) {
-    console.error("PASSWORD RESET FAILED", { error });
-
-    if (onFail) {
-      onFail();
-    }
-  }
-};
+export function resetPassword(oobCode, newPassword) {
+  return confirmPasswordReset(auth, oobCode, newPassword);
+}
 
 // HANDLE USER SIGN OUT
 export const logout = async (callback) => {

@@ -56,7 +56,7 @@ export function ForgotPasswordPage() {
                 return;
             }
 
-            forgotPassword(email);
+            await forgotPassword(email);
             setCanSubmit(false);
             setIsEmailValid(true);
         } catch (error) {
@@ -64,8 +64,6 @@ export function ForgotPasswordPage() {
             setDisableButton(false);
         }
     };
-
-
 
     return (
         <div className={styles.container}>

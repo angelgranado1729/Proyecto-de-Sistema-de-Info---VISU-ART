@@ -3,11 +3,15 @@ import { Link, useParams } from "react-router-dom";
 import { getAuth } from "firebase/auth";
 import styles from "./ResetPasswordPage.module.css";
 import { LOGIN_URL } from "../../../constants/urls";
+import { resetPassword } from "../../../firebase/auth";
+import { useQuery } from "../../../hooks/useQuery";
 
 export function ResetPasswordPage() {
-    const IMAGE_URL = "https://firebasestorage.googleapis.com/v0/b/visuart-17959.appspot.com/o/LogosVisuArt%2FvisuartGrayLogo.png?alt=media&token=bbebf007-b27c-47dc-a494-5b31663b7a39";
-    const { oobCode } = useParams();
-    const auth = getAuth();
+    const IMAGE_URL =
+        "https://firebasestorage.googleapis.com/v0/b/visuart-17959.appspot.com/o/LogosVisuArt%2FvisuartGrayLogo.png?alt=media&token=bbebf007-b27c-47dc-a494-5b31663b7a39";
+    const query = useQuery();
+    const oobCode = query.get("oobCode");
+
     const [password, setPassword] = useState("");
     const [confirmPassword, setConfirmPassword] = useState("");
     const [error, setError] = useState(null);
@@ -37,7 +41,7 @@ export function ResetPasswordPage() {
         }
 
         try {
-            await auth.confirmPasswordReset(oobCode, password);
+            await resetPassword(oobCode, password);
             setSuccess(true);
         } catch (error) {
             setError(error.message);
@@ -48,10 +52,7 @@ export function ResetPasswordPage() {
         <div className={styles.container}>
             <div className={styles.formContainer}>
                 <div className={styles.logoContainer}>
-                    <img
-                        src={IMAGE_URL}
-                        alt="Logo"
-                    />
+                    <img src={IMAGE_URL} alt="Logo" />
                 </div>
 
                 <h1 className={styles.title}>Nueva contraseña</h1>
