@@ -108,14 +108,29 @@ const EditProfilePage = () => {
                             <input type="text" value={email} onChange={(e) => setEmail(e.target.value)} />
                             <span>correo@ejemplo.com</span>
                         </div>
+                        <div className="input">
+                            <label>Verifica tu correo</label>
+                            <input type="text"/>
+                            <span>correo@ejemplo.com</span>
+                        </div>
                         {/*Agregar mas inputs segun lo que podamos anadir en firebase  */}
                     </div>
                     <div className="column"><p></p></div>
                     <div className="column">
+                        <div className="input">
+                            <label>Contraseña</label>
+                            <input type="text"/>
+                            <span>Más 6 de dígitos e incluya carácteres especiales</span>
+                        </div>
+                        <div className="input">
+                            <label>Verifica tu contraseña</label>
+                            <input type="text"/>
+                            <span>Más 6 de dígitos e incluya carácteres especiales</span>
+                        </div> 
                         {/* Agregar mas inputs segun lo que podamos anadir en firebase */}
                     </div>
                 </div>
-                <button className="blue-btn" onClick={handleSubmit}>Guardar Cambios</button>
+                <button className="editprofile-btn" onClick={handleSubmit}>Guardar Cambios</button>
             </div>
         </div>
     )

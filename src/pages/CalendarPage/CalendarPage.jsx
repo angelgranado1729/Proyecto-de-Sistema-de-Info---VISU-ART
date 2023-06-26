@@ -1,10 +1,12 @@
-
 import  { useState, useEffect } from 'react';
 import { Calendar, momentLocalizer } from 'react-big-calendar';
 import moment from 'moment';
 import { collection, query, onSnapshot } from 'firebase/firestore';
 import { db } from '../../firebase/firebase-config';
 import 'react-big-calendar/lib/css/react-big-calendar.css';
+import "./CalendarPage.css";
+import Subtitle from "../../components/Subtitle/Subtitle";
+import { CardSubtitle } from 'reactstrap';
 
 const localizer = momentLocalizer(moment);
 
@@ -34,22 +36,31 @@ const Calendario = () => {
   }, []);
 
   return (
-    <div className="calendar-container" style={{ height: '500px' }}>
-      <Calendar
-        localizer={localizer}
-        events={events}
-        startAccessor="start"
-        endAccessor="end"
-      />
-      <div className="navegation">
-        <div className="box">
-          <p>Nada en tu agenda?</p>
-          <button className="blue-btn">Registrarse ahora</button>
+    <div className="App">
+      <div className="calendar-section">
+      <header className="back-header">
+        <i className="fa-solid fa-arrow-left"></i>
+      </header>
+      <Subtitle subtitle="Calendario de eventos" />
+      <div className="calendar-container">
+        <Calendar
+          localizer={localizer}
+          events={events}
+          startAccessor="start"
+          endAccessor="end"
+        />
+        <div className="calendar-navegation">
+          <div className="calendar-box">
+            <p>Nada en tu agenda?</p>
+            <button className="blue-btn">Registrarse ahora</button>
+          </div>
+          <div className="calendar-box"><p></p></div>
+          <div className="calendar-box">
+            <p>Todavía no estás seguro?</p>
+            <button className="blue-btn">Revisar Tours</button>
+          </div>
         </div>
-        <div className="box">
-          <p>Todavía no estás seguro?</p>
-          <button className="blue-btn2">Revisar Tours</button>
-        </div>
+      </div>
       </div>
     </div>
   );
