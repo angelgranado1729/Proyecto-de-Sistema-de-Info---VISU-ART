@@ -34,5 +34,5 @@ VisuArt es una plataforma en línea dedicada a la gestión de los tours y obras 
 - ERIKA HERNÁNDEZ 
 - JESÚS PÉREZ 
 - ANDRE SCARCIA 
-- **Unimet 2023**
+ **Unimet 2023**
 
