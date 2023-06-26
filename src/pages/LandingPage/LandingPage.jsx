@@ -16,6 +16,7 @@ import "./LandingPage.css";
 const LandingPage = () => {
   const [tours, setTours] = useState([]);
   const [search, setSearch] = useState("");
+  const [searchFilter, setSearchFilter] = useState("");
 
   useEffect(() => {
     const fetchTours = async () => {
@@ -34,30 +35,25 @@ const LandingPage = () => {
   }, []);
 
   {/*Busqueda por filtro*/}
-  let results = [];
-  if(!search) {
-    /*Default*/
-    results = tours;
+  const finder = (e) => {
+    setSearch(e.target.value);
+    console.log(e.target.value)
   }
-  const applyFilter = (e) => {
-    if(e.target.value === "Filtrar por"){
-      results = tours;
-  }
-    if(e.target.value === "Nombre"){
-      /*Busqueda por nombre*/
-      results = tours.filter((tour) =>
-      tour.nombre.toLowerCase().includes(search.toLowerCase()))
-    }
-    if(e.target.value === "Ubicación"){
-      /*Busqueda por ubicacion*/
-      results = tours.filter((tour) =>
-      tour.ubicacion.toLowerCase().includes(search.toLowerCase()))
-    }
-}
 
-  const finder = (b) => {
-    setSearch(b.target.value);
+  const applyFilter = (e) => {
+    if(e.target.value === "nombre"){
+      setSearchFilter(e.target.value);
+      console.log(searchFilter)
+    }
+    if(e.target.value === "ubicacion"){
+      setSearchFilter(e.target.value);
+      console.log(searchFilter)
+    }
   }
+  
+  const results = !search ? tours : tours.filter((tour) =>
+  tour.nombre.toLowerCase().includes(search.toLowerCase()))
+
 
   function checkResults(){
     if(results.length === 0){
@@ -99,15 +95,12 @@ const LandingPage = () => {
         <div className="landing-decoration1"></div>
         <div className="search-container">
           <div className="search-bar">
-            {/*<DropdownMenu className="dropdownNew" />*/}
             <select onChange={applyFilter} className="dropdownM-container">
-                <option>Filtrar por:</option>
-                <option value="Nombre">Nombre</option>
-                <option value="Obras">Obras</option>
-                <option value="Autores">Autores</option>
-                <option value="Ubicación">Ubicación</option>
+                <option value="Filtrar por">Filtrar por:</option>
+                <option value="nombre">Nombre</option>
+                <option value="ubicacion">Ubicación</option>
             </select>
-            <input id= "search-input"value={search} onChange={finder} type="text" placeholder="Ingresa tu búsqueda" />
+            <input value={search} onChange={finder} type="text" placeholder="Ingresa tu búsqueda" />
           </div>
         </div>
         <div className="cards-container">
