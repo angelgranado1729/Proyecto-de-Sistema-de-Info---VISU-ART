@@ -13,7 +13,8 @@ import FeedbackPage from "./pages/FeedbackPage/FeedbackPage";
 import ReservePage from "./pages/ReservePage/ReservePage";
 import EditProfilePage from "./pages/UserPages/EditProfilePage/EditProfilePage";
 import { UserContextProvider } from "./contexts/UserContext";
-import { LoginPage } from "./pages/LoginPage/LoginPage";
+import { LoginPage } from "./pages/LoginPages/LoginPage/LoginPage";
+import { ForgotPasswordPage } from "./pages/LoginPages/ForgotPasswordPage/ForgotPasswordPage";
 import { PublicRoute } from "./components/PublicRoute/PublicRoute";
 import { RegisterPage } from "./pages/RegisterPages/RegisterPage/RegisterPage";
 import { RegisterFormPage } from "./pages/RegisterPages/RegisterFormPage/RegisterFormPage";
@@ -53,7 +54,8 @@ import {
   RESERVE_URL,
   USER_PROFILE_EDIT_URL,
   USER_PROFILE_URL,
-  VISION_URL
+  VISION_URL,
+  FORGOT_PASSWORD_URL,
 } from "./constants/urls";
 import "./App.css";
 import { TourContextProvider } from "./contexts/TourContext";
@@ -128,6 +130,13 @@ function App() {
                 <PublicRoute>
                   <LoginPage />
                 </PublicRoute>
+              }
+            />
+
+            <Route
+              path={FORGOT_PASSWORD_URL}
+              element={
+                <ForgotPasswordPage />
               }
             />
 

@@ -2,6 +2,7 @@
 
 export const HOME_URL = "/";
 export const LOGIN_URL = "/login";
+export const FORGOT_PASSWORD_URL = "/forgot-password";
 export const REGISTER_URL = "/register";
 export const REGISTER_FORM_URL = "/register-form";
 export const ERROR_404 = "*";
@@ -24,5 +25,5 @@ export const ADMIN_EDIT_OBRAS_BASE_URL = "/admin-edit/";
 export const ADMIN_CREATE_OBRAS_URL = "/admin-create";
 export const ADMIN_TOURS_URL = "/admin-tours";
 export const ADMIN_TOURS_EDIT_URL = "/admin-tours-edit/:nombre";
-export const ADMIN_TOURS_EDIT_ART= "/admin-tours-edit-art/:nombre";
+export const ADMIN_TOURS_EDIT_ART = "/admin-tours-edit-art/:nombre";
 export const ADMIN_TOUR_CREATE_URL = "/admin-tour-create";

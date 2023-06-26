@@ -2,12 +2,12 @@ import 'firebase/firestore';
 import styles from "./LoginPage.module.css";
 import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import { HOME_URL, REGISTER_URL } from "../../constants/urls";
+import { FORGOT_PASSWORD_URL, HOME_URL, REGISTER_URL } from "../../../constants/urls";
 import {
     loginWithEmailAndPassword,
     signInWithGoogle,
     signInWithFacebook,
-} from "../../firebase/auth";
+} from "../../../firebase/auth";
 import {
     ArrowLeft,
     Google,
@@ -15,7 +15,7 @@ import {
     EyeFill,
     EyeSlashFill
 } from "react-bootstrap-icons";
-import { facebookProvider } from '../../firebase/firebase-config';
+import { facebookProvider } from '../../../firebase/firebase-config';
 
 
 
@@ -93,8 +93,11 @@ export function LoginPage() {
                 <div className={styles.logoContainer}>
                     <img src="public\images\logos\visuartGrayLogo.png" alt="logo" />
                 </div>
-                <h1 className={styles.title}>Bienvenido de nuevo</h1>
+                <h1 className={styles.title}>
+                    Bienvenido de nuevo
+                </h1>
                 <div className={styles.decorationTop}></div>
+
                 <form className={styles.form} onSubmit={onSubmit}>
                     {/* EMAIL FIELD */}
                     <div
@@ -102,7 +105,7 @@ export function LoginPage() {
                             }`}
                     >
                         <label htmlFor="email">
-                            <span>Email</span>
+                            <span>Correo electrónico</span>
                         </label>
                         <input
                             type="email"
@@ -173,7 +176,9 @@ export function LoginPage() {
                     )}
 
                     <div className={styles.forgotPassword}>
-                        <p>¿Olvidaste tu contraseña?</p>
+                        <Link to={FORGOT_PASSWORD_URL} className={styles.redirectLink}>
+                            <p>¿Olvidaste tu contraseña?</p>
+                        </Link>
                     </div>
 
                     {/* Facebook Google Buttons */}
