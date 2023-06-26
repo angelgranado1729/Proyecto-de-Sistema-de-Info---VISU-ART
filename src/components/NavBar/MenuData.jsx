@@ -4,32 +4,32 @@ export const MenuData = [
     {
         title: "Misión",
         url: MISION_URL,
-        cName: "nav-links"
+        cName: "navbar-links"
 
     },
     {
         title: "Visión",
         url: VISION_URL,
-        cName: "nav-links"
+        cName: "navbar-links"
     },
     {
         title: "Objetivos",
         url: OBJECTIVES_URL,
-        cName: "nav-links"
+        cName: "navbar-links"
     },
     {
         title: "Contacto",
         url: CONTACT_URL,
-        cName: "nav-links"
+        cName: "navbar-links"
     },
     {
         title: "Registrarse",
         url: REGISTER_URL,
-        cName: "nav-links-mobile"
+        cName: "navbar-links-mobile"
     },
     {
         title: "Iniciar",
         url: LOGIN_URL,
-        cName: "nav-links-mobile-transparent"
+        cName: "navbar-links-mobile-transparent"
     }
 ]

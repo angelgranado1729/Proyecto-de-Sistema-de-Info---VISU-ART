@@ -7,10 +7,10 @@ const Title =(props)=>{
     const description = props.description;
     return(
         <div className="title-section">
-            <h1>{title}</h1>
-            <hr className="separator"/>
-            <div className="general-info">
-                <p>{description}</p>
+            <h1 className="title-h1">{title}</h1>
+            <hr className="title-separator"/>
+            <div className="title-info-container">
+                <p className="title-info">{description}</p>
             </div>
         </div>
     )

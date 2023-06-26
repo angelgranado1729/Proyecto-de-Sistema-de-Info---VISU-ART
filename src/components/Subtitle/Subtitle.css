@@ -1,11 +1,26 @@
 /*Estilos del componente Subtitle*/
-.subtitle-section h1 {
+.subtitle-h1 {
     font-size: 50px;
     font-weight: 700;
-    opacity: 70%;
+    opacity: 85%;
     text-align: start;
     text-shadow: 0px 4px 30px rgba(0,0,0,0.4);
 }
 
 /*Responsive Web Design*/
-
+@media screen and (max-width: 769px) {
+    .subtitle-h1  {
+        font-size: 45px;
+    }
+}
+@media screen and (max-width: 480px) {
+    .subtitle-h1  {
+        font-size: 40px;
+    }
+}
+@media screen and (max-width: 320px) {
+    .subtitle-h1  {
+        font-size: 37px;
+    }
+}
+  

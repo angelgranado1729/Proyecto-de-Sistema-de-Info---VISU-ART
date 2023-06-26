@@ -18,9 +18,13 @@ export const RESERVE_URL = "/reserve";
 
 export const ADMIN_URL = "/admin";
 export const ADMIN_RESERVE_URL = "/admin-reserve";
-export const ADMIN_OBRAS_URL = "/admin-obras";
-export const ADMIN_EDIT_OBRAS_URL = "/admin-edit/:obra_id";
+export const ADMIN_OBRAS_URL = "/adminobras";
+export const ADMIN_EDIT_OBRAS_URL = "/admin-edit/:nombre";
 export const ADMIN_EDIT_OBRAS_BASE_URL = "/admin-edit/";
 export const ADMIN_CREATE_OBRAS_URL = "/admin-create";
 export const ADMIN_TOURS_URL = "/admin-tours";
+export const ADMIN_TOURS_EDIT_URL = "/admin-tours-edit/:nombre";
+export const ADMIN_TOURS_EDIT_ART= "/admin-tours-edit-art/:nombre";
+export const ADMIN_TOUR_CREATE_URL = "/admin-tour-create";
+
 export const PAY_PAGE_URL = "/paypage"

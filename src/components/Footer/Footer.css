@@ -50,7 +50,7 @@
   color: white;
 }
 
-a {
+.below-links {
   color: white;
   text-decoration: none;
 }
@@ -88,8 +88,9 @@ a {
   font-weight: 900;
 }
 
-hr {
+.footer-separator {
   color: white !important;
+  
   width: 100%;
 }
 
@@ -102,47 +103,45 @@ hr {
 }
 
 /*Responsive Web Design*/
-@media screen and (max-width: 850px) {
-}
-
 @media screen and (max-width: 550px) {
   .sb__footer section {
     text-align: center;
   }
-
   .footer-links_div-img {
     margin: auto;
     box-sizing: border-box;
   }
-
   .footer-logo {
     display: none;
   }
-
   .footer-smalllogo {
     display: flex;
   }
-
   .footer-links {
     display: flex;
     flex-direction: column;
     text-align: center;
   }
-
   .footer-links_div {
     margin: auto;
   }
-
   .footer-below-links {
     width: 75%;
   }
-
-  hr {
+  .footer-separator {
     color: white !important;
     width: 70%;
     margin: auto;
   }
 }
 
-@media screen and (max-width: 400px) {
+@media screen and (max-width: 320px) {
+  .footer-links_div p {
+    font-size: 12px;
+    margin: 0.5rem 0.5rem;
+  }
+  .footer-below-links{
+    margin: 0px auto;
+  }
 }
+

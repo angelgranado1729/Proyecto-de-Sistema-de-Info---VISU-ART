@@ -8,39 +8,39 @@
   justify-content: center;
 }
 
-.card {
+.card-wrapper {
   width: 300px;
   margin: 10px;
   transition: all 300ms;
 }
 
-.card:hover {
+.card-wrapper:hover {
   width: 350px;
 }
 
-.card .cover {
+.card-wrapper .card-cover {
   width: 100%;
   height: 250px;
   position: relative;
   overflow: hidden;
 }
 
-.card .cover img {
+.card-wrapper .card-cover img {
   width: 200px;
   display: block;
   margin: auto;
   position: relative;
   z-index: 1;
-  top: 40px;
+  top: 50px;
   filter: drop-shadow(5px 5px 4px rgba(0, 0, 0, 0.5));
   transition: all 400ms;
 }
 
-.card:hover .cover img {
-  top: 0px;
+.card-wrapper:hover .card-cover img {
+  top: 10px;
 }
 
-.card .img-back {
+.card-wrapper .img-back {
   border-radius: 20px;
   width: 100%;
   height: 200px;
@@ -51,15 +51,15 @@
   transition: all 300ms;
 }
 
-.card:hover .img-back {
+.card-wrapper:hover .img-back {
   bottom: -40px;
 }
 
-.card:nth-of-type(1) .img-back {
-  background-image: url("/public/images/cards/bg1.jpg");
+.card-wrapper:nth-of-type(1) .img-back {
+  background-image: url("https://firebasestorage.googleapis.com/v0/b/visuart-17959.appspot.com/o/sliderImages%2FimageBackCard.png?alt=media&token=eeab2ad1-9d05-4104-bc22-2517feff1646");
 }
 
-.card .description {
+.card-wrapper .card-description {
   background: rgb(240, 191, 135);
   margin-top: -10px;
   padding: 20px;
@@ -71,23 +71,38 @@
     rgba(0, 0, 0, 0.3) 0px 30px 60px -30px;
 }
 
-.card:hover .description {
+.card-wrapper:hover .card-description  {
   padding: 40px;
 }
 
-.card .description h2 {
+.tour-title {
   text-align: start;
   padding: 5px;
   font-size: 20px;
+  font-weight: bold;
+  text-transform: uppercase;
 }
 
-.card .description p {
+.fa-location-dot{
+  font-size: 15px;
+  padding: 10px;
+}
+
+.tour-location{
+  text-align: start;
+  font-size: 12px;
+  font-weight: 500;
+}
+
+.tour-description {
   margin-bottom: 10px;
   font-weight: 500;
   text-align: start;
+  font-size: 12px;
+  text-align: justify;
 }
 
-.see-more {
+.see-more-btn {
   padding: 8px 50px;
   margin-top: 20px;
   border: none;
@@ -102,8 +117,31 @@
   margin-left: -90px;
 }
 
-.see-more:hover {
+.see-more-btn:hover {
   background: #f7ad19;
 }
 
 /*Responsive Web Design*/
+@media screen and (max-width: 320px) {
+  .card-wrapper {
+    width: 250px;
+  }
+  .card-wrapper:hover {
+    width: 300px;
+  }
+  .card-wrapper .card-cover img {
+    width: 150px;
+    top: 90px;
+  }
+  .card-wrapper:hover .card-cover img {
+    top: 60px;
+  }
+  .card-wrapper .card-description  h2 {
+    font-size: 18px;
+  }
+  .see-more-btn {
+    margin-top: 10px;
+    font-size: 12px;
+    margin-left: -70px;
+  } 
+}
