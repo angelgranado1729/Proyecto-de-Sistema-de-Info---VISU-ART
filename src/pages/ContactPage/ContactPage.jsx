@@ -1,7 +1,7 @@
-import React from 'react'
-import styles from './ContactPage.css'
-import FormItem from '../../components/FormItem/FormItem'
-import Title from '../../components/Title/Title'
+import React from 'react';
+import './ContactPage.css';
+import FormItem from '../../components/FormItem/FormItem';
+import Title from '../../components/Title/Title';
 
 function ContactPage() {
   return (
