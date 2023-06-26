@@ -28,14 +28,11 @@ VisuArt es una plataforma en línea dedicada a la gestión de los tours y obras 
 
 
 ## Integrantes
-BEATRIZ CARDOZO 
-SEBASTIAN CASTILLO 
-ANGEL GRANADO 
-ERIKA HERNÁNDEZ 
-JESÚS PÉREZ 
-ANDRE SCARCIA 
-
-
-
-## Unimet 2023
+- BEATRIZ CARDOZO 
+- SEBASTIAN CASTILLO 
+- ANGEL GRANADO 
+- ERIKA HERNÁNDEZ 
+- JESÚS PÉREZ 
+- ANDRE SCARCIA 
+- **Unimet 2023**
 
