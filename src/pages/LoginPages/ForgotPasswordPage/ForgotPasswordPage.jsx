@@ -2,21 +2,23 @@ import { getAuth } from "firebase/auth";
 import { useState, useEffect } from "react";
 import { getUserProfile } from "../../../firebase/users";
 import styles from "./ForgotPasswordPage.module.css";
-import { LOGIN_URL, RESET_PASSWORD_URL } from "../../../constants/urls";
+import { LOGIN_URL } from "../../../constants/urls";
 import { ArrowLeft } from "react-bootstrap-icons";
 import { Link } from "react-router-dom";
+import { forgotPassword } from "../../../firebase/auth";
+import { Toast } from "react-bootstrap";
 
 export function ForgotPasswordPage() {
     const imageURL =
         "https://firebasestorage.googleapis.com/v0/b/visuart-17959.appspot.com/o/LogosVisuArt%2FvisuartGrayLogo.png?alt=media&token=bbebf007-b27c-47dc-a494-5b31663b7a39";
-    const auth = getAuth();
-    auth.languageCode = "es";
-
     const [email, setEmail] = useState("");
     const [canSubmit, setCanSubmit] = useState(true);
     const [isEmailValid, setIsEmailValid] = useState(true);
     const [disableButton, setDisableButton] = useState(false);
-    const [time, setTime] = useState(5);
+    const [time, setTime] = useState(120);
+    const auth = getAuth();
+    auth.languageCode = "es";
+
 
     useEffect(() => {
         if (!canSubmit && time > 0) {
@@ -30,17 +32,17 @@ export function ForgotPasswordPage() {
         } else if (time === 0 && !canSubmit) {
             setCanSubmit(true);
             setDisableButton(false);
-            setTime(5);
+            setIsEmailValid(true);
+            setTime(120);
         }
     }, [disableButton, canSubmit, time]);
+
 
     const handleFormSubmit = async (e) => {
         e.preventDefault();
 
         if (!canSubmit || disableButton) {
-            console.log(
-                "Por favor, espere unos minutos antes de enviar otra solicitud."
-            );
+            console.log("Por favor, espere unos minutos antes de enviar otra solicitud.");
             return;
         }
 
@@ -49,31 +51,21 @@ export function ForgotPasswordPage() {
         try {
             const user = await getUserProfile(email);
             if (!user || user.provider !== "email") {
-                setIsEmailValid(true);
+                setIsEmailValid(false);
                 setDisableButton(false);
                 return;
             }
 
-            const actionCodeSettings = {
-                url: `https://visuart-17959.web.app/${RESET_PASSWORD_URL.replace(
-                    ":email",
-                    encodeURIComponent(email)
-                )}`,
-                handleCodeInApp: true
-            };
-
-            const link = await auth.generatePasswordResetLink(auth, email, actionCodeSettings);
-
-            // Aquí puedes utilizar el enlace personalizado generado sin la apiKey
-            console.log("Enlace de recuperación:", link);
-
-            console.log("Correo de recuperación enviado correctamente");
+            forgotPassword(email);
             setCanSubmit(false);
+            setIsEmailValid(true);
         } catch (error) {
             console.error("Error al enviar el correo de recuperación", error);
             setDisableButton(false);
         }
     };
+
+
 
     return (
         <div className={styles.container}>
@@ -106,7 +98,8 @@ export function ForgotPasswordPage() {
                         />
                     </div>
                     <button
-                        className={styles.submitButton}
+                        className={`${styles.submitButton} ${disableButton ? styles.disabled : styles.enable
+                            }`}
                         type="submit"
                         disabled={!canSubmit || disableButton || email.trim() === ""}
                     >
@@ -119,16 +112,14 @@ export function ForgotPasswordPage() {
                         </p>
                     )}
 
-                    <div
-                        className={`${styles.timer} ${canSubmit ? "" : styles.timerActive
-                            }`}
-                    >
+                    <div className={`${styles.timer} ${canSubmit ? "" : styles.timerActive}`}>
                         Puedes pedir otra solicitud en {Math.floor(time / 60)}:
                         {time % 60 < 10 ? "0" + (time % 60) : time % 60} minutos.
                     </div>
                 </form>
                 <div className={styles.decorationBottom}></div>
             </div>
+
         </div>
     );
 }

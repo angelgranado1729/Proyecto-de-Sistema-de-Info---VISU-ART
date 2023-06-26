@@ -10,6 +10,9 @@ import {
 } from "firebase/auth";
 import { auth, googleProvider, facebookProvider } from "../firebase-config";
 import { createUser } from "../users";
+import { LOGIN_URL } from "../../constants/urls";
+
+const BASE_URL = "http://localhost:5173";
 
 // HANDLE SING IN OR REGISTER USING GOOGLE PROVIDER
 export const signInWithGoogle = async ({ onSuccess, onFail }) => {
@@ -164,6 +167,12 @@ export const loginWithEmailAndPassword = async ({
     }
   }
 };
+
+export function forgotPassword(email) {
+  return sendPasswordResetEmail(auth, email, {
+    url: `${BASE_URL}${LOGIN_URL}`,
+  });
+}
 
 // HANDLE PASSWORD RESET
 export const resetPassword = async ({ email, onSuccess, onFail }) => {

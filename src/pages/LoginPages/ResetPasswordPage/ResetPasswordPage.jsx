@@ -5,6 +5,7 @@ import styles from "./ResetPasswordPage.module.css";
 import { LOGIN_URL } from "../../../constants/urls";
 
 export function ResetPasswordPage() {
+    const IMAGE_URL = "https://firebasestorage.googleapis.com/v0/b/visuart-17959.appspot.com/o/LogosVisuArt%2FvisuartGrayLogo.png?alt=media&token=bbebf007-b27c-47dc-a494-5b31663b7a39";
     const { oobCode } = useParams();
     const auth = getAuth();
     const [password, setPassword] = useState("");
@@ -28,6 +29,13 @@ export function ResetPasswordPage() {
             return;
         }
 
+        if (password.length < 6 || !/[!@#$%^&*(),.?":{}|<>]/.test(password)) {
+            setError(
+                "La contraseña debe tener al menos 6 caracteres y contener al menos un carácter especial"
+            );
+            return;
+        }
+
         try {
             await auth.confirmPasswordReset(oobCode, password);
             setSuccess(true);
@@ -41,7 +49,7 @@ export function ResetPasswordPage() {
             <div className={styles.formContainer}>
                 <div className={styles.logoContainer}>
                     <img
-                        src="https://firebasestorage.googleapis.com/v0/b/visuart-17959.appspot.com/o/LogosVisuArt%2FvisuartGrayLogo.png?alt=media&token=bbebf007-b27c-47dc-a494-5b31663b7a39"
+                        src={IMAGE_URL}
                         alt="Logo"
                     />
                 </div>
@@ -76,7 +84,9 @@ export function ResetPasswordPage() {
                                 required
                             />
                         </div>
-                        {error && <p className={styles.error}>{error}</p>}
+
+                        {error && <p className={styles.errorMessage}>{error}</p>}
+
                         <button className={styles.submitButton} type="submit">
                             Confirmar contraseña
                         </button>
