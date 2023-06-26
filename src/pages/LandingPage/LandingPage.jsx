@@ -16,7 +16,13 @@ import "./LandingPage.css";
 const LandingPage = () => {
   const [tours, setTours] = useState([]);
   const [search, setSearch] = useState("");
-  const enableInput = document.getElementById('enableInput');;
+  const enableInput = document.getElementById('enableInput');
+  const decoration2 = document.getElementById('decoration2');
+  const decoration3 = document.getElementById('decoration3');
+  const decoration4 = document.getElementById('decoration4');
+  const decoration5 = document.getElementById('decoration5');
+  const decoration6 = document.getElementById('decoration6');
+  const decoration7 = document.getElementById('decoration7');
   const [searchFilter, setSearchFilter] = useState("");
 
   useEffect(() => {
@@ -38,6 +44,21 @@ const LandingPage = () => {
   {/*Busqueda por filtro*/}
   const finder = (e) => {
     setSearch(e.target.value);
+    if(e.target.value === ""){
+      decoration2.style.visibility = "visible";
+      decoration3.style.visibility = "visible";
+      decoration4.style.visibility = "visible";
+      decoration5.style.visibility = "visible";
+      decoration6.style.visibility = "visible";
+      decoration7.style.visibility = "visible";
+    } else{
+      decoration2.style.visibility = "hidden";
+      decoration3.style.visibility = "hidden";
+      decoration4.style.visibility = "hidden";
+      decoration5.style.visibility = "hidden";
+      decoration6.style.visibility = "hidden";
+      decoration7.style.visibility = "hidden";
+    }
   }
   const applyFilter = (e) => {
     if(e.target.value === "Filtrar por"){
@@ -106,12 +127,12 @@ const LandingPage = () => {
           </div>
         </div>
         <div className="cards-container">
-          <div className="landing-decoration2"></div>
-          <div className="landing-decoration3"></div>
-          <div className="landing-decoration4"></div>
-          <div className="landing-decoration5"></div>
-          <div className="landing-decoration6"></div>
-          <div className="landing-decoration7"></div>
+          <div id="decoration2" className="landing-decoration2"></div>
+          <div id="decoration3" className="landing-decoration3"></div>
+          <div id="decoration4" className="landing-decoration4"></div>
+          <div id="decoration5" className="landing-decoration5"></div>
+          <div id="decoration6" className="landing-decoration6"></div>
+          <div id="decoration7" className="landing-decoration7"></div>
           {checkResults()}
           {results.map((tour) => (
             <Card tourTitle={tour.nombre} tourDescription={tour.resumen} tourImage={tour.imagen} tourLocation={tour.ubicacion}/>
