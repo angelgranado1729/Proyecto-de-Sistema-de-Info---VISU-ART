@@ -60,7 +60,7 @@ import {
 } from "./constants/urls";
 import "./App.css";
 import { TourContextProvider } from "./contexts/TourContext";
-import ResetPasswordPage from "./pages/LoginPages/ResetPasswordPage/ResetPasswordPage";
+import { ResetPasswordPage } from "./pages/LoginPages/ResetPasswordPage/ResetPasswordPage";
 
 function App() {
   return (

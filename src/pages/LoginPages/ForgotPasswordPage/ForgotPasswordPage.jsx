@@ -1,4 +1,4 @@
-import { getAuth, generatePasswordResetLink } from "firebase/auth";
+import { getAuth } from "firebase/auth";
 import { useState, useEffect } from "react";
 import { getUserProfile } from "../../../firebase/users";
 import styles from "./ForgotPasswordPage.module.css";
