@@ -9,7 +9,6 @@
   border-style: solid;
 }
 
-<<<<<<< HEAD
 .dropdown .dropbtn {
   font-size: 16px;
   border: none;
@@ -53,8 +52,6 @@
   display: block;
 }
 
-=======
->>>>>>> 2855123a52b3b8a19985b861a6a456e8c6566866
 /*Responsive Web Design*/
 @media screen and (max-width: 1000px) {
   .dropdownM-container {

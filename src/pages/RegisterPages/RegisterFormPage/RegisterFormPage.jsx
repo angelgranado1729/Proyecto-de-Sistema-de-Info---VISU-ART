@@ -5,9 +5,9 @@ import styles from "./RegisterFormPage.module.css";
 import { HOME_URL } from "../../../constants/urls";
 
 export function RegisterFormPage() {
+    const imageURL = 'https://firebasestorage.googleapis.com/v0/b/visuart-17959.appspot.com/o/LogosVisuArt%2FvisuartGrayLogo.png?alt=media&token=bbebf007-b27c-47dc-a494-5b31663b7a39';
     const [showPassword, setShowPassword] = useState(false);
     const navigate = useNavigate();
-
     const [formData, setFormData] = useState({
         firstName: "",
         lastName: "",
@@ -108,7 +108,7 @@ export function RegisterFormPage() {
             </div>
 
             <div className={styles.logoContainer}>
-                <img src="public\images\logos\visuartGrayLogo.png" alt="logo" />
+                <img src={imageURL} />
             </div>
 
             <div className={styles.formContainer}>

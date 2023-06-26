@@ -13,10 +13,6 @@
   top: 0;
   left: -100%;
   transition: 850ms;
-<<<<<<< HEAD
-  min-height: 1200px;
-=======
->>>>>>> 2855123a52b3b8a19985b861a6a456e8c6566866
 }
 
 .container-12 {
@@ -167,14 +163,7 @@
     top: 2%;
     padding: 5px;
   }
-<<<<<<< HEAD
   .admin-settings {
-    top: 60%;
-  }
-  .sidebar-links .link {
-    height: 50px;
-=======
-  .admin-settings{
     top: 53%;
   }
   .sidebar-links {
@@ -182,7 +171,5 @@
   }
   .sidebar-links .link {
     height: 20px;
->>>>>>> 2855123a52b3b8a19985b861a6a456e8c6566866
   }
 }
-

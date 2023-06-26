@@ -56,9 +56,11 @@ import {
   USER_PROFILE_URL,
   VISION_URL,
   FORGOT_PASSWORD_URL,
+  RESET_PASSWORD_URL,
 } from "./constants/urls";
 import "./App.css";
 import { TourContextProvider } from "./contexts/TourContext";
+import ResetPasswordPage from "./pages/LoginPages/ResetPasswordPage/ResetPasswordPage";
 
 function App() {
   return (
@@ -137,6 +139,13 @@ function App() {
               path={FORGOT_PASSWORD_URL}
               element={
                 <ForgotPasswordPage />
+              }
+            />
+
+            <Route
+              path={RESET_PASSWORD_URL}
+              element={
+                <ResetPasswordPage />
               }
             />
 

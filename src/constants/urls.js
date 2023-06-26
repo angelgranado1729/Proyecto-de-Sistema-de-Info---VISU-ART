@@ -1,8 +1,8 @@
 // Links de todas las rutas de la aplicación
-
 export const HOME_URL = "/";
 export const LOGIN_URL = "/login";
 export const FORGOT_PASSWORD_URL = "/forgot-password";
+export const RESET_PASSWORD_URL = "/reset-password/";
 export const REGISTER_URL = "/register";
 export const REGISTER_FORM_URL = "/register-form";
 export const ERROR_404 = "*";

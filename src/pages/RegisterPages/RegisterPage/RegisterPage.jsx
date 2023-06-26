@@ -18,6 +18,7 @@ import {
 
 
 export function RegisterPage() {
+    const imageURL = 'https://firebasestorage.googleapis.com/v0/b/visuart-17959.appspot.com/o/LogosVisuArt%2FvisuartGrayLogo.png?alt=media&token=bbebf007-b27c-47dc-a494-5b31663b7a39';
     const navigate = useNavigate();
     const [formData, setFormData] = useState({
         email: "",
@@ -71,7 +72,7 @@ export function RegisterPage() {
             </div>
 
             <div className={styles.logoContainer}>
-                <img src="public\images\logos\visuartGrayLogo.png" alt="logo" />
+                <img src={imageURL} />
             </div>
             <div className={styles.mainContainer}>
                 <h1 className={styles.title}>Crea tu cuenta</h1>

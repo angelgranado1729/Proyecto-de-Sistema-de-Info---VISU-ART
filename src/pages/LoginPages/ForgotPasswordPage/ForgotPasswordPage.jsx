@@ -1,12 +1,14 @@
-import { getAuth, sendPasswordResetEmail } from "firebase/auth";
+import { getAuth, generatePasswordResetLink } from "firebase/auth";
 import { useState, useEffect } from "react";
 import { getUserProfile } from "../../../firebase/users";
 import styles from "./ForgotPasswordPage.module.css";
-import { LOGIN_URL } from "../../../constants/urls";
+import { LOGIN_URL, RESET_PASSWORD_URL } from "../../../constants/urls";
 import { ArrowLeft } from "react-bootstrap-icons";
 import { Link } from "react-router-dom";
 
 export function ForgotPasswordPage() {
+    const imageURL =
+        "https://firebasestorage.googleapis.com/v0/b/visuart-17959.appspot.com/o/LogosVisuArt%2FvisuartGrayLogo.png?alt=media&token=bbebf007-b27c-47dc-a494-5b31663b7a39";
     const auth = getAuth();
     auth.languageCode = "es";
 
@@ -15,7 +17,6 @@ export function ForgotPasswordPage() {
     const [isEmailValid, setIsEmailValid] = useState(true);
     const [disableButton, setDisableButton] = useState(false);
     const [time, setTime] = useState(5);
-
 
     useEffect(() => {
         if (!canSubmit && time > 0) {
@@ -33,7 +34,6 @@ export function ForgotPasswordPage() {
         }
     }, [disableButton, canSubmit, time]);
 
-
     const handleFormSubmit = async (e) => {
         e.preventDefault();
 
@@ -49,12 +49,24 @@ export function ForgotPasswordPage() {
         try {
             const user = await getUserProfile(email);
             if (!user || user.provider !== "email") {
-                setIsEmailValid(false);
+                setIsEmailValid(true);
                 setDisableButton(false);
                 return;
             }
 
-            await sendPasswordResetEmail(auth, email);
+            const actionCodeSettings = {
+                url: `https://visuart-17959.web.app/${RESET_PASSWORD_URL.replace(
+                    ":email",
+                    encodeURIComponent(email)
+                )}`,
+                handleCodeInApp: true
+            };
+
+            const link = await auth.generatePasswordResetLink(auth, email, actionCodeSettings);
+
+            // Aquí puedes utilizar el enlace personalizado generado sin la apiKey
+            console.log("Enlace de recuperación:", link);
+
             console.log("Correo de recuperación enviado correctamente");
             setCanSubmit(false);
         } catch (error) {
@@ -73,7 +85,7 @@ export function ForgotPasswordPage() {
 
             <div className={styles.formContainer}>
                 <div className={styles.logoContainer}>
-                    <img src="public\images\logos\visuartGrayLogo.png" alt="logo" />
+                    <img src={imageURL} alt="Logo" />
                 </div>
 
                 <h1 className={styles.title}>Recuperar contraseña</h1>
@@ -101,21 +113,17 @@ export function ForgotPasswordPage() {
                         Enviar correo de recuperación
                     </button>
 
-                    {!isEmailValid && !disableButton
-                        && (
-                            <p className={styles.errorMessage}>
-                                El correo ingresado no está asociado a ninguna cuenta.
-                            </p>
-                        )}
+                    {!isEmailValid && !disableButton && (
+                        <p className={styles.errorMessage}>
+                            El correo ingresado no está asociado a ninguna cuenta.
+                        </p>
+                    )}
 
                     <div
                         className={`${styles.timer} ${canSubmit ? "" : styles.timerActive
                             }`}
                     >
-                        Puedes pedir otra solicitud en {
-                            " "
-                        }
-                        {Math.floor(time / 60)}:
+                        Puedes pedir otra solicitud en {Math.floor(time / 60)}:
                         {time % 60 < 10 ? "0" + (time % 60) : time % 60} minutos.
                     </div>
                 </form>
