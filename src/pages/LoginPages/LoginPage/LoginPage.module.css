@@ -357,7 +357,6 @@
   .container {
     padding-top: 4rem;
     padding-bottom: 4rem;
-    min-height: 100vh;
     flex-direction: column;
     display: flex;
     align-items: center;
@@ -373,7 +372,7 @@
   .logoContainer {
     margin-top: 2rem;
     margin-bottom: 2.5rem;
-    width: 100%;
+    width: 90%;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -383,7 +382,8 @@
     margin-top: 2rem;
     height: auto;
     margin-top: 5vh;
-    width: 23rem;
+    width: 95%;
+    max-width: 400px;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -396,12 +396,12 @@
     font-size: 2.5rem;
     line-height: 2.6rem;
     margin-bottom: 0.5rem;
-    width: 20rem;
+    width: 90%;
   }
 
   .container .form {
     height: auto;
-    max-width: 100%;
+    max-width: 80%;
     width: 17.5rem;
     flex-wrap: wrap;
   }
@@ -412,24 +412,27 @@
   }
 
   .container .form .inputContainer label {
-    width: 100%;
+    width: 80%;
     max-width: 100%;
     font-size: 16px;
+    margin-left: 0;
   }
 
   .container .form .inputContainer input {
-    width: 15rem;
-    max-width: 100%;
+    width: 85%;
+  }
+
+  .container .form .inputContainer input::placeholder {
+    font-size: 12px;
   }
 
   .passwordInput {
     width: 15rem;
-    max-width: 100%;
+    max-width: 85%;
   }
 
   .container .form .inputContainer .passwordInputField {
-    width: 100%;
-    max-width: 100%;
+    width: 85%;
   }
 
   .container .form .errorMsg {
@@ -441,17 +444,18 @@
 
   .container .form .submitBtn {
     width: 14rem;
-    max-width: 100%;
+    max-width: 90%;
   }
 
   .forgotPassword {
     margin-top: 1px;
     font-size: 15px;
+    width: 90%;
   }
 
   .buttonsLoginContainer {
     margin-top: 30px;
-    width: 100%;
+    width: 90%;
     max-width: 100%;
     flex-direction: column;
     row-gap: 1rem;
@@ -484,12 +488,12 @@
   .googleButton,
   .facebookButton {
     justify-content: space-around;
-    padding: 0 2.5rem;
+    padding: 0 2rem;
   }
 
   .googleButton p,
   .facebookButton p {
-    width: 100px;
+    width: 100%;
   }
 
   .decorationTop {
@@ -502,7 +506,7 @@
     );
     border-radius: 7.8rem 13.2rem 1.8rem;
     left: 0;
-    top: 32vh;
+    top: 22%;
   }
 
   .decorationBottom {

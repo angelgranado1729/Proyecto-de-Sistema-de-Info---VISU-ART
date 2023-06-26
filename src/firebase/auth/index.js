@@ -33,6 +33,7 @@ export const signInWithGoogle = async ({ onSuccess, onFail }) => {
         favoriteTours: [],
         reservations: [],
         type: "user",
+        provider: "google",
       });
     }
 
@@ -77,6 +78,7 @@ export const signInWithFacebook = async ({ onSuccess, onFail }) => {
         favoriteTours: [],
         reservations: [],
         type: "user",
+        provider: "facebook",
       });
     }
 
@@ -126,6 +128,7 @@ export const registerWithEmailAndPassword = async ({
       favoriteTours: [],
       reservations: [],
       type: "user",
+      provider: "email",
     });
 
     // SUCCESS CALLBACK

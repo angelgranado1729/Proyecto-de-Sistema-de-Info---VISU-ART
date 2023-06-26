@@ -15,9 +15,6 @@ import {
     EyeFill,
     EyeSlashFill
 } from "react-bootstrap-icons";
-import { facebookProvider } from '../../../firebase/firebase-config';
-
-
 
 export function LoginPage() {
     const navigate = useNavigate();
