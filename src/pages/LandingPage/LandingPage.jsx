@@ -16,6 +16,7 @@ import "./LandingPage.css";
 const LandingPage = () => {
   const [tours, setTours] = useState([]);
   const [search, setSearch] = useState("");
+  const enableInput = document.getElementById('enableInput');;
   const [searchFilter, setSearchFilter] = useState("");
 
   useEffect(() => {
@@ -37,24 +38,25 @@ const LandingPage = () => {
   {/*Busqueda por filtro*/}
   const finder = (e) => {
     setSearch(e.target.value);
-    console.log(e.target.value)
   }
-
   const applyFilter = (e) => {
+    if(e.target.value === "Filtrar por"){
+      enableInput.disabled = true;
+    }
     if(e.target.value === "nombre"){
-      setSearchFilter(e.target.value);
-      console.log(searchFilter)
+      setSearchFilter("nombre");
+      enableInput.disabled = false;
     }
     if(e.target.value === "ubicacion"){
       setSearchFilter(e.target.value);
-      console.log(searchFilter)
+      enableInput.disabled = false;
     }
-  }
-  
+  } 
   const results = !search ? tours : tours.filter((tour) =>
-  tour.nombre.toLowerCase().includes(search.toLowerCase()))
-
-
+  searchFilter === "nombre"
+    ? tour.nombre.toLowerCase().includes(search.toLowerCase())
+    : tour.ubicacion.toLowerCase().includes(search.toLowerCase())
+  );
   function checkResults(){
     if(results.length === 0){
       return(
@@ -97,10 +99,10 @@ const LandingPage = () => {
           <div className="search-bar">
             <select onChange={applyFilter} className="dropdownM-container">
                 <option value="Filtrar por">Filtrar por:</option>
-                <option value="nombre">Nombre</option>
-                <option value="ubicacion">Ubicación</option>
+                <option type= "text" value="nombre">Nombre</option>
+                <option type= "text" value="ubicacion">Ubicación</option>
             </select>
-            <input value={search} onChange={finder} type="text" placeholder="Ingresa tu búsqueda" />
+            <input disabled value={search} id="enableInput" onChange={finder} type="text" placeholder="Ingresa tu búsqueda" />
           </div>
         </div>
         <div className="cards-container">
