@@ -14,24 +14,24 @@ export function ResetPasswordPage() {
     const auth = getAuth();
     const query = useQuery();
     const oobCode = query.get("oobCode");
-    const continueUrl = query.get("continueUrl");
+
     const [validLink, setValidLink] = useState(false);
     const [isLoading, setLoading] = useState(false);
 
-    useEffect(() => {
-        const verifyLink = async () => {
-            try {
-                setLoading(true);
-                await checkActionCode(auth, oobCode);
-                setValidLink(true);
-                setLoading(false);
-            } catch (error) {
-                setValidLink(false);
-            }
-        };
+    // useEffect(() => {
+    //     const verifyLink = async () => {
+    //         try {
+    //             setLoading(true);
+    //             await checkActionCode(auth, oobCode);
+    //             setValidLink(true);
+    //             setLoading(false);
+    //         } catch (error) {
+    //             setValidLink(false);
+    //         }
+    //     };
 
-        verifyLink();
-    }, []);
+    //     verifyLink();
+    // }, []);
 
     const [password, setPassword] = useState("");
     const [confirmPassword, setConfirmPassword] = useState("");
@@ -74,9 +74,9 @@ export function ResetPasswordPage() {
     }
 
     if (!isLoading) {
-        if (!validLink) {
-            return <Navigate to={LOGIN_URL} />;
-        }
+        // if (!validLink) {
+        //     return <Navigate to={LOGIN_URL} />;
+        // }
 
         return (
             <div className={styles.container}>

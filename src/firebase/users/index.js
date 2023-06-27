@@ -51,3 +51,25 @@ export async function getUserProfile(email) {
 
   return null;
 }
+
+export async function getUserProfileEmailProvider(email) {
+  const userQuery = query(
+    collection(db, USERS_COLLECTION),
+    where("email", "==", email)
+  );
+
+  const results = await getDocs(userQuery);
+
+  if (results.size > 0) {
+    const [user] = results.docs.map((item) => ({
+      ...item.data(),
+      id: item.id,
+    }));
+
+    if (user.provider === "email") {
+      return user;
+    }
+  }
+
+  return null;
+}

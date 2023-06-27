@@ -21,24 +21,22 @@ export const signInWithGoogle = async ({ onSuccess, onFail }) => {
     const result = await signInWithPopup(auth, googleProvider);
     const { isNewUser } = getAdditionalUserInfo(result);
 
+    console.log(result);
+
     if (isNewUser) {
-      const { uid, email, displayName } = result.user;
-
-      // Quitar esto jejejeje
-      console.log(result.user);
-
-      //
-
-      await createUser({
+      const { uid, email, displayName, photoURL } = result.user;
+      const userFields = {
         uid,
         email,
         name: displayName,
-        age: "",
         favoriteTours: [],
         reservations: [],
         type: "user",
         provider: "google",
-      });
+        photoURL: photoURL,
+      };
+
+      await createUser(userFields);
     }
 
     if (onSuccess) {
@@ -72,17 +70,19 @@ export const signInWithFacebook = async ({ onSuccess, onFail }) => {
     const result = await signInWithPopup(auth, facebookProvider);
     const { isNewUser } = getAdditionalUserInfo(result);
 
+    console.log(result);
+
     if (isNewUser) {
-      const { uid, email, displayName } = result.user;
+      const { uid, email, displayName, photoURL } = result.user;
       await createUser({
         uid,
         email,
         name: displayName,
-        age: "",
         favoriteTours: [],
         reservations: [],
         type: "user",
         provider: "facebook",
+        photoURL: photoURL,
       });
     }
 
@@ -118,7 +118,7 @@ export const registerWithEmailAndPassword = async ({
   onFail,
 }) => {
   try {
-    const { email, password, ...restData } = userData;
+    const { email, password, birthday, gender, ...restData } = userData;
     const firebaseResult = await createUserWithEmailAndPassword(
       auth,
       email,
@@ -127,12 +127,16 @@ export const registerWithEmailAndPassword = async ({
 
     await createUser({
       ...restData,
-      email,
       uid: firebaseResult.user.uid,
+      email,
+      name: restData.name,
       favoriteTours: [],
       reservations: [],
       type: "user",
       provider: "email",
+      birthdayUser: birthday,
+      genderUser: gender,
+      photoURL: "",
     });
 
     // SUCCESS CALLBACK

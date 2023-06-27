@@ -1,5 +1,4 @@
 //Configuración para la conexión con Firebase y Firestore
-
 import { initializeApp } from "firebase/app";
 import { getFirestore } from "firebase/firestore";
 import { getStorage } from "firebase/storage";

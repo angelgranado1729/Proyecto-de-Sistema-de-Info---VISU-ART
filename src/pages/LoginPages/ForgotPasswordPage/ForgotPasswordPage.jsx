@@ -1,24 +1,24 @@
 import { getAuth } from "firebase/auth";
 import { useState, useEffect } from "react";
-import { getUserProfile } from "../../../firebase/users";
+import { getUserProfileEmailProvider } from "../../../firebase/users";
 import styles from "./ForgotPasswordPage.module.css";
 import { LOGIN_URL } from "../../../constants/urls";
 import { ArrowLeft } from "react-bootstrap-icons";
 import { Link } from "react-router-dom";
 import { forgotPassword } from "../../../firebase/auth";
-import { Toast } from "react-bootstrap";
+import { CustomToast } from "../../../components/CustomToast/CustomToast";
 
 export function ForgotPasswordPage() {
     const imageURL =
         "https://firebasestorage.googleapis.com/v0/b/visuart-17959.appspot.com/o/LogosVisuArt%2FvisuartGrayLogo.png?alt=media&token=bbebf007-b27c-47dc-a494-5b31663b7a39";
     const [email, setEmail] = useState("");
     const [canSubmit, setCanSubmit] = useState(true);
-    const [isEmailValid, setIsEmailValid] = useState(true);
+    const [isEmailValid, setIsEmailValid] = useState(false);
     const [disableButton, setDisableButton] = useState(false);
-    const [time, setTime] = useState(120);
+    const [showToast, setShowToast] = useState(false);
+    const [time, setTime] = useState(60);
     const auth = getAuth();
     auth.languageCode = "es";
-
 
     useEffect(() => {
         if (!canSubmit && time > 0) {
@@ -33,7 +33,7 @@ export function ForgotPasswordPage() {
             setCanSubmit(true);
             setDisableButton(false);
             setIsEmailValid(true);
-            setTime(120);
+            setTime(60);
         }
     }, [disableButton, canSubmit, time]);
 
@@ -41,26 +41,25 @@ export function ForgotPasswordPage() {
     const handleFormSubmit = async (e) => {
         e.preventDefault();
 
-        if (!canSubmit || disableButton) {
-            console.log("Por favor, espere unos minutos antes de enviar otra solicitud.");
-            return;
-        }
-
+        setShowToast(false);
         setDisableButton(true);
-
         try {
-            const user = await getUserProfile(email);
+            const user = await getUserProfileEmailProvider(email);
+
             if (!user || user.provider !== "email") {
                 setIsEmailValid(false);
                 setDisableButton(false);
-                return;
+                setShowToast(true);
+                return
             }
 
             await forgotPassword(email);
             setCanSubmit(false);
             setIsEmailValid(true);
+            setShowToast(true);
         } catch (error) {
             console.error("Error al enviar el correo de recuperación", error);
+            setIsEmailValid(false);
             setDisableButton(false);
         }
     };
@@ -104,12 +103,6 @@ export function ForgotPasswordPage() {
                         Enviar correo de recuperación
                     </button>
 
-                    {!isEmailValid && !disableButton && (
-                        <p className={styles.errorMessage}>
-                            El correo ingresado no está asociado a ninguna cuenta.
-                        </p>
-                    )}
-
                     <div className={`${styles.timer} ${canSubmit ? "" : styles.timerActive}`}>
                         Puedes pedir otra solicitud en {Math.floor(time / 60)}:
                         {time % 60 < 10 ? "0" + (time % 60) : time % 60} minutos.
@@ -118,6 +111,23 @@ export function ForgotPasswordPage() {
                 <div className={styles.decorationBottom}></div>
             </div>
 
+            {showToast && !disableButton && !isEmailValid && (
+                <CustomToast
+                    typeToast="error"
+                    title="Error"
+                    message="El correo ingresado no está asociado a ninguna cuenta."
+                    time={5000}
+                />
+            )}
+
+            {showToast && disableButton && isEmailValid && (
+                <CustomToast
+                    typeToast="success"
+                    title="Correo enviado"
+                    message="Se ha enviado un correo de recuperación a su cuenta."
+                    time={5000}
+                />
+            )}
         </div>
     );
 }

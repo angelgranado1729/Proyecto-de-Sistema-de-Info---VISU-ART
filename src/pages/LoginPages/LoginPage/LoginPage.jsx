@@ -16,6 +16,9 @@ import {
     EyeSlashFill
 } from "react-bootstrap-icons";
 
+import { CustomToast } from "../../../components/CustomToast/CustomToast";
+import { getUserById } from '../../../firebase/users';
+
 export function LoginPage() {
     const imageURL = 'https://firebasestorage.googleapis.com/v0/b/visuart-17959.appspot.com/o/LogosVisuArt%2FvisuartGrayLogo.png?alt=media&token=bbebf007-b27c-47dc-a494-5b31663b7a39';
     const navigate = useNavigate();
@@ -27,21 +30,33 @@ export function LoginPage() {
         email: false,
         password: false,
     });
-    const [loginError, setLoginError] = useState(false);
+
     const [showPassword, setShowPassword] = useState(false);
+    const [showToast, setShowToast] = useState(false);
+    const [successLogin, setSuccessLogin] = useState(false);
 
     const onSuccess = () => {
+        setSuccessLogin(true);
+        setShowToast(true);
         navigate(HOME_URL);
     };
 
     const onFail = (_error) => {
-        setLoginError(true);
+        setSuccessLogin(false);
+        setShowToast(true);
     };
 
     const onSubmit = async (event) => {
         event.preventDefault();
 
-        setLoginError(false);
+        setErrors({
+            email: false,
+            password: false,
+        });
+
+        setSuccessLogin(false);
+        setShowToast(false);
+
         await loginWithEmailAndPassword({
             userData: formData,
             onSuccess,
@@ -164,15 +179,6 @@ export function LoginPage() {
                         Iniciar sesión
                     </button>
 
-                    {loginError && (
-                        <div className={styles.errorMessage}>
-                            Correo o contraseña incorrecta. Por favor intenta de nuevo o crea una{" "}
-                            <Link to={REGISTER_URL} className={styles.registerLink}>
-                                nueva cuenta
-                            </Link>.
-                        </div>
-                    )}
-
                     <div className={styles.forgotPassword}>
                         <Link to={FORGOT_PASSWORD_URL} className={styles.redirectLink}>
                             <p>¿Olvidaste tu contraseña?</p>
@@ -211,6 +217,30 @@ export function LoginPage() {
                         Regístrate aquí
                     </Link>
                 </p>
+
+                {/* CustomToast */}
+                {
+                    showToast && successLogin && (
+                        <CustomToast
+                            typeToast="success"
+                            title="¡Bienvenido!"
+                            message="Has iniciado sesión correctamente."
+                            time={5000}
+                        />
+                    )
+                }
+
+                {
+                    showToast && !successLogin && (
+                        <CustomToast
+                            typeToast="error"
+                            title="¡Error!"
+                            message="Correo o contraseña incorrecta. Intenta ingresar nuevo o crea una nueva cuenta"
+                            time={5000}
+                        />
+                    )
+                }
+
             </div>
         </div>
     );
