@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import { Link, Navigate } from "react-router-dom";
 import { getAuth, checkActionCode } from "firebase/auth";
 import styles from "./ResetPasswordPage.module.css";
-import { HOME_URL, LOGIN_URL } from "../../../constants/urls";
+import { LOGIN_URL } from "../../../constants/urls";
 import { resetPassword } from "../../../firebase/auth";
 import { useQuery } from "../../../hooks/useQuery";
 import { Loading } from "../../../components/Loading/Loading";
@@ -18,20 +18,20 @@ export function ResetPasswordPage() {
     const [validLink, setValidLink] = useState(false);
     const [isLoading, setLoading] = useState(false);
 
-    // useEffect(() => {
-    //     const verifyLink = async () => {
-    //         try {
-    //             setLoading(true);
-    //             await checkActionCode(auth, oobCode);
-    //             setValidLink(true);
-    //             setLoading(false);
-    //         } catch (error) {
-    //             setValidLink(false);
-    //         }
-    //     };
+    useEffect(() => {
+        const verifyLink = async () => {
+            try {
+                setLoading(true);
+                await checkActionCode(auth, oobCode);
+                setValidLink(true);
+                setLoading(false);
+            } catch (error) {
+                setValidLink(false);
+            }
+        };
 
-    //     verifyLink();
-    // }, []);
+        verifyLink();
+    }, []);
 
     const [password, setPassword] = useState("");
     const [confirmPassword, setConfirmPassword] = useState("");
@@ -74,9 +74,9 @@ export function ResetPasswordPage() {
     }
 
     if (!isLoading) {
-        // if (!validLink) {
-        //     return <Navigate to={LOGIN_URL} />;
-        // }
+        if (!validLink) {
+            return <Navigate to={LOGIN_URL} />;
+        }
 
         return (
             <div className={styles.container}>
