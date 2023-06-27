@@ -9,6 +9,7 @@ function PayPage() {
   const [amount, setState] = useState(0);
 
   return (
+    <div className={styles.App}>
     <section>
       <div className={styles.backButton}>
         <Link to={HOME_URL}>
@@ -51,6 +52,7 @@ function PayPage() {
       </div>
       <div className={styles.decorationBottom}></div>
     </section>
+    </div>
   );
 }
 

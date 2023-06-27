@@ -1,6 +1,15 @@
 section {
   background-color: #fff9ec;
 }
+.App {
+  text-align: center;
+  background-color: #fff9ec;
+  min-height: 100vh;
+  flex-direction: column;
+  display: flex;
+  width: 100vw;
+  overflow-x: hidden;
+}
 .container {
     display: flex;
     flex-direction: column;
