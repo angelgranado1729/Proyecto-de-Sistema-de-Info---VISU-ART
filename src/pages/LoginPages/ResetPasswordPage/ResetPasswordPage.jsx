@@ -2,11 +2,10 @@ import { useEffect, useState } from "react";
 import { Link, Navigate } from "react-router-dom";
 import { getAuth, checkActionCode } from "firebase/auth";
 import styles from "./ResetPasswordPage.module.css";
-import { LOGIN_URL } from "../../../constants/urls";
+import { HOME_URL, LOGIN_URL } from "../../../constants/urls";
 import { resetPassword } from "../../../firebase/auth";
 import { useQuery } from "../../../hooks/useQuery";
 import { Loading } from "../../../components/Loading/Loading";
-
 
 export function ResetPasswordPage() {
     const IMAGE_URL =
@@ -16,22 +15,29 @@ export function ResetPasswordPage() {
     const oobCode = query.get("oobCode");
 
     const [validLink, setValidLink] = useState(false);
-    const [isLoading, setLoading] = useState(false);
+    const [isLoading, setLoading] = useState(true);
 
     useEffect(() => {
         const verifyLink = async () => {
+            if (!oobCode) {
+                // Si el oobCode es nulo, redirigir al inicio
+                setLoading(false);
+                return;
+            }
+
             try {
                 setLoading(true);
                 await checkActionCode(auth, oobCode);
                 setValidLink(true);
-                setLoading(false);
             } catch (error) {
                 setValidLink(false);
+            } finally {
+                setLoading(false);
             }
         };
 
         verifyLink();
-    }, []);
+    }, [auth, oobCode]);
 
     const [password, setPassword] = useState("");
     const [confirmPassword, setConfirmPassword] = useState("");
@@ -73,65 +79,63 @@ export function ResetPasswordPage() {
         return <Loading />;
     }
 
-    if (!isLoading) {
-        if (!validLink) {
-            return <Navigate to={LOGIN_URL} />;
-        }
-
-        return (
-            <div className={styles.container}>
-                <div className={styles.formContainer}>
-                    <div className={styles.logoContainer}>
-                        <img src={IMAGE_URL} alt="Logo" />
-                    </div>
-
-                    <h1 className={styles.title}>Nueva contraseña</h1>
-
-                    <div className={styles.decorationTop}></div>
-
-                    {!success ? (
-                        <form className={styles.form} onSubmit={handleFormSubmit}>
-                            <div className={styles.inputContainer}>
-                                <label htmlFor="password">Contraseña</label>
-                                <input
-                                    type="password"
-                                    id="password"
-                                    name="password"
-                                    placeholder="***************"
-                                    value={password}
-                                    onChange={handlePasswordChange}
-                                    required
-                                />
-                            </div>
-                            <div className={styles.inputContainer}>
-                                <label htmlFor="confirmPassword">Confirmar contraseña</label>
-                                <input
-                                    type="password"
-                                    id="confirmPassword"
-                                    name="confirmPassword"
-                                    placeholder="***************"
-                                    value={confirmPassword}
-                                    onChange={handleConfirmPasswordChange}
-                                    required
-                                />
-                            </div>
-
-                            {error && <p className={styles.errorMessage}>{error}</p>}
-
-                            <button className={styles.submitButton} type="submit">
-                                Confirmar contraseña
-                            </button>
-                        </form>
-                    ) : (
-                        <div>
-                            <p>Tu contraseña ha sido restablecida correctamente.</p>
-                            <Link to={LOGIN_URL}>Iniciar sesión</Link>
-                        </div>
-                    )}
-
-                    <div className={styles.decorationBottom}></div>
-                </div>
-            </div>
-        );
+    if (!oobCode || !validLink) {
+        return <Navigate to={HOME_URL} />;
     }
+
+    return (
+        <div className={styles.container}>
+            <div className={styles.formContainer}>
+                <div className={styles.logoContainer}>
+                    <img src={IMAGE_URL} alt="Logo" />
+                </div>
+
+                <h1 className={styles.title}>Nueva contraseña</h1>
+
+                <div className={styles.decorationTop}></div>
+
+                {!success ? (
+                    <form className={styles.form} onSubmit={handleFormSubmit}>
+                        <div className={styles.inputContainer}>
+                            <label htmlFor="password">Contraseña</label>
+                            <input
+                                type="password"
+                                id="password"
+                                name="password"
+                                placeholder="***************"
+                                value={password}
+                                onChange={handlePasswordChange}
+                                required
+                            />
+                        </div>
+                        <div className={styles.inputContainer}>
+                            <label htmlFor="confirmPassword">Confirmar contraseña</label>
+                            <input
+                                type="password"
+                                id="confirmPassword"
+                                name="confirmPassword"
+                                placeholder="***************"
+                                value={confirmPassword}
+                                onChange={handleConfirmPasswordChange}
+                                required
+                            />
+                        </div>
+
+                        {error && <p className={styles.errorMessage}>{error}</p>}
+
+                        <button className={styles.submitButton} type="submit">
+                            Confirmar contraseña
+                        </button>
+                    </form>
+                ) : (
+                    <div>
+                        <p>Tu contraseña ha sido restablecida correctamente.</p>
+                        <Link to={LOGIN_URL}>Iniciar sesión</Link>
+                    </div>
+                )}
+
+                <div className={styles.decorationBottom}></div>
+            </div>
+        </div>
+    );
 }

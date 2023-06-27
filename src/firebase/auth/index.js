@@ -13,7 +13,7 @@ import { auth, googleProvider, facebookProvider } from "../firebase-config";
 import { createUser } from "../users";
 import { LOGIN_URL } from "../../constants/urls";
 
-const BASE_URL = "http://localhost:5173";
+const BASE_URL = "https://visuart-17959.web.app/";
 
 // HANDLE SING IN OR REGISTER USING GOOGLE PROVIDER
 export const signInWithGoogle = async ({ onSuccess, onFail }) => {

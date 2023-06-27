@@ -24,7 +24,6 @@ const LandingPage = () => {
         const toursSnapshot = await getDocs(toursCollection);
         const toursData = toursSnapshot.docs.map((doc) => doc.data());
         setTours(toursData);
-        console.log(tours);
       } catch (error) {
         console.error("Error fetching tours:", error);
       }
