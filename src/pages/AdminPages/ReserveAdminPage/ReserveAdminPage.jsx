@@ -1,11 +1,11 @@
 import React, { useState, useEffect } from "react";
 import { app, auth, db, storage } from "../../../firebase/firebase-config";
 import { getDocs, query, collection, where } from "firebase/firestore";
-import Sidebar from "../../../components/Sidebar/Sidebar";
 import Title from "../../../components/Title/Title";
 import "./ReserveAdminPage.css";
 import { Table } from "reactstrap";
 import { Button } from 'reactstrap';
+import AdminNavbar from "../../../components/AdminNavbar/AdminNavbar";
 
 const ReserveAdminPage = () => {
   const [reservations, setReservations] = useState([]);
@@ -62,7 +62,7 @@ const ReserveAdminPage = () => {
 
   return (
     <div className="App">
-      <Sidebar />
+      <AdminNavbar />
       <div className="main-admin" style={{ width: "60%" }}>
         <Title title="Gestor de Reservas" />
         <Table>

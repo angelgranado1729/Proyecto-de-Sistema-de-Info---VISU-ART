@@ -2,12 +2,12 @@ import React, { useState, useEffect } from "react";
 import { Link, Route, useNavigate } from "react-router-dom";
 import { app, auth, db, storage } from "../../../firebase/firebase-config"
 import { getDocs, query, collection, where, deleteDoc } from "firebase/firestore";
-import Sidebar from "../../../components/Sidebar/Sidebar";
 import Title from "../../../components/Title/Title";
 import "./ArtAdmin.css";
 import 'bootstrap/dist/css/bootstrap.css';
 import { Table, Button, Popover, PopoverBody } from "reactstrap";
 import { ADMIN_CREATE_OBRAS_URL, ADMIN_EDIT_OBRAS_BASE_URL } from "../../../constants/urls";
+import AdminNavbar from "../../../components/AdminNavbar/AdminNavbar";
 
 const ArtAdmin = () => {
   const [obras, setObras] = useState([]);
@@ -62,7 +62,7 @@ const ArtAdmin = () => {
 
   return (
     <div className="App">
-      <Sidebar />
+      <AdminNavbar/>
       <div className="main-admin">
         <Title title="Administrador de obras" />
 

@@ -6,7 +6,7 @@ import {  app, auth, db } from "../../../firebase/firebase-config";
 import "bootstrap/dist/css/bootstrap.css";
 import { Button, Form, FormGroup, Label, Input, Col, Row } from "reactstrap";
 import Title from "../../../components/Title/Title";
-import Sidebar from "../../../components/Sidebar/Sidebar";
+import AdminNavbar from "../../../components/AdminNavbar/AdminNavbar";
 
 const storage = getStorage();
 
@@ -65,7 +65,7 @@ const CreateTour = () => {
 
   return (
     <div className="App">
-      <Sidebar />
+      <AdminNavbar/>
       <div
         className="main-admin"
         style={{ maxWidth: "60%", margin: "0 auto" }}

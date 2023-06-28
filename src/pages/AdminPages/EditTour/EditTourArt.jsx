@@ -10,10 +10,10 @@ import {
   updateDoc,
   doc,
 } from "firebase/firestore";
-import Sidebar from "../../../components/Sidebar/Sidebar";
 import Title from "../../../components/Title/Title";
 import "bootstrap/dist/css/bootstrap.css";
 import { Table, Button, Popover, PopoverBody } from "reactstrap";
+import AdminNavbar from "../../../components/AdminNavbar/AdminNavbar";
 
 
 const TourEditObras = () => {
@@ -96,7 +96,7 @@ const TourEditObras = () => {
 
   return (
     <div className="App">
-      <Sidebar />
+      <AdminNavbar/>
       <div className="main-admin" style={{ width: "60%" }}>
        
         <Title title={`Obras incluidas - ${tour.nombre}`}  />

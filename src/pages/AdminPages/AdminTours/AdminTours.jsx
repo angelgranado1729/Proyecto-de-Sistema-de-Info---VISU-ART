@@ -5,10 +5,10 @@ import React, { useState, useEffect } from "react";
 import { Link, Route, useNavigate } from "react-router-dom";
 import { app, auth, db, storage } from "../../../firebase/firebase-config"
 import { getDocs, query, collection, where, deleteDoc } from "firebase/firestore";
-import Sidebar from "../../../components/Sidebar/Sidebar";
 import Title from "../../../components/Title/Title";
 import 'bootstrap/dist/css/bootstrap.css';
 import { Table, Button} from "reactstrap";
+import AdminNavbar from "../../../components/AdminNavbar/AdminNavbar";
 
 const TourAdmin = () => {
   const [Tours, setTours] = useState([]);
@@ -70,7 +70,7 @@ const TourAdmin = () => {
   // HTML
   return (
     <div className="App">
-      <Sidebar />
+      <AdminNavbar/>
       <div className="main-admin">
         <Title title="Administrador de Tours" />
 
