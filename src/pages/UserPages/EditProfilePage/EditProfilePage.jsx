@@ -1,66 +1,3 @@
-// import Subtitle from "../../components/Subtitle/Subtitle";
-// import "./EditProfilePage.css"
-
-
-// const EditProfilePage = () => {
-//     return (
-//         <div className="App-v2">
-//             <header className="back-header">
-//             <i className="fa-solid fa-arrow-left"></i>
-//             <img src="public/images/logos/visuartBlueLogo.jpg" alt="" />
-//             </header>
-
-//             <div className="editprofile-container">
-//             <div className="decoration up-container"></div>
-//             <div className="decoration down-container"></div>
-//                 <div className="profile-img"></div>
-//                 <i className="fa-solid fa-pen-to-square"></i>
-//                 <Subtitle subtitle="Edita tus datos:"/>
-//                 <div className="input-container">
-//                     <div className="column">
-//                         <div className="input">
-//                             <label>Nombre</label>
-//                             <input type="text"/>
-//                         </div>
-//                         <div className="input">
-//                             <label>Correo</label>
-//                             <input type="text"/>
-//                             <span>correo@ejemplo.com</span>
-//                         </div>
-//                         <div className="input">
-//                             <label>Contraseña</label>
-//                             <input type="text"/>
-//                             <span>Más 6 de dígitos e incluya carácteres especiales</span>
-//                         </div>
-
-//                     </div>
-//                     <div className="column"><p></p></div>
-//                     <div className="column">
-//                         <div className="input">
-//                             <label>Apellido</label>
-//                             <input type="text"/>
-//                         </div>
-//                         <div className="input">
-//                             <label>Verifica tu correo</label>
-//                             <input type="text"/>
-//                             <span>correo@ejemplo.com</span>
-//                         </div>
-//                         <div className="input">
-//                             <label>Verifica tu contraseña</label>
-//                             <input type="text"/>
-//                             <span>Más 6 de dígitos e incluya carácteres especiales</span>
-//                         </div> 
-//                     </div>
-//                 </div>
-//                 <button className="blue-btn">Guardar Cambios</button>
-//             </div>  
-//       </div>
-//     )
-// }
-
-// export default EditProfilePage
-
-
 //el codigo de arriba es el codigo de beatriz viejo. 
 //si hay que añadir mas campos se debe agregar un estado para cada campo, un input para que el usuario pueda editar el valor
 //, y luego incluye el valor en el objeto que se pasa a "updateUser"
@@ -78,23 +15,24 @@ const EditProfilePage = () => {
     const handleSubmit = async (e) => {
         e.preventDefault();
         try {
-            await updateUser(user.id, { name, email /*, otros campos que se quieran añadir */ });
+            await updateUser(user.id, { name, email /*, otros campos que se quieran añadir });*/});
             // Aquí se agrega la lógica para manejar el éxito de la operación
         } catch (error) {
             // Aquí se manejan los errores
         }
-    };
+    }; 
 
     return (
         <div className="App-v2">
-            <header className="back-header">
+            <header className="back-header top-editprofile">
                 <i className="fa-solid fa-arrow-left"></i>
-                <img src="public/images/logos/visuartBlueLogo.jpg" alt="" />
+                <img src="https://firebasestorage.googleapis.com/v0/b/visuart-17959.appspot.com/o/LogosVisuArt%2FvisuartBlueLogo.jpg?alt=media&token=ab0e88ba-968b-4b0f-9b83-42c8e0183e66" alt="" />
             </header>
+            <div className='decorations-container'>
+            <div className="editprofile-decoration1"></div>
+            <div className="editprofile-decoration2"></div>
             <div className="editprofile-container">
-                <div className="decoration up-container"></div>
-                <div className="decoration down-container"></div>
-                <div className="profile-img"></div>
+                <div className="editprofile-img"></div>
                 <i className="fa-solid fa-pen-to-square"></i>
                 <Subtitle subtitle="Edita tus datos:" />
                 <div className="input-container">
@@ -113,9 +51,9 @@ const EditProfilePage = () => {
                             <input type="text"/>
                             <span>correo@ejemplo.com</span>
                         </div>
-                        {/*Agregar mas inputs segun lo que podamos anadir en firebase  */}
+                        {/*Agregar mas inputs segun lo que podamos anadir en firebase*/}
                     </div>
-                    <div className="column"><p></p></div>
+                    <div className="column-center"><p></p></div>
                     <div className="column">
                         <div className="input">
                             <label>Contraseña</label>
@@ -130,7 +68,8 @@ const EditProfilePage = () => {
                         {/* Agregar mas inputs segun lo que podamos anadir en firebase */}
                     </div>
                 </div>
-                <button className="editprofile-btn" onClick={handleSubmit}>Guardar Cambios</button>
+                <button className="editprofile-btn" >Guardar Cambios</button>
+            </div>
             </div>
         </div>
     )
