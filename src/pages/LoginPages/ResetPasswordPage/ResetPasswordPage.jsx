@@ -37,7 +37,7 @@ export function ResetPasswordPage() {
         };
 
         verifyLink();
-    }, [auth, oobCode]);
+    }, [auth, validLink, oobCode]);
 
     const [password, setPassword] = useState("");
     const [confirmPassword, setConfirmPassword] = useState("");
@@ -68,8 +68,7 @@ export function ResetPasswordPage() {
         }
 
         try {
-            console.log(oobCode);
-            await resetPassword(auth, oobCode, password);
+            await resetPassword(oobCode, password);
             setSuccess(true);
         } catch (error) {
             setError(error.message);
@@ -128,12 +127,7 @@ export function ResetPasswordPage() {
                             Confirmar contraseña
                         </button>
                     </form>
-                ) : (
-                    <div>
-                        <p>Tu contraseña ha sido restablecida correctamente.</p>
-                        <Link to={LOGIN_URL}>Iniciar sesión</Link>
-                    </div>
-                )}
+                ) : <Navigate to={LOGIN_URL} />}
 
                 <div className={styles.decorationBottom}></div>
             </div>
