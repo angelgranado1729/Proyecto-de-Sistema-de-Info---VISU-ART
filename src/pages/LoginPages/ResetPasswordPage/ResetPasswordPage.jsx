@@ -68,6 +68,7 @@ export function ResetPasswordPage() {
         }
 
         try {
+            console.log(oobCode);
             await resetPassword(auth, oobCode, password);
             setSuccess(true);
         } catch (error) {
