@@ -13,13 +13,14 @@ import FeedbackPage from "./pages/FeedbackPage/FeedbackPage";
 import ReservePage from "./pages/ReservePage/ReservePage";
 import EditProfilePage from "./pages/UserPages/EditProfilePage/EditProfilePage";
 import { UserContextProvider } from "./contexts/UserContext";
-import { LoginPage } from "./pages/LoginPage/LoginPage";
+import { LoginPage } from "./pages/LoginPages/LoginPage/LoginPage";
+import { ForgotPasswordPage } from "./pages/LoginPages/ForgotPasswordPage/ForgotPasswordPage";
 import { PublicRoute } from "./components/PublicRoute/PublicRoute";
 import { RegisterPage } from "./pages/RegisterPages/RegisterPage/RegisterPage";
 import { RegisterFormPage } from "./pages/RegisterPages/RegisterFormPage/RegisterFormPage";
 import { NotFoundPage } from "./pages/NotFoundPage/NotFoundPage";
 import { PrivateRoute } from "./components/PrivateRoute/PrivateRoute";
-import UserProfilePage  from "./pages/UserPages/UserProfile/UserProfilePage";
+import UserProfilePage from "./pages/UserPages/UserProfile/UserProfilePage";
 
 import ArtAdmin from "./pages/AdminPages/ArtAdmin/ArtAdmin";
 import ArtEdit from "./pages/AdminPages/ArtEdit/ArtEdit";
@@ -28,7 +29,6 @@ import TourAdmin from "./pages/AdminPages/AdminTours/AdminTours";
 import TourEdit from "./pages/AdminPages/EditTour/EditTour";
 import CreateTour from "./pages/AdminPages/CreateTour/CreateTour";
 import TourEditObras from "./pages/AdminPages/EditTour/EditTourArt";
-
 
 
 import {
@@ -54,212 +54,232 @@ import {
   RESERVE_URL,
   USER_PROFILE_EDIT_URL,
   USER_PROFILE_URL,
-  VISION_URL
+  VISION_URL,
+  FORGOT_PASSWORD_URL,
+  RESET_PASSWORD_URL,
 } from "./constants/urls";
 import "./App.css";
+import { TourContextProvider } from "./contexts/TourContext";
+import { ResetPasswordPage } from "./pages/LoginPages/ResetPasswordPage/ResetPasswordPage";
 
 function App() {
   return (
     <>
       <UserContextProvider>
-        <Routes>
-          <Route
-            path={HOME_URL}
-            element={<LandingPage />}
-          />
+        <TourContextProvider>
+          <Routes>
+            <Route
+              path={HOME_URL}
+              element={<LandingPage />}
+            />
 
-          <Route
-            path={VISION_URL}
-            element={
-              <VisionPage />
-            }
-          />
+            <Route
+              path={VISION_URL}
+              element={
+                <VisionPage />
+              }
+            />
 
-          <Route
-            path={MISION_URL}
-            element={
-              <MisionPage />
-            }
-          />
+            <Route
+              path={MISION_URL}
+              element={
+                <MisionPage />
+              }
+            />
 
-          <Route
-            path={OBJECTIVES_URL}
-            element={
-              <ObjectivesPage />
-            }
-          />
+            <Route
+              path={OBJECTIVES_URL}
+              element={
+                <ObjectivesPage />
+              }
+            />
 
-          <Route
-            path={CONTACT_URL}
-            element={
-              <ContactPage />
-            }
-          />
+            <Route
+              path={CONTACT_URL}
+              element={
+                <ContactPage />
+              }
+            />
 
-          <Route
-            path={CALENDAR_URL}
-            element={
-              <CalendarPage />
-            }
-          />
+            <Route
+              path={CALENDAR_URL}
+              element={
+                <CalendarPage />
+              }
+            />
 
-          <Route
-            path={FEEDBACK_URL}
-            element={
-              <PrivateRoute>
-                <FeedbackPage />
-              </PrivateRoute>
-            }
-          />
+            <Route
+              path={FEEDBACK_URL}
+              element={
+                <PrivateRoute>
+                  <FeedbackPage />
+                </PrivateRoute>
+              }
+            />
 
-          <Route
-            path={RESERVE_URL}
-            element={
-              <PrivateRoute>
-                <ReservePage />
-              </PrivateRoute>
-            }
-          />
+            <Route
+              path={RESERVE_URL}
+              element={
+                <PrivateRoute>
+                  <ReservePage />
+                </PrivateRoute>
+              }
+            />
 
-          <Route
-            path={LOGIN_URL}
-            element={
-              <PublicRoute>
-                <LoginPage />
-              </PublicRoute>
-            }
-          />
+            <Route
+              path={LOGIN_URL}
+              element={
+                <PublicRoute>
+                  <LoginPage />
+                </PublicRoute>
+              }
+            />
 
-          <Route
-            path={REGISTER_URL}
-            element={
-              <PublicRoute>
-                <RegisterPage />
-              </PublicRoute>
-            }
-          />
+            <Route
+              path={FORGOT_PASSWORD_URL}
+              element={
+                <ForgotPasswordPage />
+              }
+            />
 
-          <Route
-            path={REGISTER_FORM_URL}
-            element={
-              <PublicRoute>
-                <RegisterFormPage />
-              </PublicRoute>
-            }
-          />
+            <Route
+              path={RESET_PASSWORD_URL}
+              element={
+                <ResetPasswordPage />
+              }
+            />
 
-          <Route
-            path={ERROR_404}
-            element={
-              <NotFoundPage />
-            }
-          />
+            <Route
+              path={REGISTER_URL}
+              element={
+                <PublicRoute>
+                  <RegisterPage />
+                </PublicRoute>
+              }
+            />
 
-          {/* Admin Pages */}
-          <Route
-            path={ADMIN_URL}
-            element={
-              <PrivateRoute>
-                <AdminPage />
-              </PrivateRoute>
-            }
-          />
+            <Route
+              path={REGISTER_FORM_URL}
+              element={
+                <PublicRoute>
+                  <RegisterFormPage />
+                </PublicRoute>
+              }
+            />
+
+            <Route
+              path={ERROR_404}
+              element={
+                <NotFoundPage />
+              }
+            />
+
+            {/* Admin Pages */}
+            <Route
+              path={ADMIN_URL}
+              element={
+                <PrivateRoute>
+                  <AdminPage />
+                </PrivateRoute>
+              }
+            />
 
 
-          
 
-          <Route
-            path={ADMIN_RESERVE_URL}
-            element={
-              <PrivateRoute>
-                <ReserveAdminPage />
-              </PrivateRoute>
-            }
-          />
 
-          <Route
-            path={ADMIN_OBRAS_URL}
-            element={
-              <PrivateRoute>
-                <ArtAdmin/>
-              </PrivateRoute>
-            }
-          />
+            <Route
+              path={ADMIN_RESERVE_URL}
+              element={
+                <PrivateRoute>
+                  <ReserveAdminPage />
+                </PrivateRoute>
+              }
+            />
 
-          <Route
-            path={ADMIN_EDIT_OBRAS_URL}
-            element={
-              <PrivateRoute>
-                <ArtEdit/>
-              </PrivateRoute>
-            }
-          />
+            <Route
+              path={ADMIN_OBRAS_URL}
+              element={
+                <PrivateRoute>
+                  <ArtAdmin />
+                </PrivateRoute>
+              }
+            />
 
-          <Route
-            path={ADMIN_CREATE_OBRAS_URL}
-            element={
-              <PrivateRoute>
-                <CreateArt/>
-              </PrivateRoute>
-            }
-          />
+            <Route
+              path={ADMIN_EDIT_OBRAS_URL}
+              element={
+                <PrivateRoute>
+                  <ArtEdit />
+                </PrivateRoute>
+              }
+            />
 
-          <Route
-            path={ADMIN_TOURS_URL}
-            element={
-              <PrivateRoute>
-                <TourAdmin />
-              </PrivateRoute>
-            }
-          />
+            <Route
+              path={ADMIN_CREATE_OBRAS_URL}
+              element={
+                <PrivateRoute>
+                  <CreateArt />
+                </PrivateRoute>
+              }
+            />
 
-          <Route
-            path={ADMIN_TOUR_CREATE_URL}
-            element={
-              <PrivateRoute>
-                <CreateTour />
-              </PrivateRoute>
-            }
-          />
+            <Route
+              path={ADMIN_TOURS_URL}
+              element={
+                <PrivateRoute>
+                  <TourAdmin />
+                </PrivateRoute>
+              }
+            />
 
-          <Route
-            path={ADMIN_TOURS_EDIT_URL}
-            element={
-              <PrivateRoute>
-                <TourEdit />
-              </PrivateRoute>
-            }
-          />
+            <Route
+              path={ADMIN_TOUR_CREATE_URL}
+              element={
+                <PrivateRoute>
+                  <CreateTour />
+                </PrivateRoute>
+              }
+            />
 
-          <Route
-            path={ADMIN_TOURS_EDIT_ART}
-            element={
-              <PrivateRoute>
-                <TourEditObras/>
-              </PrivateRoute>
-            }
-          />
+            <Route
+              path={ADMIN_TOURS_EDIT_URL}
+              element={
+                <PrivateRoute>
+                  <TourEdit />
+                </PrivateRoute>
+              }
+            />
 
-          {/* User Pages */}
-          <Route
-            path={USER_PROFILE_URL}
-            element={
-              <PrivateRoute>
-                <UserProfilePage />
-              </PrivateRoute>
-            }
-          />
+            <Route
+              path={ADMIN_TOURS_EDIT_ART}
+              element={
+                <PrivateRoute>
+                  <TourEditObras />
+                </PrivateRoute>
+              }
+            />
 
-          <Route
-            path={USER_PROFILE_EDIT_URL}
-            element={
-              <PrivateRoute>
-                <EditProfilePage />
-              </PrivateRoute>
-            }
-          />
+            {/* User Pages */}
+            <Route
+              path={USER_PROFILE_URL}
+              element={
+                <PrivateRoute>
+                  <UserProfilePage />
+                </PrivateRoute>
+              }
+            />
 
-        </Routes >
+            <Route
+              path={USER_PROFILE_EDIT_URL}
+              element={
+                <PrivateRoute>
+                  <EditProfilePage />
+                </PrivateRoute>
+              }
+            />
+
+          </Routes >
+        </TourContextProvider>
       </UserContextProvider>
       <Footer />
     </>

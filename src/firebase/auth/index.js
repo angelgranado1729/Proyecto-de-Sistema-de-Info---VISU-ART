@@ -1,13 +1,19 @@
 import {
   signInWithPopup,
   GoogleAuthProvider,
+  FacebookAuthProvider,
   createUserWithEmailAndPassword,
   signInWithEmailAndPassword,
   signOut,
   getAdditionalUserInfo,
+  sendPasswordResetEmail,
+  confirmPasswordReset,
 } from "firebase/auth";
-import { auth, googleProvider } from "../firebase-config";
+import { auth, googleProvider, facebookProvider } from "../firebase-config";
 import { createUser } from "../users";
+import { LOGIN_URL } from "../../constants/urls";
+
+const BASE_URL = "https://visuart-17959.web.app/";
 
 // HANDLE SING IN OR REGISTER USING GOOGLE PROVIDER
 export const signInWithGoogle = async ({ onSuccess, onFail }) => {
@@ -15,17 +21,22 @@ export const signInWithGoogle = async ({ onSuccess, onFail }) => {
     const result = await signInWithPopup(auth, googleProvider);
     const { isNewUser } = getAdditionalUserInfo(result);
 
+    console.log(result);
+
     if (isNewUser) {
-      const { uid, email, displayName } = result.user;
-      await createUser({
+      const { uid, email, displayName, photoURL } = result.user;
+      const userFields = {
         uid,
         email,
         name: displayName,
-        age: "",
         favoriteTours: [],
         reservations: [],
         type: "user",
-      });
+        provider: "google",
+        photoURL: photoURL,
+      };
+
+      await createUser(userFields);
     }
 
     if (onSuccess) {
@@ -53,6 +64,53 @@ export const signInWithGoogle = async ({ onSuccess, onFail }) => {
   }
 };
 
+//HANDLE FACEBOOK LOGIN
+export const signInWithFacebook = async ({ onSuccess, onFail }) => {
+  try {
+    const result = await signInWithPopup(auth, facebookProvider);
+    const { isNewUser } = getAdditionalUserInfo(result);
+
+    console.log(result);
+
+    if (isNewUser) {
+      const { uid, email, displayName, photoURL } = result.user;
+      await createUser({
+        uid,
+        email,
+        name: displayName,
+        favoriteTours: [],
+        reservations: [],
+        type: "user",
+        provider: "facebook",
+        photoURL: photoURL,
+      });
+    }
+
+    if (onSuccess) {
+      onSuccess();
+    }
+  } catch (error) {
+    const errorCode = error?.code;
+    const errorMessage = error?.message;
+    // The email of the user's account used.
+    const email = error?.email;
+    // The AuthCredential type that was used.
+    const credential = FacebookAuthProvider.credentialFromError(error);
+
+    if (onFail) {
+      onFail();
+      console.error("SIGN IN WITH FACEBOOK FAILED", { error });
+    }
+
+    console.error("FAILED SIGN IN WITH FACEBOOK", {
+      errorCode,
+      errorMessage,
+      email,
+      credential,
+    });
+  }
+};
+
 // HANDLE REGISTER WITH EMAIL AND PASSWORD
 export const registerWithEmailAndPassword = async ({
   userData,
@@ -60,7 +118,7 @@ export const registerWithEmailAndPassword = async ({
   onFail,
 }) => {
   try {
-    const { email, password, ...restData } = userData;
+    const { email, password, birthday, gender, ...restData } = userData;
     const firebaseResult = await createUserWithEmailAndPassword(
       auth,
       email,
@@ -69,11 +127,16 @@ export const registerWithEmailAndPassword = async ({
 
     await createUser({
       ...restData,
-      email,
       uid: firebaseResult.user.uid,
+      email,
+      name: restData.name,
       favoriteTours: [],
       reservations: [],
       type: "user",
+      provider: "email",
+      birthdayUser: birthday,
+      genderUser: gender,
+      photoURL: "",
     });
 
     // SUCCESS CALLBACK
@@ -109,6 +172,18 @@ export const loginWithEmailAndPassword = async ({
     }
   }
 };
+
+// HANDLE PASSWORD RESET
+export function forgotPassword(email) {
+  return sendPasswordResetEmail(auth, email, {
+    url: `${BASE_URL}${LOGIN_URL}`,
+  });
+}
+
+// HANDLE PASSWORD RESET
+export function resetPassword(oobCode, newPassword) {
+  return confirmPasswordReset(auth, oobCode, newPassword);
+}
 
 // HANDLE USER SIGN OUT
 export const logout = async (callback) => {

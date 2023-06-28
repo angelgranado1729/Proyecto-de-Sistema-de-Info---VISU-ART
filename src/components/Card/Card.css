@@ -71,7 +71,7 @@
     rgba(0, 0, 0, 0.3) 0px 30px 60px -30px;
 }
 
-.card-wrapper:hover .card-description  {
+.card-wrapper:hover .card-description {
   padding: 40px;
 }
 
@@ -83,12 +83,12 @@
   text-transform: uppercase;
 }
 
-.fa-location-dot{
+.fa-location-dot {
   font-size: 15px;
   padding: 10px;
 }
 
-.tour-location{
+.tour-location {
   text-align: start;
   font-size: 12px;
   font-weight: 500;
@@ -136,12 +136,12 @@
   .card-wrapper:hover .card-cover img {
     top: 60px;
   }
-  .card-wrapper .card-description  h2 {
+  .card-wrapper .card-description h2 {
     font-size: 18px;
   }
   .see-more-btn {
     margin-top: 10px;
     font-size: 12px;
     margin-left: -70px;
-  } 
+  }
 }

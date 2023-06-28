@@ -1,34 +1,75 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import { useNavigate, Link } from "react-router-dom";
 import { ArrowLeft, EyeFill, EyeSlashFill } from "react-bootstrap-icons";
-import { getStorage, ref, getDownloadURL } from "firebase/storage";
 import styles from "./RegisterFormPage.module.css";
 import { HOME_URL } from "../../../constants/urls";
 
 export function RegisterFormPage() {
+    const imageURL = 'https://firebasestorage.googleapis.com/v0/b/visuart-17959.appspot.com/o/LogosVisuArt%2FvisuartGrayLogo.png?alt=media&token=bbebf007-b27c-47dc-a494-5b31663b7a39';
     const [showPassword, setShowPassword] = useState(false);
     const navigate = useNavigate();
-
     const [formData, setFormData] = useState({
         firstName: "",
         lastName: "",
         email: "",
+        confirmEmail: "",
         confirmPassword: "",
         password: "",
         birthDate: "",
-        gender: ""
+        gender: "",
     });
 
     const [errors, setErrors] = useState({
         email: false,
-        password: false
+        confirmEmail: false,
+        password: false,
+        confirmPassword: false,
     });
 
-    const [loginError, setLoginError] = useState(false);
+    const validateEmail = (email) => {
+        const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+        return emailRegex.test(email);
+    };
+
+    const validatePassword = (password) => {
+        const passwordRegex = /^(?=.*[!@#$%^&*])[a-zA-Z0-9!@#$%^&*]{6,}$/;
+        return passwordRegex.test(password);
+    };
+
+    const validateForm = () => {
+        const {
+            email,
+            confirmEmail,
+            password,
+            confirmPassword,
+        } = formData;
+
+        const emailValid = validateEmail(email);
+        const confirmEmailValid = validateEmail(confirmEmail);
+        const passwordValid = validatePassword(password);
+        const confirmPasswordValid = validatePassword(confirmPassword);
+
+        setErrors({
+            email: !emailValid,
+            confirmEmail: !confirmEmailValid,
+            password: !passwordValid,
+            confirmPassword: !confirmPasswordValid,
+        });
+
+        return (
+            emailValid &&
+            confirmEmailValid &&
+            passwordValid &&
+            confirmPasswordValid
+        );
+    };
 
     const onSubmit = (event) => {
         event.preventDefault();
-        // Realizar validaciones y enviar los datos al backend
+
+        if (validateForm()) {
+            navigate("/success");
+        }
     };
 
     const onChange = (event) => {
@@ -40,6 +81,24 @@ export function RegisterFormPage() {
         setShowPassword(!showPassword);
     };
 
+    const {
+        firstName,
+        lastName,
+        email,
+        confirmEmail,
+        confirmPassword,
+        password,
+        birthDate,
+        gender,
+    } = formData;
+
+    const {
+        email: emailError,
+        confirmEmail: confirmEmailError,
+        password: passwordError,
+        confirmPassword: confirmPasswordError,
+    } = errors;
+
     return (
         <div className={styles.container}>
             <div className={styles.backButton}>
@@ -49,7 +108,7 @@ export function RegisterFormPage() {
             </div>
 
             <div className={styles.logoContainer}>
-                <img src="public\images\logos\visuartGrayLogo.png" alt="logo" />
+                <img src={imageURL} />
             </div>
 
             <div className={styles.formContainer}>
@@ -64,7 +123,7 @@ export function RegisterFormPage() {
                             id="firstName"
                             name="firstName"
                             placeholder="Nombre"
-                            value={formData.firstName}
+                            value={firstName}
                             onChange={onChange}
                             required
                         />
@@ -77,120 +136,174 @@ export function RegisterFormPage() {
                             id="lastName"
                             name="lastName"
                             placeholder="Apellido"
-                            value={formData.lastName}
+                            value={lastName}
                             onChange={onChange}
                             required
                         />
                     </div>
 
-                    <div
-                        className={`${styles.inputContainer} ${errors.email ? styles.errorInput : ""
-                            }`}
-                    >
+                    <div className={styles.inputContainer}>
                         <label htmlFor="email">
-                            <span>Email</span>
+                            <span>Correo electrónico</span>
                         </label>
-                        <input
-                            type="email"
-                            id="email"
-                            name="email"
-                            placeholder="correo@ejemplo.com"
-                            value={formData.email}
-                            onChange={onChange}
-                        />
-                        {errors.email && (
-                            <span className={styles.errorMsg}>
-                                Por favor ingresa su correo electrónico.
-                            </span>
-                        )}
+
+                        <div
+                            className={`${styles.inputField} ${emailError ? styles.inputError : ""
+                                }`}
+                        >
+                            <input
+                                type="email"
+                                id="email"
+                                name="email"
+                                placeholder="correo@ejemplo.com"
+                                value={email}
+                                onChange={onChange}
+                                required
+                            />
+                        </div>
+                        <span className={styles.textEx}>
+                            correo@ejemplo.com
+                        </span>
                     </div>
 
                     <div className={styles.inputContainer}>
-                        <label htmlFor="confirmEmail">Confirmar email</label>
-                        <input
-                            type="email"
-                            id="confirmEmail"
-                            name="confirmEmail"
-                            placeholder="correo@ejemplo.com"
-                            value={formData.confirmEmail}
-                            onChange={onChange}
-                            required
-                        />
+                        <label htmlFor="confirmEmail">
+                            <span>Verifica tu correo</span>
+                        </label>
+                        <div className={styles.inputField}>
+                            <input
+                                type="email"
+                                id="confirmEmail"
+                                name="confirmEmail"
+                                placeholder="correo@ejemplo.com"
+                                value={confirmEmail}
+                                onChange={onChange}
+                                required
+                            />
+                        </div>
+
+                        <span className={styles.textEx}>
+                            correo@ejemplo.com
+                        </span>
                     </div>
 
                     <div
-                        className={`${styles.passwordInput} ${errors.password ? styles.errorInputPassword : ""
-                            }`}
+                        className={styles.inputContainer}
                     >
-                        <input
-                            type={showPassword ? "text" : "password"}
-                            name="password"
-                            id="password"
-                            placeholder="***************"
-                            value={formData.password}
-                            onChange={onChange}
-                            onClick={handlePasswordClick}
-                            className={styles.passwordInputField}
-                            required
-                        />
-
-                        <button
-                            type="button"
-                            className={styles.passwordToggle}
-                            required
-                            onClick={handlePasswordClick}
+                        <label htmlFor="password">
+                            <span>Contraseña</span>
+                        </label>
+                        <div
+                            className={`${styles.passwordInput} ${errors.password ? styles.errorInputPassword : ""}`}
                         >
-                            {showPassword ? (
-                                <EyeSlashFill size={20} color="background: #00000080" />
-                            ) : (
-                                <EyeFill size={20} color="#00000080" />
-                            )}
-                        </button>
-                    </div>
-                    {errors.password && (
-                        <span className={styles.errorMsg}>
-                            Por favor ingresa su contraseña.
+                            <input
+                                type={showPassword ? "text" : "password"}
+                                name="password"
+                                id="password"
+                                placeholder="***************"
+                                value={password}
+                                onChange={onChange}
+                                onClick={handlePasswordClick}
+                                className={styles.passwordInputField}
+                                required
+                            />
+
+                            <button
+                                type="button"
+                                className={styles.passwordToggle}
+                                onClick={handlePasswordClick}
+                            >
+                                {showPassword ? (
+                                    <EyeSlashFill size={20} color="#00000080" />
+                                ) : (
+                                    <EyeFill size={20} color="#00000080" />
+                                )}
+                            </button>
+                        </div>
+
+                        <span className={styles.textEx}>
+                            La contraseña debe tener al menos 6 caracteres y contener al
+                            menos un carácter especial.
                         </span>
-                    )}
 
-                    <div className={styles.inputContainer}>
-                        <label htmlFor="confirmPassword">Confirmar contraseña</label>
-                        <input
-                            type="password"
-                            id="confirmPassword"
-                            name="confirmPassword"
-                            placeholder="***************"
-                            value={formData.confirmPassword}
-                            onChange={onChange}
-                            required
-                        />
                     </div>
 
                     <div className={styles.inputContainer}>
-                        <label htmlFor="birthDate">Fecha de nacimiento</label>
+                        <label htmlFor="confirmPassword">
+                            <span>Verifica tu contraseña</span>
+                        </label>
+                        <div
+                            className={`${styles.passwordInput} ${errors.password ? styles.errorInputPassword : ""}`}
+                        >
+                            <input
+                                type={showPassword ? "text" : "password"}
+                                name="confirmPassword"
+                                id="confirmPassword"
+                                placeholder="***************"
+                                value={confirmPassword}
+                                onChange={onChange}
+                                onClick={handlePasswordClick}
+                                className={styles.passwordInputField}
+                                required
+                            />
+
+                            <button
+                                type="button"
+                                className={styles.passwordToggle}
+                                onClick={handlePasswordClick}
+                            >
+                                {showPassword ? (
+                                    <EyeSlashFill size={20} color="#00000080" />
+                                ) : (
+                                    <EyeFill size={20} color="#00000080" />
+                                )}
+                            </button>
+                        </div>
+
+
+                        <span className={styles.textEx}>
+                            La contraseña debe tener al menos 6 caracteres y contener al
+                            menos un carácter especial.
+                        </span>
+
+                    </div>
+
+                    <div className={styles.inputContainer}>
+                        <label htmlFor="birthDate">
+                            <span>Fecha de nacimiento</span>
+                        </label>
                         <input
                             type="date"
                             id="birthDate"
                             name="birthDate"
                             placeholder="dd/mm/aaaa"
-                            value={formData.birthDate}
+                            value={birthDate}
                             onChange={onChange}
                             required
                         />
                     </div>
 
                     <div className={styles.inputContainer}>
-                        <label htmlFor="gender">Género</label>
-                        <input
-                            type="text"
+                        <label htmlFor="gender">
+                            <span>Género</span>
+                        </label>
+                        <select
                             id="gender"
                             name="gender"
-                            value={formData.gender}
+                            value={gender}
                             onChange={onChange}
-                        />
+                            required
+                        >
+                            <option value="">Seleccionar</option>
+                            <option value="masculino">Masculino</option>
+                            <option value="femenino">Femenino</option>
+                            <option value="otro">Otro</option>
+                        </select>
                     </div>
 
-                    <button type="submit">Registrarse</button>
+                    <button type="submit" className={styles.registerButton}>
+                        Registrarse
+                    </button>
                 </form>
                 <div className={styles.decorationBottom}></div>
             </div>
