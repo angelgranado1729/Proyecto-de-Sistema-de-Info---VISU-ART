@@ -4,14 +4,8 @@ import { useUserContext } from "../../contexts/UserContext";
 import "./Navbar.css";
 
 const Navbar = () => {
+    const IMAGE_URL = "https://firebasestorage.googleapis.com/v0/b/visuart-17959.appspot.com/o/LogosVisuArt%2FvisuartBlackLogo.jpg?alt=media&token=f82ed7c0-ed7f-4b6a-bd4f-0e3d4724dd73";
     const [user, setUser] = useState(null);
-
-    const userContext = useUserContext();
-    useEffect(() => {
-        setUser(userContext.user);
-        console.log(userContext.user)
-    }, [user, userContext.user]);
-
     const [clicked, setClicked] = useState(false);
     const menuData = getMenuData(user);
 
@@ -19,11 +13,19 @@ const Navbar = () => {
         setClicked(!clicked);
     };
 
+    const userContext = useUserContext();
+    useEffect(() => {
+        setUser(userContext.user);
+        console.log(userContext.user)
+    }, [user, userContext.user]);
+
+
+
     return (
         <nav className="navbar-items">
             <img
                 className={clicked ? "navbar-logo active" : "navbar-logo"}
-                src="https://firebasestorage.googleapis.com/v0/b/visuart-17959.appspot.com/o/LogosVisuArt%2FvisuartBlackLogo.jpg?alt=media&token=f82ed7c0-ed7f-4b6a-bd4f-0e3d4724dd73"
+                src={IMAGE_URL}
                 alt=""
             />
             <div className="menu-hamburger" onClick={handleClick}>
