@@ -128,7 +128,7 @@ export function ResetPasswordPage() {
                         </button>
                     </form>
                 ) : <Navigate to={LOGIN_URL} />}
-
+n
                 <div className={styles.decorationBottom}></div>
             </div>
         </div>
