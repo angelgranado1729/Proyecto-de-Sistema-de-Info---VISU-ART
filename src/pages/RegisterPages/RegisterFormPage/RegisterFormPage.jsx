@@ -293,6 +293,7 @@ export function RegisterFormPage() {
                             value={gender}
                             onChange={onChange}
                             required
+                            className={styles.formselect}
                         >
                             <option value="">Seleccionar</option>
                             <option value="masculino">Masculino</option>
