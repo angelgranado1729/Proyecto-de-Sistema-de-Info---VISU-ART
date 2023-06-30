@@ -1,3 +1,6 @@
+//Página  Editar Fechas Admin 
+// En esta página, el administrador podrá modificar las fechas de un tour para mostrar en el calendario. 
+
 import React, { useState, useEffect } from "react";
 import { Button, Table, FormGroup, Label } from "reactstrap";
 import { useParams, useNavigate } from "react-router-dom";

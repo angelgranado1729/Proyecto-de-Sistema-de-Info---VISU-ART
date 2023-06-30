@@ -1,3 +1,6 @@
+//Página  Editar Obra Admin
+// En esta página, el administrador podrá editar una obra de arte
+
 import { useState, useEffect } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import { collection, doc, setDoc, query, where, getDocs } from "firebase/firestore";

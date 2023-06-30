@@ -1,3 +1,5 @@
+//Página  Cargar Obra Admin
+// En esta página, el administrador podrá cargar una obra de arte. 
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { collection, doc, setDoc, query, where, getDocs, addDoc } from "firebase/firestore";

@@ -1,3 +1,6 @@
+//Página  Crear Tour Admin
+// En esta página, el administrador podrá crear un tour nuevo. 
+
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { collection, addDoc } from "firebase/firestore";

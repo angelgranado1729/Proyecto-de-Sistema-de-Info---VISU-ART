@@ -1,3 +1,6 @@
+//Página  Editar Tour Admin 
+// En esta página, el administrador podrá editar la información de un Tour. 
+
 import React, { useState, useEffect } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import { collection, doc, setDoc, query, where, getDocs } from "firebase/firestore";

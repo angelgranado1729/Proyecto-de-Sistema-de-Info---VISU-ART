@@ -1,3 +1,6 @@
+//Página  Visualizar Obras Admin
+// En esta página, el administrador podrá visualizar listado de obras de arte y seleccionar alguna para editar o borrar 
+
 import React, { useState, useEffect } from "react";
 import { Link, Route, useNavigate } from "react-router-dom";
 import { app, auth, db, storage } from "../../../firebase/firebase-config"

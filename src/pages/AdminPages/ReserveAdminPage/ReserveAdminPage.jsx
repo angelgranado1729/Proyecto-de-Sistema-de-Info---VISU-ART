@@ -1,3 +1,6 @@
+//Página  Gestionar reservas Admin 
+// En esta página, el administrador podrá visualizar y eliminar las reservas registradas.
+
 import React, { useState, useEffect } from "react";
 import { app, auth, db, storage } from "../../../firebase/firebase-config";
 import { getDocs, query, collection, where } from "firebase/firestore";

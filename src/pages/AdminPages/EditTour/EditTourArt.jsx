@@ -1,3 +1,6 @@
+//Página  Editar Obras Tour Admin 
+// En esta página, el administrador podrá agregar o eliminar las obras de artes relacionadas a un tour. 
+
 import React, { useState, useEffect } from "react";
 import { Link, Route, useNavigate, useParams } from "react-router-dom";
 import {  app, auth, db, storage  } from "../../../firebase/firebase-config";

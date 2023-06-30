@@ -1,5 +1,5 @@
 // Administrar de Tours 
-// En esta página, el administrador podrá dejar su crear, modificar o eliminar un tour. 
+// En esta página, el administrador podrá crear, modificar o eliminar un tour. 
 
 import React, { useState, useEffect } from "react";
 import { Link, Route, useNavigate } from "react-router-dom";
