@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import { collection, doc, setDoc, query, where, getDocs } from "firebase/firestore";
 import { getStorage, ref, uploadBytes, getDownloadURL } from "firebase/storage";
-import {  app, auth, db } from "../../../firebase/firebase-config";
+import { app, auth, db } from "../../../firebase/firebase-config";
 import 'bootstrap/dist/css/bootstrap.css';
 import { Button, Form, FormGroup, Label, Input, Col, Row } from 'reactstrap';
 import Slider from "../../../components/Slider/Slider";
@@ -17,10 +17,10 @@ const TourEdit = () => {
 
   const [tour, setTour] = useState({
     nombre: "",
-    fecha: "",
     descripcion: "",
     ubicacion: "",
     imagen: "",
+    resumen: "",
   });
 
   useEffect(() => {
@@ -90,8 +90,6 @@ const TourEdit = () => {
     navigate("/admin-tours");
   };
 
-  
-
   return (
     <div className="App">
       <AdminNavbar/>
@@ -108,16 +106,6 @@ const TourEdit = () => {
                   name="nombre"
                   id="nombre"
                   value={tour.nombre}
-                  onChange={handleInputChange}
-                />
-              </FormGroup>
-              <FormGroup>
-                <Label for="fecha">Fecha</Label>
-                <Input
-                  type="text"
-                  name="fecha"
-                  id="fecha"
-                  value={tour.fecha}
                   onChange={handleInputChange}
                 />
               </FormGroup>
@@ -141,6 +129,16 @@ const TourEdit = () => {
                   onChange={handleInputChange}
                 />
               </FormGroup>
+              <FormGroup>
+                <Label for="resumen">Resumen para tarjeta</Label>
+                <Input
+                  type="textarea"
+                  name="resumen"
+                  id="resumen"
+                  value={tour.resumen}
+                  onChange={handleInputChange}
+                />
+              </FormGroup>
 
               <FormGroup>
                 <Label for="imagen">Imagen de Portada </Label>
@@ -151,8 +149,6 @@ const TourEdit = () => {
                   onChange={handleImageUpload}
                 />
               </FormGroup>
-
-              
 
               <Button color="primary" type="submit" style={{ marginRight: '7px' }}>
                 Guardar

@@ -1,27 +1,23 @@
-import { CONTACT_URL, LOGIN_URL, MISION_URL, OBJECTIVES_URL, REGISTER_URL, VISION_URL } from "../../constants/urls";
+import {ADMIN_OBRAS_URL,ADMIN_TOURS_URL,ADMIN_RESERVE_URL,LOGIN_URL,CONTACT_URL,REGISTER_URL } from "../../constants/urls";
 
 export const MenuData = [
     {
         title: "Obras",
-        url: MISION_URL,
+        url: ADMIN_OBRAS_URL,
         cName: "admin_navbar-links"
 
     },
     {
         title: "Tours",
-        url: VISION_URL,
-        cName: "admin_navbar-links"
-    },
-    {
-        title: "Fechas",
-        url: OBJECTIVES_URL,
+        url: ADMIN_TOURS_URL,
         cName: "admin_navbar-links"
     },
     {
         title: "Reservas",
-        url: CONTACT_URL,
+        url: ADMIN_RESERVE_URL,
         cName: "admin_navbar-links"
     },
+    
     {
         title: "Perfil",
         url: REGISTER_URL,

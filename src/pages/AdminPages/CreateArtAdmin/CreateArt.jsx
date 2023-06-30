@@ -4,14 +4,17 @@ import { collection, doc, setDoc, query, where, getDocs, addDoc } from "firebase
 import { getStorage, ref, uploadBytes, getDownloadURL } from "firebase/storage";
 import { db } from "../../../firebase/firebase-config";
 import 'bootstrap/dist/css/bootstrap.css';
-import { Button, Form, FormGroup, Label, Input, Col, Row } from 'reactstrap';
+import { Button, Form, FormGroup, Label, Input, Col, Row, Toast, ToastBody, ToastHeader } from "reactstrap";
 import Title from "../../../components/Title/Title";
 import AdminNavbar from "../../../components/AdminNavbar/AdminNavbar";
+import { CustomToast } from "../../../components/CustomToast/CustomToast";
 
 const storage = getStorage();
 
 const CreateArt = () => {
   const navigate = useNavigate();
+
+
 
   const [obra, setObra] = useState({
     nombre: "",
@@ -24,10 +27,12 @@ const CreateArt = () => {
   });
 
   const [imagen, setImagen] = useState(null);
+  const [showToast, setShowToast] = useState(false);
 
   const handleInputChange = (e) => {
     const { name, value } = e.target;
     setObra((prevObra) => ({ ...prevObra, [name]: value }));
+    setShowToast(false);
   };
 
   const handleImageUpload = (e) => {
@@ -39,10 +44,26 @@ const CreateArt = () => {
         setObra((prevObra) => ({ ...prevObra, imagen: url }));
       });
     });
+    setShowToast(false);
   };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+
+    if (
+      !obra.nombre ||
+      !obra.ubicacion ||
+      !obra.año ||
+      !obra.autor ||
+      !obra.tecnica ||
+      !obra.dimensiones ||
+      !obra.imagen
+
+    ) {
+      setShowToast(true);
+      return;
+    }
+
 
     try {
       const obrasCollection = collection(db, "Obras");
@@ -56,7 +77,7 @@ const CreateArt = () => {
         imagen: obra.imagen
       });
 
-      alert("Obra creada exitosamente");
+   
       navigate("/adminobras");
     } catch (error) {
       alert("Error al crear la obra:", error);
@@ -72,8 +93,20 @@ const CreateArt = () => {
       <AdminNavbar/>
       <div className="main-admin" style={{ maxWidth: "60%", margin: "0 auto" }}>
         <Title title="Administrar obras" />
+        
         <Row>
+          
           <Col md={6}>
+        
+            <Toast isOpen={showToast} onClose={() => setShowToast(false)}>
+            <CustomToast
+                            typeToast="error"
+                            title="¡Error!"
+                            message="Ingreso los datos incorrectamente"
+                            time={5000}
+                        />
+            </Toast>
+
             <Form onSubmit={handleSubmit}>
               <FormGroup>
                 <Label for="nombre">Nombre</Label>

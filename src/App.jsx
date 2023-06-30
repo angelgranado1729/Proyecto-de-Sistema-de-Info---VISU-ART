@@ -29,7 +29,7 @@ import TourAdmin from "./pages/AdminPages/AdminTours/AdminTours";
 import TourEdit from "./pages/AdminPages/EditTour/EditTour";
 import CreateTour from "./pages/AdminPages/CreateTour/CreateTour";
 import TourEditObras from "./pages/AdminPages/EditTour/EditTourArt";
-
+import TourEditFechas from "./pages/AdminPages/EditTour/EditCalendar";
 
 import {
   ADMIN_CREATE_OBRAS_URL,
@@ -57,6 +57,7 @@ import {
   VISION_URL,
   FORGOT_PASSWORD_URL,
   RESET_PASSWORD_URL,
+  ADMIN_TOURS_CALENDAR_URL
 } from "./constants/urls";
 import "./App.css";
 import { TourContextProvider } from "./contexts/TourContext";
@@ -210,9 +211,18 @@ function App() {
               element={
                 <PrivateRoute>
                   <ArtEdit />
-                </PrivateRoute>
+               </PrivateRoute>
               }
             />
+
+            <Route
+              path={ADMIN_TOURS_CALENDAR_URL}
+              element={
+                <PrivateRoute>
+                  <TourEditFechas/>
+                </PrivateRoute>
+              }
+            />      
 
             <Route
               path={ADMIN_CREATE_OBRAS_URL}
@@ -256,6 +266,7 @@ function App() {
                 <PrivateRoute>
                   <TourEditObras />
                 </PrivateRoute>
+
               }
             />
 
@@ -264,8 +275,10 @@ function App() {
               path={USER_PROFILE_URL}
               element={
                 <PrivateRoute>
+
                   <UserProfilePage />
                 </PrivateRoute>
+
               }
             />
 
@@ -273,8 +286,10 @@ function App() {
               path={USER_PROFILE_EDIT_URL}
               element={
                 <PrivateRoute>
+
                   <EditProfilePage />
                 </PrivateRoute>
+
               }
             />
 

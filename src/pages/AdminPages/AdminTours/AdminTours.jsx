@@ -41,6 +41,10 @@ const TourAdmin = () => {
     navigate(`/admin-tours-edit-art/${Tour.nombre}`, { state: Tour });
   };
 
+  const handleEditarFecha = (Tour) => {
+    navigate(`/admin-tours-calendar/${Tour.nombre}`, { state: Tour });
+  };
+
   const handleCrearTour = () => {
     navigate(`/admin-tour-create`);
   };
@@ -85,10 +89,12 @@ const TourAdmin = () => {
             <tr>
               <th>#</th>
               <th>Nombre</th>
-              <th>Fecha</th>
 
-              <th></th>
-              <th></th>
+              <th>Editar</th>
+              <th>Obras</th>
+              <th>Fechas</th>
+              <th>Borrar</th>
+             
             </tr>
           </thead>
           <tbody>
@@ -99,7 +105,6 @@ const TourAdmin = () => {
        
         <td style={{ width: '20%' }}>{tour.nombre}</td>
 
-        <td style={{ width: '20%' }}>{tour.fecha}</td>
        
 
         <td>
@@ -112,6 +117,14 @@ const TourAdmin = () => {
               ✏️
             </Button>
             
+          
+          </div>
+        </td>
+
+
+        <td>
+          <div style={{ display: 'flex', alignItems: 'center' }}>
+           
             <Button
               style={{ marginRight: "15%" }}
               color="success"
@@ -120,6 +133,29 @@ const TourAdmin = () => {
               🎨
             </Button>
             
+           
+          </div>
+        </td>
+
+
+        <td>
+          <div style={{ display: 'flex', alignItems: 'center' }}>
+      
+           
+            <Button
+              style={{ marginRight: "15%" }}
+              color="secondary"
+              onClick={() => handleEditarFecha(tour)}
+            >
+              📆
+            </Button>
+          </div>
+        </td>
+
+        <td>
+          <div style={{ display: 'flex', alignItems: 'center' }}>
+      
+           
             <Button
               style={{ marginRight: "15%" }}
               color="danger"
@@ -127,12 +163,10 @@ const TourAdmin = () => {
             >
               🗑️
             </Button>
-
-
-            
-
           </div>
         </td>
+
+
       </tr>
     ))}
   </tbody>
