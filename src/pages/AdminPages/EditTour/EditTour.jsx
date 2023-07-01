@@ -96,14 +96,16 @@ const TourEdit = () => {
   return (
     <div className="App">
       <AdminNavbar/>
-      <div className="main-admin" style={{ maxWidth: "60%", margin: "0 auto" }}>
-        <Title title="Editando Tour" />
+      <div style={{ marginLeft: '10%', marginRight: '5%'}}>
+        <br />
+        <br />
+        <Title title="Editar Tour" />
 
         <Row>
           <Col md={6}>
             <Form onSubmit={handleSubmit}>
               <FormGroup>
-                <Label for="nombre">Nombre</Label>
+                <Label style={{ fontWeight: "bold" }}  for="nombre">Nombre</Label>
                 <Input
                   type="text"
                   name="nombre"
@@ -113,17 +115,19 @@ const TourEdit = () => {
                 />
               </FormGroup>
               <FormGroup>
-                <Label for="descripcion">Descripción</Label>
+                <Label style={{ fontWeight: "bold" }}  for="descripcion">Descripción</Label>
                 <Input
                   type="textarea"
                   name="descripcion"
                   id="descripcion"
                   value={tour.descripcion}
                   onChange={handleInputChange}
+                  rows={Math.ceil(tour.descripcion.length / 100)} // El numero 100 es para que el espacio sea la mitad del tamaño del texto
+                  style={{ resize: 'none' }}
                 />
               </FormGroup>
               <FormGroup>
-                <Label for="ubicacion">Ubicación</Label>
+                <Label style={{ fontWeight: "bold" }}  for="ubicacion">Ubicación</Label>
                 <Input
                   type="text"
                   name="ubicacion"
@@ -133,18 +137,20 @@ const TourEdit = () => {
                 />
               </FormGroup>
               <FormGroup>
-                <Label for="resumen">Resumen para tarjeta</Label>
+                <Label style={{ fontWeight: "bold" }}  for="resumen">Resumen para tarjeta</Label>
                 <Input
                   type="textarea"
                   name="resumen"
                   id="resumen"
                   value={tour.resumen}
+                  rows={Math.ceil(tour.resumen.length / 100)} // El numero 100 es para que el espacio sea la mitad del tamaño del texto
+                  style={{ resize: 'none' }}
                   onChange={handleInputChange}
                 />
               </FormGroup>
 
               <FormGroup>
-                <Label for="imagen">Imagen de Portada </Label>
+                <Label style={{ fontWeight: "bold" }} for="imagen">Imagen de Portada </Label>
                 <Input
                   type="file"
                   name="imagen"
@@ -163,6 +169,7 @@ const TourEdit = () => {
             </Form>
           </Col>
           <Col md={6}>
+          <br /> <br /> <br /> <br />          
             {tour.imagen && (
               <img
                 src={tour.imagen}
@@ -173,6 +180,9 @@ const TourEdit = () => {
           </Col>
         </Row>
       </div>
+      <br />
+      <br />
+      <br />
     </div>
   );
 };

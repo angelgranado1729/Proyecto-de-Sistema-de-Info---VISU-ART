@@ -66,7 +66,10 @@ const ArtAdmin = () => {
   return (
     <div className="App">
       <AdminNavbar/>
-      <div className="main-admin">
+      <div style={{ marginLeft: '10%', marginRight: '10%'}}>
+        <br />
+        <br />
+        <br />
         <Title title="Administrador de obras" />
 
         <Button color="success" onClick={() => handleCrearObra()}>
@@ -119,6 +122,9 @@ const ArtAdmin = () => {
           </tbody>
         </Table>
       </div>
+      <br />
+      <br />
+      
     </div>
   );
 };

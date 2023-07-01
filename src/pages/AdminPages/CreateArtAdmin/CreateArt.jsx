@@ -25,7 +25,7 @@ const CreateArt = () => {
     autor: "",
     tecnica: "",
     dimensiones: "",
-    imagen: ""
+    imagen: "https://firebasestorage.googleapis.com/v0/b/visuart-17959.appspot.com/o/LogosVisuArt%2FvisuartBlackLogo.jpg?alt=media&token=f82ed7c0-ed7f-4b6a-bd4f-0e3d4724dd73"
   });
 
   const [imagen, setImagen] = useState(null);
@@ -93,7 +93,9 @@ const CreateArt = () => {
   return (
     <div className="App">
       <AdminNavbar/>
-      <div className="main-admin" style={{ maxWidth: "60%", margin: "0 auto" }}>
+      <div style={{ marginLeft: "10%", marginRight: "5%" }}>
+        <br />
+        <br />
         <Title title="Administrar obras" />
         
         <Row>
@@ -111,7 +113,7 @@ const CreateArt = () => {
 
             <Form onSubmit={handleSubmit}>
               <FormGroup>
-                <Label for="nombre">Nombre</Label>
+                <Label style={{ fontWeight: "bold" }}  for="nombre">Nombre</Label>
                 <Input
                   type="text"
                   name="nombre"
@@ -121,7 +123,7 @@ const CreateArt = () => {
                 />
               </FormGroup>
               <FormGroup>
-                <Label for="ubicacion">Ubicación</Label>
+                <Label style={{ fontWeight: "bold" }}  for="ubicacion">Ubicación</Label>
                 <Input
                   type="text"
                   name="ubicacion"
@@ -131,7 +133,7 @@ const CreateArt = () => {
                 />
               </FormGroup>
               <FormGroup>
-                <Label for="año">Año</Label>
+                <Label style={{ fontWeight: "bold" }}  for="año">Año</Label>
                 <Input
                   type="text"
                   name="año"
@@ -141,7 +143,7 @@ const CreateArt = () => {
                 />
               </FormGroup>
               <FormGroup>
-                <Label for="autor">Autor</Label>
+                <Label style={{ fontWeight: "bold" }} for="autor">Autor</Label>
                 <Input
                   type="text"
                   name="autor"
@@ -151,7 +153,7 @@ const CreateArt = () => {
                 />
               </FormGroup>
               <FormGroup>
-                <Label for="tecnica">Técnica</Label>
+                <Label style={{ fontWeight: "bold" }}  for="tecnica">Técnica</Label>
                 <Input
                   type="text"
                   name="tecnica"
@@ -161,7 +163,7 @@ const CreateArt = () => {
                 />
               </FormGroup>
               <FormGroup>
-                <Label for="dimensiones">Dimensiones</Label>
+                <Label style={{ fontWeight: "bold" }}  for="dimensiones">Dimensiones</Label>
                 <Input
                   type="text"
                   name="dimensiones"
@@ -171,7 +173,7 @@ const CreateArt = () => {
                 />
               </FormGroup>
               <FormGroup>
-                <Label for="imagen">Imagen</Label>
+                <Label style={{ fontWeight: "bold" }}  for="imagen">Imagen</Label>
                 <Input
                   type="file"
                   name="imagen"
@@ -189,16 +191,20 @@ const CreateArt = () => {
             </Form>
           </Col>
           <Col md={6}>
+          <br /> <br /> <br /> <br />
             {obra.imagen && (
               <img
                 src={obra.imagen}
                 alt="Imagen actual"
-                style={{ maxWidth: "55%" }}
+                style={{ maxWidth: "70%", marginTop: "20px" }}
               />
             )}
           </Col>
         </Row>
       </div>
+      <br />
+      <br />
+      <br />
     </div>
   );
 };

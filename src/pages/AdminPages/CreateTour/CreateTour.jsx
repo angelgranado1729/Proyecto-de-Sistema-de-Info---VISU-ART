@@ -1,17 +1,13 @@
-//Página  Crear Tour Admin
-// En esta página, el administrador podrá crear un tour nuevo. 
-
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { collection, addDoc } from "firebase/firestore";
 import { getStorage, ref, uploadBytes, getDownloadURL } from "firebase/storage";
 import { app, auth, db } from "../../../firebase/firebase-config";
 import "bootstrap/dist/css/bootstrap.css";
-import { Button, Form, FormGroup, Label, Input, Col, Row, Toast, ToastBody, ToastHeader } from "reactstrap";
+import { Button, Form, FormGroup, Label, Input, Col, Row, Toast,} from "reactstrap";
 import Title from "../../../components/Title/Title";
 import AdminNavbar from "../../../components/AdminNavbar/AdminNavbar";
 import { CustomToast } from "../../../components/CustomToast/CustomToast";
-import { faL } from "@fortawesome/free-solid-svg-icons";
 
 const storage = getStorage();
 
@@ -23,7 +19,7 @@ const CreateTour = () => {
     ubicacion: "",
     descripcion: "",
     fecha: "",
-    imagen: "",
+    imagen: "https://firebasestorage.googleapis.com/v0/b/visuart-17959.appspot.com/o/LogosVisuArt%2FvisuartBlackLogo.jpg?alt=media&token=f82ed7c0-ed7f-4b6a-bd4f-0e3d4724dd73",
     obras: [],
     resumen: "",
   });
@@ -39,7 +35,6 @@ const CreateTour = () => {
   const handleImageUpload = (e) => {
     const file = e.target.files[0];
     const storageRef = ref(storage, `images/${file.name}`);
-    
 
     uploadBytes(storageRef, file).then((snapshot) => {
       getDownloadURL(snapshot.ref).then((url) => {
@@ -51,13 +46,12 @@ const CreateTour = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    
+
     // Validar campos vacíos
     if (
       !tour.nombre ||
       !tour.ubicacion ||
       !tour.descripcion ||
-
       !tour.resumen ||
       !tour.imagen
     ) {
@@ -89,21 +83,25 @@ const CreateTour = () => {
   return (
     <div className="App">
       <AdminNavbar />
-      <div className="main-admin" style={{ maxWidth: "60%", margin: "0 auto" }}>
-        <Title title="Administrar tours" />
+      <div style={{ marginLeft: "10%", marginRight: "10%" }}>
+        <br />
+        <br />
+        <Title title="Agregar Tour" />
         <Row>
-          <Col md={8}>
+          <Col md={6}>
             <Toast isOpen={showToast} onClose={() => setShowToast(false)}>
-            <CustomToast
-                            typeToast="error"
-                            title="¡Error!"
-                            message="Ingreso los datos incorrectamente"
-                            time={5000}
-                        />
+              <CustomToast
+                typeToast="error"
+                title="¡Error!"
+                message="Ingresó los datos incorrectamente"
+                time={5000}
+              />
             </Toast>
             <Form onSubmit={handleSubmit}>
               <FormGroup>
-                <Label for="nombre">Nombre</Label>
+                <Label style={{ fontWeight: "bold" }} for="nombre">
+                  Nombre
+                </Label>
                 <Input
                   type="text"
                   name="nombre"
@@ -113,7 +111,9 @@ const CreateTour = () => {
                 />
               </FormGroup>
               <FormGroup>
-                <Label for="ubicacion">Ubicación</Label>
+                <Label style={{ fontWeight: "bold" }} for="ubicacion">
+                  Ubicación
+                </Label>
                 <Input
                   type="text"
                   name="ubicacion"
@@ -123,7 +123,9 @@ const CreateTour = () => {
                 />
               </FormGroup>
               <FormGroup>
-                <Label for="descripcion">Descripción</Label>
+                <Label style={{ fontWeight: "bold" }} for="descripcion">
+                  Descripción
+                </Label>
                 <Input
                   type="text"
                   name="descripcion"
@@ -132,9 +134,10 @@ const CreateTour = () => {
                   onChange={handleInputChange}
                 />
               </FormGroup>
-              
               <FormGroup>
-                <Label for="resumen">Resumen para tarjeta</Label>
+                <Label style={{ fontWeight: "bold" }} for="resumen">
+                  Resumen para tarjeta
+                </Label>
                 <Input
                   type="textarea"
                   name="resumen"
@@ -144,7 +147,9 @@ const CreateTour = () => {
                 />
               </FormGroup>
               <FormGroup>
-                <Label for="imagen">Imagen</Label>
+                <Label style={{ fontWeight: "bold" }} for="imagen">
+                  Imagen
+                </Label>
                 <Input
                   type="file"
                   name="imagen"
@@ -153,7 +158,11 @@ const CreateTour = () => {
                 />
               </FormGroup>
 
-              <Button color="primary" type="submit" style={{ marginRight: "5px" }}>
+              <Button
+                color="primary"
+                type="submit"
+                style={{ marginRight: "5px" }}
+              >
                 Guardar
               </Button>
               <Button color="dark" style={{ marginLeft: "5px" }} onClick={handleGoBack}>
@@ -161,11 +170,23 @@ const CreateTour = () => {
               </Button>
             </Form>
           </Col>
-          <Col md={4}></Col>
+          <Col md={6}>
+          <br /> <br /> <br /> <br />
+            {tour.imagen && (
+              <img
+                src={tour.imagen}
+                alt="Imagen actual"
+                style={{ maxWidth: "70%", marginTop: "20px" }}
+              />
+            )}
+          </Col>
         </Row>
+        <br />
+        <br />
       </div>
     </div>
   );
 };
 
 export default CreateTour;
+

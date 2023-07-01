@@ -100,8 +100,9 @@ const TourEditObras = () => {
   return (
     <div className="App">
       <AdminNavbar/>
-      <div className="main-admin" style={{ width: "60%" }}>
-       
+      <div style={{ marginLeft: '10%', marginRight: '10%'}}>
+        <br></br>
+        <br></br>
         <Title title={`Obras incluidas - ${tour.nombre}`}  />
 
         <Button color="dark" style={{ marginRight: '7px' }} onClick={handleGoBack}>
@@ -113,45 +114,47 @@ const TourEditObras = () => {
         <br></br>
 
         {obrasAgregadas.length > 0 ? (
-  <Table >
-    <thead>
-      <tr>
-        <th>#</th>
-        <th>Nombre</th>
-
-        <th>Ubicacion</th>
-        <th></th>
-      </tr>
-    </thead>
-    <tbody>
-      {obrasAgregadas.map((obra, index) => (
-        <tr key={index}>
-          <td style={{ width: "10%" }}>{index + 1}</td>
-          <td style={{ width: "40%" }}>{obra.nombre}</td>
-
-          <td style={{ width: "30%" }}>{obra.ubicacion}</td>
-          <td>
-            <div style={{ display: "flex", alignItems: "center" }}>
-              <Button
-
-                color="danger"
-                onClick={() => handleDelete(obra.nombre)}
-              >
-                Eliminar
-              </Button>
-            </div>
-          </td>
-        </tr>
-      ))}
-    </tbody>
-  </Table>
-) : (
-  <p>No hay obras agregadas.</p>
-)}
-
-        <Title title={`Obras no incluidas - ${tour.nombre}`} />
-
         <Table >
+          <thead>
+            <tr>
+              <th>#</th>
+              <th>Nombre</th>
+
+              <th>Ubicacion</th>
+              <th></th>
+            </tr>
+          </thead>
+          <tbody>
+            {obrasAgregadas.map((obra, index) => (
+              <tr key={index}>
+                <td style={{ width: "10%" }}>{index + 1}</td>
+                <td style={{ width: "40%" }}>{obra.nombre}</td>
+
+                <td style={{ width: "30%" }}>{obra.ubicacion}</td>
+                <td>
+                  <div style={{ display: "flex", alignItems: "center" }}>
+                    <Button
+
+                      color="danger"
+                      onClick={() => handleDelete(obra.nombre)}
+                    >
+                      Eliminar
+                    </Button>
+                  </div>
+                </td>
+              </tr>
+            ))}
+          </tbody>
+        </Table>
+      ) : (
+        <p>No hay obras agregadas.</p>
+      )}
+    </div>
+    <div style={{ marginLeft: '10%', marginRight: '10%'}}>
+      <br></br>
+      <br></br>
+      <Title title={`Obras no incluidas - ${tour.nombre}`} />
+      <Table >
           <thead>
             <tr>
               <th>#</th>
@@ -166,8 +169,7 @@ const TourEditObras = () => {
               <tr key={index}>
                 <td style={{ width: "10%" }}>{index + 1}</td>
                 <td style={{ width: "40%" }}>{obra.nombre}</td>
-
-          <td style={{ width: "30%" }}>{obra.ubicacion}</td>
+               <td style={{ width: "30%" }}>{obra.ubicacion}</td>
                 <td>
                   <div style={{ display: "flex", alignItems: "center" }}>
                     <Button
@@ -182,7 +184,7 @@ const TourEditObras = () => {
               </tr>
             ))}
           </tbody>
-        </Table>
+        </Table >
       </div>
     </div>
   );

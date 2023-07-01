@@ -75,15 +75,16 @@ const TourAdmin = () => {
   return (
     <div className="App">
       <AdminNavbar/>
-      <div className="main-admin">
+      <div style={{ marginLeft: '10%', marginRight: '10%'}}>
+        <br /><br />
         <Title title="Administrador de Tours" />
 
-        <Button color="success" onClick={() => handleCrearTour()}>
+        <Button color="success" style={{ float: 'left' }} onClick={() => handleCrearTour()}>
           Agregar nuevo Tour
         </Button>{" "}
+        <br /> 
         <br />
-        <br />
-
+        
         <Table>
           <thead>
             <tr>
@@ -108,11 +109,10 @@ const TourAdmin = () => {
        
 
         <td>
-          <div style={{ display: 'flex', alignItems: 'center' }}>
+          <div>
             <Button
               color="primary"
               onClick={() => handleEditarTour(tour)}
-              style={{ marginRight: "15%" }}
             >
               ✏️
             </Button>
@@ -123,10 +123,9 @@ const TourAdmin = () => {
 
 
         <td>
-          <div style={{ display: 'flex', alignItems: 'center' }}>
+          <div>
            
             <Button
-              style={{ marginRight: "15%" }}
               color="success"
               onClick={() => handleEditarTourObra(tour)}
             >
@@ -139,11 +138,10 @@ const TourAdmin = () => {
 
 
         <td>
-          <div style={{ display: 'flex', alignItems: 'center' }}>
+          <div>
       
            
             <Button
-              style={{ marginRight: "15%" }}
               color="secondary"
               onClick={() => handleEditarFecha(tour)}
             >
@@ -153,11 +151,10 @@ const TourAdmin = () => {
         </td>
 
         <td>
-          <div style={{ display: 'flex', alignItems: 'center' }}>
+          <div>
       
            
             <Button
-              style={{ marginRight: "15%" }}
               color="danger"
               onClick={() => handleDelete(tour.nombre)}
             >

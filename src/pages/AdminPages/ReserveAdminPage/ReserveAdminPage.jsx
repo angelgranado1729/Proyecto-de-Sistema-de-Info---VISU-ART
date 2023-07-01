@@ -66,7 +66,9 @@ const ReserveAdminPage = () => {
   return (
     <div className="App">
       <AdminNavbar />
-      <div className="main-admin" style={{ width: "60%" }}>
+      <div style={{ marginLeft: "10%", marginRight: "10%" }}>
+        <br />
+        <br />
         <Title title="Gestor de Reservas" />
         <Table>
           <thead>

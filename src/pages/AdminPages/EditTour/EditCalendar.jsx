@@ -8,7 +8,8 @@ import { doc, updateDoc, getDocs, collection, query, where } from "firebase/fire
 import { db } from "../../../firebase/firebase-config";
 import AdminNavbar from "../../../components/AdminNavbar/AdminNavbar";
 import Title from "../../../components/Title/Title";
-import { DatePicker } from 'reactstrap-date-picker'
+import { DatePicker } from 'reactstrap-date-picker';
+import "./EditCalendar.css";
 
 const formatDate = (date) => {
   const options = { day: '2-digit', month: '2-digit', year: 'numeric' };
@@ -83,11 +84,14 @@ const TourEditFechas = () => {
   return (
     <div className="App">
       <AdminNavbar />
-      <div className="main-admin" style={{ width: "60%" }}>
+      <div style={{ marginLeft: '10%', marginRight: '10%'}}>
+      <br />
+      <br />
+      <br />
         <Title title={`Gestor de Calendario: ${tour.nombre}`} />
 
         <FormGroup>
-          <Label for="nuevaFecha">Nueva Fecha</Label>
+          <Label className="subtitles-calendar" for="nuevaFecha"> Nueva Fecha</Label>
           <DatePicker
             id="nuevaFecha"
             value={nuevaFecha}
@@ -103,7 +107,9 @@ const TourEditFechas = () => {
         >
           Agregar Fecha
         </Button>
-
+        <br />
+        <br />
+        <Label className="subtitles-calendar" for="viejaFecha"> FECHAS AGREGADAS </Label>
         {fechas.length > 0 ? (
           <Table>
             <thead>
@@ -136,7 +142,7 @@ const TourEditFechas = () => {
           <p>No hay fechas agregadas.</p>
         )}
 
-        <Button color="primary" onClick={handleGoBack}>
+        <Button color="dark" onClick={handleGoBack}>
           Volver
         </Button>
       </div>
@@ -145,3 +151,7 @@ const TourEditFechas = () => {
 };
 
 export default TourEditFechas;
+
+
+
+
