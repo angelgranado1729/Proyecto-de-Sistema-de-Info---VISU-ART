@@ -9,6 +9,8 @@ import Title from "../../../components/Title/Title";
 import 'bootstrap/dist/css/bootstrap.css';
 import { Table, Button} from "reactstrap";
 import AdminNavbar from "../../../components/AdminNavbar/AdminNavbar";
+import "./AdminTours.css";
+
 
 const TourAdmin = () => {
   const [Tours, setTours] = useState([]);
@@ -82,10 +84,9 @@ const TourAdmin = () => {
         <Button color="success" style={{ float: 'left' }} onClick={() => handleCrearTour()}>
           Agregar nuevo Tour
         </Button>{" "}
-        <br /> 
-        <br />
+        <br /> <br /> <br />
         
-        <Table>
+        <Table className="shadow-table">
           <thead>
             <tr>
               <th>#</th>

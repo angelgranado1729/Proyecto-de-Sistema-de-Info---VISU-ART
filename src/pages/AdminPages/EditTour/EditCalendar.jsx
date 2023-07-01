@@ -111,7 +111,7 @@ const TourEditFechas = () => {
         <br />
         <Label className="subtitles-calendar" for="viejaFecha"> FECHAS AGREGADAS </Label>
         {fechas.length > 0 ? (
-          <Table>
+          <Table className="shadow-table">
             <thead>
               <tr>
                 <th>#</th>

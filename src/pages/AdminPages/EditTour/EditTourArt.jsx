@@ -14,6 +14,7 @@ import Title from "../../../components/Title/Title";
 import "bootstrap/dist/css/bootstrap.css";
 import { Table, Button, Popover, PopoverBody } from "reactstrap";
 import AdminNavbar from "../../../components/AdminNavbar/AdminNavbar";
+import "./EditCalendar.css";
 
 const TourEditObras = () => {
   const [tour, setTour] = useState(null);
@@ -112,7 +113,7 @@ const TourEditObras = () => {
 
         <div className="table-responsive">
           {obrasAgregadas.length > 0 ? (
-            <Table>
+            <Table className="shadow-table">
               <thead>
                 <tr>
                   <th>#</th>
@@ -156,7 +157,7 @@ const TourEditObras = () => {
         <Title title={`Obras no incluidas - ${tour.nombre}`} />
 
         <div className="table-responsive">
-          <Table>
+          <Table className="shadow-table">
             <thead>
               <tr>
                 <th>#</th>
