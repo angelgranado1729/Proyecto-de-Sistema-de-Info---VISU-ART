@@ -1,9 +1,6 @@
-//Página  Gestionar reservas Admin 
-// En esta página, el administrador podrá visualizar y eliminar las reservas registradas.
-
 import React, { useState, useEffect } from "react";
 import { app, auth, db, storage } from "../../../firebase/firebase-config";
-import { getDocs, query, collection, where } from "firebase/firestore";
+import { getDocs, query, collection, where, doc, deleteDoc } from "firebase/firestore";
 import Title from "../../../components/Title/Title";
 import "./ReserveAdminPage.css";
 import { Table } from "reactstrap";
@@ -63,6 +60,20 @@ const ReserveAdminPage = () => {
     fetchReservations();
   }, []);
 
+  const deleteReservation = async (reservationId) => {
+    const confirmed = window.confirm("¿Estás seguro de eliminar esta reserva?");
+    if (confirmed) {
+      try {
+        // Eliminar la reserva de Firebase Firestore
+        await deleteDoc(doc(db, "Reservas", reservationId));
+        // Actualizar el estado de las reservas eliminando la reserva eliminada
+        setReservations(reservations.filter(reservation => reservation.id !== reservationId));
+      } catch (error) {
+        console.error("Error al eliminar la reserva", error);
+      }
+    }
+  };
+
   return (
     <div className="App">
       <AdminNavbar />
@@ -77,6 +88,7 @@ const ReserveAdminPage = () => {
               <th>Usuario</th>
               <th>Tour</th>
               <th>Fecha</th>
+              <th>Acciones</th>
             </tr>
           </thead>
           <tbody>
@@ -86,11 +98,18 @@ const ReserveAdminPage = () => {
                 <td>{users[reservation.user_id]}</td>
                 <td>{tours[reservation.tour_id]}</td>
                 <td>{reservation.fecha}</td>
+                <td>
+                  <Button color="danger" onClick={() => deleteReservation(reservation.id)}>
+                    Eliminar
+                  </Button>
+                </td>
               </tr>
             ))}
           </tbody>
         </Table>
       </div>
+      <br />
+      <br />
     </div>
   );
 };

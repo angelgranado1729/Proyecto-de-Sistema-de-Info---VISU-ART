@@ -169,6 +169,8 @@ const TourAdmin = () => {
   </tbody>
         </Table>
       </div>
+      <br />
+      <br />
     </div>
   );
 };

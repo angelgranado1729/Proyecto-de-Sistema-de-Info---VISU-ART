@@ -178,10 +178,10 @@ const ArtEdit = () => {
                 />
               </FormGroup>
               <br />
-              <Button color="primary" type="submit" style={{ marginRight: '5px' }}>
+              <Button color="primary" type="submit">
                 Guardar
               </Button>
-              <Button color="dark" style={{ marginLeft: '5px' }} onClick={handleGoBack}>
+              <Button color="dark"  onClick={handleGoBack}>
                 Volver
               </Button>
             </Form>
