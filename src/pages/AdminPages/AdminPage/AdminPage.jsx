@@ -26,14 +26,14 @@ const handlereserve = () => {
 };
 
   return (
-    <div>
+    <div style={{ background: '#fff9ec'}}>
       <AdminNavbar />
-      <div style={{ marginLeft: '10%', marginRight: '10%', marginBottom: '5%'}}>
+      <div style={{ marginLeft: '10%', marginRight: '10%', marginBottom: '5%', background: '#fff9ec' }}>
         <br /> <br /> <br />
         <Title title="Bienvenido Administrador" />
 
         <CardGroup>
-          <Card
+          <Card className="shadow-block"
             body
             inverse
             style={{
@@ -52,7 +52,7 @@ const handlereserve = () => {
             <Button onClick={() => handleTour()} >Ir a Gestor de Tours  </Button>
           </Card>
 
-          <Card
+          <Card className="shadow-block"
             body
             inverse
             style={{
@@ -66,12 +66,12 @@ const handlereserve = () => {
             <CardTitle className="tour-title"> Gestor de Obras </CardTitle>
             <CardText>
               <hr /> 🎨
-              Aquí usted podrá agregar una nueva obra, editar  su información o incluso eliminar alguna obra en caso de requerirlo.
+              En este módulo usted podrá agregar una nueva obra, editar  su información o incluso eliminar alguna obra en caso de requerirlo.
             </CardText>
             <Button onClick={() => handleobras()}> Ir a Gestor de Obras </Button>
           </Card>
 
-          <Card
+          <Card className="shadow-block"
             body
             inverse
             style={{
@@ -85,7 +85,7 @@ const handlereserve = () => {
             <CardTitle className="tour-title"> Gestor de Reservas </CardTitle>
             <CardText>
             <hr /> ☎️
-              Aquí usted podrá visualizar todas  las reservas de los usuarios e incluso cancelar una reserva de ser necesario. 
+            En este módulousted podrá visualizar todas  las reservas de los usuarios e incluso cancelar una reserva de ser necesario. 
             </CardText>
             <Button onClick={() => handlereserve()}> Ir a Gestor de Reservas  </Button>
           </Card>
