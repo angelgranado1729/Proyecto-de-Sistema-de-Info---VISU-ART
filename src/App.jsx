@@ -30,6 +30,7 @@ import TourEdit from "./pages/AdminPages/EditTour/EditTour";
 import CreateTour from "./pages/AdminPages/CreateTour/CreateTour";
 import TourEditObras from "./pages/AdminPages/EditTour/EditTourArt";
 import TourEditFechas from "./pages/AdminPages/EditTour/EditCalendar";
+import AdminPageContact from "./pages/AdminPages/AdminPage/AdminContact";
 
 import {
   ADMIN_CREATE_OBRAS_URL,
@@ -57,7 +58,8 @@ import {
   VISION_URL,
   FORGOT_PASSWORD_URL,
   RESET_PASSWORD_URL,
-  ADMIN_TOURS_CALENDAR_URL
+  ADMIN_TOURS_CALENDAR_URL,
+  ADMIN_URL_CONTACT
 } from "./constants/urls";
 import "./App.css";
 import { TourContextProvider } from "./contexts/TourContext";
@@ -183,7 +185,17 @@ function App() {
                   <AdminPage />
                 </PrivateRoute>
               }
+            />  
+
+<Route
+              path={ADMIN_URL_CONTACT}
+              element={
+                <PrivateRoute>
+                  <AdminPageContact />
+                </PrivateRoute>
+              }
             />
+
 
 
 

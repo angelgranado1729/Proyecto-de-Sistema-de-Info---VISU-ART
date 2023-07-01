@@ -1,4 +1,4 @@
-import {ADMIN_OBRAS_URL,ADMIN_TOURS_URL,ADMIN_RESERVE_URL,LOGIN_URL,CONTACT_URL,REGISTER_URL,ADMIN_URL,USER_PROFILE_URL } from "../../constants/urls";
+import {ADMIN_OBRAS_URL,ADMIN_TOURS_URL,ADMIN_RESERVE_URL,LOGIN_URL,ADMIN_URL,ADMIN_URL_CONTACT } from "../../constants/urls";
 
 export const MenuData = [
 
@@ -25,12 +25,13 @@ export const MenuData = [
         url: ADMIN_RESERVE_URL,
         cName: "admin_navbar-links"
     },
-    
+
     {
-        title: "Perfil",
-        url: USER_PROFILE_URL,
-        cName: "admin_navbar-links-mobile"
+        title: "Comentario",
+        url: ADMIN_URL_CONTACT,
+        cName: "admin_navbar-links"
     },
+    
     {
         title: "Salir",
         url: LOGIN_URL,

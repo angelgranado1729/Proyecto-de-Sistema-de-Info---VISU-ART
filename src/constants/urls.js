@@ -19,6 +19,7 @@ export const RESERVE_URL = "/reserve";
 
 
 export const ADMIN_URL = "/admin";
+export const ADMIN_URL_CONTACT = "/admin-contact"
 export const ADMIN_RESERVE_URL = "/admin-reserve";
 export const ADMIN_OBRAS_URL = "/adminobras";
 export const ADMIN_EDIT_OBRAS_URL = "/admin-edit/:nombre";
