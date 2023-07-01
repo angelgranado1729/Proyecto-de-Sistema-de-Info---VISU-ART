@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React, { useContext, useEffect } from "react";
 import styles from "./DropdownTour.module.css";
 import { TourContext, useTour } from "../../contexts/TourContext";
 import { UserContext } from "../../contexts/UserContext";
@@ -7,6 +7,7 @@ const DropdownTour = ({tours}) => {
     /*Se toman los datos del context de tour (reserva)*/
     const { tour, tourId, changeId, changeTour } = useContext(TourContext);
     const { user } =  useContext(UserContext);
+    console.log(user)
 
     /***Esta funcion se encarga de actualizar el componente para indicar la seleccion del tour
      * y para cambiar el context indicando el proceso actual de la reserva, estos corresponderan
@@ -19,8 +20,17 @@ const DropdownTour = ({tours}) => {
             id: tourIdentificator,
         }
         changeId(tempId)
-        changeTour(tourItem, tourIdentificator, '', user.id)
+        changeTour(tourItem, tourIdentificator, null, user.id)
     }
+
+    function resetTourForm(){
+        if (!tour) {
+            const selfID = document.getElementById("toursDrop")
+            selfID.innerHTML = 'Seleccionar tour:';
+        }
+    }
+
+    useEffect(() => {resetTourForm()}, [tourId])
 
     /***El componente creara tantas etiquetas a como tours existan en la base de datos
      * no se supone que haya 0 tours, pero en tal caso si algo como eso sucede, F por ahora

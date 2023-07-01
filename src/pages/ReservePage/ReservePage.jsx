@@ -8,14 +8,18 @@ import { TourContext, useTour } from '../../contexts/TourContext'
 import { useTourList } from '../../hooks/useTourList'
 import DropdownTour from '../../components/DropdownTour/DropdownTour'
 import DropdownDates from '../../components/DropdownDates/DropdownDates'
+import { useUserContext } from '../../contexts/UserContext'
+import { createReserve } from '../../firebase/reservaciones'
 
 function ReservePage() {
-  const { tourList, listLoading, getTourList } = useTourList();
+  const { tourList, listLoading, getTourList, } = useTourList();
   const { tour, tourId, changeId, changeTour, resetTour} = useContext(TourContext);
+  const {user} = useUserContext();
 
     useEffect( () => {
         //Fetch de lista de tours
         getTourList();
+        resetTour();
     }, [])
 
 /***
@@ -28,6 +32,32 @@ function ReservePage() {
  * fechas que tiene dicho tour, al salir de la pagina se debera reiniciar el context de tours (reserva) a menos que 
  * la vista sea el siguiente paso de la reserva. El usuario no debe poder ir al siguiente paso si no ha seleccionado una fecha.
  */
+
+    function finishReserve(){
+        const reserveItem = {
+            fecha: tour.chosenFecha,
+            tour_id: tourId.id,
+            user_id: user.id 
+        }
+        createReserve(reserveItem)
+    }
+
+    function reserveCheck(){
+        if (tour) {
+
+            if (tour.chosenFecha) {
+                finishReserve();
+
+                resetTour();
+            } else {
+                alert('Por favor seleccione una fecha antes de continuar')
+            }
+
+        } else{
+            alert('Por favor seleccione un tour antes de continuar')
+        }
+    }
+
   return (
     <div className="App">
         <header className="back-header">
@@ -60,7 +90,7 @@ function ReservePage() {
         <section className={styles.buttonArea}>
             <button className={styles.bluebtn}>Ver Calendario</button>
             <button className={styles.bluebtn}>Ver otros tours</button>
-            <button className={styles.orangebtn}>Siguiente</button>
+            <button className={styles.orangebtn} onClick={() => {reserveCheck()}}>Siguiente</button>
         </section>
 
     </div>
