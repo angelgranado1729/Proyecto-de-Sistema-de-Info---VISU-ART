@@ -61,6 +61,36 @@
   height: 575px 
 }
 
+.decorationTop {
+  position: absolute;
+  width: 140px;
+  height: 130px;
+  background: linear-gradient(
+    152.49deg,
+    #f27f0c -11.42%,
+    rgba(242, 127, 12, 0) 118.1%
+  );
+  border-radius: 30px 60px 12px;
+  z-index: 0;
+  top: 45px;
+  left: 0px;
+}
+
+.decorationBottom {
+  position: absolute;
+  width: 140px;
+  height: 130px;
+  background: linear-gradient(
+    218.41deg,
+    rgba(242, 127, 12, 0.57) 50.04%,
+    rgba(247, 173, 25, 0) 93.35%
+  );
+  border-radius: 55px 15px 50px;
+  z-index: -1;
+  bottom: 25px;
+  right: 0px;
+}
+
 /*Responsive Web design*/
 @media (max-width: 48em) {
   .calendar-box {

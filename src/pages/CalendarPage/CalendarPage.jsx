@@ -6,9 +6,9 @@ import { db } from '../../firebase/firebase-config';
 import 'react-big-calendar/lib/css/react-big-calendar.css';
 import "./CalendarPage.css";
 import Subtitle from "../../components/Subtitle/Subtitle";
-import { CardSubtitle } from 'reactstrap';
 import { HOME_URL  } from "../../constants/urls";
 import { Link } from "react-router-dom";
+
 const localizer = momentLocalizer(moment);
 // ]hacer el calendario mas grande y averiguar si se pueden vincular los eventos a las paginas de resevras de tour 
 
@@ -39,6 +39,7 @@ const Calendario = () => {
 
   return (
     <div className="App">
+            <div className = "decorationTop"></div>
       <div className="calendar-section">
       <header className="back-header top-editprofile">
           <Link to={HOME_URL}>
@@ -68,11 +69,14 @@ const Calendario = () => {
             <p>Todavía no estás seguro?</p>
             <button className="blue-btn">Revisar Tours</button>
           </div>
+          <div className = "decorationBottom"></div>
         </div>
       </div>
       </div>
       </div>
+      <div className = "decorationBottom"></div>
     </div>
+    
   );
 };
 
