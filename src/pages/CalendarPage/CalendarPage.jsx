@@ -9,6 +9,7 @@ import Subtitle from "../../components/Subtitle/Subtitle";
 import { CardSubtitle } from 'reactstrap';
 
 const localizer = momentLocalizer(moment);
+// ]hacer el calendario mas grande y averiguar si se pueden vincular los eventos a las paginas de resevras de tour 
 
 const Calendario = () => {
   const [events, setEvents] = useState([]);
