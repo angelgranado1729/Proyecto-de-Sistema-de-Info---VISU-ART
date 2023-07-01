@@ -5,11 +5,7 @@ import  { useState } from 'react';
 import { useUserContext } from "../../../contexts/UserContext";
 import Subtitle from "../../../components/Subtitle/Subtitle";
 import "./UserProfilePage.css"
-import {
-    ArrowLeft,
-
-} from "react-bootstrap-icons";
-import { HOME_URL } from "../../../constants/urls";
+import { HOME_URL , USER_PROFILE_EDIT_URL } from "../../../constants/urls";
 import { Link } from "react-router-dom";
 
 
@@ -67,7 +63,9 @@ const UserProfilePage = () => {
                 {/* Agregar mas inputs segun lo que podamos anadir en firebase */}
               </div>
             </div>
-            <button className="editprofile-btn">Editar perfil</button>
+            <Link to={USER_PROFILE_EDIT_URL}>
+              <button className="editprofile-btn">Editar perfil</button>
+            </Link>
           </div>
         </div>
       </div>

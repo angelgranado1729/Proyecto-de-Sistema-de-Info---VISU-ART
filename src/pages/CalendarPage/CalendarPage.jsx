@@ -7,7 +7,8 @@ import 'react-big-calendar/lib/css/react-big-calendar.css';
 import "./CalendarPage.css";
 import Subtitle from "../../components/Subtitle/Subtitle";
 import { CardSubtitle } from 'reactstrap';
-
+import { HOME_URL  } from "../../constants/urls";
+import { Link } from "react-router-dom";
 const localizer = momentLocalizer(moment);
 // ]hacer el calendario mas grande y averiguar si se pueden vincular los eventos a las paginas de resevras de tour 
 
@@ -39,10 +40,17 @@ const Calendario = () => {
   return (
     <div className="App">
       <div className="calendar-section">
-      <header className="back-header">
-        <i className="fa-solid fa-arrow-left"></i>
-      </header>
+      <header className="back-header top-editprofile">
+          <Link to={HOME_URL}>
+            <i className="fa-solid fa-arrow-left"></i>
+          </Link>
+          <img
+            src="https://firebasestorage.googleapis.com/v0/b/visuart-17959.appspot.com/o/LogosVisuArt%2FvisuartGrayLogo.png?alt=media&token=bbebf007-b27c-47dc-a494-5b31663b7a39"
+            alt=""
+          />
+        </header>
       <Subtitle subtitle="Calendario de eventos" />
+      <div className='fondo-detras-calendario'>
       <div className="calendar-container">
         <Calendar
           localizer={localizer}
@@ -61,6 +69,7 @@ const Calendario = () => {
             <button className="blue-btn">Revisar Tours</button>
           </div>
         </div>
+      </div>
       </div>
       </div>
     </div>
