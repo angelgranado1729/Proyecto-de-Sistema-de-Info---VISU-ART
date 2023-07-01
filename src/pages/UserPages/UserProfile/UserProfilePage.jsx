@@ -1,88 +1,64 @@
-// //import  { useState } from 'react';
-// import { useUserContext } from "../../../contexts/UserContext";
-// //import { updateUser } from "../../../firebase/users";
-// import Subtitle from "../../../components/Subtitle/Subtitle";
-// import styles from "./UserProfilePage.css"
-// import { Link } from "react-router-dom";
-
-// const UserProfilePage = () => {
-//     const { user } = useUserContext();
-
-//     return (
-//         <div className={styles.AppV2}>
-//             <header className={styles.backHeader}>
-//                 <i className={styles.faSolidFaArrowLeft}></i>
-//                 <img src="public/images/logos/visuartBlueLogo.jpg" alt="" />
-//             </header>
-//             <div className={styles.profileContainer}>
-//                 <div className={styles.decorationUpContainer}></div>
-//                 <div className={styles.decorationDownContainer}></div>
-//                 <div className={styles.profileImg}></div>
-//                 <i className={styles.faSolidFaPenToSquare}></i>
-//                 <Subtitle subtitle="Tus datos:" />
-//                 <div className={styles.inputContainer}>
-//                     <div className={styles.column}>
-//                         <div className={styles.input}>
-//                             <label>Nombre</label>
-//                             <input type="text" value={user.name} readOnly />
-//                         </div>
-//                         <div className={styles.input}>
-//                             <label>Correo</label>
-//                             <input type="text" value={user.email} readOnly />
-//                         </div>
-//                         {/*Agregar mas inputs segun lo que podamos anadir en firebase */}
-//                     </div>
-//                 </div>
-//                 <Link to="/user-profile-edit">
-//                     <button className={styles.blueBtn}>Editar Perfil</button>
-//                 </Link>
-//             </div>
-//         </div>
-//     )
-// }
-
-// export default UserProfilePage
-
-
-
-import Subtitle from "../../../components/Subtitle/Subtitle";
+//el codigo de arriba es el codigo de beatriz viejo. 
+//si hay que añadir mas campos se debe agregar un estado para cada campo, un input para que el usuario pueda editar el valor
+//, y luego incluye el valor en el objeto que se pasa a "updateUser"
+import  { useState } from 'react';
 import { useUserContext } from "../../../contexts/UserContext";
-import { Link } from 'react-router-dom';
-import './UserProfilePage.css';
+import { updateUser } from "../../../firebase/users";
+import Subtitle from "../../../components/Subtitle/Subtitle";
+import "./UserProfilePage.css"
+
 const UserProfilePage = () => {
     const { user } = useUserContext();
+    const [name, setName] = useState(user.name);
+    const [email, setEmail] = useState(user.email);
+
 
     return (
         <div className="App-v2">
-            <header className="backHeader">
-                <i className="faSolidFaArrowLeft"></i>
-                <img src="public/images/logos/visuartBlueLogo.jpg" alt="" />
+            <header className="back-header top-editprofile">
+                <i className="fa-solid fa-arrow-left"></i>
+                <img src="https://firebasestorage.googleapis.com/v0/b/visuart-17959.appspot.com/o/LogosVisuArt%2FvisuartBlueLogo.jpg?alt=media&token=ab0e88ba-968b-4b0f-9b83-42c8e0183e66" alt="" />
             </header>
-            <div className="profileContainer">
-                <div className="decorationUpContainer"></div>
-                <div className="decorationDownContainer"></div>
-                <div className="profileImg"></div>
-                <i className="faSolidFaPenToSquare"></i>
-                <Subtitle subtitle="Tus datos:" />
-                <div className="inputContainer">
+            <div className='decorations-container'>
+            <div className="editprofile-decoration1"></div>
+            <div className="editprofile-decoration2"></div>
+            <div className="editprofile-container">
+                <div className="editprofile-img"></div>
+                <i className="fa-solid fa-pen-to-square"></i>
+                <Subtitle subtitle="Edita tus datos:" />
+                <div className="input-container">
                     <div className="column">
                         <div className="input">
                             <label>Nombre</label>
-                            <input type="text" value={user.name} readOnly />
+                            <input type="text" value={name} readOnly />
                         </div>
                         <div className="input">
                             <label>Correo</label>
-                            <input type="text" value={user.email} readOnly />
+                            <input type="text" value={email} readOnly />
+                            <span>correo@ejemplo.com</span>
                         </div>
-                        {/*Agregar mas inputs segun lo que podamos anadir en firebase */}
+                    </div>
+                    <div className="column-center"><p></p></div>
+                    <div className="column">
+                        <div className="input">
+                            <label>Contraseña</label>
+                            <input type="text" value={"********"} readOnly/>
+                            <span>Más 6 de dígitos e incluya carácteres especiales</span>
+                        </div>
+                        <div className="input">
+                            <label>Verifica tu contraseña</label>
+                            <input type="text" value={"********"} readOnly/>
+                            <span>Más 6 de dígitos e incluya carácteres especiales</span>
+                        </div> 
+                        {/* Agregar mas inputs segun lo que podamos anadir en firebase */}
                     </div>
                 </div>
-                <Link to="/user-profile-edit">
-                    <button className="blueBtn">Editar Perfil</button>
-                </Link>
+                <button className="editprofile-btn" >Editar perfil</button>
+            </div>
             </div>
         </div>
     )
 }
 
 export default UserProfilePage
+
