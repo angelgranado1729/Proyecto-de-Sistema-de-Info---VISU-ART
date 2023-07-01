@@ -10,11 +10,14 @@ import DropdownTour from '../../components/DropdownTour/DropdownTour'
 import DropdownDates from '../../components/DropdownDates/DropdownDates'
 import { useUserContext } from '../../contexts/UserContext'
 import { createReserve } from '../../firebase/reservaciones'
+import { Navigate, useNavigate } from 'react-router-dom'
+import { HOME_URL } from '../../constants/urls'
 
 function ReservePage() {
   const { tourList, listLoading, getTourList } = useTourList();
   const { tour, tourId, changeId, changeTour, resetTour} = useContext(TourContext);
   const {user} = useUserContext();
+  const navigate = useNavigate();
 
     useEffect( () => {
         //Fetch de lista de tours
@@ -38,7 +41,7 @@ function finishReserve(){
         tour_id: tourId.id,
         user_id: user.id 
     }
-    createReserve(reserveItem)
+    createReserve(reserveItem, user)
 }
 
 function reserveCheck(){
@@ -46,8 +49,8 @@ function reserveCheck(){
 
         if (tour.chosenFecha) {
             finishReserve();
-
             resetTour();
+            navigate(HOME_URL);
         } else {
             alert('Por favor seleccione una fecha antes de continuar')
         }
