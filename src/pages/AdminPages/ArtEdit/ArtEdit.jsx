@@ -1,3 +1,6 @@
+//Página  Editar Obra Admin
+// En esta página, el administrador podrá editar una obra de arte
+
 import { useState, useEffect } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import { collection, doc, setDoc, query, where, getDocs } from "firebase/firestore";
@@ -94,14 +97,17 @@ const ArtEdit = () => {
   return (
     <div className="App">
       <AdminNavbar />
-      <div className="main-admin" style={{ maxWidth: "60%", margin: "0 auto" }}>
+      <div style={{ marginLeft: '10%', marginRight: '10%' }}>
+        <br />
+        <br />
+        <br />
         <Title title="Administrar obras" />
 
         <Row>
           <Col md={6}>
             <Form onSubmit={handleSubmit}>
               <FormGroup>
-                <Label for="nombre">Nombre</Label>
+                <Label style={{ fontWeight: "bold" }} for="nombre">Nombre</Label>
                 <Input
                   type="text"
                   name="nombre"
@@ -111,7 +117,7 @@ const ArtEdit = () => {
                 />
               </FormGroup>
               <FormGroup>
-                <Label for="ubicacion">Ubicación</Label>
+                <Label style={{ fontWeight: "bold" }} for="ubicacion">Ubicación</Label>
                 <Input
                   type="text"
                   name="ubicacion"
@@ -121,7 +127,7 @@ const ArtEdit = () => {
                 />
               </FormGroup>
               <FormGroup>
-                <Label for="año">Año</Label>
+                <Label style={{ fontWeight: "bold" }} for="año">Año</Label>
                 <Input
                   type="text"
                   name="año"
@@ -131,7 +137,7 @@ const ArtEdit = () => {
                 />
               </FormGroup>
               <FormGroup>
-                <Label for="autor">Autor</Label>
+                <Label style={{ fontWeight: "bold" }} for="autor">Autor</Label>
                 <Input
                   type="text"
                   name="autor"
@@ -141,7 +147,7 @@ const ArtEdit = () => {
                 />
               </FormGroup>
               <FormGroup>
-                <Label for="tecnica">Técnica</Label>
+                <Label style={{ fontWeight: "bold" }} for="tecnica">Técnica</Label>
                 <Input
                   type="text"
                   name="tecnica"
@@ -151,7 +157,7 @@ const ArtEdit = () => {
                 />
               </FormGroup>
               <FormGroup>
-                <Label for="dimensiones">Dimensiones</Label>
+                <Label style={{ fontWeight: "bold" }} for="dimensiones">Dimensiones</Label>
                 <Input
                   type="text"
                   name="dimensiones"
@@ -162,7 +168,7 @@ const ArtEdit = () => {
               </FormGroup>
 
               <FormGroup>
-                <Label for="imagen">Imagen</Label>
+                <Label style={{ fontWeight: "bold" }} for="imagen">Imagen</Label>
                 <Input
                   type="file"
                   name="imagen"
@@ -170,15 +176,17 @@ const ArtEdit = () => {
                   onChange={handleImageUpload}
                 />
               </FormGroup>
-              <Button color="primary" type="submit" style={{ marginRight: '5px' }}>
+              <br />
+              <Button color="primary" type="submit">
                 Guardar
               </Button>
-              <Button color="dark" style={{ marginLeft: '5px' }} onClick={handleGoBack}>
+              <Button color="dark" onClick={handleGoBack}>
                 Volver
               </Button>
             </Form>
           </Col>
           <Col md={6}>
+            <br /> <br /> <br /> <br />
             {obra.imagen && (
               <img
                 src={obra.imagen}
@@ -189,6 +197,9 @@ const ArtEdit = () => {
           </Col>
         </Row>
       </div>
+      <br />
+      <br />
+      <br />
     </div>
   );
 };

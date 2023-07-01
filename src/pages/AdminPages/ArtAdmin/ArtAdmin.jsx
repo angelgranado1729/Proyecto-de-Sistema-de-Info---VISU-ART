@@ -1,7 +1,13 @@
 import React, { useState, useEffect } from "react";
 import { Link, Route, useNavigate } from "react-router-dom";
-import { app, auth, db, storage } from "../../../firebase/firebase-config"
-import { getDocs, query, collection, where, deleteDoc } from "firebase/firestore";
+import { app, auth, db, storage } from "../../../firebase/firebase-config";
+import {
+  getDocs,
+  query,
+  collection,
+  where,
+  deleteDoc
+} from "firebase/firestore";
 import Title from "../../../components/Title/Title";
 import "./ArtAdmin.css";
 import 'bootstrap/dist/css/bootstrap.css';
@@ -63,22 +69,25 @@ const ArtAdmin = () => {
   return (
     <div className="App">
       <AdminNavbar/>
-      <div className="main-admin">
+      <div className="container">
+        <br />
+        <br />
+        <br />
         <Title title="Administrador de obras" />
 
-        <Button color="success" onClick={() => handleCrearObra()}>
+        <Button color="success" style={{ float: 'left' }} onClick={() => handleCrearObra()}>
           Agregar nueva obra
         </Button>{" "}
         <br />
         <br />
 
-        <Table>
+        <Table responsive>
           <thead>
             <tr>
-              <th>#</th>
+              <th className="d-none d-sm-table-cell">#</th>
               <th>Nombre</th>
-              <th>Año</th>
-              <th>Autor</th>
+              <th className="d-none d-sm-table-cell">Año</th>
+              <th className="d-none d-sm-table-cell">Autor</th>
               <th></th>
               <th></th>
             </tr>
@@ -87,12 +96,12 @@ const ArtAdmin = () => {
             {obras.map((obra, index) => (
               <tr key={index}>
                 {/* Celdas de la tabla */}
-                <td style={{ width: '10%' }}>{index + 1}</td>
+                <td className="d-none d-sm-table-cell" style={{ width: '10%' }}>{index + 1}</td>
 
                 <td style={{ width: '20%' }}>{obra.nombre}</td>
 
-                <td style={{ width: '20%' }}>{obra.año}</td>
-                <td style={{ width: '20%' }}>{obra.autor}</td>
+                <td style={{ width: '20%' }} className="d-none d-sm-table-cell">{obra.año}</td>
+                <td style={{ width: '20%' }}  className="d-none d-sm-table-cell">{obra.autor}   </td>
                 <td>
                   <div style={{ display: 'flex', alignItems: 'center' }}>
                     <Button
@@ -102,6 +111,10 @@ const ArtAdmin = () => {
                     >
                       ✏️
                     </Button>
+                  </div>
+                </td>
+                <td>
+                  <div style={{ display: 'flex', alignItems: 'center' }}>
                     <Button
                       style={{ marginRight: "15%" }}
                       color="danger"
@@ -116,6 +129,9 @@ const ArtAdmin = () => {
           </tbody>
         </Table>
       </div>
+      <br />
+      <br />
+      
     </div>
   );
 };

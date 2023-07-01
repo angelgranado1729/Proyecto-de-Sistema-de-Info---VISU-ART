@@ -1,5 +1,5 @@
 // Administrar de Tours 
-// En esta página, el administrador podrá dejar su crear, modificar o eliminar un tour. 
+// En esta página, el administrador podrá crear, modificar o eliminar un tour. 
 
 import React, { useState, useEffect } from "react";
 import { Link, Route, useNavigate } from "react-router-dom";
@@ -41,6 +41,10 @@ const TourAdmin = () => {
     navigate(`/admin-tours-edit-art/${Tour.nombre}`, { state: Tour });
   };
 
+  const handleEditarFecha = (Tour) => {
+    navigate(`/admin-tours-calendar/${Tour.nombre}`, { state: Tour });
+  };
+
   const handleCrearTour = () => {
     navigate(`/admin-tour-create`);
   };
@@ -71,10 +75,11 @@ const TourAdmin = () => {
   return (
     <div className="App">
       <AdminNavbar />
-      <div className="main-admin">
+      <div style={{ marginLeft: '10%', marginRight: '10%' }}>
+        <br /><br />
         <Title title="Administrador de Tours" />
 
-        <Button color="success" onClick={() => handleCrearTour()}>
+        <Button color="success" style={{ float: 'left' }} onClick={() => handleCrearTour()}>
           Agregar nuevo Tour
         </Button>{" "}
         <br />
@@ -85,10 +90,12 @@ const TourAdmin = () => {
             <tr>
               <th>#</th>
               <th>Nombre</th>
-              <th>Fecha</th>
 
-              <th></th>
-              <th></th>
+              <th>Editar</th>
+              <th>Obras</th>
+              <th>Fechas</th>
+              <th>Borrar</th>
+
             </tr>
           </thead>
           <tbody>
@@ -97,47 +104,71 @@ const TourAdmin = () => {
                 {/* Celdas de la tabla */}
                 <td style={{ width: '10%' }}>{index + 1}</td>
 
-                <td style={{ width: '20%' }}>{tour.nombre}</td>
-
-                <td style={{ width: '20%' }}>{tour.fecha}</td>
 
 
                 <td>
-                  <div style={{ display: 'flex', alignItems: 'center' }}>
+                  <div>
                     <Button
                       color="primary"
                       onClick={() => handleEditarTour(tour)}
-                      style={{ marginRight: "15%" }}
                     >
                       ✏️
                     </Button>
 
+
+                  </div>
+                </td>
+
+
+                <td>
+                  <div>
+
                     <Button
-                      style={{ marginRight: "15%" }}
                       color="success"
                       onClick={() => handleEditarTourObra(tour)}
                     >
                       🎨
                     </Button>
 
+
+                  </div>
+                </td>
+
+
+                <td>
+                  <div>
+
+
                     <Button
-                      style={{ marginRight: "15%" }}
+                      color="secondary"
+                      onClick={() => handleEditarFecha(tour)}
+                    >
+                      📆
+                    </Button>
+                  </div>
+                </td>
+
+                <td>
+                  <div>
+
+
+                    <Button
                       color="danger"
                       onClick={() => handleDelete(tour.nombre)}
                     >
                       🗑️
                     </Button>
-
-
-
-
                   </div>
                 </td>
+
+
               </tr>
             ))}
           </tbody>
         </Table>
       </div>
+      <br />
+      <br />
     </div>
   );
 };

@@ -30,6 +30,8 @@ import TourEdit from "./pages/AdminPages/EditTour/EditTour";
 import CreateTour from "./pages/AdminPages/CreateTour/CreateTour";
 import TourEditObras from "./pages/AdminPages/EditTour/EditTourArt";
 import PayPage from "./pages/PayPage/PayPage";
+import TourEditFechas from "./pages/AdminPages/EditTour/EditCalendar";
+
 import {
   ADMIN_CREATE_OBRAS_URL,
   ADMIN_EDIT_OBRAS_URL,
@@ -57,6 +59,7 @@ import {
   FORGOT_PASSWORD_URL,
   RESET_PASSWORD_URL,
   PAY_PAGE_URL,
+  ADMIN_TOURS_CALENDAR_URL
 } from "./constants/urls";
 import "./App.css";
 
@@ -203,19 +206,28 @@ function App() {
           />
 
           <Route
-            path={ADMIN_OBRAS_URL}
+            path={ADMIN_EDIT_OBRAS_URL}
             element={
               <PrivateRoute>
-                <ArtAdmin />
+                <ArtEdit />
               </PrivateRoute>
             }
           />
 
           <Route
-            path={ADMIN_EDIT_OBRAS_URL}
+            path={ADMIN_TOURS_CALENDAR_URL}
             element={
               <PrivateRoute>
-                <ArtEdit />
+                <TourEditFechas />
+              </PrivateRoute>
+            }
+          />
+
+          <Route
+            path={ADMIN_CREATE_OBRAS_URL}
+            element={
+              <PrivateRoute>
+                <CreateArt />
               </PrivateRoute>
             }
           />
@@ -248,20 +260,12 @@ function App() {
           />
 
           <Route
-            path={ADMIN_TOURS_EDIT_URL}
-            element={
-              <PrivateRoute>
-                <TourEdit />
-              </PrivateRoute>
-            }
-          />
-
-          <Route
             path={ADMIN_TOURS_EDIT_ART}
             element={
               <PrivateRoute>
                 <TourEditObras />
               </PrivateRoute>
+
             }
           />
 
@@ -270,8 +274,21 @@ function App() {
             path={USER_PROFILE_URL}
             element={
               <PrivateRoute>
+
                 <UserProfilePage />
               </PrivateRoute>
+
+            }
+          />
+
+          <Route
+            path={USER_PROFILE_EDIT_URL}
+            element={
+              <PrivateRoute>
+
+                <EditProfilePage />
+              </PrivateRoute>
+
             }
           />
 

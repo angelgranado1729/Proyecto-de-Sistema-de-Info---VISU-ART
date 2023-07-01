@@ -27,7 +27,6 @@
   padding: 50px;
   position: relative;
   z-index: 2;
-  background: #000000;
 }
 
 .logoContainer {
@@ -39,7 +38,8 @@
 
 .logoContainer img {
   height: 60px;
-  margin-top: 30px;
+  margin-top: 50px;
+  margin-bottom: -30px;
 }
 
 .title {
@@ -50,8 +50,8 @@
   font-weight: 700;
   color: rgba(0, 0, 0, 0.7);
   flex: none;
-  margin-bottom: 10px;
-  margin-top: 10px;
+  margin-bottom: 25px;
+  margin-top: 5px;
 }
 
 .decorationTop {
@@ -79,7 +79,7 @@
     rgba(242, 127, 12, 0) 118.1%
   );
   border-radius: 50px 60px 12px 60px;
-  z-index: -1;
+  z-index: 0;
   bottom: 25px;
   left: 0px;
 }
@@ -91,10 +91,10 @@
   justify-content: center;
   max-width: 550px;
   width: 100%;
-  padding: 50px;
+  padding: 3rem 2rem;
   border-radius: 8px;
   grid-template-columns: 1fr;
-  row-gap: 20px;
+  row-gap: 25px;
   background: #ffffff;
   box-shadow: 0px 4px 30px 10px rgba(0, 0, 0, 0.2);
   z-index: 0;
@@ -111,7 +111,8 @@
   margin-bottom: -20px;
 }
 
-.container .form .inputContainer label {
+.container .form .inputContainer label,
+.container .form .aux label {
   display: block;
   margin-bottom: 6px;
   width: 450px;
@@ -119,21 +120,14 @@
   font-family: "Poppins";
   font-style: normal;
   font-weight: 700;
-  font-size: 18px;
+  font-size: 20px;
   line-height: 30px;
   color: #000000;
   margin-left: 5px;
 }
 
-.inputContainer {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  width: 450px;
-}
-
-.container .form .inputContainer input {
+.container .form .inputContainer input,
+.container .form .aux .datePicker {
   width: 450px;
   height: 48px;
   margin-bottom: 1rem;
@@ -147,21 +141,23 @@
   padding: 0 1.2rem;
 }
 
-.container .form .inputContainer.errorInput input {
-  outline: none;
-  border: 2px solid red;
-}
-
-.container .form .inputContainer .errorInputPassword {
-  outline: none;
-  border: 2px solid red;
-}
-
-.textEx {
-  font-size: 14px;
-  color: #00000080;
+.container .form .inputContainer select {
   width: 450px;
-  margin-top: -5px;
+  height: 48px;
+  margin-bottom: 1rem;
+  border: 1px solid #ccc;
+  border-radius: 0.5rem;
+  background: #fff;
+  font-size: 1rem;
+  font-weight: 500;
+  color: rgba(0, 0, 0, 0.7);
+  outline: none;
+  padding: 0 1.2rem;
+}
+
+.datePicker::placeholder {
+  color: rgba(0, 0, 0, 0.5);
+  font-family: "Poppins", sans-serif;
 }
 
 .passwordInput {
@@ -196,25 +192,12 @@
   margin-left: 10px;
 }
 
-.container .form .inputContainer input::placeholder {
-  color: rgba(0, 0, 0, 0.5);
-  font-family: "Poppins", sans-serif;
-}
-
-.formselect {
-  overflow: hidden;
+.textEx {
+  font-size: 14px;
+  color: #00000080;
   width: 450px;
-  height: 48px;
-  margin-bottom: 2rem;
-  border: 1px solid #ccc;
-  border-radius: 0.5rem;
-  font-size: 1rem;
-  font-weight: 500;
-  color: rgba(0, 0, 0, 0.7);
-  outline: none;
-  padding: 0 1.2rem;
+  margin-top: -5px;
 }
-
 .container .form .registerButton {
   width: 200px;
   height: 55px;
@@ -226,7 +209,6 @@
   line-height: 20px;
   cursor: pointer;
   border-radius: 10px;
-  margin-top: 2px;
   box-shadow: none;
   display: flex;
   align-items: center;
@@ -234,6 +216,8 @@
   border: 2px solid;
   border-color: #f27f0c;
   color: #f27f0c;
+  margin-top: 80px;
+  margin-bottom: 20px;
 }
 
 .container .form .registerButton:hover {
@@ -272,8 +256,10 @@
 
   .formContainer {
     margin-top: 2rem;
+    height: auto;
     margin-top: 5vh;
-    width: 75%;
+    width: 95%;
+    max-width: 400px;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -281,19 +267,12 @@
     margin-left: auto;
     margin-right: auto;
   }
-
-  .title {
-    font-size: 2.5rem;
-    line-height: 2.6rem;
-    margin-bottom: 0.5rem;
-    width: 20rem;
-  }
-
   .container .form {
     height: auto;
-    max-width: 100%;
-    width: 70%;
+    max-width: 95%;
+    width: 17.5rem;
     flex-wrap: wrap;
+    padding: 0;
   }
 
   .container .form .inputContainer {
@@ -302,32 +281,57 @@
   }
 
   .container .form .inputContainer label {
-    width: 100%;
+    width: 80%;
     max-width: 100%;
-    font-size: 15px;
-    margin-left: 110px;
+    font-size: 0.9rem;
+    height: auto;
+    margin-left: 0;
   }
 
   .container .form .inputContainer input {
-    width: 15rem;
-    max-width: 100%;
+    width: 85%;
+  }
+
+  .container .form .inputContainer select,
+  .container .form .inputContainer .datePicker {
+    width: 85%;
+    height: 48px;
+    margin-bottom: 1rem;
+    border: 1px solid #ccc;
+    border-radius: 0.5rem;
+    background: #fff;
+    font-size: 1rem;
+    font-weight: 500;
+    color: rgba(0, 0, 0, 0.7);
+    outline: none;
+    padding: 0 1.2rem;
+    align-items: center;
+  }
+
+  .container .form .inputContainer input::placeholder {
+    font-size: 12px;
+  }
+
+  .container .form .inputContainer select option {
+    font-size: 12px;
+  }
+
+  .container .form .inputContainer select {
+    font-size: 12px;
   }
 
   .passwordInput {
     width: 15rem;
-    max-width: 100%;
+    max-width: 85%;
   }
 
   .container .form .inputContainer .passwordInputField {
-    width: 100%;
-    max-width: 100%;
+    width: 85%;
   }
 
   .registerButton {
     width: 14rem;
-    max-width: 60%;
-    justify-content: space-around;
-    padding: 0 2.5rem;
+    max-width: 90%;
   }
 
   .registerButton p {
@@ -344,7 +348,7 @@
     );
     border-radius: 7.8rem 13.2rem 1.8rem;
     left: 0;
-    top: 32vh;
+    top: 12vh;
   }
 
   .decorationBottom {
@@ -357,12 +361,13 @@
     );
     border-radius: 50px 70px 12px;
     transform: matrix(-1, 0, 0, 1, 0, 0);
-    bottom: 10vh;
+    bottom: 0;
     left: auto;
     right: 0;
+    z-index: -2;
   }
 
-  .loginRedirect {
-    font-size: 15px;
+  .textEx {
+    width: 85%;
   }
 }
