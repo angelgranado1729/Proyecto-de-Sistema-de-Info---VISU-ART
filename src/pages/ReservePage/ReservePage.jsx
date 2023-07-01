@@ -12,14 +12,13 @@ import { useUserContext } from '../../contexts/UserContext'
 import { createReserve } from '../../firebase/reservaciones'
 
 function ReservePage() {
-  const { tourList, listLoading, getTourList, } = useTourList();
+  const { tourList, listLoading, getTourList } = useTourList();
   const { tour, tourId, changeId, changeTour, resetTour} = useContext(TourContext);
   const {user} = useUserContext();
 
     useEffect( () => {
         //Fetch de lista de tours
         getTourList();
-        resetTour();
     }, [])
 
 /***
@@ -33,30 +32,30 @@ function ReservePage() {
  * la vista sea el siguiente paso de la reserva. El usuario no debe poder ir al siguiente paso si no ha seleccionado una fecha.
  */
 
-    function finishReserve(){
-        const reserveItem = {
-            fecha: tour.chosenFecha,
-            tour_id: tourId.id,
-            user_id: user.id 
-        }
-        createReserve(reserveItem)
+function finishReserve(){
+    const reserveItem = {
+        fecha: tour.chosenFecha,
+        tour_id: tourId.id,
+        user_id: user.id 
     }
+    createReserve(reserveItem)
+}
 
-    function reserveCheck(){
-        if (tour) {
+function reserveCheck(){
+    if (tour) {
 
-            if (tour.chosenFecha) {
-                finishReserve();
+        if (tour.chosenFecha) {
+            finishReserve();
 
-                resetTour();
-            } else {
-                alert('Por favor seleccione una fecha antes de continuar')
-            }
-
-        } else{
-            alert('Por favor seleccione un tour antes de continuar')
+            resetTour();
+        } else {
+            alert('Por favor seleccione una fecha antes de continuar')
         }
+
+    } else{
+        alert('Por favor seleccione un tour antes de continuar')
     }
+}
 
   return (
     <div className="App">
