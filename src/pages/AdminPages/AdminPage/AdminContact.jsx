@@ -53,11 +53,11 @@ const AdminPageContact = () => {
       <AdminNavbar />
       <div style={{ marginLeft: '10%', marginRight: '10%', marginBottom: '5%', background: '#fff9ec' }}>
         <br /> <br /> <br />
-        <Title title="Comentarios" />
+        <Title title="Contactos" />
 
         {resolvedDocuments.length > 0 && (
           <div>
-            <h3 className='subtitles-contact'>Documentos Resueltos</h3>
+            <h3 className='subtitles-contact'>Contactos Resueltos</h3>
             {resolvedDocuments.map((document) => (
               <Card key={document.id} style={{ marginBottom: '10px' }}>
                 <CardBody className='shadow-block2'>
@@ -85,7 +85,7 @@ const AdminPageContact = () => {
         {unresolvedDocuments.length > 0 && (
           <div>
             <br /> <br />
-            <h3 className='subtitles-contact'>Documentos No Resueltos</h3>
+            <h3 className='subtitles-contact'>Contactos No Resueltos</h3>
             {unresolvedDocuments.map((document) => (
               <Card key={document.id} style={{ marginBottom: '10px' }}>
                 <CardBody className='shadow-block2'>

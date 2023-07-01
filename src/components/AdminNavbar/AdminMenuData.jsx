@@ -27,7 +27,7 @@ export const MenuData = [
     },
 
     {
-        title: "Comentario",
+        title: "Contactos",
         url: ADMIN_URL_CONTACT,
         cName: "admin_navbar-links"
     },
