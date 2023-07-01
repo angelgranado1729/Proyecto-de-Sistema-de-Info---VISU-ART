@@ -48,26 +48,34 @@
   max-width: 1200px;
   text-align: center;
 }
-.landing-decoration1{
+.landing-decoration1 {
   position: absolute;
   width: 135px;
   height: 135px;
-  background: linear-gradient(152.49deg, #F27F0C -11.42%, rgba(242, 127, 12, 0) 118.1%);
+  background: linear-gradient(
+    152.49deg,
+    #f27f0c -11.42%,
+    rgba(242, 127, 12, 0) 118.1%
+  );
   border-radius: 50px 70px 12px;
   left: -15px;
   top: 943px;
 }
-.landing-decoration2{
+.landing-decoration2 {
   position: absolute;
   width: 135px;
   height: 135px;
   left: 60px;
   top: 150px;
-  background: linear-gradient(152.49deg, #F27F0C -11.42%, rgba(242, 127, 12, 0) 118.1%);
+  background: linear-gradient(
+    152.49deg,
+    #f27f0c -11.42%,
+    rgba(242, 127, 12, 0) 118.1%
+  );
   border-radius: 50px 70px 12px;
   transform: matrix(-0.4, 0.91, 0.91, 0.4, 0, 0);
 }
-.landing-decoration3{
+.landing-decoration3 {
   position: absolute;
   width: 135px;
   height: 135px;
@@ -75,40 +83,56 @@
   top: 870px;
   border-radius: 50px 70px 12px;
   transform: rotate(180);
-  background: linear-gradient(152.49deg, #F27F0C -11.42%, rgba(242, 127, 12, 0) 118.1%);
+  background: linear-gradient(
+    152.49deg,
+    #f27f0c -11.42%,
+    rgba(242, 127, 12, 0) 118.1%
+  );
   transform: matrix(0.51, 0.86, 0.86, -0.51, 0, 0);
 }
-.landing-decoration4{
+.landing-decoration4 {
   position: absolute;
   width: 135px;
   height: 135px;
   left: 850px;
   top: 870px;
-  background: linear-gradient(152.49deg, #F27F0C -11.42%, rgba(242, 127, 12, 0) 118.1%);
+  background: linear-gradient(
+    152.49deg,
+    #f27f0c -11.42%,
+    rgba(242, 127, 12, 0) 118.1%
+  );
   border-radius: 50px 70px 12px;
   transform: matrix(-1, 0, 0, 1, 0, 0);
 }
-.landing-decoration5{
+.landing-decoration5 {
   position: absolute;
   width: 135px;
   height: 135px;
   left: 850px;
   top: 1700px;
-  background: linear-gradient(152.49deg, #F27F0C -11.42%, rgba(242, 127, 12, 0) 118.1%);
+  background: linear-gradient(
+    152.49deg,
+    #f27f0c -11.42%,
+    rgba(242, 127, 12, 0) 118.1%
+  );
   border-radius: 50px 70px 12px;
   transform: matrix(-1, 0, 0, 1, 0, 0);
 }
-.landing-decoration6{
+.landing-decoration6 {
   position: absolute;
   width: 120px;
   height: 112px;
   left: 850px;
   top: 150px;
-  background: linear-gradient(152.49deg, #F27F0C -11.42%, rgba(242, 127, 12, 0) 118.1%);
+  background: linear-gradient(
+    152.49deg,
+    #f27f0c -11.42%,
+    rgba(242, 127, 12, 0) 118.1%
+  );
   border-radius: 50px 70px 12px;
   transform: rotate(55.01deg);
 }
-.landing-decoration7{
+.landing-decoration7 {
   position: absolute;
   width: 135px;
   height: 135px;
@@ -116,18 +140,22 @@
   top: 1700px;
   border-radius: 50px 70px 12px;
   transform: rotate(180);
-  background: linear-gradient(152.49deg, #F27F0C -11.42%, rgba(242, 127, 12, 0) 118.1%);
+  background: linear-gradient(
+    152.49deg,
+    #f27f0c -11.42%,
+    rgba(242, 127, 12, 0) 118.1%
+  );
   transform: matrix(0.51, 0.86, 0.86, -0.51, 0, 0);
 }
 
-.noresults-container{
+.noresults-container {
   width: 100%;
   text-align: center;
   justify-content: center;
   padding: 50px;
 }
 
-.cards-noresults{
+.cards-noresults {
   font-size: 20px;
   font-weight: 700;
   opacity: 85%;
@@ -146,7 +174,7 @@
     display: block;
     align-items: center;
   }
-  .search-bar{
+  .search-bar {
     text-align: center;
   }
   .search-btn {
@@ -156,7 +184,13 @@
     width: 350px;
     margin: 20px;
   }
-  .landing-decoration1, .landing-decoration2, .landing-decoration3, .landing-decoration4,.landing-decoration5, .landing-decoration6,.landing-decoration7  {
+  .landing-decoration1,
+  .landing-decoration2,
+  .landing-decoration3,
+  .landing-decoration4,
+  .landing-decoration5,
+  .landing-decoration6,
+  .landing-decoration7 {
     display: none;
   }
 }
@@ -164,7 +198,7 @@
 @media screen and (max-width: 769px) {
   .search-container {
     text-align: center;
-    width:80%;
+    width: 80%;
     margin: 0 auto;
     text-align: center;
   }

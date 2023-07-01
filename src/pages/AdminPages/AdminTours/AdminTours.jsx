@@ -7,7 +7,7 @@ import { app, auth, db, storage } from "../../../firebase/firebase-config"
 import { getDocs, query, collection, where, deleteDoc } from "firebase/firestore";
 import Title from "../../../components/Title/Title";
 import 'bootstrap/dist/css/bootstrap.css';
-import { Table, Button} from "reactstrap";
+import { Table, Button } from "reactstrap";
 import AdminNavbar from "../../../components/AdminNavbar/AdminNavbar";
 
 const TourAdmin = () => {
@@ -70,7 +70,7 @@ const TourAdmin = () => {
   // HTML
   return (
     <div className="App">
-      <AdminNavbar/>
+      <AdminNavbar />
       <div className="main-admin">
         <Title title="Administrador de Tours" />
 
@@ -92,50 +92,50 @@ const TourAdmin = () => {
             </tr>
           </thead>
           <tbody>
-    {Tours.map((tour, index) => (
-      <tr key={index}>
-        {/* Celdas de la tabla */}
-        <td style={{ width: '10%' }}>{index + 1}</td>
-       
-        <td style={{ width: '20%' }}>{tour.nombre}</td>
+            {Tours.map((tour, index) => (
+              <tr key={index}>
+                {/* Celdas de la tabla */}
+                <td style={{ width: '10%' }}>{index + 1}</td>
 
-        <td style={{ width: '20%' }}>{tour.fecha}</td>
-       
+                <td style={{ width: '20%' }}>{tour.nombre}</td>
 
-        <td>
-          <div style={{ display: 'flex', alignItems: 'center' }}>
-            <Button
-              color="primary"
-              onClick={() => handleEditarTour(tour)}
-              style={{ marginRight: "15%" }}
-            >
-              ✏️
-            </Button>
-            
-            <Button
-              style={{ marginRight: "15%" }}
-              color="success"
-              onClick={() => handleEditarTourObra(tour)}
-            >
-              🎨
-            </Button>
-            
-            <Button
-              style={{ marginRight: "15%" }}
-              color="danger"
-              onClick={() => handleDelete(tour.nombre)}
-            >
-              🗑️
-            </Button>
+                <td style={{ width: '20%' }}>{tour.fecha}</td>
 
 
-            
+                <td>
+                  <div style={{ display: 'flex', alignItems: 'center' }}>
+                    <Button
+                      color="primary"
+                      onClick={() => handleEditarTour(tour)}
+                      style={{ marginRight: "15%" }}
+                    >
+                      ✏️
+                    </Button>
 
-          </div>
-        </td>
-      </tr>
-    ))}
-  </tbody>
+                    <Button
+                      style={{ marginRight: "15%" }}
+                      color="success"
+                      onClick={() => handleEditarTourObra(tour)}
+                    >
+                      🎨
+                    </Button>
+
+                    <Button
+                      style={{ marginRight: "15%" }}
+                      color="danger"
+                      onClick={() => handleDelete(tour.nombre)}
+                    >
+                      🗑️
+                    </Button>
+
+
+
+
+                  </div>
+                </td>
+              </tr>
+            ))}
+          </tbody>
         </Table>
       </div>
     </div>

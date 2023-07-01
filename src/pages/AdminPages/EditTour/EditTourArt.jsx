@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { Link, Route, useNavigate, useParams } from "react-router-dom";
-import {  app, auth, db, storage  } from "../../../firebase/firebase-config";
+import { app, auth, db, storage } from "../../../firebase/firebase-config";
 import {
   getDocs,
   query,
@@ -22,7 +22,7 @@ const TourEditObras = () => {
   const { nombre } = useParams();
   const navigate = useNavigate();
 
-  
+
   useEffect(() => {
     const fetchTour = async () => {
       const tourSnapshot = await getDocs(
@@ -73,15 +73,15 @@ const TourEditObras = () => {
 
   const handleAgregarObra = async (tourActual, obraToAdd) => {
     if (!tourActual || !obraToAdd) return;
-  
+
     const updatedObras = [...tourActual.obras, obraToAdd];
-  
+
     await updateDoc(doc(db, "Tours", tourActual.id), {
       obras: updatedObras,
     });
-  
+
     const updatedTour = { ...tourActual, obras: updatedObras };
-  
+
     setTour(updatedTour);
   };
 
@@ -96,13 +96,13 @@ const TourEditObras = () => {
 
   return (
     <div className="App">
-      <AdminNavbar/>
+      <AdminNavbar />
       <div className="main-admin" style={{ width: "60%" }}>
-       
-        <Title title={`Obras incluidas - ${tour.nombre}`}  />
+
+        <Title title={`Obras incluidas - ${tour.nombre}`} />
 
         <Button color="dark" style={{ marginRight: '7px' }} onClick={handleGoBack}>
-                Volver al menu de Tours
+          Volver al menu de Tours
         </Button>
 
         <br></br>
@@ -110,41 +110,41 @@ const TourEditObras = () => {
         <br></br>
 
         {obrasAgregadas.length > 0 ? (
-  <Table >
-    <thead>
-      <tr>
-        <th>#</th>
-        <th>Nombre</th>
+          <Table >
+            <thead>
+              <tr>
+                <th>#</th>
+                <th>Nombre</th>
 
-        <th>Ubicacion</th>
-        <th></th>
-      </tr>
-    </thead>
-    <tbody>
-      {obrasAgregadas.map((obra, index) => (
-        <tr key={index}>
-          <td style={{ width: "10%" }}>{index + 1}</td>
-          <td style={{ width: "40%" }}>{obra.nombre}</td>
+                <th>Ubicacion</th>
+                <th></th>
+              </tr>
+            </thead>
+            <tbody>
+              {obrasAgregadas.map((obra, index) => (
+                <tr key={index}>
+                  <td style={{ width: "10%" }}>{index + 1}</td>
+                  <td style={{ width: "40%" }}>{obra.nombre}</td>
 
-          <td style={{ width: "30%" }}>{obra.ubicacion}</td>
-          <td>
-            <div style={{ display: "flex", alignItems: "center" }}>
-              <Button
+                  <td style={{ width: "30%" }}>{obra.ubicacion}</td>
+                  <td>
+                    <div style={{ display: "flex", alignItems: "center" }}>
+                      <Button
 
-                color="danger"
-                onClick={() => handleDelete(obra.nombre)}
-              >
-                Eliminar
-              </Button>
-            </div>
-          </td>
-        </tr>
-      ))}
-    </tbody>
-  </Table>
-) : (
-  <p>No hay obras agregadas.</p>
-)}
+                        color="danger"
+                        onClick={() => handleDelete(obra.nombre)}
+                      >
+                        Eliminar
+                      </Button>
+                    </div>
+                  </td>
+                </tr>
+              ))}
+            </tbody>
+          </Table>
+        ) : (
+          <p>No hay obras agregadas.</p>
+        )}
 
         <Title title={`Obras no incluidas - ${tour.nombre}`} />
 
@@ -154,7 +154,7 @@ const TourEditObras = () => {
               <th>#</th>
               <th>Nombre</th>
 
-             <th>Ubicacion</th>
+              <th>Ubicacion</th>
               <th></th>
             </tr>
           </thead>
@@ -164,7 +164,7 @@ const TourEditObras = () => {
                 <td style={{ width: "10%" }}>{index + 1}</td>
                 <td style={{ width: "40%" }}>{obra.nombre}</td>
 
-          <td style={{ width: "30%" }}>{obra.ubicacion}</td>
+                <td style={{ width: "30%" }}>{obra.ubicacion}</td>
                 <td>
                   <div style={{ display: "flex", alignItems: "center" }}>
                     <Button
@@ -181,7 +181,7 @@ const TourEditObras = () => {
           </tbody>
         </Table>
       </div>
-    </div>
+    </div >
   );
 };
 

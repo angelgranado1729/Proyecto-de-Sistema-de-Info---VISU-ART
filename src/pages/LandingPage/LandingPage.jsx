@@ -10,7 +10,7 @@ import Reviews from "../../components/Reviews/Reviews";
 import DropdownMenu from "../../components/DropdownMenu/DropdownMenu";
 import Navbar from "../../components/NavBar/Navbar";
 import { db } from "../../firebase/firebase-config";
-import { collection, query, where, updateDoc, doc, getDocs} from "firebase/firestore"; 
+import { collection, query, where, updateDoc, doc, getDocs } from "firebase/firestore";
 import "./LandingPage.css";
 
 const LandingPage = () => {
@@ -37,21 +37,21 @@ const LandingPage = () => {
         console.error("Error fetching tours:", error);
       }
     };
-  
+
     fetchTours();
   }, []);
 
-  {/*Busqueda por filtro*/}
+  {/*Busqueda por filtro*/ }
   const finder = (e) => {
     setSearch(e.target.value);
-    if(e.target.value === ""){
+    if (e.target.value === "") {
       decoration2.style.visibility = "visible";
       decoration3.style.visibility = "visible";
       decoration4.style.visibility = "visible";
       decoration5.style.visibility = "visible";
       decoration6.style.visibility = "visible";
       decoration7.style.visibility = "visible";
-    } else{
+    } else {
       decoration2.style.visibility = "hidden";
       decoration3.style.visibility = "hidden";
       decoration4.style.visibility = "hidden";
@@ -61,34 +61,34 @@ const LandingPage = () => {
     }
   }
   const applyFilter = (e) => {
-    if(e.target.value === "Filtrar por"){
+    if (e.target.value === "Filtrar por") {
       enableInput.disabled = true;
     }
-    if(e.target.value === "nombre"){
+    if (e.target.value === "nombre") {
       setSearchFilter("nombre");
       enableInput.disabled = false;
     }
-    if(e.target.value === "ubicacion"){
+    if (e.target.value === "ubicacion") {
       setSearchFilter(e.target.value);
       enableInput.disabled = false;
     }
-  } 
+  }
   const results = !search ? tours : tours.filter((tour) =>
-  searchFilter === "nombre"
-    ? tour.nombre.toLowerCase().includes(search.toLowerCase())
-    : tour.ubicacion.toLowerCase().includes(search.toLowerCase())
+    searchFilter === "nombre"
+      ? tour.nombre.toLowerCase().includes(search.toLowerCase())
+      : tour.ubicacion.toLowerCase().includes(search.toLowerCase())
   );
-  function checkResults(){
-    if(results.length === 0){
-      return(
+  function checkResults() {
+    if (results.length === 0) {
+      return (
         <div className="noresults-container">
-        <h1 className="cards-noresults">No hay resultados!</h1>
+          <h1 className="cards-noresults">No hay resultados!</h1>
         </div>
       )
     }
   }
 
-  {/*Feedback*/}
+  {/*Feedback*/ }
   const [showFeedback, setShowFeedback] = useState(false);
   const navigate = useNavigate();
 
@@ -119,13 +119,13 @@ const LandingPage = () => {
         <div className="search-container">
           <div className="search-bar">
             <select onChange={applyFilter} className="dropdownM-container">
-                <option value="Filtrar por">Filtrar por:</option>
-                <option type= "text" value="nombre">Nombre</option>
-                <option type= "text" value="ubicacion">Ubicación</option>
+              <option value="Filtrar por">Filtrar por:</option>
+              <option type="text" value="nombre">Nombre</option>
+              <option type="text" value="ubicacion">Ubicación</option>
             </select>
             <input disabled value={search} id="enableInput" onChange={finder} type="text" placeholder="Ingresa tu búsqueda" />
-          </div>
-        </div>
+          </div >
+        </div >
         <div className="cards-container">
           <div id="decoration2" className="landing-decoration2"></div>
           <div id="decoration3" className="landing-decoration3"></div>
@@ -135,10 +135,10 @@ const LandingPage = () => {
           <div id="decoration7" className="landing-decoration7"></div>
           {checkResults()}
           {results.map((tour) => (
-            <Card tourTitle={tour.nombre} tourDescription={tour.resumen} tourImage={tour.imagen} tourLocation={tour.ubicacion}/>
+            <Card tourTitle={tour.nombre} tourDescription={tour.resumen} tourImage={tour.imagen} tourLocation={tour.ubicacion} />
           ))}
         </div>
-      </section>
+      </section >
 
       <section className="info-section">
         <Title title="Información relevante" />
@@ -156,7 +156,7 @@ const LandingPage = () => {
       </section>
 
       {showFeedback && <Feedback />}
-    </div>
+    </div >
   );
 };
 

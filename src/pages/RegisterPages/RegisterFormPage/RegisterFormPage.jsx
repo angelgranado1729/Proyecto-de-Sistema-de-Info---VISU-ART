@@ -3,9 +3,13 @@ import { useNavigate, Link } from "react-router-dom";
 import { ArrowLeft, EyeFill, EyeSlashFill } from "react-bootstrap-icons";
 import styles from "./RegisterFormPage.module.css";
 import { HOME_URL } from "../../../constants/urls";
+import { Form, Button } from "react-bootstrap";
+import DatePicker from "react-datepicker";
+import "react-datepicker/dist/react-datepicker.css";
 
 export function RegisterFormPage() {
-    const imageURL = 'https://firebasestorage.googleapis.com/v0/b/visuart-17959.appspot.com/o/LogosVisuArt%2FvisuartGrayLogo.png?alt=media&token=bbebf007-b27c-47dc-a494-5b31663b7a39';
+    const imageURL =
+        "https://firebasestorage.googleapis.com/v0/b/visuart-17959.appspot.com/o/LogosVisuArt%2FvisuartGrayLogo.png?alt=media&token=bbebf007-b27c-47dc-a494-5b31663b7a39";
     const [showPassword, setShowPassword] = useState(false);
     const navigate = useNavigate();
     const [formData, setFormData] = useState({
@@ -15,7 +19,7 @@ export function RegisterFormPage() {
         confirmEmail: "",
         confirmPassword: "",
         password: "",
-        birthDate: "",
+        birthDate: null,
         gender: "",
     });
 
@@ -37,12 +41,7 @@ export function RegisterFormPage() {
     };
 
     const validateForm = () => {
-        const {
-            email,
-            confirmEmail,
-            password,
-            confirmPassword,
-        } = formData;
+        const { email, confirmEmail, password, confirmPassword } = formData;
 
         const emailValid = validateEmail(email);
         const confirmEmailValid = validateEmail(confirmEmail);
@@ -64,17 +63,8 @@ export function RegisterFormPage() {
         );
     };
 
-    const onSubmit = (event) => {
-        event.preventDefault();
-
-        if (validateForm()) {
-            navigate("/success");
-        }
-    };
-
-    const onChange = (event) => {
-        const { name, value } = event.target;
-        setFormData((prevState) => ({ ...prevState, [name]: value }));
+    const handleDateChange = (date) => {
+        setFormData((prevState) => ({ ...prevState, birthDate: date }));
     };
 
     const handlePasswordClick = () => {
@@ -99,6 +89,19 @@ export function RegisterFormPage() {
         confirmPassword: confirmPasswordError,
     } = errors;
 
+    const onSubmit = (event) => {
+        event.preventDefault();
+
+        if (validateForm()) {
+            navigate("/success");
+        }
+    };
+
+    const onChange = (event) => {
+        const { name, value } = event.target;
+        setFormData((prevState) => ({ ...prevState, [name]: value }));
+    };
+
     return (
         <div className={styles.container}>
             <div className={styles.backButton}>
@@ -108,17 +111,17 @@ export function RegisterFormPage() {
             </div>
 
             <div className={styles.logoContainer}>
-                <img src={imageURL} />
+                <img src={imageURL} alt="Logo" />
             </div>
 
             <div className={styles.formContainer}>
                 <h1 className={styles.title}>¡Cuéntanos sobre ti!</h1>
                 <div className={styles.decorationTop}></div>
 
-                <form className={styles.form} onSubmit={onSubmit}>
-                    <div className={styles.inputContainer}>
-                        <label htmlFor="firstName">Nombre</label>
-                        <input
+                <Form className={styles.form} onSubmit={onSubmit}>
+                    <Form.Group className={styles.inputContainer}>
+                        <Form.Label htmlFor="firstName">Nombre</Form.Label>
+                        <Form.Control
                             type="text"
                             id="firstName"
                             name="firstName"
@@ -127,11 +130,11 @@ export function RegisterFormPage() {
                             onChange={onChange}
                             required
                         />
-                    </div>
+                    </Form.Group>
 
-                    <div className={styles.inputContainer}>
-                        <label htmlFor="lastName">Apellido</label>
-                        <input
+                    <Form.Group className={styles.inputContainer}>
+                        <Form.Label htmlFor="lastName">Apellido</Form.Label>
+                        <Form.Control
                             type="text"
                             id="lastName"
                             name="lastName"
@@ -140,61 +143,51 @@ export function RegisterFormPage() {
                             onChange={onChange}
                             required
                         />
-                    </div>
+                    </Form.Group>
+
+                    <Form.Group className={styles.inputContainer}>
+                        <Form.Label htmlFor="email">Correo electrónico</Form.Label>
+                        <Form.Control
+                            type="email"
+                            id="email"
+                            name="email"
+                            placeholder="correo@ejemplo.com"
+                            value={email}
+                            onChange={onChange}
+                            required
+                        />
+                        {errors.email && (
+                            <Form.Text className="text-danger">
+                                Ingresa un correo electrónico válido.
+                            </Form.Text>
+                        )}
+                    </Form.Group>
+
+                    <Form.Group className={styles.inputContainer}>
+                        <Form.Label htmlFor="confirmEmail">
+                            Verifica tu correo
+                        </Form.Label>
+                        <Form.Control
+                            type="email"
+                            id="confirmEmail"
+                            name="confirmEmail"
+                            placeholder="correo@ejemplo.com"
+                            value={confirmEmail}
+                            onChange={onChange}
+                            required
+                        />
+                        {errors.confirmEmail && (
+                            <Form.Text className="text-danger">
+                                Ingresa un correo electrónico válido.
+                            </Form.Text>
+                        )}
+                    </Form.Group>
 
                     <div className={styles.inputContainer}>
-                        <label htmlFor="email">
-                            <span>Correo electrónico</span>
-                        </label>
-
+                        <label htmlFor="password">Contraseña</label>
                         <div
-                            className={`${styles.inputField} ${emailError ? styles.inputError : ""
+                            className={`${styles.passwordInput} ${passwordError ? styles.errorInputPassword : ""
                                 }`}
-                        >
-                            <input
-                                type="email"
-                                id="email"
-                                name="email"
-                                placeholder="correo@ejemplo.com"
-                                value={email}
-                                onChange={onChange}
-                                required
-                            />
-                        </div>
-                        <span className={styles.textEx}>
-                            correo@ejemplo.com
-                        </span>
-                    </div>
-
-                    <div className={styles.inputContainer}>
-                        <label htmlFor="confirmEmail">
-                            <span>Verifica tu correo</span>
-                        </label>
-                        <div className={styles.inputField}>
-                            <input
-                                type="email"
-                                id="confirmEmail"
-                                name="confirmEmail"
-                                placeholder="correo@ejemplo.com"
-                                value={confirmEmail}
-                                onChange={onChange}
-                                required
-                            />
-                        </div>
-
-                        <span className={styles.textEx}>
-                            correo@ejemplo.com
-                        </span>
-                    </div>
-
-                    <div
-                        className={styles.inputContainer}
-                    >
-                        <label htmlFor="password">
-                            <span>Contraseña</span>
-                        </label>
-                        <div
-                            className={`${styles.passwordInput} ${errors.password ? styles.errorInputPassword : ""}`}
                         >
                             <input
                                 type={showPassword ? "text" : "password"}
@@ -222,18 +215,21 @@ export function RegisterFormPage() {
                         </div>
 
                         <span className={styles.textEx}>
-                            La contraseña debe tener al menos 6 caracteres y contener al
-                            menos un carácter especial.
+                            Más de 6 dígitos e incluya caractéres especiales (@#.!)
                         </span>
-
+                        {passwordError && (
+                            <span className={styles.errorText}>
+                                La contraseña debe tener al menos 6 caracteres y contener al
+                                menos un carácter especial.
+                            </span>
+                        )}
                     </div>
 
                     <div className={styles.inputContainer}>
-                        <label htmlFor="confirmPassword">
-                            <span>Verifica tu contraseña</span>
-                        </label>
+                        <label htmlFor="confirmPassword">Verifica tu contraseña</label>
                         <div
-                            className={`${styles.passwordInput} ${errors.password ? styles.errorInputPassword : ""}`}
+                            className={`${styles.passwordInput} ${confirmPasswordError ? styles.errorInputPassword : ""
+                                }`}
                         >
                             <input
                                 type={showPassword ? "text" : "password"}
@@ -259,53 +255,60 @@ export function RegisterFormPage() {
                                 )}
                             </button>
                         </div>
-
-
                         <span className={styles.textEx}>
-                            La contraseña debe tener al menos 6 caracteres y contener al
-                            menos un carácter especial.
+                            Más de 6 dígitos e incluya caractéres especiales (@#.!)
                         </span>
-
+                        {confirmPasswordError && (
+                            <span className={styles.errorText}>
+                                La contraseña debe tener al menos 6 caracteres y contener al
+                                menos un carácter especial.
+                            </span>
+                        )}
                     </div>
 
-                    <div className={styles.inputContainer}>
-                        <label htmlFor="birthDate">
-                            <span>Fecha de nacimiento</span>
-                        </label>
-                        <input
-                            type="date"
+
+                    <Form.Group className={styles.inputContainer}>
+                        <Form.Label htmlFor="birthDate">Fecha de nacimiento</Form.Label>
+                        <DatePicker
                             id="birthDate"
                             name="birthDate"
-                            placeholder="dd/mm/aaaa"
-                            value={birthDate}
-                            onChange={onChange}
+                            selected={birthDate}
+                            onChange={handleDateChange}
+                            dateFormat="dd/MM/yyyy"
+                            placeholderText="Selecciona una fecha"
+                            className={styles.datePicker}
                             required
+                            showYearDropdown
+                            scrollableYearDropdown
+                            yearDropdownItemNumber={100}
+                            maxDate={new Date()}
                         />
-                    </div>
+                    </Form.Group>
 
-                    <div className={styles.inputContainer}>
-                        <label htmlFor="gender">
-                            <span>Género</span>
-                        </label>
-                        <select
+                    <Form.Group className={styles.inputContainer}>
+                        <Form.Label htmlFor="gender">Género</Form.Label>
+                        <Form.Control
+                            as="select"
                             id="gender"
                             name="gender"
                             value={gender}
                             onChange={onChange}
                             required
-                            className={styles.formselect}
                         >
-                            <option value="">Seleccionar</option>
-                            <option value="masculino">Masculino</option>
-                            <option value="femenino">Femenino</option>
-                            <option value="otro">Otro</option>
-                        </select>
-                    </div>
+                            <option value="" disabled>
+                                Selecciona una opción
+                            </option>
+                            <option value="male">Masculino</option>
+                            <option value="female">Femenino</option>
+                            <option value="other">Otro</option>
+                        </Form.Control>
+                    </Form.Group>
 
                     <button type="submit" className={styles.registerButton}>
                         Registrarse
                     </button>
-                </form>
+                </Form>
+
                 <div className={styles.decorationBottom}></div>
             </div>
         </div>

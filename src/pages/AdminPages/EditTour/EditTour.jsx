@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import { collection, doc, setDoc, query, where, getDocs } from "firebase/firestore";
 import { getStorage, ref, uploadBytes, getDownloadURL } from "firebase/storage";
-import {  app, auth, db } from "../../../firebase/firebase-config";
+import { app, auth, db } from "../../../firebase/firebase-config";
 import 'bootstrap/dist/css/bootstrap.css';
 import { Button, Form, FormGroup, Label, Input, Col, Row } from 'reactstrap';
 import Slider from "../../../components/Slider/Slider";
@@ -90,11 +90,11 @@ const TourEdit = () => {
     navigate("/admin-tours");
   };
 
-  
+
 
   return (
     <div className="App">
-      <AdminNavbar/>
+      <AdminNavbar />
       <div className="main-admin" style={{ maxWidth: "60%", margin: "0 auto" }}>
         <Title title="Editando Tour" />
 
@@ -152,7 +152,7 @@ const TourEdit = () => {
                 />
               </FormGroup>
 
-              
+
 
               <Button color="primary" type="submit" style={{ marginRight: '7px' }}>
                 Guardar
@@ -160,7 +160,7 @@ const TourEdit = () => {
               <Button color="dark" style={{ marginRight: '7px' }} onClick={handleGoBack}>
                 Volver
               </Button>
-              
+
             </Form>
           </Col>
           <Col md={6}>

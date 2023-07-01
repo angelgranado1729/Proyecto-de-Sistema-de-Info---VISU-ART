@@ -5,7 +5,6 @@ import { getStorage, ref, uploadBytes, getDownloadURL } from "firebase/storage";
 import { db } from "../../../firebase/firebase-config";
 import 'bootstrap/dist/css/bootstrap.css';
 import { Button, Form, FormGroup, Label, Input, Col, Row } from 'reactstrap';
-import Slider from "../../../components/Slider/Slider";
 import Title from "../../../components/Title/Title";
 import AdminNavbar from "../../../components/AdminNavbar/AdminNavbar";
 
@@ -94,7 +93,7 @@ const ArtEdit = () => {
 
   return (
     <div className="App">
-      <AdminNavbar/>
+      <AdminNavbar />
       <div className="main-admin" style={{ maxWidth: "60%", margin: "0 auto" }}>
         <Title title="Administrar obras" />
 
