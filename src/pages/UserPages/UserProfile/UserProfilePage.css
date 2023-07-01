@@ -16,7 +16,7 @@
 
 .editprofile-container{
     background-color: #ffff;
-    padding: 100px;
+    padding: 50px;
     margin: auto;
     width: 70%;
     max-width: 1200px;
@@ -63,7 +63,7 @@
     height: 200px;
     box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
     margin: 0px auto;
-    margin-bottom: 30px;
+    margin-bottom: 60px;
     margin-top: -230px;
 }
 
@@ -72,6 +72,9 @@
     margin: auto;
     width: 100%;
     max-width: 1200px;
+    display: flex; 
+    justify-content: space-between; 
+    flex-wrap: wrap;  
 }
 
 .input input{
@@ -91,10 +94,9 @@
 }
 
 .column {
-    float: left;
-    width: 33.33%;
+    width: 30%; 
+    margin-bottom: 15px; 
 }
-    
 .input-container:after {
     content: "";
     display: table;
@@ -109,6 +111,9 @@
 .input span{
     font-size: 12px;
     opacity: 70%;
+}
+.fa-solid.fa-arrow-left {
+    color: black;
 }
 
 /*Responsive Web Design*/
