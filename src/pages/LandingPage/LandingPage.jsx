@@ -124,8 +124,8 @@ const LandingPage = () => {
               <option type="text" value="ubicacion">Ubicación</option>
             </select>
             <input disabled value={search} id="enableInput" onChange={finder} type="text" placeholder="Ingresa tu búsqueda" />
-          </div >
-        </div >
+          </div>
+        </div>
         <div className="cards-container">
           <div id="decoration2" className="landing-decoration2"></div>
           <div id="decoration3" className="landing-decoration3"></div>
@@ -138,7 +138,7 @@ const LandingPage = () => {
             <Card tourTitle={tour.nombre} tourDescription={tour.resumen} tourImage={tour.imagen} tourLocation={tour.ubicacion} />
           ))}
         </div>
-      </section >
+      </section>
 
       <section className="info-section">
         <Title title="Información relevante" />
@@ -156,7 +156,7 @@ const LandingPage = () => {
       </section>
 
       {showFeedback && <Feedback />}
-    </div >
+    </div>
   );
 };
 

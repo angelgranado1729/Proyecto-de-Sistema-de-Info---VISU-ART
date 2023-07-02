@@ -2,12 +2,15 @@ import React, { useState } from "react";
 import { useNavigate, Link } from "react-router-dom";
 import { ArrowLeft, EyeFill, EyeSlashFill } from "react-bootstrap-icons";
 import styles from "./RegisterFormPage.module.css";
-import { HOME_URL } from "../../../constants/urls";
+import { HOME_URL, LOGIN_URL } from "../../../constants/urls";
 import { Form } from "react-bootstrap";
 import DatePicker from "react-datepicker";
 import { CustomToast } from "../../../components/CustomToast/CustomToast";
 import "react-datepicker/dist/react-datepicker.css";
-import { getUserProfileEmailProvider } from "../../../firebase/users";
+import { validateEmailFunction } from "../../../firebase/users";
+import { registerWithEmailAndPassword } from "../../../firebase/auth";
+import { format } from "date-fns";
+
 
 export function RegisterFormPage() {
     const imageURL =
@@ -15,6 +18,8 @@ export function RegisterFormPage() {
     const [showPassword_1, setShowPassword_1] = useState(false);
     const [showPassword_2, setShowPassword_2] = useState(false);
     const navigate = useNavigate();
+    const [showToast, setShowToast] = useState(false);
+    const [infoToast, setInfoToast] = useState({});
     const [formData, setFormData] = useState({
         firstName: "",
         lastName: "",
@@ -22,116 +27,118 @@ export function RegisterFormPage() {
         confirmEmail: "",
         confirmPassword: "",
         password: "",
-        birthDate: null,
+        birthDate: new Date(),
         gender: "",
     });
-
-    const [errors, setErrors] = useState({
-        email: false,
-        confirmEmail: false,
-        password: false,
-        confirmPassword: false,
-    });
-
-    const validatePassword = (password) => {
-        const passwordRegex = /^(?=.*[!@#$%^&*])[a-zA-Z0-9!@#$%^&*]{6,}$/;
-        return passwordRegex.test(password);
-    };
 
     const handleDateChange = (date) => {
         setFormData((prevState) => ({ ...prevState, birthDate: date }));
     };
 
-    const {
-        firstName,
-        lastName,
-        email,
-        confirmEmail,
-        confirmPassword,
-        password,
-        birthDate,
-        gender,
-    } = formData;
-
-    const {
-        email: emailError,
-        confirmEmail: confirmEmailError,
-        password: passwordError,
-        confirmPassword: confirmPasswordError,
-    } = errors;
 
     const onChange = (event) => {
         const { name, value } = event.target;
         setFormData((prevState) => ({ ...prevState, [name]: value }));
     };
 
-    const [showToast, setShowToast] = useState(false);
-    const [typeToast, setTypeToast] = useState("");
-    const [messageToast, setMessageToast] = useState("");
-    const [titleToast, setTitleToast] = useState("");
 
-    const validateForm = () => {
-        const { email, confirmEmail, password, confirmPassword } = formData;
+    const validateForm = async () => {
 
-        const emailValid = validateEmail(email);
-        const confirmEmailValid = validateEmail(confirmEmail);
-        const passwordValid = validatePassword(password);
-        const confirmPasswordValid = validatePassword(confirmPassword);
+        const emailValid = await validateEmail(formData.email);
 
-        setErrors({
-            email: !emailValid,
-            confirmEmail: !confirmEmailValid,
-            password: !passwordValid,
-            confirmPassword: !confirmPasswordValid,
-        });
-
-        return (
-            emailValid &&
-            confirmEmailValid &&
-            passwordValid &&
-            confirmPasswordValid
-        );
-    };
-
-    const validateEmail = (email) => {
-        const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-        const isValidEmail = emailRegex.test(email);
-        if (!isValidEmail) {
+        if (formData.email !== formData.confirmEmail) {
+            setInfoToast({
+                typeToast: "error",
+                title: "Error!",
+                message: "Los correos no coinciden.",
+                time: 5000,
+            });
             setShowToast(true);
-            setTypeToast("error");
-            setTitleToast("Error");
-            setMessageToast("Por favor, ingresa un correo válido.");
             return false;
         }
 
-        const user = getUserProfileEmailProvider(email);
-        if (user) {
+        if (!emailValid) {
+            setInfoToast({
+                typeToast: "error",
+                title: "Error!",
+                message: "Ya existe un usuario asociado a ese correo.",
+                time: 5000,
+            });
             setShowToast(true);
-            setTypeToast("error");
-            setTitleToast("Error");
-            setMessageToast("El correo ya está registrado");
             return false;
         }
+
+        if (formData.password !== formData.confirmPassword) {
+            setInfoToast({
+                typeToast: "error",
+                title: "Error!",
+                message: "Las contraseñas no coinciden.",
+                time: 5000,
+            });
+            setShowToast(true);
+            return false;
+        }
+
+        if (!validatePassword(formData.password)) {
+            setInfoToast({
+                typeToast: "error",
+                title: "Error!",
+                message: "La contraseña debe tener al menos 6 caracteres, una letra y un caracter especial.",
+                time: 5000,
+            });
+            setShowToast(true);
+            return false;
+        }
+
         return true;
     };
 
-    const onSubmit = (event) => {
-        event.preventDefault();
+    const validatePassword = (password) => {
+        const passwordRegex = /^(?=.*[!@#$%^&*])[a-zA-Z0-9!@#$%^&*]{6,}$/;
+        return passwordRegex.test(password);
+    };
 
-        if (!validateForm()) {
-            setShowToast(true);
-            setTypeToast("error");
-            setTitleToast("Error");
-            setMessageToast("Por favor, revisa los campos.");
+    const onSuccess = () => {
+        console.log("REGISTER SUCCESS");
+        navigate(HOME_URL);
+    };
+
+    const onFail = (error) => {
+        console.log("REGISTER FAILED, Try Again");
+        console.log(error);
+    };
+
+
+    const onSubmit = async (event) => {
+        setShowToast(false);
+        event.preventDefault();
+        const isValid = await validateForm();
+
+        if (!isValid) {
+            console.log("Form is not valid");
             return;
         }
-        else {
-            setShowToast(true);
-            setTypeToast("success");
-            setTitleToast("¡Registro exitoso!");
-            setMessageToast("Bienvenido a Visuart");
-            navigate(HOME_URL);
+
+        const formattedDate = format(formData.birthDate, "dd/MM/yyyy");
+
+        await registerWithEmailAndPassword({
+            userData: {
+                ...formData,
+                birthDate: formattedDate,
+            },
+            onSuccess,
+            onFail,
+        });
+
+    };
+
+
+    const validateEmail = async (email) => {
+        const user = await validateEmailFunction(email);
+        if (user) {
+            return false;
         }
+        return true;
     };
 
     return (
@@ -146,14 +153,16 @@ export function RegisterFormPage() {
                 <img src={imageURL} alt="Logo" />
             </div>
 
-            {showToast && (
-                <CustomToast
-                    typeToast={typeToast}
-                    title={titleToast}
-                    message={messageToast}
-                    time={5000}
-                />
-            )}
+            <div className={styles.toastsContainer}>
+                {showToast && (
+                    <CustomToast
+                        typeToast={infoToast.typeToast}
+                        title={infoToast.title}
+                        message={infoToast.message}
+                        time={infoToast.time}
+                    />)
+                }
+            </div>
 
             <div className={styles.formContainer}>
                 <h1 className={styles.title}>¡Cuéntanos sobre ti!</h1>
@@ -166,19 +175,21 @@ export function RegisterFormPage() {
                             type="text"
                             id="firstName"
                             name="firstName"
-                            value={firstName}
+                            value={formData.firstName}
                             onChange={onChange}
                             required
                         />
                     </div>
 
-                    <div className={styles.inputContainer}>
+                    <div
+                        className={styles.inputContainer}
+                    >
                         <label htmlFor="lastName">Apellido</label>
                         <input
                             type="text"
                             id="lastName"
                             name="lastName"
-                            value={lastName}
+                            value={formData.lastName}
                             onChange={onChange}
                             required
                         />
@@ -192,16 +203,11 @@ export function RegisterFormPage() {
                             type="email"
                             id="email"
                             name="email"
-                            value={email}
+                            value={formData.email}
                             onChange={onChange}
                             required
                             placeholder="correo@ejemplo.com"
                         />
-                        {emailError && (
-                            <span className={styles.errorText}>
-                                Por favor, ingresa un correo válido.
-                            </span>
-                        )}
                     </div>
 
                     <div className={styles.inputContainer}>
@@ -212,30 +218,22 @@ export function RegisterFormPage() {
                             type="email"
                             id="confirmEmail"
                             name="confirmEmail"
-                            value={confirmEmail}
+                            value={formData.confirmEmail}
                             onChange={onChange}
                             required
                             placeholder="correo@ejemplo.com"
                         />
-                        {confirmEmailError && (
-                            <span className={styles.errorText}>
-                                Por favor, ingresa un correo válido.
-                            </span>
-                        )}
                     </div>
 
                     <div className={styles.inputContainer}>
                         <label htmlFor="password">Contraseña</label>
-                        <div
-                            className={`${styles.passwordInput} ${passwordError ? styles.errorInputPassword : ""
-                                }`}
-                        >
+                        <div className={styles.passwordInput}>
                             <input
                                 type={showPassword_1 ? "text" : "password"}
                                 name="password"
                                 id="password"
                                 placeholder="***************"
-                                value={password}
+                                value={formData.password}
                                 onChange={onChange}
                                 className={styles.passwordInputField}
                                 required
@@ -255,26 +253,17 @@ export function RegisterFormPage() {
                         <span className={styles.textEx}>
                             Más de 6 dígitos e incluya caracteres especiales (@#.!)
                         </span>
-                        {passwordError && (
-                            <span className={styles.errorText}>
-                                La contraseña debe tener al menos 6 caracteres y contener al
-                                menos un carácter especial.
-                            </span>
-                        )}
                     </div>
 
                     <div className={styles.inputContainer}>
                         <label htmlFor="confirmPassword">Verifica tu contraseña</label>
-                        <div
-                            className={`${styles.passwordInput} ${confirmPasswordError ? styles.errorInputPassword : ""
-                                }`}
-                        >
+                        <div className={styles.passwordInput}>
                             <input
                                 type={showPassword_2 ? "text" : "password"}
                                 name="confirmPassword"
                                 id="confirmPassword"
                                 placeholder="***************"
-                                value={confirmPassword}
+                                value={formData.confirmPassword}
                                 onChange={onChange}
                                 className={styles.passwordInputField}
                                 required
@@ -294,31 +283,26 @@ export function RegisterFormPage() {
                         <span className={styles.textEx}>
                             Más de 6 dígitos e incluya caracteres especiales (@#.!)
                         </span>
-                        {confirmPasswordError && (
-                            <span className={styles.errorText}>
-                                La contraseña debe tener al menos 6 caracteres y contener al
-                                menos un carácter especial.
-                            </span>
-                        )}
                     </div>
 
                     <div className={styles.inputContainer}>
                         <label htmlFor="birthDate">Fecha de nacimiento</label>
-
-                        <div className={styles.dateContainer}>
+                        <div
+                            className={`${styles.datePickerContainer} ${styles.customDatePicker}`}
+                        >
                             <DatePicker
                                 id="birthDate"
                                 name="birthDate"
-                                selected={birthDate}
+                                selected={formData.birthDate}
                                 onChange={handleDateChange}
                                 dateFormat="dd/MM/yyyy"
                                 placeholderText="Selecciona una fecha"
-                                className={styles.datePicker}
                                 required
                                 showYearDropdown
                                 scrollableYearDropdown
                                 yearDropdownItemNumber={110}
                                 maxDate={new Date()}
+                                className={styles.datePicker}
                             />
                         </div>
                     </div>
@@ -330,7 +314,7 @@ export function RegisterFormPage() {
                             as="select"
                             id="gender"
                             name="gender"
-                            value={gender}
+                            value={formData.gender}
                             onChange={onChange}
                             required
                         >

@@ -118,7 +118,8 @@ export const registerWithEmailAndPassword = async ({
   onFail,
 }) => {
   try {
-    const { email, password, birthday, gender, ...restData } = userData;
+    const { firstName, lastName, email, password, birthDate, gender } =
+      userData;
     const firebaseResult = await createUserWithEmailAndPassword(
       auth,
       email,
@@ -126,15 +127,14 @@ export const registerWithEmailAndPassword = async ({
     );
 
     await createUser({
-      ...restData,
       uid: firebaseResult.user.uid,
       email,
-      name: restData.name,
+      name: `${firstName} ${lastName}`,
       favoriteTours: [],
       reservations: [],
       type: "user",
       provider: "email",
-      birthdayUser: birthday,
+      birthdayUser: birthDate,
       genderUser: gender,
       photoURL: "",
     });

@@ -126,8 +126,7 @@
   margin-left: 5px;
 }
 
-.container .form .inputContainer input,
-.container .form .aux .datePicker {
+.container .form .inputContainer input {
   width: 450px;
   height: 48px;
   margin-bottom: 1rem;
@@ -292,8 +291,7 @@
     width: 85%;
   }
 
-  .container .form .inputContainer select,
-  .container .form .inputContainer .datePicker {
+  .container .form .inputContainer select {
     width: 85%;
     height: 48px;
     margin-bottom: 1rem;
@@ -305,6 +303,17 @@
     color: rgba(0, 0, 0, 0.7);
     outline: none;
     padding: 0 1.2rem;
+    align-items: center;
+  }
+  .container .form .inputContainer .datePickerContainer {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 85%;
+  }
+  .container .form .inputContainer .datePicker {
+    width: 100%;
+    font-size: 15px;
     align-items: center;
   }
 
