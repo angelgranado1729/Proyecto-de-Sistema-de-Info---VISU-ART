@@ -145,9 +145,13 @@ function reserveCheck(){
 
         <section className={styles.buttonArea}>
             <button className={styles.bluebtn} onClick={() => navigate(CALENDAR_URL)}>Ver Calendario</button>
-            <button className={styles.bluebtn} onClick={() => navigate(HOME_URL)}>Ver otros tours</button>
+            <button className={styles.bluebtn} onClick={() => navigate(HOME_URL)}>Ver tours</button>
             <button className={styles.orangebtn} onClick={() => {reserveCheck()}}>Siguiente</button>
         </section>
+
+        <div className={styles.reservedecoration1}></div>
+        <div className={styles.reservedecoration2}></div>
+        <div className={styles.reservedecoration3}></div>
 
     </div>
 
