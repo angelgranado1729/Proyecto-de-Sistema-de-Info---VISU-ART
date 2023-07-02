@@ -21,6 +21,7 @@ import { RegisterFormPage } from "./pages/RegisterPages/RegisterFormPage/Registe
 import { NotFoundPage } from "./pages/NotFoundPage/NotFoundPage";
 import { PrivateRoute } from "./components/PrivateRoute/PrivateRoute";
 import UserProfilePage from "./pages/UserPages/UserProfile/UserProfilePage";
+import LookReserve from "./pages/LookReserve/LookReserve";
 
 import ArtAdmin from "./pages/AdminPages/ArtAdmin/ArtAdmin";
 import ArtEdit from "./pages/AdminPages/ArtEdit/ArtEdit";
@@ -59,7 +60,8 @@ import {
   FORGOT_PASSWORD_URL,
   RESET_PASSWORD_URL,
   ADMIN_TOURS_CALENDAR_URL,
-  ADMIN_URL_CONTACT
+  ADMIN_URL_CONTACT,
+  RESERVE_LOOK_URL
 } from "./constants/urls";
 import "./App.css";
 import { TourContextProvider } from "./contexts/TourContext";
@@ -116,6 +118,15 @@ function App() {
               element={
                 <PrivateRoute>
                   <FeedbackPage />
+                </PrivateRoute>
+              }
+            />
+
+            <Route
+              path={RESERVE_LOOK_URL}
+              element={
+                <PrivateRoute>
+                  <LookReserve/>
                 </PrivateRoute>
               }
             />
