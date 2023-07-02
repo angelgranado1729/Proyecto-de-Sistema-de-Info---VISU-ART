@@ -12,7 +12,7 @@ import {
 } from "firebase/firestore";
 import Title from "../../../components/Title/Title";
 import "bootstrap/dist/css/bootstrap.css";
-import { Table, Button, Popover, PopoverBody } from "reactstrap";
+import { Table, Button, Label } from "reactstrap";
 import AdminNavbar from "../../../components/AdminNavbar/AdminNavbar";
 import "./EditCalendar.css";
 
@@ -97,7 +97,7 @@ const TourEditObras = () => {
       <div style={{ marginLeft: "10%", marginRight: "10%" }}>
         <br />
         <br />
-        <Title title={`Obras incluidas - ${tour.nombre}`} />
+        <Title title={`${tour.nombre}`} />
 
         <Button
           color="dark"
@@ -112,6 +112,7 @@ const TourEditObras = () => {
         <br />
 
         <div className="table-responsive">
+          <Label className="subtitles-calendar"> Obras incluidas </Label>
           {obrasAgregadas.length > 0 ? (
             <Table className="shadow-table">
               <thead>
@@ -154,7 +155,7 @@ const TourEditObras = () => {
       <div style={{ marginLeft: "10%", marginRight: "10%" }}>
         <br />
         <br />
-        <Title title={`Obras no incluidas - ${tour.nombre}`} />
+        <Label className="subtitles-calendar"> Obras no incluidas </Label>
 
         <div className="table-responsive">
           <Table className="shadow-table">
