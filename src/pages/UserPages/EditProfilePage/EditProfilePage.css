@@ -132,7 +132,13 @@
     padding: 15px 60px;
     border: none;
 }
-
+.imagenusuario{
+    width: 200px;
+    height: 200px;
+    border-radius: 50%;
+    margin: 0px auto;
+    margin-bottom: 30px;
+}
 /*Responsive Web Design*/
 @media (max-width: 980px) {
     .column {
