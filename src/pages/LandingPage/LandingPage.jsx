@@ -111,10 +111,17 @@ const LandingPage = () => {
       <Navbar />
       <Hero />
       <section className="tours-section">
+
         <Title
           title="Tours Disponibles"
-          description="En esta sección podrás encontrar los tours que se ofrecen para conocer las diferentes obras de arte que se encuentran en la Universidad Metropolitana. Nuestros recorridos se realizan por los distintos salones y exposiciones disponibles en nuestra casa de estudios, por lo que sientasé libre de disfrutar de estos eventos y conozca más de nuestra gran variedad de representaciones artísticas de múltiples pintores y escultores."
+          description="En esta sección podrás encontrar los tours que se ofrecen para 
+          conocer las diferentes obras de arte que se encuentran en la Universidad 
+          Metropolitana. Nuestros recorridos se realizan por los distintos salones y
+           exposiciones disponibles en nuestra casa de estudios, por lo que sientasé 
+           libre de disfrutar de estos eventos y conozca más de nuestra gran variedad 
+           de representaciones artísticas de múltiples pintores y escultores."
         />
+
         <div className="landing-decoration1"></div>
         <div className="search-container">
           <div className="search-bar">
@@ -135,7 +142,12 @@ const LandingPage = () => {
           <div id="decoration7" className="landing-decoration7"></div>
           {checkResults()}
           {results.map((tour) => (
-            <Card tourTitle={tour.nombre} tourDescription={tour.resumen} tourImage={tour.imagen} tourLocation={tour.ubicacion} />
+            <Card
+              tourTitle={tour.nombre}
+              tourDescription={tour.resumen}
+              tourImage={tour.imagen}
+              tourLocation={tour.ubicacion}
+            />
           ))}
         </div>
       </section>
