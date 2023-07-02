@@ -33,6 +33,7 @@ import TourEditObras from "./pages/AdminPages/EditTour/EditTourArt";
 import PayPage from "./pages/PayPage/PayPage";
 import TourEditFechas from "./pages/AdminPages/EditTour/EditCalendar";
 import AdminPageContact from "./pages/AdminPages/AdminPage/AdminContact";
+import Feedback from "react-bootstrap/esm/Feedback";
 
 import {
   ADMIN_CREATE_OBRAS_URL,
@@ -146,6 +147,15 @@ function App() {
           />
 
           <Route
+            path={FEEDBACK_URL }
+            element={
+              <PrivateRoute>
+                <FeedbackPage />
+                </PrivateRoute>
+            }
+          />      
+
+          <Route
             path={REGISTER_URL}
             element={
               <PublicRoute>
@@ -153,6 +163,9 @@ function App() {
               </PublicRoute>
             }
           />
+
+          
+       
 
           <Route
             path={REGISTER_FORM_URL}
