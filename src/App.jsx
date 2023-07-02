@@ -9,6 +9,7 @@ import { NotFoundPage } from "./pages/NotFoundPage/NotFoundPage";
 import { PrivateRoute } from "./components/PrivateRoute/PrivateRoute";
 import { ResetPasswordPage } from "./pages/LoginPages/ResetPasswordPage/ResetPasswordPage";
 import { TourPage } from "./pages/TourPage/TourPage";
+import { AdminRoute } from "./components/AdminRoute/AdminRoute";
 import UserProfilePage from "./pages/UserPages/UserProfile/UserProfilePage";
 import LookReserve from "./pages/LookReserve/LookReserve";
 
@@ -197,18 +198,18 @@ function App() {
             <Route
               path={ADMIN_URL}
               element={
-                <PrivateRoute>
+                <AdminRoute>
                   <AdminPage />
-                </PrivateRoute>
+                </AdminRoute>
               }
             />
 
             <Route
               path={ADMIN_URL_CONTACT}
               element={
-                <PrivateRoute>
+                <AdminRoute>
                   <AdminPageContact />
-                </PrivateRoute>
+                </AdminRoute>
               }
             />
 
@@ -217,9 +218,9 @@ function App() {
             <Route
               path={LOGIN_URL}
               element={
-                <PublicRoute>
+                
                   <LoginPage />
-                </PublicRoute>
+               
               }
             />
 
@@ -260,63 +261,63 @@ function App() {
             <Route
               path={ADMIN_RESERVE_URL}
               element={
-                <PrivateRoute>
+                <AdminRoute>
                   <ReserveAdminPage />
-                </PrivateRoute>
+                </AdminRoute>
               }
             />
 
             <Route
               path={ADMIN_RESERVE_URL}
               element={
-                <PrivateRoute>
+                <AdminRoute>
                   <ReserveAdminPage />
-                </PrivateRoute>
+                </AdminRoute>
               }
             />
 
             <Route
               path={ADMIN_EDIT_OBRAS_URL}
               element={
-                <PrivateRoute>
+                <AdminRoute>
                   <ArtEdit />
-                </PrivateRoute>
+                </AdminRoute>
               }
             />
 
             <Route
               path={ADMIN_TOURS_CALENDAR_URL}
               element={
-                <PrivateRoute>
+                <AdminRoute>
                   <TourEditFechas />
-                </PrivateRoute>
+                </AdminRoute>
               }
             />
 
             <Route
               path={ADMIN_CREATE_OBRAS_URL}
               element={
-                <PrivateRoute>
+                <AdminRoute>
                   <CreateArt />
-                </PrivateRoute>
+                </AdminRoute>
               }
             />
 
             <Route
               path={ADMIN_OBRAS_URL}
               element={
-                <PrivateRoute>
+                <AdminRoute>
                   <ArtAdmin />
-                </PrivateRoute>
+                </AdminRoute>
               }
             />
 
             <Route
               path={ADMIN_TOURS_EDIT_URL}
               element={
-                <PrivateRoute>
+                <AdminRoute>
                   <TourEdit />
-                </PrivateRoute>
+                </AdminRoute>
               }
             />
 
@@ -324,27 +325,27 @@ function App() {
             <Route
               path={ADMIN_TOURS_URL}
               element={
-                <PrivateRoute>
+                <AdminRoute>
                   <TourAdmin />
-                </PrivateRoute>
+                </AdminRoute>
               }
             />
 
             <Route
               path={ADMIN_TOUR_CREATE_URL}
               element={
-                <PrivateRoute>
+                <AdminRoute>
                   <CreateTour />
-                </PrivateRoute>
+                </AdminRoute>
               }
             />
 
             <Route
               path={ADMIN_TOURS_EDIT_ART}
               element={
-                <PrivateRoute>
+                <AdminRoute>
                   <TourEditObras />
-                </PrivateRoute>
+                </AdminRoute>
 
               }
             />
