@@ -1,17 +1,11 @@
-import {
-    ADMIN_OBRAS_URL,
-    ADMIN_TOURS_URL,
-    ADMIN_RESERVE_URL,
-    HOME_URL,
-    ADMIN_URL
-} from "../../constants/urls";
+import { ADMIN_OBRAS_URL, ADMIN_TOURS_URL, ADMIN_RESERVE_URL, LOGIN_URL, ADMIN_URL, ADMIN_URL_CONTACT, HOME_URL } from "../../constants/urls";
 import { logout } from "../../firebase/auth";
 
-
 export const MenuData = [
+
     {
-        title: "Obras",
-        url: ADMIN_OBRAS_URL,
+        title: "Inicio",
+        url: ADMIN_URL,
         cName: "admin_navbar-links"
 
     },
@@ -21,16 +15,24 @@ export const MenuData = [
         cName: "admin_navbar-links"
     },
     {
+        title: "Obras",
+        url: ADMIN_OBRAS_URL,
+        cName: "admin_navbar-links"
+
+    },
+
+    {
         title: "Reservas",
         url: ADMIN_RESERVE_URL,
         cName: "admin_navbar-links"
     },
 
     {
-        title: "Perfil",
-        url: ADMIN_URL,
-        cName: "admin_navbar-links-mobile"
+        title: "Contactos",
+        url: ADMIN_URL_CONTACT,
+        cName: "admin_navbar-links"
     },
+
     {
         title: "Salir",
         url: HOME_URL,

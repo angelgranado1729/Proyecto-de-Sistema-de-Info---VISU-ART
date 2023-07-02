@@ -6,6 +6,7 @@ import "./ReserveAdminPage.css";
 import { Table } from "reactstrap";
 import { Button } from 'reactstrap';
 import AdminNavbar from "../../../components/AdminNavbar/AdminNavbar";
+import "./ReserveAdminPage.css";
 
 const ReserveAdminPage = () => {
   const [reservations, setReservations] = useState([]);
@@ -81,7 +82,7 @@ const ReserveAdminPage = () => {
         <br />
         <br />
         <Title title="Gestor de Reservas" />
-        <Table>
+        <Table className="shadow-table" >
           <thead>
             <tr>
               <th>#</th>

@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from "react";
 import { Link, Route, useNavigate } from "react-router-dom";
 import { app, auth, db, storage } from "../../../firebase/firebase-config";
+import "./ArtAdmin.css";
+
 import {
   getDocs,
   query,
@@ -78,10 +80,9 @@ const ArtAdmin = () => {
         <Button color="success" style={{ float: 'left' }} onClick={() => handleCrearObra()}>
           Agregar nueva obra
         </Button>{" "}
-        <br />
-        <br />
-
-        <Table responsive>
+        <br /> <br /> <br />
+      
+        <Table className="shadow-table">
           <thead>
             <tr>
               <th className="d-none d-sm-table-cell">#</th>

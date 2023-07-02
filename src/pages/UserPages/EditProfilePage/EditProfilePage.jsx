@@ -1,11 +1,7 @@
 //el codigo de arriba es el codigo de beatriz viejo.
 //si hay que añadir mas campos se debe agregar un estado para cada campo, un input para que el usuario pueda editar el valor
 //, y luego incluye el valor en el objeto que se pasa a "updateUser"
-<<<<<<< HEAD
-import { useState } from 'react';
-=======
 import { useState } from "react";
->>>>>>> f30fc4f9942b9eadd6bb1f011ce29ad4d6a092f3
 import { useUserContext } from "../../../contexts/UserContext";
 import { updateUser } from "../../../firebase/users";
 import Subtitle from "../../../components/Subtitle/Subtitle";
@@ -215,8 +211,4 @@ const EditProfilePage = () => {
     );
 };
 
-<<<<<<< HEAD
-export default EditProfilePage
-=======
 export default EditProfilePage;
->>>>>>> f30fc4f9942b9eadd6bb1f011ce29ad4d6a092f3

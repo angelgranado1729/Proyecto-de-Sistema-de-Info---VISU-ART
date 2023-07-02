@@ -191,7 +191,7 @@ const ArtEdit = () => {
               <img
                 src={obra.imagen}
                 alt="Imagen actual"
-                style={{ maxWidth: "55%" }}
+                style={{ maxWidth: "55%", boxShadow: "0px 0px 20px rgba(0, 0, 0, 0.3)" }}
               />
             )}
           </Col>

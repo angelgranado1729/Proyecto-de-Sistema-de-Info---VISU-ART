@@ -1,5 +1,4 @@
 import { Route, Routes } from "react-router-dom";
-import EditProfilePage from "./pages/UserPages/EditProfilePage/EditProfilePage";
 import { UserContextProvider } from "./contexts/UserContext";
 import { LoginPage } from "./pages/LoginPages/LoginPage/LoginPage";
 import { ForgotPasswordPage } from "./pages/LoginPages/ForgotPasswordPage/ForgotPasswordPage";
@@ -9,6 +8,8 @@ import { RegisterFormPage } from "./pages/RegisterPages/RegisterFormPage/Registe
 import { NotFoundPage } from "./pages/NotFoundPage/NotFoundPage";
 import { PrivateRoute } from "./components/PrivateRoute/PrivateRoute";
 import { ResetPasswordPage } from "./pages/LoginPages/ResetPasswordPage/ResetPasswordPage";
+import UserProfilePage from "./pages/UserPages/UserProfile/UserProfilePage";
+import LookReserve from "./pages/LookReserve/LookReserve";
 
 import Footer from "./components/Footer/Footer";
 import LandingPage from "./pages/LandingPage/LandingPage";
@@ -19,9 +20,9 @@ import MisionPage from "./pages/MisionPage/MisionPage";
 import ObjectivesPage from "./pages/ObjectivesPage/ObjectivesPage";
 import ContactPage from "./pages/ContactPage/ContactPage";
 import CalendarPage from "./pages/CalendarPage/CalendarPage";
+import EditProfilePage from "./pages/UserPages/EditProfilePage/EditProfilePage";
 import FeedbackPage from "./pages/FeedbackPage/FeedbackPage";
 import ReservePage from "./pages/ReservePage/ReservePage";
-import UserProfilePage from "./pages/UserPages/UserProfile/UserProfilePage";
 import ArtAdmin from "./pages/AdminPages/ArtAdmin/ArtAdmin";
 import ArtEdit from "./pages/AdminPages/ArtEdit/ArtEdit";
 import CreateArt from "./pages/AdminPages/CreateArtAdmin/CreateArt";
@@ -31,6 +32,7 @@ import CreateTour from "./pages/AdminPages/CreateTour/CreateTour";
 import TourEditObras from "./pages/AdminPages/EditTour/EditTourArt";
 import PayPage from "./pages/PayPage/PayPage";
 import TourEditFechas from "./pages/AdminPages/EditTour/EditCalendar";
+import AdminPageContact from "./pages/AdminPages/AdminPage/AdminContact";
 
 import {
   ADMIN_CREATE_OBRAS_URL,
@@ -58,8 +60,9 @@ import {
   VISION_URL,
   FORGOT_PASSWORD_URL,
   RESET_PASSWORD_URL,
-  PAY_PAGE_URL,
-  ADMIN_TOURS_CALENDAR_URL
+  ADMIN_TOURS_CALENDAR_URL,
+  ADMIN_URL_CONTACT,
+  RESERVE_LOOK_URL
 } from "./constants/urls";
 import "./App.css";
 
@@ -116,10 +119,10 @@ function App() {
           />
 
           <Route
-            path={FEEDBACK_URL}
+            path={RESERVE_LOOK_URL}
             element={
               <PrivateRoute>
-                <FeedbackPage />
+                <LookReserve />
               </PrivateRoute>
             }
           />
@@ -134,11 +137,55 @@ function App() {
           />
 
           <Route
-            path={PAY_PAGE_URL}
+            path={RESERVE_URL}
+            element={
+              <PrivateRoute>
+                <ReservePage />
+              </PrivateRoute>
+            }
+          />
+
+          <Route
+            path={REGISTER_URL}
             element={
               <PublicRoute>
-                <PayPage />
+                <RegisterPage />
               </PublicRoute>
+            }
+          />
+
+          <Route
+            path={REGISTER_FORM_URL}
+            element={
+              <PublicRoute>
+                <RegisterFormPage />
+              </PublicRoute>
+            }
+          />
+
+          <Route
+            path={ERROR_404}
+            element={
+              <NotFoundPage />
+            }
+          />
+
+          {/* Admin Pages */}
+          <Route
+            path={ADMIN_URL}
+            element={
+              <PrivateRoute>
+                <AdminPage />
+              </PrivateRoute>
+            }
+          />
+
+          <Route
+            path={ADMIN_URL_CONTACT}
+            element={
+              <PrivateRoute>
+                <AdminPageContact />
+              </PrivateRoute>
             }
           />
 
@@ -186,12 +233,12 @@ function App() {
           />
 
 
-          {/* Admin Pages */}
+
           <Route
-            path={ADMIN_URL}
+            path={ADMIN_RESERVE_URL}
             element={
               <PrivateRoute>
-                <AdminPage />
+                <ReserveAdminPage />
               </PrivateRoute>
             }
           />

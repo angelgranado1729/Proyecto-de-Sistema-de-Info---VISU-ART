@@ -16,9 +16,11 @@ export const FEEDBACK_URL = "/feedback";
 export const USER_PROFILE_URL = "/user-profile";
 export const USER_PROFILE_EDIT_URL = "/user-profile-edit";
 export const RESERVE_URL = "/reserve";
+export const RESERVE_LOOK_URL = "/lookreserve";
 
 
 export const ADMIN_URL = "/admin";
+export const ADMIN_URL_CONTACT = "/admin-contact"
 export const ADMIN_RESERVE_URL = "/admin-reserve";
 export const ADMIN_OBRAS_URL = "/adminobras";
 export const ADMIN_EDIT_OBRAS_URL = "/admin-edit/:nombre";

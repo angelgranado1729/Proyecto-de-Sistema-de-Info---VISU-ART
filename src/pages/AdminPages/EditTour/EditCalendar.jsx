@@ -1,14 +1,12 @@
-//Página  Editar Fechas Admin 
-// En esta página, el administrador podrá modificar las fechas de un tour para mostrar en el calendario. 
-
 import React, { useState, useEffect } from "react";
-import { Button, Table, FormGroup, Label } from "reactstrap";
+import { Button, Table, FormGroup, Label, Toast, ToastBody } from "reactstrap";
 import { useParams, useNavigate } from "react-router-dom";
 import { doc, updateDoc, getDocs, collection, query, where } from "firebase/firestore";
 import { db } from "../../../firebase/firebase-config";
 import AdminNavbar from "../../../components/AdminNavbar/AdminNavbar";
 import Title from "../../../components/Title/Title";
 import { DatePicker } from 'reactstrap-date-picker';
+import { CustomToast } from "../../../components/CustomToast/CustomToast";
 import "./EditCalendar.css";
 
 const formatDate = (date) => {
@@ -23,7 +21,9 @@ const TourEditFechas = () => {
   const [tour, setTour] = useState(null);
   const [fechas, setFechas] = useState([]);
   const [nuevaFecha, setNuevaFecha] = useState("");
+  const [showToast, setShowToast] = useState(false);
   const navigate = useNavigate();
+  
 
   useEffect(() => {
     const fetchTour = async () => {
@@ -46,10 +46,22 @@ const TourEditFechas = () => {
     fetchTour();
   }, [nombre]);
 
+  useEffect(() => {
+    setShowToast(false); // Restablecer el estado de showToast a false cuando cambie nuevaFecha
+  }, [nuevaFecha]);
+
   const handleAgregarFecha = async () => {
+    
     if (!nuevaFecha || !tour) return;
 
     const formattedDate = formatDate(nuevaFecha);
+
+    // Verificar si la fecha ya existe en el array de fechas
+    if (fechas.includes(formattedDate)) {
+      setShowToast(true);
+      return;
+    }
+
     const updatedFechas = [...fechas, formattedDate];
 
     await updateDoc(doc(db, "Tours", tour.id), {
@@ -58,6 +70,7 @@ const TourEditFechas = () => {
 
     setFechas(updatedFechas);
     setNuevaFecha(""); // Limpiar el estado de nuevaFecha después de agregarla
+    
   };
 
   const handleGoBack = () => {
@@ -111,7 +124,7 @@ const TourEditFechas = () => {
         <br />
         <Label className="subtitles-calendar" for="viejaFecha"> FECHAS AGREGADAS </Label>
         {fechas.length > 0 ? (
-          <Table>
+          <Table className="shadow-table">
             <thead>
               <tr>
                 <th>#</th>
@@ -148,12 +161,19 @@ const TourEditFechas = () => {
       </div>
       <br />
       <br />
+
+      {showToast && (
+        <div className="custom-toast">
+          <CustomToast
+            typeToast="error"
+            title="¡Error!"
+            message="La fecha ya existe"
+            time={5000}
+          />
+        </div>
+      )}
     </div>
   );
 };
 
 export default TourEditFechas;
-
-
-
-
