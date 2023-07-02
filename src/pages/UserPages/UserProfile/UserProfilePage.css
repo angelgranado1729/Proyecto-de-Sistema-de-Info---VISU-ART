@@ -13,7 +13,34 @@
     width: auto;
     margin-top: 50px;
 }
+.margen{
+    /* centrar el boton */
+    margin: 0px auto;
+    /* centrar el texto del boton */
+    text-align: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    flex-wrap: wrap;
 
+
+}
+.editprofile-btn{
+    background: #1a3e5a;
+    font-weight: 900;
+    font-size: 15px;
+    text-decoration: none;
+    color: white;
+    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+    border-radius: 10px;
+    flex: none;
+    order: 4;
+    flex-grow: 0;
+    padding: 15px 60px;
+    border: none;
+    margin-bottom: 25px;
+}
 .editprofile-container{
     background-color: #ffff;
     padding: 50px;

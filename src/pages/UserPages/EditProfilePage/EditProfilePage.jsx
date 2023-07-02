@@ -291,12 +291,12 @@ const EditProfilePage = () => {
             </div>
             <div className="column">
               <div className="input" value = {password} onChange={(e) => setPassword(e.target.value)}>
-                <label>Contraseña</label>
+                <label>Verifica tu contraseña actual</label>
                 <input type="text" />
                 <span>Más 6 de dígitos e incluya carácteres especiales</span>
               </div>
               <div className="input"  value = {password2} onChange={(e) => setPassword2(e.target.value)}>
-                <label>Verifica tu contraseña</label>
+                <label>Tu nueva contraseña</label>
                 <input type="text" />
                 <span>Más 6 de dígitos e incluya carácteres especiales</span>
               </div>
