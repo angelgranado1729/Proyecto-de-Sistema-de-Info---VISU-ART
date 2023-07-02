@@ -14,6 +14,9 @@ import { UserContext } from "../../../contexts/UserContext";
 import { uploadBytes,uploadBytesResumable, getDownloadURL } from "firebase/storage";
 import { ref as getRef } from "firebase/storage";
 import { doc, updateDoc } from "firebase/firestore";
+import {  updateUserPassword} from "../../../firebase/auth";
+import { reauthenticateWithCredential, EmailAuthProvider , getAuth} from "firebase/auth";
+import { getDoc } from "firebase/firestore"; 
 
 
 const EditProfilePage = () => {
@@ -78,16 +81,117 @@ const EditProfilePage = () => {
       
     }
   };
+  // const checkEmailPassword = () => {
+  //   let e = checkEmail();
+  //   let a = checkPassword();
+  //   console.log(okemail);
+  //   console.log(okpassword);
+  //   updateinfo(e,a);
+
+  // };
+
+  // const checkEmailPassword = () => {
+  //   let e = checkEmail();
+  //   let a = checkPassword();
+  //   console.log(okemail);
+  //   console.log(okpassword);
+  //   if (e && a) {
+  //     const auth = getAuth(); // Get the Auth instance
+  //     const user = auth.currentUser;
+  //     if (user) {
+  //       // Get the user document from Firestore
+  //       const userDoc = doc(db, "users", user.uid);
+  //       getDoc(userDoc).then((docSnapshot) => {
+  //         if (docSnapshot.exists()) {
+  //           const userData = docSnapshot.data();
+  //           if (userData.provider === "google" || userData.provider === "facebook") {
+  //             // The user registered with Google or Facebook, do not allow password change
+  //             alert("No puedes cambiar tu contraseña porque te registraste con Google o Facebook.");
+  //           } else {
+  //             // The user did not register with Google or Facebook, proceed with password change
+  //             const credential = EmailAuthProvider.credential(user.email, password); // Use the current password to create the credential
+  //             reauthenticateWithCredential(user, credential)
+  //               .then(() => {
+  //                 // User re-authenticated.
+  //                 updateUserPassword({
+  //                   newPassword: password,
+  //                   onSuccess: () => {
+  //                     console.log("Password updated successfully.");
+  //                     // Handle success (e.g., show a success message to the user)
+  //                   },
+  //                   onFail: () => {
+  //                     console.log("Failed to update password.");
+  //                     // Handle failure (e.g., show an error message to the user)
+  //                   },
+  //                 });
+  //               })
+  //               .catch((error) => {
+  //                 // An error happened.
+  //                 console.error("Failed to re-authenticate user", error);
+  //                 if (error.code === "auth/wrong-password") {
+  //                   // The password is incorrect
+  //                   alert("La contraseña proporcionada es incorrecta. Por favor, inténtalo de nuevo.");
+  //                 }
+  //               });
+  //           }
+  //         }
+  //       });
+  //     }
+  //   }
+  //   updateinfo(e,a);
+  // };
+  
+        
+
   const checkEmailPassword = () => {
     let e = checkEmail();
     let a = checkPassword();
     console.log(okemail);
     console.log(okpassword);
+    if (e && a) {
+      const auth = getAuth(); // Get the Auth instance
+      const user = auth.currentUser;
+      if (user) {
+        const provider = user.providerData[0].providerId; // Get the provider ID of the first provider
+        if (provider === "google.com" || provider === "facebook.com") {
+          // The user registered with Google or Facebook, do not allow password change
+          alert("No puedes cambiar tu contraseña porque te registraste con Google o Facebook.");
+        } else {
+          // The user did not register with Google or Facebook, proceed with password change
+          const credential = EmailAuthProvider.credential(user.email, password); // Use the current password to create the credential
+          reauthenticateWithCredential(user, credential)
+            .then(() => {
+              // User re-authenticated.
+              updateUserPassword({
+                newPassword: password,
+                onSuccess: () => {
+                  console.log("Password updated successfully.");
+                  // Handle success (e.g., show a success message to the user)
+                },
+                onFail: () => {
+                  console.log("Failed to update password.");
+                  // Handle failure (e.g., show an error message to the user)
+                },
+              });
+            })
+            .catch((error) => {
+              // An error happened.
+              console.error("Failed to re-authenticate user", error);
+              if (error.code === "auth/wrong-password") {
+                // The password is incorrect
+                alert("La contraseña proporcionada es incorrecta. Por favor, inténtalo de nuevo.");
+              }
+            });
+        }
+      }
+    }
     updateinfo(e,a);
   };
-
-
-
+  
+  
+  
+  
+  
 
 
 
