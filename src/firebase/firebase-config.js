@@ -7,6 +7,7 @@ import {
   GoogleAuthProvider,
   FacebookAuthProvider,
 } from "firebase/auth";
+import "firebase/compat/firestore";
 
 const firebaseConfig = {
   apiKey: `${import.meta.env.VITE_APP_FIREBASE_API_KEY}`,

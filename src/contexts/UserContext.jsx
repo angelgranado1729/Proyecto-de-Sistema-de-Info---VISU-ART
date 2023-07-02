@@ -9,6 +9,7 @@ export function UserContextProvider({ children }) {
   const [user, setUser] = useState(null);
   const [isLoadingUser, setIsLoadingUser] = useState(true);
 
+
   useEffect(() => {
     onAuthStateChanged(auth, async (firebaseUser) => {
       setIsLoadingUser(true);

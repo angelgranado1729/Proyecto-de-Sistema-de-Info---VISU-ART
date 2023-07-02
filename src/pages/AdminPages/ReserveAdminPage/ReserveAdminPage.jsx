@@ -1,11 +1,12 @@
 import React, { useState, useEffect } from "react";
 import { app, auth, db, storage } from "../../../firebase/firebase-config";
-import { getDocs, query, collection, where } from "firebase/firestore";
+import { getDocs, query, collection, where, doc, deleteDoc } from "firebase/firestore";
 import Title from "../../../components/Title/Title";
 import "./ReserveAdminPage.css";
 import { Table } from "reactstrap";
 import { Button } from 'reactstrap';
 import AdminNavbar from "../../../components/AdminNavbar/AdminNavbar";
+import "./ReserveAdminPage.css";
 
 const ReserveAdminPage = () => {
   const [reservations, setReservations] = useState([]);
@@ -60,18 +61,35 @@ const ReserveAdminPage = () => {
     fetchReservations();
   }, []);
 
+  const deleteReservation = async (reservationId) => {
+    const confirmed = window.confirm("¿Estás seguro de eliminar esta reserva?");
+    if (confirmed) {
+      try {
+        // Eliminar la reserva de Firebase Firestore
+        await deleteDoc(doc(db, "Reservas", reservationId));
+        // Actualizar el estado de las reservas eliminando la reserva eliminada
+        setReservations(reservations.filter(reservation => reservation.id !== reservationId));
+      } catch (error) {
+        console.error("Error al eliminar la reserva", error);
+      }
+    }
+  };
+
   return (
     <div className="App">
       <AdminNavbar />
-      <div className="main-admin" style={{ width: "60%" }}>
+      <div style={{ marginLeft: "10%", marginRight: "10%" }}>
+        <br />
+        <br />
         <Title title="Gestor de Reservas" />
-        <Table>
+        <Table className="shadow-table" >
           <thead>
             <tr>
               <th>#</th>
               <th>Usuario</th>
               <th>Tour</th>
               <th>Fecha</th>
+              <th>Acciones</th>
             </tr>
           </thead>
           <tbody>
@@ -81,11 +99,18 @@ const ReserveAdminPage = () => {
                 <td>{users[reservation.user_id]}</td>
                 <td>{tours[reservation.tour_id]}</td>
                 <td>{reservation.fecha}</td>
+                <td>
+                  <Button color="danger" onClick={() => deleteReservation(reservation.id)}>
+                    Eliminar
+                  </Button>
+                </td>
               </tr>
             ))}
           </tbody>
         </Table>
       </div>
+      <br />
+      <br />
     </div>
   );
 };

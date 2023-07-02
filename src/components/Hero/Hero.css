@@ -209,4 +209,9 @@
   .hero-section {
     margin-top: -60px;
   }
+
+  .hero-text {
+    font-size: 12px;
+    text-align: justify;
+  }
 }

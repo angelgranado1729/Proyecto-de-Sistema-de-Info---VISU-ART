@@ -1,35 +1,44 @@
-import { CONTACT_URL, LOGIN_URL, MISION_URL, OBJECTIVES_URL, REGISTER_URL, VISION_URL } from "../../constants/urls";
+import { ADMIN_OBRAS_URL, ADMIN_TOURS_URL, ADMIN_RESERVE_URL, LOGIN_URL, ADMIN_URL, ADMIN_URL_CONTACT, HOME_URL } from "../../constants/urls";
+import { logout } from "../../firebase/auth";
 
 export const MenuData = [
+
     {
-        title: "Obras",
-        url: MISION_URL,
+        title: "Inicio",
+        url: ADMIN_URL,
         cName: "admin_navbar-links"
 
     },
     {
         title: "Tours",
-        url: VISION_URL,
+        url: ADMIN_TOURS_URL,
         cName: "admin_navbar-links"
     },
     {
-        title: "Fechas",
-        url: OBJECTIVES_URL,
+        title: "Obras",
+        url: ADMIN_OBRAS_URL,
         cName: "admin_navbar-links"
+
     },
+
     {
         title: "Reservas",
-        url: CONTACT_URL,
+        url: ADMIN_RESERVE_URL,
         cName: "admin_navbar-links"
     },
+
     {
-        title: "Perfil",
-        url: REGISTER_URL,
-        cName: "admin_navbar-links-mobile"
+        title: "Contactos",
+        url: ADMIN_URL_CONTACT,
+        cName: "admin_navbar-links"
     },
+
     {
         title: "Salir",
-        url: LOGIN_URL,
-        cName: "admin_navbar-links-mobile-transparent"
+        url: HOME_URL,
+        cName: "admin_navbar-links-mobile-transparent",
+        onClick: () => {
+            logout();
+        }
     }
 ]

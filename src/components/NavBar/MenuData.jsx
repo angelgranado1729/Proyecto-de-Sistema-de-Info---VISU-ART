@@ -6,7 +6,8 @@ import {
   OBJECTIVES_URL,
   REGISTER_URL,
   USER_PROFILE_URL,
-  VISION_URL
+  VISION_URL,
+  RESERVE_LOOK_URL
 } from "../../constants/urls";
 import { logout } from "../../firebase/auth";
 
@@ -37,9 +38,10 @@ const getMenuData = (user) => {
   if (user) {
     menuData.push({
       title: "Perfil",
-      url: USER_PROFILE_URL,
+      url: RESERVE_LOOK_URL,
       cName: "navbar-links"
     });
+   
     menuData.push({
       title: "Cerrar sesión",
       url: HOME_URL,

@@ -16,7 +16,6 @@ const Navbar = () => {
     const userContext = useUserContext();
     useEffect(() => {
         setUser(userContext.user);
-        console.log(userContext.user)
     }, [user, userContext.user]);
 
 
