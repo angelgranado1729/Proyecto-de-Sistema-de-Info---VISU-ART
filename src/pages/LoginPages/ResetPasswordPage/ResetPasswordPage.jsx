@@ -6,6 +6,7 @@ import { HOME_URL, LOGIN_URL } from "../../../constants/urls";
 import { resetPassword } from "../../../firebase/auth";
 import { useQuery } from "../../../hooks/useQuery";
 import { Loading } from "../../../components/Loading/Loading";
+import { CustomToast } from "../../../components/CustomToast/CustomToast";
 
 export function ResetPasswordPage() {
     const IMAGE_URL =
@@ -16,11 +17,20 @@ export function ResetPasswordPage() {
 
     const [validLink, setValidLink] = useState(false);
     const [isLoading, setLoading] = useState(true);
+    const [password, setPassword] = useState("");
+    const [confirmPassword, setConfirmPassword] = useState("");
+    const [showToast, setShowToast] = useState(false);
+    const [infoToast, setInfoToast] = useState({
+        typeToast: "",
+        title: "",
+        message: "",
+        time: 0,
+    });
+    const [toastMessage, setToastMessage] = useState("");
 
     useEffect(() => {
         const verifyLink = async () => {
             if (!oobCode) {
-                // Si el oobCode es nulo, redirigir al inicio
                 setLoading(false);
                 return;
             }
@@ -37,12 +47,7 @@ export function ResetPasswordPage() {
         };
 
         verifyLink();
-    }, [auth, validLink, oobCode]);
-
-    const [password, setPassword] = useState("");
-    const [confirmPassword, setConfirmPassword] = useState("");
-    const [error, setError] = useState(null);
-    const [success, setSuccess] = useState(false);
+    }, [auth, oobCode]);
 
     const handlePasswordChange = (e) => {
         setPassword(e.target.value);
@@ -52,26 +57,71 @@ export function ResetPasswordPage() {
         setConfirmPassword(e.target.value);
     };
 
+    const verifyPassword = () => {
+        if (password !== confirmPassword) {
+            setInfoToast({
+                typeToast: "error",
+                title: "¡Error!",
+                message: "Las contraseñas no coinciden.",
+                time: 3000,
+            });
+            setToastMessage("Las contraseñas no coinciden.");
+            setShowToast(true);
+            return false;
+        }
+        if (password.length < 6 || !/[!@#$%^&*(),.?":{}|<>]/.test(password)) {
+            setInfoToast({
+                typeToast: "error",
+                title: "¡Error!",
+                message:
+                    "La contraseña debe tener al menos 6 caracteres y un caracter especial.",
+                time: 3000,
+            });
+            setToastMessage(
+                "La contraseña debe tener al menos 6 caracteres y un caracter especial."
+            );
+            setShowToast(true);
+            return false;
+        }
+
+        setShowToast(false);
+        return true;
+    };
+
     const handleFormSubmit = async (e) => {
         e.preventDefault();
-
-        if (password !== confirmPassword) {
-            setError("Las contraseñas no coinciden");
+        if (!verifyPassword()) {
             return;
         }
 
-        if (password.length < 6 || !/[!@#$%^&*(),.?":{}|<>]/.test(password)) {
-            setError(
-                "La contraseña debe tener al menos 6 caracteres y contener al menos un carácter especial"
-            );
-            return;
-        }
+        setShowToast(false);
 
         try {
             await resetPassword(oobCode, password);
-            setSuccess(true);
+            const message = "Tu contraseña ha sido restablecida correctamente.";
+            setInfoToast({
+                typeToast: "success",
+                title: "¡Contraseña restablecida!",
+                message: message,
+                time: 3000,
+            });
+            setToastMessage(message);
+            setShowToast(true);
+            setTimeout(() => {
+                window.location.href = LOGIN_URL;
+            }, 3000);
+
         } catch (error) {
-            setError(error.message);
+            const message = "Ha ocurrido un error al restablecer la contraseña.";
+            setInfoToast({
+                typeToast: "error",
+                title: "¡Error!",
+                message: message,
+                time: 3000,
+            });
+            setToastMessage(message);
+            console.log(error);
+            setShowToast(true);
         }
     };
 
@@ -83,8 +133,24 @@ export function ResetPasswordPage() {
         return <Navigate to={HOME_URL} />;
     }
 
+    const handleClick = () => {
+        setShowToast(false);
+        console.log(toastMessage);
+    };
+
     return (
         <div className={styles.container}>
+            {showToast && (
+                <div className={styles.toastContainer}>
+                    <CustomToast
+                        typeToast={infoToast.typeToast}
+                        title={infoToast.title}
+                        message={toastMessage}
+                        time={infoToast.time}
+                    />
+                </div>
+            )}
+
             <div className={styles.formContainer}>
                 <div className={styles.logoContainer}>
                     <img src={IMAGE_URL} alt="Logo" />
@@ -94,41 +160,40 @@ export function ResetPasswordPage() {
 
                 <div className={styles.decorationTop}></div>
 
-                {!success ? (
-                    <form className={styles.form} onSubmit={handleFormSubmit}>
-                        <div className={styles.inputContainer}>
-                            <label htmlFor="password">Contraseña</label>
-                            <input
-                                type="password"
-                                id="password"
-                                name="password"
-                                placeholder="***************"
-                                value={password}
-                                onChange={handlePasswordChange}
-                                required
-                            />
-                        </div>
-                        <div className={styles.inputContainer}>
-                            <label htmlFor="confirmPassword">Confirmar contraseña</label>
-                            <input
-                                type="password"
-                                id="confirmPassword"
-                                name="confirmPassword"
-                                placeholder="***************"
-                                value={confirmPassword}
-                                onChange={handleConfirmPasswordChange}
-                                required
-                            />
-                        </div>
+                <form className={styles.form} onSubmit={handleFormSubmit}>
+                    <div className={styles.inputContainer}>
+                        <label htmlFor="password">Contraseña</label>
+                        <input
+                            type="password"
+                            id="password"
+                            name="password"
+                            placeholder="***************"
+                            value={password}
+                            onChange={handlePasswordChange}
+                            required
+                        />
+                    </div>
+                    <div className={styles.inputContainer}>
+                        <label htmlFor="confirmPassword">Confirmar contraseña</label>
+                        <input
+                            type="password"
+                            id="confirmPassword"
+                            name="confirmPassword"
+                            placeholder="***************"
+                            value={confirmPassword}
+                            onChange={handleConfirmPasswordChange}
+                            required
+                        />
+                    </div>
+                    <button
+                        className={styles.submitButton}
+                        type="submit"
+                        onClick={handleClick}
+                    >
+                        Confirmar contraseña
+                    </button>
+                </form>
 
-                        {error && <p className={styles.errorMessage}>{error}</p>}
-
-                        <button className={styles.submitButton} type="submit">
-                            Confirmar contraseña
-                        </button>
-                    </form>
-                ) : <Navigate to={LOGIN_URL} />}
-n
                 <div className={styles.decorationBottom}></div>
             </div>
         </div>

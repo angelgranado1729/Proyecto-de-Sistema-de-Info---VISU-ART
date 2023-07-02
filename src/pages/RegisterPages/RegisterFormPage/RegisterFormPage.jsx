@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { useNavigate, Link } from "react-router-dom";
 import { ArrowLeft, EyeFill, EyeSlashFill } from "react-bootstrap-icons";
 import styles from "./RegisterFormPage.module.css";
-import { HOME_URL, LOGIN_URL } from "../../../constants/urls";
+import { HOME_URL } from "../../../constants/urls";
 import { Form } from "react-bootstrap";
 import DatePicker from "react-datepicker";
 import { CustomToast } from "../../../components/CustomToast/CustomToast";
@@ -131,7 +131,6 @@ export function RegisterFormPage() {
         });
 
     };
-
 
     const validateEmail = async (email) => {
         const user = await validateEmailFunction(email);
