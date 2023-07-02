@@ -117,7 +117,24 @@
     font-size: 12px;
     opacity: 70%;
 }
+.inputimagen{
+    text-align: center;
+    margin-bottom: 20px;
+    width: 100%;
+}
+.margen{
+    /* centrar el boton */
+    margin: 0px auto;
+    /* centrar el texto del boton */
+    text-align: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    flex-wrap: wrap;
 
+
+}
 .editprofile-btn{
     background: #1a3e5a;
     font-weight: 900;
@@ -131,6 +148,7 @@
     flex-grow: 0;
     padding: 15px 60px;
     border: none;
+    margin-bottom: 25px;
 }
 .imagenusuario{
     width: 200px;

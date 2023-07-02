@@ -198,11 +198,12 @@ const EditProfilePage = () => {
               </div>
               {/* Agregar mas inputs segun lo que podamos anadir en firebase */}
             </div>
+            <div className = "inputimagen" >
+              <input onChange ={doUpload} type="file" accept="image/*"/>
+            </div>
           </div>
           <button className="editprofile-btn" onClick={checkEmailPassword}>Guardar Cambios</button>
-          <input onChange ={doUpload} type="file" accept="image/*"/>
-          <button onClick ={watch}>Subir foto</button>
-          
+          <button className = "editprofile-btn margen"  onClick ={watch}>Subir foto</button>
         </div>
       </div>
     </div>
