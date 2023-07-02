@@ -18,6 +18,7 @@ export function TourPage() {
 
     useEffect(() => {
         getTourByName(tourName.nombre);
+        console.log(tourByName);
     }, [tourName]);
 
     useEffect(() => {
@@ -115,7 +116,7 @@ export function TourPage() {
 
             </div>
 
-            <div className={styles.buttonContainer}>
+            <div className={styles.reservebt}>
                 <div className={styles.reserveButton}>
                     <button
                         type="button"
@@ -125,13 +126,8 @@ export function TourPage() {
                         Reservar!
                     </button>
                 </div>
-
-                <div className={styles.favButton}>
-                    <button type="button" className={styles.button}>
-                        Agregar a Favoritos
-                    </button>
-                </div>
             </div>
+
         </div>
     );
 }

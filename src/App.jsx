@@ -82,13 +82,6 @@ function App() {
             />
 
             <Route
-              path={ERROR_404}
-              element={
-                <NotFoundPage />
-              }
-            />
-
-            <Route
               path={VISION_URL}
               element={
                 <VisionPage />
@@ -176,6 +169,7 @@ function App() {
                 </PublicRoute>
               }
             />
+
 
             <Route
               path={REGISTER_FORM_URL}

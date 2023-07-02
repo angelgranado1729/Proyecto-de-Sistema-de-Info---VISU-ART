@@ -4,7 +4,7 @@
   display: flex;
   flex-direction: column;
   background: #fff9ec;
-  padding: 4rem 8rem;
+  padding: 5rem 8rem;
 }
 
 .backButton {
@@ -153,11 +153,5 @@
     align-items: flex-start;
     gap: 5px;
     height: auto;
-  }
-
-  .buttonContainer {
-    flex-direction: column;
-    align-items: center;
-    gap: 35px;
   }
 }
