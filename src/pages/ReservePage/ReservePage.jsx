@@ -1,23 +1,26 @@
-import React, { useContext, useEffect } from 'react'
+import React, { useContext, useEffect, useState } from 'react'
 import styles from './ReservePage.module.css'
-import FormItem from '../../components/FormItem/FormItem'
-import Title from '../../components/Title/Title'
 import Subtitle from '../../components/Subtitle/Subtitle'
-import DropdownMenu from '../../components/DropdownMenu/DropdownMenu'
 import { TourContext, useTour } from '../../contexts/TourContext'
 import { useTourList } from '../../hooks/useTourList'
 import DropdownTour from '../../components/DropdownTour/DropdownTour'
 import DropdownDates from '../../components/DropdownDates/DropdownDates'
 import { useUserContext } from '../../contexts/UserContext'
 import { createReserve } from '../../firebase/reservaciones'
-import { Navigate, useNavigate } from 'react-router-dom'
-import { HOME_URL } from '../../constants/urls'
+import { Link, useNavigate } from 'react-router-dom'
+import { CALENDAR_URL, HOME_URL } from '../../constants/urls'
+import { CustomToast } from '../../components/CustomToast/CustomToast'
+import { ArrowLeft } from 'react-bootstrap-icons'
 
 function ReservePage() {
   const { tourList, listLoading, getTourList } = useTourList();
   const { tour, tourId, changeId, changeTour, resetTour} = useContext(TourContext);
   const {user} = useUserContext();
   const navigate = useNavigate();
+  const [showToast, setShowToast] = useState(false);
+  const [dateEmpty, setDateEmpty] = useState(false);
+  const [tourEmpty, setTourEmpty] = useState(false);
+  const [duplicateReserve, setDuplicateReserve] = useState(false);
 
     useEffect( () => {
         //Fetch de lista de tours
@@ -35,12 +38,7 @@ function ReservePage() {
  * la vista sea el siguiente paso de la reserva. El usuario no debe poder ir al siguiente paso si no ha seleccionado una fecha.
  */
 
-function finishReserve(){
-    const reserveItem = {
-        fecha: tour.chosenFecha,
-        tour_id: tourId.id,
-        user_id: user.id 
-    }
+function finishReserve(reserveItem){
     createReserve(reserveItem, user)
 }
 
@@ -48,23 +46,51 @@ function reserveCheck(){
     if (tour) {
 
         if (tour.chosenFecha) {
-            finishReserve();
-            resetTour();
-            navigate(HOME_URL);
+            const reserveItem = {
+                fecha: tour.chosenFecha,
+                tour_id: tourId.id,
+                user_id: user.id 
+            }
+
+            let alredyReserved = false;
+            user.reservations.forEach(item => {if (reserveItem.tour_id == item.tour_id && reserveItem.fecha == item.fecha){
+                alredyReserved = true;
+            }})
+
+            if (alredyReserved) {
+                setShowToast(true);
+                setTourEmpty(false);
+                setDateEmpty(false);
+                setDuplicateReserve(true)
+            }
+
+            else{
+                finishReserve(reserveItem);
+                resetTour();
+                navigate(HOME_URL);
+            }
+
+
         } else {
-            alert('Por favor seleccione una fecha antes de continuar')
+            setShowToast(true);
+            setTourEmpty(false);
+            setDateEmpty(true);
         }
 
     } else{
-        alert('Por favor seleccione un tour antes de continuar')
+        setShowToast(true);
+        setTourEmpty(true);
+        setDateEmpty(false);
     }
 }
 
   return (
     <div className="App">
-        <header className="back-header">
-            <i className="fa-solid fa-arrow-left"></i>
-        </header>
+        <div className={styles.backbutton}>
+            <Link to={HOME_URL}>
+                <ArrowLeft size={40} color="#000000" />
+            </Link>
+        </div>
 
     <div className={styles.centeredArea}>
         <Subtitle subtitle = "Reservar tu Tour"/>
@@ -78,6 +104,34 @@ function reserveCheck(){
                     <>
                         <DropdownTour tours = {tourList}/>
                         <DropdownDates/>
+
+                        {showToast && tourEmpty &&(
+                            <CustomToast
+                            typeToast="error"
+                            title="¡Error!"
+                            message="Para seguir, debe seleccionar un tour y una fecha"
+                            time={5000}
+                            />
+                        )}
+
+                        {showToast && dateEmpty &&(
+                            <CustomToast
+                            typeToast="error"
+                            title="¡Error!"
+                            message="Para seguir, debe seleccionar una fecha"
+                            time={5000}
+                            />
+                        )}
+
+                        {showToast && duplicateReserve &&(
+                            <CustomToast
+                            typeToast="error"
+                            title="¡Error!"
+                            message="Ya se ha realizado una reserva para este tour en la fecha ingresada"
+                            time={5000}
+                            />
+                        )}
+                        
                     </>
                 )}
 
@@ -90,8 +144,8 @@ function reserveCheck(){
     </div>
 
         <section className={styles.buttonArea}>
-            <button className={styles.bluebtn}>Ver Calendario</button>
-            <button className={styles.bluebtn}>Ver otros tours</button>
+            <button className={styles.bluebtn} onClick={() => navigate(CALENDAR_URL)}>Ver Calendario</button>
+            <button className={styles.bluebtn} onClick={() => navigate(HOME_URL)}>Ver otros tours</button>
             <button className={styles.orangebtn} onClick={() => {reserveCheck()}}>Siguiente</button>
         </section>
 

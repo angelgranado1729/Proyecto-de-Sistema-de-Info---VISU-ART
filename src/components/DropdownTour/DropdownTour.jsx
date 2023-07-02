@@ -37,7 +37,7 @@ const DropdownTour = ({tours}) => {
      */
     return (
         <div className={styles.dropdown}>
-            <button className={styles.dropbtn}><p id='toursDrop'>Seleccionar tour:</p>
+            <button className={styles.dropbtn}><p id='toursDrop' className={styles.dropdownitem}>Seleccionar tour:</p>
                 <i className="fa-solid fa-angle-down"></i>
             </button>
             <div className={styles.dropdowncontent}>

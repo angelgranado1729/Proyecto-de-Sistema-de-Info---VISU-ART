@@ -16,13 +16,21 @@ import { createUser } from "../users";
 
   export async function createReserve(data, user) {
     const docRef = await addDoc(collection(db, RESERVES_COLLECTION), data)
-    user.reservations.push(docRef.id)
+
+    const reserveData = {
+      id: docRef.id,
+      tour_id: data.tour_id,
+      fecha: data.fecha,
+    }
+
+    user.reservations.push(reserveData)
+
     const tempData = {
       email: user.email,
       favoriteTours: user.favoriteTours,
       uid: user.id,
       name: user.name,
-      photoUrl: user.photoURL,
+      photoURL: user.photoURL,
       provider: user.provider,
       reservations: user.reservations,
       type: user.type,
