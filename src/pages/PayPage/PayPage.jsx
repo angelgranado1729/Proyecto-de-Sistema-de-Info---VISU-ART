@@ -6,8 +6,15 @@ import { HOME_URL } from "../../constants/urls";
 import { Link } from "react-router-dom";
 
 function PayPage() {
-  const [amount, setState] = useState(0);
+  const [amount, setState] = useState("0.00");
 
+  const handleAmountChange = (e) => {
+    const inputAmount = e.target.value;
+    const regex = /^\d+(\.\d{0,2})?$/;
+    if (regex.test(inputAmount)) {
+      setState(inputAmount);
+    }
+  };
   return (
     <div className={styles.App}>
     <section>
@@ -22,7 +29,7 @@ function PayPage() {
         <input
           type="number"
           value={amount}
-          onChange={(e) => setState(e.target.value)}
+          onChange={handleAmountChange}
           placeholder="Enter donation amount"
           className={styles.input}
         />
