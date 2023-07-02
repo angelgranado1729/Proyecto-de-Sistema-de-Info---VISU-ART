@@ -8,6 +8,7 @@ import { RegisterFormPage } from "./pages/RegisterPages/RegisterFormPage/Registe
 import { NotFoundPage } from "./pages/NotFoundPage/NotFoundPage";
 import { PrivateRoute } from "./components/PrivateRoute/PrivateRoute";
 import { ResetPasswordPage } from "./pages/LoginPages/ResetPasswordPage/ResetPasswordPage";
+import { TourPage } from "./pages/TourPage/TourPage";
 import UserProfilePage from "./pages/UserPages/UserProfile/UserProfilePage";
 import LookReserve from "./pages/LookReserve/LookReserve";
 
@@ -62,7 +63,8 @@ import {
   RESET_PASSWORD_URL,
   ADMIN_TOURS_CALENDAR_URL,
   ADMIN_URL_CONTACT,
-  RESERVE_LOOK_URL
+  RESERVE_LOOK_URL,
+  TOUR_DETAILS_URL
 } from "./constants/urls";
 import "./App.css";
 
@@ -108,6 +110,13 @@ function App() {
             path={CONTACT_URL}
             element={
               <ContactPage />
+            }
+          />
+
+          <Route
+            path={TOUR_DETAILS_URL}
+            element={
+              <TourPage />
             }
           />
 

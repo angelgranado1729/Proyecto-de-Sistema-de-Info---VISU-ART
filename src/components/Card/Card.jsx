@@ -1,11 +1,15 @@
 import React from "react";
 import "./Card.css";
+import { TOUR_DETAILS_URL } from "../../constants/urls";
+import { useNavigate } from "react-router-dom";
 
 const Card = (props) => {
+
   const tourTitle = props.tourTitle;
   const tourDescription = props.tourDescription;
   const tourImage = props.tourImage;
   const tourLocation = props.tourLocation;
+  const navigate = useNavigate();
 
   return (
     <div className="container-cards">
@@ -20,7 +24,11 @@ const Card = (props) => {
           <p className="tour-description">
             {tourDescription}
           </p>
-          <button className="see-more-btn">Ver más</button>
+          <button className="see-more-btn"
+            onClick={() => { navigate(TOUR_DETAILS_URL.replace(":nombre", tourTitle)) }}
+          >
+            Ver más
+          </button>
         </div>
       </div>
     </div>

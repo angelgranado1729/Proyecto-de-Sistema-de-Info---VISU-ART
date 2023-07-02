@@ -1,13 +1,17 @@
 import { useState } from "react";
 import Title from "../../components/Title/Title";
 import "../MisionPage/MisionPage.css"
+import { Link } from "react-router-dom";
+import { HOME_URL } from "../../constants/urls";
 
 
 const VisionPage = () => {
     return (
         <div className="App">
             <header className="back-header">
-                <i className="fa-solid fa-arrow-left"></i>
+                <Link to={HOME_URL}>
+                    <i className="fa-solid fa-arrow-left"></i>
+                </Link>
             </header>
             <Title title="Visión" />
             <div className="text-container">
