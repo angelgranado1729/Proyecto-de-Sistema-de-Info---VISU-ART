@@ -1,8 +1,6 @@
-.main-admin{
-    margin-left: 300px;
-    text-align: justify;
-    padding: 50px;
-}
+.shadow-table {
+    box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.3);
+  }
 
 
 @media screen and (max-width: 1100px) {

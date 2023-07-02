@@ -1,9 +1,27 @@
-/*Estilos Página Administrador*/
-.main-admin{
-    max-width: 1600px;
-    width: 100%;
-    margin: 0px auto;
+.shadow-block {
+  box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.8);
 }
+
+.shadow-block2 {
+  box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.5);
+}
+
+.tour-title {
+    text-align: start;
+    padding: 5px;
+    font-size: 20px;
+    font-weight: bold;
+    text-transform: uppercase;
+    text-align: center;
+  }
+  
+  .subtitles-contact {
+    text-align: start;
+    padding: 5px;
+    font-size: 20px;
+    font-weight: bold;
+    text-transform: uppercase;
+  }
 
 /*Responsive Web Design*/
 @media screen and (max-width: 1100px) {

@@ -8,7 +8,7 @@
 .loadingSpinner {
   width: 60px;
   height: 60px;
-  border: 10px solid #ffffff;
+  border: 10px solid #fff9ec;
   border-top: 10px solid #ff5500;
   border-radius: 50%;
   animation: spin 2s linear infinite;

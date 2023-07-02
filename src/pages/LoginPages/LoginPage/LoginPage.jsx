@@ -17,7 +17,6 @@ import {
 } from "react-bootstrap-icons";
 
 import { CustomToast } from "../../../components/CustomToast/CustomToast";
-import { getUserById } from '../../../firebase/users';
 
 export function LoginPage() {
     const imageURL = 'https://firebasestorage.googleapis.com/v0/b/visuart-17959.appspot.com/o/LogosVisuArt%2FvisuartGrayLogo.png?alt=media&token=bbebf007-b27c-47dc-a494-5b31663b7a39';
@@ -130,7 +129,7 @@ export function LoginPage() {
                         />
                         {errors.email && (
                             <span className={styles.errorMsg}>
-                                Por favor ingresa su correo electrónico.
+                                Por favor, ingresa tu correo electrónico.
                             </span>
                         )}
                     </div>
@@ -170,7 +169,7 @@ export function LoginPage() {
                         </div>
                         {errors.password && (
                             <span className={styles.errorMsg}>
-                                Por favor ingresa su contraseña.
+                                Por favor, ingresa tu contraseña.
                             </span>
                         )}
                     </div>

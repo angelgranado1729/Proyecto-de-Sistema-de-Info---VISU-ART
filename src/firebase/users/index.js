@@ -73,3 +73,18 @@ export async function getUserProfileEmailProvider(email) {
 
   return null;
 }
+
+export async function validateEmailFunction(email) {
+  const userQuery = query(
+    collection(db, USERS_COLLECTION),
+    where("email", "==", email)
+  );
+
+  const results = await getDocs(userQuery);
+
+  if (results.size > 0) {
+    return true;
+  }
+
+  return false;
+}

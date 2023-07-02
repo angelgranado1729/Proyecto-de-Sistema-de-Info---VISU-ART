@@ -3,11 +3,23 @@ import { useNavigate, Link } from "react-router-dom";
 import { ArrowLeft, EyeFill, EyeSlashFill } from "react-bootstrap-icons";
 import styles from "./RegisterFormPage.module.css";
 import { HOME_URL } from "../../../constants/urls";
+import { Form } from "react-bootstrap";
+import DatePicker from "react-datepicker";
+import { CustomToast } from "../../../components/CustomToast/CustomToast";
+import "react-datepicker/dist/react-datepicker.css";
+import { validateEmailFunction } from "../../../firebase/users";
+import { registerWithEmailAndPassword } from "../../../firebase/auth";
+import { format } from "date-fns";
+
 
 export function RegisterFormPage() {
-    const imageURL = 'https://firebasestorage.googleapis.com/v0/b/visuart-17959.appspot.com/o/LogosVisuArt%2FvisuartGrayLogo.png?alt=media&token=bbebf007-b27c-47dc-a494-5b31663b7a39';
-    const [showPassword, setShowPassword] = useState(false);
+    const imageURL =
+        "https://firebasestorage.googleapis.com/v0/b/visuart-17959.appspot.com/o/LogosVisuArt%2FvisuartGrayLogo.png?alt=media&token=bbebf007-b27c-47dc-a494-5b31663b7a39";
+    const [showPassword_1, setShowPassword_1] = useState(false);
+    const [showPassword_2, setShowPassword_2] = useState(false);
     const navigate = useNavigate();
+    const [showToast, setShowToast] = useState(false);
+    const [infoToast, setInfoToast] = useState({});
     const [formData, setFormData] = useState({
         firstName: "",
         lastName: "",
@@ -15,20 +27,70 @@ export function RegisterFormPage() {
         confirmEmail: "",
         confirmPassword: "",
         password: "",
-        birthDate: "",
+        birthDate: new Date(),
         gender: "",
     });
 
-    const [errors, setErrors] = useState({
-        email: false,
-        confirmEmail: false,
-        password: false,
-        confirmPassword: false,
-    });
+    const handleDateChange = (date) => {
+        setFormData((prevState) => ({ ...prevState, birthDate: date }));
+    };
 
-    const validateEmail = (email) => {
-        const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-        return emailRegex.test(email);
+
+    const onChange = (event) => {
+        const { name, value } = event.target;
+        setFormData((prevState) => ({ ...prevState, [name]: value }));
+    };
+
+
+    const validateForm = async () => {
+
+        const emailValid = await validateEmail(formData.email);
+
+        if (formData.email !== formData.confirmEmail) {
+            setInfoToast({
+                typeToast: "error",
+                title: "Error!",
+                message: "Los correos no coinciden.",
+                time: 5000,
+            });
+            setShowToast(true);
+            return false;
+        }
+
+        if (!emailValid) {
+            setInfoToast({
+                typeToast: "error",
+                title: "Error!",
+                message: "Ya existe un usuario asociado a ese correo.",
+                time: 5000,
+            });
+            setShowToast(true);
+            return false;
+        }
+
+        if (formData.password !== formData.confirmPassword) {
+            setInfoToast({
+                typeToast: "error",
+                title: "Error!",
+                message: "Las contraseñas no coinciden.",
+                time: 5000,
+            });
+            setShowToast(true);
+            return false;
+        }
+
+        if (!validatePassword(formData.password)) {
+            setInfoToast({
+                typeToast: "error",
+                title: "Error!",
+                message: "La contraseña debe tener al menos 6 caracteres, una letra y un caracter especial.",
+                time: 5000,
+            });
+            setShowToast(true);
+            return false;
+        }
+
+        return true;
     };
 
     const validatePassword = (password) => {
@@ -36,68 +98,47 @@ export function RegisterFormPage() {
         return passwordRegex.test(password);
     };
 
-    const validateForm = () => {
-        const {
-            email,
-            confirmEmail,
-            password,
-            confirmPassword,
-        } = formData;
+    const onSuccess = () => {
+        console.log("REGISTER SUCCESS");
+        navigate(HOME_URL);
+    };
 
-        const emailValid = validateEmail(email);
-        const confirmEmailValid = validateEmail(confirmEmail);
-        const passwordValid = validatePassword(password);
-        const confirmPasswordValid = validatePassword(confirmPassword);
+    const onFail = (error) => {
+        console.log("REGISTER FAILED, Try Again");
+        console.log(error);
+    };
 
-        setErrors({
-            email: !emailValid,
-            confirmEmail: !confirmEmailValid,
-            password: !passwordValid,
-            confirmPassword: !confirmPasswordValid,
+
+    const onSubmit = async (event) => {
+        setShowToast(false);
+        event.preventDefault();
+        const isValid = await validateForm();
+
+        if (!isValid) {
+            console.log("Form is not valid");
+            return;
+        }
+
+        const formattedDate = format(formData.birthDate, "dd/MM/yyyy");
+
+        await registerWithEmailAndPassword({
+            userData: {
+                ...formData,
+                birthDate: formattedDate,
+            },
+            onSuccess,
+            onFail,
         });
 
-        return (
-            emailValid &&
-            confirmEmailValid &&
-            passwordValid &&
-            confirmPasswordValid
-        );
     };
 
-    const onSubmit = (event) => {
-        event.preventDefault();
-
-        if (validateForm()) {
-            navigate("/success");
+    const validateEmail = async (email) => {
+        const user = await validateEmailFunction(email);
+        if (user) {
+            return false;
         }
+        return true;
     };
-
-    const onChange = (event) => {
-        const { name, value } = event.target;
-        setFormData((prevState) => ({ ...prevState, [name]: value }));
-    };
-
-    const handlePasswordClick = () => {
-        setShowPassword(!showPassword);
-    };
-
-    const {
-        firstName,
-        lastName,
-        email,
-        confirmEmail,
-        confirmPassword,
-        password,
-        birthDate,
-        gender,
-    } = formData;
-
-    const {
-        email: emailError,
-        confirmEmail: confirmEmailError,
-        password: passwordError,
-        confirmPassword: confirmPasswordError,
-    } = errors;
 
     return (
         <div className={styles.container}>
@@ -108,7 +149,18 @@ export function RegisterFormPage() {
             </div>
 
             <div className={styles.logoContainer}>
-                <img src={imageURL} />
+                <img src={imageURL} alt="Logo" />
+            </div>
+
+            <div className={styles.toastsContainer}>
+                {showToast && (
+                    <CustomToast
+                        typeToast={infoToast.typeToast}
+                        title={infoToast.title}
+                        message={infoToast.message}
+                        time={infoToast.time}
+                    />)
+                }
             </div>
 
             <div className={styles.formContainer}>
@@ -122,21 +174,21 @@ export function RegisterFormPage() {
                             type="text"
                             id="firstName"
                             name="firstName"
-                            placeholder="Nombre"
-                            value={firstName}
+                            value={formData.firstName}
                             onChange={onChange}
                             required
                         />
                     </div>
 
-                    <div className={styles.inputContainer}>
+                    <div
+                        className={styles.inputContainer}
+                    >
                         <label htmlFor="lastName">Apellido</label>
                         <input
                             type="text"
                             id="lastName"
                             name="lastName"
-                            placeholder="Apellido"
-                            value={lastName}
+                            value={formData.lastName}
                             onChange={onChange}
                             required
                         />
@@ -144,168 +196,141 @@ export function RegisterFormPage() {
 
                     <div className={styles.inputContainer}>
                         <label htmlFor="email">
-                            <span>Correo electrónico</span>
+                            <span>Correo</span>
                         </label>
-
-                        <div
-                            className={`${styles.inputField} ${emailError ? styles.inputError : ""
-                                }`}
-                        >
-                            <input
-                                type="email"
-                                id="email"
-                                name="email"
-                                placeholder="correo@ejemplo.com"
-                                value={email}
-                                onChange={onChange}
-                                required
-                            />
-                        </div>
-                        <span className={styles.textEx}>
-                            correo@ejemplo.com
-                        </span>
+                        <input
+                            type="email"
+                            id="email"
+                            name="email"
+                            value={formData.email}
+                            onChange={onChange}
+                            required
+                            placeholder="correo@ejemplo.com"
+                        />
                     </div>
 
                     <div className={styles.inputContainer}>
                         <label htmlFor="confirmEmail">
                             <span>Verifica tu correo</span>
                         </label>
-                        <div className={styles.inputField}>
-                            <input
-                                type="email"
-                                id="confirmEmail"
-                                name="confirmEmail"
-                                placeholder="correo@ejemplo.com"
-                                value={confirmEmail}
-                                onChange={onChange}
-                                required
-                            />
-                        </div>
-
-                        <span className={styles.textEx}>
-                            correo@ejemplo.com
-                        </span>
-                    </div>
-
-                    <div
-                        className={styles.inputContainer}
-                    >
-                        <label htmlFor="password">
-                            <span>Contraseña</span>
-                        </label>
-                        <div
-                            className={`${styles.passwordInput} ${errors.password ? styles.errorInputPassword : ""}`}
-                        >
-                            <input
-                                type={showPassword ? "text" : "password"}
-                                name="password"
-                                id="password"
-                                placeholder="***************"
-                                value={password}
-                                onChange={onChange}
-                                onClick={handlePasswordClick}
-                                className={styles.passwordInputField}
-                                required
-                            />
-
-                            <button
-                                type="button"
-                                className={styles.passwordToggle}
-                                onClick={handlePasswordClick}
-                            >
-                                {showPassword ? (
-                                    <EyeSlashFill size={20} color="#00000080" />
-                                ) : (
-                                    <EyeFill size={20} color="#00000080" />
-                                )}
-                            </button>
-                        </div>
-
-                        <span className={styles.textEx}>
-                            La contraseña debe tener al menos 6 caracteres y contener al
-                            menos un carácter especial.
-                        </span>
-
-                    </div>
-
-                    <div className={styles.inputContainer}>
-                        <label htmlFor="confirmPassword">
-                            <span>Verifica tu contraseña</span>
-                        </label>
-                        <div
-                            className={`${styles.passwordInput} ${errors.password ? styles.errorInputPassword : ""}`}
-                        >
-                            <input
-                                type={showPassword ? "text" : "password"}
-                                name="confirmPassword"
-                                id="confirmPassword"
-                                placeholder="***************"
-                                value={confirmPassword}
-                                onChange={onChange}
-                                onClick={handlePasswordClick}
-                                className={styles.passwordInputField}
-                                required
-                            />
-
-                            <button
-                                type="button"
-                                className={styles.passwordToggle}
-                                onClick={handlePasswordClick}
-                            >
-                                {showPassword ? (
-                                    <EyeSlashFill size={20} color="#00000080" />
-                                ) : (
-                                    <EyeFill size={20} color="#00000080" />
-                                )}
-                            </button>
-                        </div>
-
-
-                        <span className={styles.textEx}>
-                            La contraseña debe tener al menos 6 caracteres y contener al
-                            menos un carácter especial.
-                        </span>
-
-                    </div>
-
-                    <div className={styles.inputContainer}>
-                        <label htmlFor="birthDate">
-                            <span>Fecha de nacimiento</span>
-                        </label>
                         <input
-                            type="date"
-                            id="birthDate"
-                            name="birthDate"
-                            placeholder="dd/mm/aaaa"
-                            value={birthDate}
+                            type="email"
+                            id="confirmEmail"
+                            name="confirmEmail"
+                            value={formData.confirmEmail}
                             onChange={onChange}
                             required
+                            placeholder="correo@ejemplo.com"
                         />
                     </div>
 
                     <div className={styles.inputContainer}>
-                        <label htmlFor="gender">
-                            <span>Género</span>
-                        </label>
-                        <select
+                        <label htmlFor="password">Contraseña</label>
+                        <div className={styles.passwordInput}>
+                            <input
+                                type={showPassword_1 ? "text" : "password"}
+                                name="password"
+                                id="password"
+                                placeholder="***************"
+                                value={formData.password}
+                                onChange={onChange}
+                                className={styles.passwordInputField}
+                                required
+                            />
+                            <button
+                                type="button"
+                                className={styles.passwordToggle}
+                                onClick={() => setShowPassword_1(!showPassword_1)}
+                            >
+                                {showPassword_1 ? (
+                                    <EyeSlashFill size={20} color="#00000080" />
+                                ) : (
+                                    <EyeFill size={20} color="#00000080" />
+                                )}
+                            </button>
+                        </div>
+                        <span className={styles.textEx}>
+                            Más de 6 dígitos e incluya caracteres especiales (@#.!)
+                        </span>
+                    </div>
+
+                    <div className={styles.inputContainer}>
+                        <label htmlFor="confirmPassword">Verifica tu contraseña</label>
+                        <div className={styles.passwordInput}>
+                            <input
+                                type={showPassword_2 ? "text" : "password"}
+                                name="confirmPassword"
+                                id="confirmPassword"
+                                placeholder="***************"
+                                value={formData.confirmPassword}
+                                onChange={onChange}
+                                className={styles.passwordInputField}
+                                required
+                            />
+                            <button
+                                type="button"
+                                className={styles.passwordToggle}
+                                onClick={() => setShowPassword_2(!showPassword_2)}
+                            >
+                                {showPassword_2 ? (
+                                    <EyeSlashFill size={20} color="#00000080" />
+                                ) : (
+                                    <EyeFill size={20} color="#00000080" />
+                                )}
+                            </button>
+                        </div>
+                        <span className={styles.textEx}>
+                            Más de 6 dígitos e incluya caracteres especiales (@#.!)
+                        </span>
+                    </div>
+
+                    <div className={styles.inputContainer}>
+                        <label htmlFor="birthDate">Fecha de nacimiento</label>
+                        <div
+                            className={`${styles.datePickerContainer} ${styles.customDatePicker}`}
+                        >
+                            <DatePicker
+                                id="birthDate"
+                                name="birthDate"
+                                selected={formData.birthDate}
+                                onChange={handleDateChange}
+                                dateFormat="dd/MM/yyyy"
+                                placeholderText="Selecciona una fecha"
+                                required
+                                showYearDropdown
+                                scrollableYearDropdown
+                                yearDropdownItemNumber={110}
+                                maxDate={new Date()}
+                                className={styles.datePicker}
+                            />
+                        </div>
+                    </div>
+
+                    <div className={styles.inputContainer}>
+                        <label htmlFor="gender">Género</label>
+                        <Form.Control
+                            className={styles.select}
+                            as="select"
                             id="gender"
                             name="gender"
-                            value={gender}
+                            value={formData.gender}
                             onChange={onChange}
                             required
-                            className={styles.formselect}
                         >
-                            <option value="">Seleccionar</option>
-                            <option value="masculino">Masculino</option>
-                            <option value="femenino">Femenino</option>
-                            <option value="otro">Otro</option>
-                        </select>
+                            <option value="" disabled>
+                                Selecciona una opción
+                            </option>
+                            <option value="male">Masculino</option>
+                            <option value="female">Femenino</option>
+                            <option value="other">Otro</option>
+                        </Form.Control>
                     </div>
 
                     <button type="submit" className={styles.registerButton}>
                         Registrarse
                     </button>
                 </form>
+
                 <div className={styles.decorationBottom}></div>
             </div>
         </div>
