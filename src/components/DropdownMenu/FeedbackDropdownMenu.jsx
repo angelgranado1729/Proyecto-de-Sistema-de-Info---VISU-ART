@@ -25,16 +25,14 @@ const FeedbackDropdownMenu = ({ setSelectedTour }) => {
   }, []);
 
   return (
-    <div className="dropdownM-container">
-      <select className="dropdownM-btn" onChange={(e) => setSelectedTour(e.target.value)}>
-        <option value="">Filtrar por:</option>
-        {tours.map((tour) => (
-          <option key={tour.id} value={tour.nombre}>
-            {tour.nombre}
-          </option>
-        ))}
-      </select>
-    </div>
+      <select className="feedbackdropdownM-container" onChange={(e) => setSelectedTour(e.target.value)}>
+      <option value="">Seleccionar Tour:</option>
+      {tours.map((tour) => (
+        <option key={tour.id} value={tour.nombre}>
+          {tour.nombre}
+        </option>
+      ))}
+    </select>
   );
 };
 

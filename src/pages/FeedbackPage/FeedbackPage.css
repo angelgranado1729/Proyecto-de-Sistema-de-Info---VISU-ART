@@ -21,9 +21,9 @@
 
 .feedback-menu{
     width: 100%;
+    max-width: 500px;
     text-align: start;
     margin: auto;
-    max-width: 500px;
     margin-left: 0;
 }
 
