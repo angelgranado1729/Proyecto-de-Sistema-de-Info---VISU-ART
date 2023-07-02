@@ -104,6 +104,7 @@ const TourAdmin = () => {
               <tr key={index}>
                 {/* Celdas de la tabla */}
                 <td style={{ width: '10%' }}>{index + 1}</td>
+                <td style={{ width: '30%' }}>{tour.nombre}</td>
 
 
 
