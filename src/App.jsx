@@ -262,6 +262,15 @@ function App() {
           />
 
           <Route
+            path={ADMIN_TOURS_EDIT_URL}
+            element={
+              <PrivateRoute>
+                <TourEdit />
+              </PrivateRoute>
+            }
+          />
+
+          <Route
             path={ADMIN_TOURS_CALENDAR_URL}
             element={
               <PrivateRoute>
@@ -280,10 +289,10 @@ function App() {
           />
 
           <Route
-            path={ADMIN_CREATE_OBRAS_URL}
+            path={ADMIN_OBRAS_URL}
             element={
               <PrivateRoute>
-                <CreateArt />
+                <ArtAdmin/>
               </PrivateRoute>
             }
           />

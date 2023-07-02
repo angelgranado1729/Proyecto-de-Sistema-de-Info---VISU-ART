@@ -30,25 +30,29 @@ const ReserveAdminPage = () => {
           const userIds = reservationsData.map((reservation) => reservation.user_id);
 
           // Obtener la info de tour
-          const toursQuery = query(collection(db, "Tours"), where("__name__", "in", tourIds));
+          const toursQuery = query(collection(db, "Tours"));
           const toursSnapshot = await getDocs(toursQuery);
           if (!toursSnapshot.empty) {
             const toursData = {};
             toursSnapshot.docs.forEach((doc) => {
               const tourData = doc.data();
-              toursData[doc.id] = tourData.nombre;
+              if (tourIds.includes(doc.id)) {
+                toursData[doc.id] = tourData.nombre;
+              }
             });
             setTours(toursData);
           }
 
           // Obtener la info de usuario
-          const usersQuery = query(collection(db, "users"), where("__name__", "in", userIds));
+          const usersQuery = query(collection(db, "users"));
           const usersSnapshot = await getDocs(usersQuery);
           if (!usersSnapshot.empty) {
             const usersData = {};
             usersSnapshot.docs.forEach((doc) => {
               const userData = doc.data();
-              usersData[doc.id] = userData.email;
+              if (userIds.includes(doc.id)) {
+                usersData[doc.id] = userData.email;
+              }
             });
             setUsers(usersData);
           }
@@ -87,7 +91,6 @@ const ReserveAdminPage = () => {
             <tr>
               <th>#</th>
               <th>Usuario</th>
-              <th>Tour</th>
               <th>Fecha</th>
               <th>Acciones</th>
             </tr>
@@ -97,7 +100,6 @@ const ReserveAdminPage = () => {
               <tr key={reservation.id}>
                 <td>{index + 1}</td>
                 <td>{users[reservation.user_id]}</td>
-                <td>{tours[reservation.tour_id]}</td>
                 <td>{reservation.fecha}</td>
                 <td>
                   <Button color="danger" onClick={() => deleteReservation(reservation.id)}>
