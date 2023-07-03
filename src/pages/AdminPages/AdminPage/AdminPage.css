@@ -1,9 +1,27 @@
+.adminPage-container{
+  width: 100%;
+  max-width: 1600px;
+  margin: 0px auto;
+}
+
 .shadow-block {
   box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.8);
 }
 
 .shadow-block2 {
   box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.5);
+}
+
+.admin-columns{
+  margin: auto;
+  width: 100%;
+  max-width: 1200px;
+}
+
+.admin-columns:after {
+  content: "";
+  display: table;
+  clear: both;
 }
 
 .tour-title {
@@ -24,8 +42,10 @@
   }
 
 /*Responsive Web Design*/
+
 @media screen and (max-width: 1100px) {
     .main-admin{
        width: 100%;
     } 
 }
+
