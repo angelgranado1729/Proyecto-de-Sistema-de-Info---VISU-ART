@@ -8,7 +8,7 @@ import DropdownDates from '../../components/DropdownDates/DropdownDates'
 import { useUserContext } from '../../contexts/UserContext'
 import { createReserve } from '../../firebase/reservaciones'
 import { Link, useNavigate } from 'react-router-dom'
-import { CALENDAR_URL, HOME_URL } from '../../constants/urls'
+import { CALENDAR_URL, HOME_URL, PAY_PAGE_URL } from '../../constants/urls'
 import { CustomToast } from '../../components/CustomToast/CustomToast'
 import { ArrowLeft } from 'react-bootstrap-icons'
 
@@ -67,7 +67,7 @@ function reserveCheck(){
             else{
                 finishReserve(reserveItem);
                 resetTour();
-                navigate(HOME_URL);
+                navigate(PAY_PAGE_URL);
             }
 
 
@@ -94,7 +94,7 @@ function reserveCheck(){
 
     <div className={styles.centeredArea}>
         <Subtitle subtitle = "Reservar tu Tour"/>
-        <p className={styles.reserveSubSubtitle}>Terminos y condiciones de la reservacion bla bla hola</p>
+        <p className={styles.reserveSubSubtitle}>Explora el mundo con nuestra reserva de tour. Descubre lugares asombrosos, disfruta de experiencias únicas y crea recuerdos inolvidables. ¡Reserva ahora!</p>
         
         <section className={styles.rForm}>
             <div className={styles.inpArea}>

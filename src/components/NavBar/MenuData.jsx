@@ -49,7 +49,7 @@ const getMenuData = (user) => {
     }else {
       menuData.push({
         title: "Perfil",
-        url: USER_PROFILE_URL,
+        url: RESERVE_LOOK_URL,
         cName: "navbar-links"
       });
     }
