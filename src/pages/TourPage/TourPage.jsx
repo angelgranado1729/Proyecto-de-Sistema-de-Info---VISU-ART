@@ -7,18 +7,20 @@ import styles from "./TourPage.module.css";
 import { ArrowLeft } from "react-bootstrap-icons";
 import Subtitle from "../../components/Subtitle/Subtitle";
 import { CardInfo } from "../../components/CardInfo/CardInfo";
+import { FaStar } from "react-icons/fa";
+import { useFeedback } from "../../hooks/useFeedback";
 
 export function TourPage() {
     const tourName = useParams();
     const navigate = useNavigate();
     const [imagen, setImagen] = useState("");
     const [obraDestacada, setObraDestacada] = useState(null);
-
+    // const [rating, setRating] = useState(0);
     const { listLoading, tourByName, getTourByName } = useTourList();
+    // const { feedbackList, getFeedbackList, listLoadingFeedback } = useFeedback();
 
     useEffect(() => {
         getTourByName(tourName.nombre);
-        console.log(tourByName);
     }, [tourName]);
 
     useEffect(() => {
@@ -36,11 +38,34 @@ export function TourPage() {
         }
     }, [tourByName, imagen]);
 
+
+    // useEffect(() => {
+    //     const aux = feedbackList?.filter(
+    //         (feedback) => feedback.tour === tourName.nombre
+    //     );
+    //     setRating(calculateRating(aux));
+    //     console.log(rating);
+    // }, [feedbackList]);
+
+    // function calculateRating(feedbackList) {
+    //     if (!feedbackList || feedbackList.length === 0) {
+    //         return 0;
+    //     }
+
+    //     const totalRating = feedbackList.reduce(
+    //         (sum, feedback) => sum + feedback.rating,
+    //         0
+    //     );
+    //     const averageRating = totalRating / feedbackList.length;
+    //     return Math.round(averageRating);
+    // }
+
     const descripcion = tourByName?.data.descripcion || "";
     const palabras = descripcion.split(" ");
     const mitad = Math.ceil(palabras.length / 2);
     const primerParrafo = palabras.slice(0, mitad).join(" ");
     const segundoParrafo = palabras.slice(mitad).join(" ");
+
 
     if (listLoading) {
         return <Loading />;
@@ -75,6 +100,19 @@ export function TourPage() {
                 </div>
             </div>
 
+            {/* <div className={styles.rating}>
+                <h2 className={styles.subtitle}>Rating del Tour:</h2>
+                <div className={styles.stars}>
+                    {[...Array(5)].map((_, index) => (
+                        <FaStar
+                            key={index}
+                            size={30}
+                            color={index < rating ? "#000000" : "#CCCCCC"}
+                        />
+                    ))}
+                </div>
+            </div> */}
+
             <div className={styles.subtitle}>
                 <Subtitle subtitle="Obra Destacada" />
             </div>
@@ -94,7 +132,6 @@ export function TourPage() {
             </div>
 
             <div className={styles.infoContainer}>
-
                 <div className={styles.obras}>
                     <h2 className={styles.subtitle}>Lista de Obras</h2>
                     <ul>
@@ -108,12 +145,12 @@ export function TourPage() {
                 <div className={styles.autores}>
                     <h2 className={styles.subtitle}>Lista de Autores</h2>
                     <ul>
-                        {tourByName?.data.obras && tourByName.data.obras.map((obra) => (
-                            <li key={obra.nombre}>{obra.autor}</li>
-                        ))}
+                        {tourByName?.data.obras &&
+                            tourByName.data.obras.map((obra) => (
+                                <li key={obra.nombre}>{obra.autor}</li>
+                            ))}
                     </ul>
                 </div>
-
             </div>
 
             <div className={styles.reservebt}>
@@ -127,7 +164,6 @@ export function TourPage() {
                     </button>
                 </div>
             </div>
-
         </div>
     );
 }

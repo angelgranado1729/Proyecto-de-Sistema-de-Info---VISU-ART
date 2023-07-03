@@ -56,27 +56,28 @@ const ContactPage = () => {
       <header className="back-header">
         <i onClick={handleGoBack} className="fa-solid fa-arrow-left"></i>
       </header>
-
-      <Title title="¡Contáctanos!" />
-
+      <div className='contact-decoration_container'>
+        <div className="contact-decoration3"></div>
+        <Title title="¡Contáctanos!" />
+      </div>
       <div className="formArea">
         <Form onSubmit={handleSubmit}>
           <FormGroup>
-            <p style={{ fontWeight: "bold", textAlign: "left"}} for="fName">
+            <p className="contact-formtext" for="fName">
               Nombre:
             </p>
             <Input
               type="text"
               name="fName"
               id="fName"
-              className='shadow'
+              className="shadow"
               value={firstName}
               onChange={(event) => setFirstName(event.target.value)}
               required
             />
           </FormGroup>
           <FormGroup>
-            <p style={{ fontWeight: "bold", textAlign: "left" }} for="lName">
+            <p className="contact-formtext" for="lName">
               Apellido:
             </p>
             <Input
@@ -90,7 +91,7 @@ const ContactPage = () => {
             />
           </FormGroup>
           <FormGroup>
-            <p style={{ fontWeight: "bold", textAlign: "left" }} for="email">
+            <p className="contact-formtext" for="email">
               Correo electrónico:
             </p>
             <Input
@@ -103,29 +104,28 @@ const ContactPage = () => {
               required
             />
           </FormGroup>
-          <FormGroup>
-            <p style={{ fontWeight: "bold", textAlign: "left" }} for="userMsg">
-              Comentario:
-            </p>
-            <Input
-              type="textarea"
-              name="userMsg"
-              id="userMsg"
-              className='shadow'
-              value={userMessage}
-              onChange={(event) => setUserMessage(event.target.value)}
-              rows={9}
-              required
-            />
-          </FormGroup>
-
-          <div className="iAmOutOfNames">
-            <Button type="submit" color="primary" style={{ marginRight: "5px" }}>
-              Enviar
-            </Button>
+          <div className='contact-decoration_container'>
+            <FormGroup>
+              <div className="contact-decoration1"></div>
+              <p className="contact-formtext" for="userMsg">
+                Mensaje:
+              </p>
+              <Input
+                type="textarea"
+                name="userMsg"
+                id="userMsg"
+                className='shadow'
+                value={userMessage}
+                onChange={(event) => setUserMessage(event.target.value)}
+                rows={9}
+                required
+              />
+            </FormGroup>
           </div>
         </Form>
+        <button type="submit" style={{ background: "#1a3e5a" }} className="contact-btn"> Enviar </button>
       </div>
+      <div className="contact-decoration2"></div>
     </div>
   );
 };

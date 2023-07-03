@@ -154,10 +154,13 @@ article.nextSlide {
   margin-right: 40%;
 }
 
+<<<<<<< HEAD
 .reviews-navegation button:hover {
   color: #f27f0c;
 }
 
+=======
+>>>>>>> 36a60c68bf0c96ad1a334c1d32b929f8d6ddf500
 /*Responsive Web Design*/
 @media (max-width: 769px) {
   .reviews-container {
