@@ -63,7 +63,6 @@ const LandingPage = () => {
   const applyFilter = (e) => {
     if (e.target.value === "Filtrar por") {
       enableInput.disabled = true;
-      enableInput.value = "";
     }
     if (e.target.value === "nombre") {
       setSearchFilter("nombre");

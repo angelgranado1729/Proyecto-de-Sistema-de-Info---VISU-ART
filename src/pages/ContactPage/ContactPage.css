@@ -1,117 +1,122 @@
-body {
-  background-color: #fff9ec;
-  color: black;
+body{
+    background-color: #FFF9EC;
+    color:black;
 }
 
-.contact-formtext {
-  font-weight: bold;
-  text-align: left;
-  position: relative;
-  z-index: 1;
+.contact-formtext{
+    font-weight: bold;
+    text-align: left;
+    position: relative;
+    z-index: 1;
 }
 
 .shadow {
-  box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
-  position: relative;
-  z-index: 1;
+    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;   
+    position: relative;
+    z-index: 1;
 }
 
-.formArea {
-  display: flex;
-  flex-direction: column;
-  margin-left: 10vw;
-  margin-right: 10vw;
-  padding-left: 15vw;
-  padding-right: 10vw;
-  gap: 4vh;
+.formArea{
+    display: flex;
+    flex-direction: column;
+    margin-left: 10vw;
+    margin-right: 10vw;
+    padding-left: 15vw;
+    padding-right: 10vw;
+    gap: 4vh;
 }
 
-.contact-decoration_container {
-  width: 100%;
-  margin: 0px auto;
-  position: relative;
+.contact-decoration_container{
+    width: 100%;
+    margin: 0px auto;
+    position: relative;
 }
 
-.contact-decoration1 {
-  z-index: 0;
-  left: -120px;
-  top: -20px;
-  width: 188px;
-  height: 173px;
-  position: absolute;
-  border-radius: 40px 60px 12px;
-  background: linear-gradient(
-    152.49deg,
-    #f27f0c -11.42%,
-    rgba(242, 127, 12, 0) 118.1%
-  );
+.contact-decoration1{
+    z-index: 0;
+    left: -120px;
+    top: -20px;
+    width: 188px;
+    height: 173px;
+    position: absolute;
+    border-radius: 40px 60px 12px;
+    background: linear-gradient(
+        152.49deg,
+        #f27f0c -11.42%,
+        rgba(242, 127, 12, 0) 118.1%
+      );
 }
 
-.contact-decoration2 {
-  z-index: 0;
-  right: 20%;
-  top: 95%;
-  width: 191.539px;
-  height: 134.52px;
-  transform: rotate(15deg);
-  position: absolute;
-  border-radius: 40px 60px 12px;
-  background: linear-gradient(rgba(66, 158, 189, 1), rgba(97, 184, 252, 0));
+.contact-decoration2{
+    z-index: 0;
+    right: 20%;
+    top: 95%;
+    width: 191.539px;
+    height: 134.52px;
+    transform: rotate(15deg);
+    position: absolute;
+    border-radius: 40px 60px 12px;
+    background: linear-gradient(
+        rgba(66, 158, 189, 1), rgba(97, 184, 252, 0)
+      );
+      
 }
 
-.contact-decoration3 {
-  z-index: 0;
-  right: 20%;
-  top: 5%;
-  width: 191.539px;
-  height: 134.52px;
-  transform: rotate(30deg);
-  position: absolute;
-  border-radius: 40px 60px 12px;
-  background: linear-gradient(rgba(66, 158, 189, 1), rgba(97, 184, 252, 0));
+.contact-decoration3{
+    z-index: 0;
+    right: 20%;
+    top: 5%;
+    width: 191.539px;
+    height: 134.52px;
+    transform: rotate(30deg);
+    position: absolute;
+    border-radius: 40px 60px 12px;
+    background: linear-gradient(
+        rgba(66, 158, 189, 1), rgba(97, 184, 252, 0)
+      ); 
 }
 
-.contact-btn {
-  font-weight: 600;
-  font-size: 15px;
-  color: white;
-  border: none;
-  box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
-  border-radius: 10px;
-  flex: none;
-  order: 4;
-  flex-grow: 0;
-  padding: 12px 60px;
-  margin-top: 20px;
-  transition: all 0.5s ease;
-  width: 200px;
-  margin-bottom: 100px;
+.contact-btn{
+    font-weight: 600;
+    font-size: 15px;
+    color: white;
+    border: none;
+    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+    border-radius: 10px;
+    flex: none;
+    order: 4;
+    flex-grow: 0;
+    padding: 12px 60px;
+    margin-top: 20px;
+    transition: all 0.5s ease;
+    width: 200px;
+    margin-bottom: 100px;
 }
 
 /*Responsive Web Design*/
-@media screen and (max-width: 820px) {
-  .formArea {
-    display: flex;
-    flex-direction: column;
-    margin-left: -5vw;
-    margin-right: 0vw;
-    gap: 4vh;
-  }
+@media screen and (max-width: 820px){
+    .formArea{
+        display: flex;
+        flex-direction: column;
+        margin-left: -5vw;
+        margin-right: 0vw;
+        gap: 4vh;
+    }
 }
 
-@media screen and (max-width: 769px) {
-  .contact-decoration1 {
-    top: 200px;
-    width: 148px;
-    height: 133px;
-  }
-  .contact-decoration2 {
-    display: none;
-  }
-  .contact-decoration3 {
-    right: 0;
-    top: 0;
-    width: 151.539px;
-    height: 94.52px;
-  }
+@media screen and (max-width: 769px){
+    .contact-decoration1{
+        top: 200px;
+        width: 148px;
+        height: 133px;
+    }
+    .contact-decoration2{
+        display: none;
+    }
+    .contact-decoration3{
+        right: 0;
+        top: 0;
+        width: 151.539px;
+        height: 94.52px;
+    }
 }

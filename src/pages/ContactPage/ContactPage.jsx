@@ -56,8 +56,8 @@ const ContactPage = () => {
       <header className="back-header">
         <i onClick={handleGoBack} className="fa-solid fa-arrow-left"></i>
       </header>
-      <div className='contact-decoration_container'>
-        <div className="contact-decoration3"></div>
+      <div className='contact-decoration_container'>    
+        <div className="contact-decoration3"></div>      
         <Title title="¡Contáctanos!" />
       </div>
       <div className="formArea">
@@ -104,26 +104,26 @@ const ContactPage = () => {
               required
             />
           </FormGroup>
-          <div className='contact-decoration_container'>
-            <FormGroup>
+          <div className='contact-decoration_container'>            
+          <FormGroup>
               <div className="contact-decoration1"></div>
-              <p className="contact-formtext" for="userMsg">
-                Mensaje:
-              </p>
-              <Input
-                type="textarea"
-                name="userMsg"
-                id="userMsg"
-                className='shadow'
-                value={userMessage}
-                onChange={(event) => setUserMessage(event.target.value)}
-                rows={9}
-                required
-              />
-            </FormGroup>
+            <p className="contact-formtext" for="userMsg">
+              Mensaje:
+            </p>
+            <Input
+              type="textarea"
+              name="userMsg"
+              id="userMsg"
+              className='shadow'
+              value={userMessage}
+              onChange={(event) => setUserMessage(event.target.value)}
+              rows={9}
+              required
+            />
+          </FormGroup>
           </div>
         </Form>
-        <button type="submit" style={{ background: "#1a3e5a" }} className="contact-btn"> Enviar </button>
+        <button type="submit" style={{background:"#1a3e5a"}} className="contact-btn"> Enviar </button>
       </div>
       <div className="contact-decoration2"></div>
     </div>

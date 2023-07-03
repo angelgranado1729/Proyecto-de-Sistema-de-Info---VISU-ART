@@ -6,16 +6,17 @@ import { useNavigate } from "react-router-dom";
 import { Table, Button, Label } from "reactstrap";
 import { useUserContext } from "../../contexts/UserContext";
 import "./LookReserve.css"
+import { HOME_URL, USER_PROFILE_EDIT_URL } from "../../constants/urls";
 
 
 const LookReserve = () => {
   const { user } = useUserContext(); // Obtener el usuario actual del contexto
   const navigate = useNavigate();
   const handleGoBack = () => {
-    navigate("/");
+    navigate(HOME_URL);
   };
   const handleEditProfile = () => {
-    navigate("/user-profile");
+    navigate(USER_PROFILE_EDIT_URL);
   };
 
   const [upcomingReservations, setUpcomingReservations] = useState([]);
@@ -87,7 +88,7 @@ const LookReserve = () => {
           <button className="reserve-btn" onClick={handleEditProfile}>
             Editar Perfil
           </button>
-        </div >
+        </div>
         <div>
           <br /><br />
           <Label className="subtitles-calendar" for="viejaFecha"> Proximas Fechas </Label>
@@ -138,8 +139,8 @@ const LookReserve = () => {
             </tbody>
           </Table>
         </div>
-      </div >
-    </div >
+      </div>
+    </div>
   );
 };
 

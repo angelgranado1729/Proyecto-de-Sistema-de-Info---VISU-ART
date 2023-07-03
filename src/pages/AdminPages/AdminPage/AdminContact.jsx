@@ -49,6 +49,7 @@ const AdminPageContact = () => {
   const unresolvedDocuments = documents.filter((doc) => doc.estado === 'Pendiente');
 
   return (
+    <div className="App">
     <div style={{ background: '#fff9ec' }}>
       <AdminNavbar />
       <div style={{ marginLeft: '10%', marginRight: '10%', marginBottom: '5%', background: '#fff9ec' }}>
@@ -110,6 +111,7 @@ const AdminPageContact = () => {
           </div>
         )}
       </div>
+    </div>
     </div>
   );
 };

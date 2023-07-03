@@ -8,6 +8,7 @@ import {
   getAdditionalUserInfo,
   sendPasswordResetEmail,
   confirmPasswordReset,
+  updatePassword,
 } from "firebase/auth";
 import { auth, googleProvider, facebookProvider } from "../firebase-config";
 import { createUser } from "../users";
@@ -195,5 +196,29 @@ export const logout = async (callback) => {
     }
   } catch (error) {
     console.error("SIGN OUT FAILED", { error });
+  }
+};
+
+// HANDLE PASSWORD UPDATE
+export const updateUserPassword = async ({
+  newPassword,
+  onSuccess,
+  onFail,
+}) => {
+  try {
+    const user = auth.currentUser;
+    if (user) {
+      await updatePassword(user, newPassword);
+      if (onSuccess) {
+        onSuccess();
+      }
+    } else {
+      throw new Error("No user is currently logged in.");
+    }
+  } catch (error) {
+    console.error("PASSWORD UPDATE FAILED", { error });
+    if (onFail) {
+      onFail();
+    }
   }
 };

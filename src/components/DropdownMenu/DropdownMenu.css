@@ -9,15 +9,6 @@
   border-style: solid;
 }
 
-.dropdown .dropbtn {
-  font-size: 16px;
-  border: none;
-  outline: none;
-  color: black;
-  padding: 8px 16px;
-  background-color: inherit;
-}
-
 .feedbackdropdownM-container {
   background-color: #fff9ec;
   width: 100%;

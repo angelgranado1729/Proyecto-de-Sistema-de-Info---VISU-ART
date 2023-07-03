@@ -1,13 +1,18 @@
 import react, { useContext, createContext, useEffect, useState } from "react";
+import { fetchTour } from "../firebase/tours";
 
 export const TourContext = createContext(null);
 
 export function TourContextProvider({ children }) {
     const [tour, setTour] = useState(null);
-    const [tourId, setTourId] = useState(null);
+    const [tourId, setTourId] = useState({
+        id: null,
+    });
 
-    useEffect(() => { },
-        [tourId])
+    /* Funcion para modificar el ID del context en componentes o vistas*/
+    const changeId = (newId) => {
+        setTourId(newId);
+    }
 
     /* Funcion para modificar el tour (datos de reserva) en componentes o vistas*/
     const changeTour = (newTour, newId, newFecha, userId) => {
@@ -37,6 +42,6 @@ export function TourContextProvider({ children }) {
     </TourContext.Provider>
 }
 
-export function userTour() {
+export function useTour() {
     return useContext(TourContext)
 }

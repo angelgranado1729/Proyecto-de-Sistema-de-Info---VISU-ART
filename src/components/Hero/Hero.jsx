@@ -2,8 +2,23 @@ import React from "react";
 import "./Hero.css";
 import Slider from "../Slider/Slider";
 import Subtitle from "../Subtitle/Subtitle";
+import { useNavigate } from "react-router-dom";
+
+
+
 
 const Hero = () => {
+
+  const navigate = useNavigate();
+
+  const handleCalendar = () => {
+  
+    navigate("/calendar");
+  };
+
+
+
+
   return (
     <div className="hero-section">
       <div className="hero-container">
@@ -15,7 +30,7 @@ const Hero = () => {
           <div className="hero-decoration3"></div>
           <Subtitle subtitle="Explora el arte con nuestros tours culturales" />
           <p className="hero-text">Aquí podrás explorar y disfrutar de las obras de arte que residen en nuestra institución. Nuestra misión es promover el arte y la cultura en nuestra comunidad, y para ello ofrecemos una variedad de tours que te permitirán conocer y apreciar nuestra colecciones de manera única e inspiradora. Únete a nosotros en esta experiencia cultural y descubre el valor y la belleza del arte en nuestro campus universitario.</p>
-          <button className="calendar-btn">Ver calendario de tours</button>
+          <button className="calendar-btn" onClick={() => handleCalendar()}>Ver calendario de tours</button>
         </div>
       </div>
       <div className="hero-decoration1"></div>
