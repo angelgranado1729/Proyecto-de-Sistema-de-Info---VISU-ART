@@ -31,7 +31,7 @@
 }
 
 .subtitle {
-  margin-top: 80px;
+  margin-top: 20px;
   display: flex;
   justify-content: flex-start;
   color: #000000b2;
@@ -43,11 +43,6 @@
   margin-top: 20px;
   display: flex;
   gap: 40px;
-}
-
-.leftColumn,
-.rightColumn {
-  width: 50%;
 }
 
 .leftParagraph,
@@ -66,6 +61,36 @@
   font-weight: 400;
 }
 
+.rating {
+  margin-top: 20px;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  align-content: center;
+  color: #000000b2;
+  font-size: 20px;
+  font-weight: 400;
+  flex-direction: row;
+  height: fit-content;
+  gap: 20px;
+}
+
+.rating .subtitle {
+  color: #000000b2;
+  font-size: 30px;
+  font-weight: 700;
+  height: 50px;
+}
+
+.rating .stars {
+  display: flex;
+  justify-content: flex-start;
+  gap: 10px;
+  vertical-align: middle;
+  height: 50px;
+  margin-bottom: -20px;
+}
+
 .buttonContainer {
   margin-top: 80px;
   display: flex;
@@ -77,11 +102,6 @@
 .reserveButton {
   display: flex;
   justify-content: flex-start;
-}
-
-.favButton {
-  display: flex;
-  justify-content: flex-end;
 }
 
 .reserveButton button {
@@ -96,21 +116,6 @@
   justify-content: center;
   border-radius: 10px;
   background: #f27f0c;
-  box-shadow: 0px 4px 20px 0px rgba(0, 0, 0, 0.35);
-}
-
-.favButton button {
-  width: 220px;
-  height: 50px;
-  border: none;
-  border-radius: 10px;
-  font-size: 18px;
-  font-weight: 600;
-  color: #ffffff;
-  cursor: pointer;
-  justify-content: center;
-  border-radius: 10px;
-  background: #1a3e5a;
   box-shadow: 0px 4px 20px 0px rgba(0, 0, 0, 0.35);
 }
 
@@ -142,7 +147,9 @@
 
 @media (max-width: 768px) {
   .container {
-    padding: 2rem 3rem;
+    padding: 1rem 2rem;
+    width: auto;
+    height: auto;
   }
   .descripcion {
     flex-direction: column;
@@ -155,5 +162,6 @@
     gap: 5px;
     height: auto;
     margin-top: 20px;
+    width: 100%;
   }
 }

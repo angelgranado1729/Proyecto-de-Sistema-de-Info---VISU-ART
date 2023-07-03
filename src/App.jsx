@@ -9,6 +9,7 @@ import { NotFoundPage } from "./pages/NotFoundPage/NotFoundPage";
 import { PrivateRoute } from "./components/PrivateRoute/PrivateRoute";
 import { ResetPasswordPage } from "./pages/LoginPages/ResetPasswordPage/ResetPasswordPage";
 import { TourPage } from "./pages/TourPage/TourPage";
+import { AdminRoute } from "./components/AdminRoute/AdminRoute";
 import UserProfilePage from "./pages/UserPages/UserProfile/UserProfilePage";
 import LookReserve from "./pages/LookReserve/LookReserve";
 
@@ -165,6 +166,24 @@ function App() {
           />
 
           <Route
+            path={RESERVE_URL}
+            element={
+              <PrivateRoute>
+                <ReservePage />
+              </PrivateRoute>
+            }
+          />
+
+          <Route
+            path={FEEDBACK_URL}
+            element={
+              <PrivateRoute>
+                <FeedbackPage />
+              </PrivateRoute>
+            }
+          />
+
+          <Route
             path={REGISTER_URL}
             element={
               <PublicRoute>
@@ -172,9 +191,6 @@ function App() {
               </PublicRoute>
             }
           />
-
-
-
 
           <Route
             path={REGISTER_FORM_URL}
@@ -196,18 +212,18 @@ function App() {
           <Route
             path={ADMIN_URL}
             element={
-              <PrivateRoute>
+              <AdminRoute>
                 <AdminPage />
-              </PrivateRoute>
+              </AdminRoute>
             }
           />
 
           <Route
             path={ADMIN_URL_CONTACT}
             element={
-              <PrivateRoute>
+              <AdminRoute>
                 <AdminPageContact />
-              </PrivateRoute>
+              </AdminRoute>
             }
           />
 
@@ -216,9 +232,9 @@ function App() {
           <Route
             path={LOGIN_URL}
             element={
-              <PublicRoute>
-                <LoginPage />
-              </PublicRoute>
+
+              <LoginPage />
+
             }
           />
 
@@ -233,6 +249,117 @@ function App() {
             path={RESET_PASSWORD_URL}
             element={
               <ResetPasswordPage />
+            }
+          />
+
+          <Route
+            path={REGISTER_URL}
+            element={
+              <PublicRoute>
+                <RegisterPage />
+              </PublicRoute>
+            }
+          />
+
+          <Route
+            path={REGISTER_FORM_URL}
+            element={
+              <PublicRoute>
+                <RegisterFormPage />
+              </PublicRoute>
+            }
+          />
+
+
+
+          <Route
+            path={ADMIN_RESERVE_URL}
+            element={
+              <AdminRoute>
+                <ReserveAdminPage />
+              </AdminRoute>
+            }
+          />
+
+          <Route
+            path={ADMIN_RESERVE_URL}
+            element={
+              <AdminRoute>
+                <ReserveAdminPage />
+              </AdminRoute>
+            }
+          />
+
+          <Route
+            path={ADMIN_EDIT_OBRAS_URL}
+            element={
+              <AdminRoute>
+                <ArtEdit />
+              </AdminRoute>
+            }
+          />
+
+          <Route
+            path={ADMIN_TOURS_CALENDAR_URL}
+            element={
+              <AdminRoute>
+                <TourEditFechas />
+              </AdminRoute>
+            }
+          />
+
+          <Route
+            path={ADMIN_CREATE_OBRAS_URL}
+            element={
+              <AdminRoute>
+                <CreateArt />
+              </AdminRoute>
+            }
+          />
+
+          <Route
+            path={ADMIN_OBRAS_URL}
+            element={
+              <AdminRoute>
+                <ArtAdmin />
+              </AdminRoute>
+            }
+          />
+
+          <Route
+            path={ADMIN_TOURS_EDIT_URL}
+            element={
+              <AdminRoute>
+                <TourEdit />
+              </AdminRoute>
+            }
+          />
+
+
+          <Route
+            path={ADMIN_TOURS_URL}
+            element={
+              <AdminRoute>
+                <TourAdmin />
+              </AdminRoute>
+            }
+          />
+
+          <Route
+            path={ADMIN_TOUR_CREATE_URL}
+            element={
+              <AdminRoute>
+                <CreateTour />
+              </AdminRoute>
+            }
+          />
+
+          <Route
+            path={ADMIN_TOURS_EDIT_ART}
+            element={
+              <AdminRoute>
+                <TourEditObras />
+              </AdminRoute>
             }
           />
 

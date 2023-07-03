@@ -15,12 +15,13 @@ export function TourPage() {
     const navigate = useNavigate();
     const [imagen, setImagen] = useState("");
     const [obraDestacada, setObraDestacada] = useState(null);
-    // const [rating, setRating] = useState(0);
+    const [rating, setRating] = useState(0);
     const { listLoading, tourByName, getTourByName } = useTourList();
-    // const { feedbackList, getFeedbackList, listLoadingFeedback } = useFeedback();
+    const { feedbackList, getFeedbackList, listLoadingFeedback } = useFeedback();
 
     useEffect(() => {
         getTourByName(tourName.nombre);
+        getFeedbackList();
     }, [tourName]);
 
     useEffect(() => {
@@ -38,27 +39,27 @@ export function TourPage() {
         }
     }, [tourByName, imagen]);
 
+    useEffect(() => {
+        if (!listLoadingFeedback) {
+            const tourFeedback = feedbackList?.filter(
+                (feedback) => feedback.tour === tourName.nombre
+            );
+            setRating(calculateRating(tourFeedback));
+        }
+    }, [feedbackList, listLoadingFeedback, tourName]);
 
-    // useEffect(() => {
-    //     const aux = feedbackList?.filter(
-    //         (feedback) => feedback.tour === tourName.nombre
-    //     );
-    //     setRating(calculateRating(aux));
-    //     console.log(rating);
-    // }, [feedbackList]);
+    function calculateRating(feedbackList) {
+        if (!feedbackList || feedbackList.length === 0) {
+            return 0;
+        }
 
-    // function calculateRating(feedbackList) {
-    //     if (!feedbackList || feedbackList.length === 0) {
-    //         return 0;
-    //     }
-
-    //     const totalRating = feedbackList.reduce(
-    //         (sum, feedback) => sum + feedback.rating,
-    //         0
-    //     );
-    //     const averageRating = totalRating / feedbackList.length;
-    //     return Math.round(averageRating);
-    // }
+        const totalRating = feedbackList.reduce(
+            (sum, feedback) => sum + feedback.rating,
+            0
+        );
+        const averageRating = totalRating / feedbackList.length;
+        return Math.round(averageRating);
+    }
 
     const descripcion = tourByName?.data.descripcion || "";
     const palabras = descripcion.split(" ");
@@ -66,8 +67,7 @@ export function TourPage() {
     const primerParrafo = palabras.slice(0, mitad).join(" ");
     const segundoParrafo = palabras.slice(mitad).join(" ");
 
-
-    if (listLoading) {
+    if (listLoading && listLoadingFeedback) {
         return <Loading />;
     }
 
@@ -81,6 +81,23 @@ export function TourPage() {
 
             <div className={styles.title}>
                 <h1>{tourByName?.data.nombre}</h1>
+            </div>
+
+            <div className={styles.rating}>
+
+
+                <h2 className={styles.subtitle}>Rating:</h2>
+
+
+                <div className={styles.stars}>
+                    {[...Array(5)].map((_, index) => (
+                        <FaStar
+                            key={index}
+                            size={25}
+                            color={index < rating ? "#f27f0c" : "#CCCCCC"}
+                        />
+                    ))}
+                </div>
             </div>
 
             <div className={styles.descripcion}>
@@ -99,19 +116,6 @@ export function TourPage() {
                     </button>
                 </div>
             </div>
-
-            {/* <div className={styles.rating}>
-                <h2 className={styles.subtitle}>Rating del Tour:</h2>
-                <div className={styles.stars}>
-                    {[...Array(5)].map((_, index) => (
-                        <FaStar
-                            key={index}
-                            size={30}
-                            color={index < rating ? "#000000" : "#CCCCCC"}
-                        />
-                    ))}
-                </div>
-            </div> */}
 
             <div className={styles.subtitle}>
                 <Subtitle subtitle="Obra Destacada" />

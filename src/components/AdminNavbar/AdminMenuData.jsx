@@ -5,7 +5,7 @@ export const MenuData = [
 
     {
         title: "Inicio",
-        url: ADMIN_URL,
+        url: HOME_URL,
         cName: "admin_navbar-links"
 
     },

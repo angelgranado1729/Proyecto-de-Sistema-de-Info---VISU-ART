@@ -26,6 +26,7 @@ const handlereserve = () => {
 };
 
   return (
+    <div className="App">
     <div style={{ background: '#fff9ec'}}>
       <AdminNavbar />
       <div style={{ marginLeft: '10%', marginRight: '10%', marginBottom: '5%', background: '#fff9ec' }}>
@@ -91,6 +92,7 @@ const handlereserve = () => {
           </Card>
         </CardGroup>
       </div>
+    </div>
     </div>
   );
 };
