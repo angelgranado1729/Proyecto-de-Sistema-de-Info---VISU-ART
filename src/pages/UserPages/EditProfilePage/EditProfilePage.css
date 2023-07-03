@@ -7,7 +7,23 @@
     display: flex;
     width: 100vw;
 }
-
+.inputimagen input[type="file"] {
+    display: none;
+  }
+.inputimagen label {
+    padding: 10px;
+    background-color:  #005c8c; /* Cambia esto al color que prefieras */
+    color: white;
+    cursor: pointer;
+    border-radius: 5px;
+    text-align: center;
+    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+}
+.inputimagen label:hover {
+    background-color: #0070ba; /* Cambia esto al color que prefieras */
+    border: 2px solid #fff; /* Cambia el contorno a blanco cuando el mouse pasa por encima */
+}
+  
 .back-header img{
     height: 55px;
     width: auto;

@@ -255,9 +255,15 @@ const EditProfilePage = () => {
         <div className="editprofile-decoration2"></div>
         <div className="editprofile-container">
           <div className="editprofile-img">
-            <img className="imagenusuario" src={url  || "https://cdn1.iconfinder.com/data/icons/user-pictures/100/unknown-512.png"}/>
+            <img
+              className="imagenusuario"
+              src={
+                url ||
+                "https://cdn1.iconfinder.com/data/icons/user-pictures/100/unknown-512.png"
+              }
+            />
           </div>
-  
+
           <i className="fa-solid fa-pen-to-square"></i>
           <Subtitle subtitle="Edita tus datos:" />
           <div className="input-container">
@@ -279,7 +285,11 @@ const EditProfilePage = () => {
                 />
                 <span>correo@ejemplo.com</span>
               </div>
-              <div className="input" value = {email2} onChange={(e) => setEmail2(e.target.value)}>
+              <div
+                className="input"
+                value={email2}
+                onChange={(e) => setEmail2(e.target.value)}
+              >
                 <label>Verifica tu correo</label>
                 <input type="text" />
                 <span>correo@ejemplo.com</span>
@@ -290,24 +300,44 @@ const EditProfilePage = () => {
               <p></p>
             </div>
             <div className="column">
-              <div className="input" value = {password} onChange={(e) => setPassword(e.target.value)}>
+              <div
+                className="input"
+                value={password}
+                onChange={(e) => setPassword(e.target.value)}
+              >
                 <label>Verifica tu contraseña actual</label>
                 <input type="text" />
                 <span>Más 6 de dígitos e incluya carácteres especiales</span>
               </div>
-              <div className="input"  value = {password2} onChange={(e) => setPassword2(e.target.value)}>
+              <div
+                className="input"
+                value={password2}
+                onChange={(e) => setPassword2(e.target.value)}
+              >
                 <label>Tu nueva contraseña</label>
                 <input type="text" />
                 <span>Más 6 de dígitos e incluya carácteres especiales</span>
               </div>
               {/* Agregar mas inputs segun lo que podamos anadir en firebase */}
             </div>
-            <div className = "inputimagen" >
-              <input onChange ={doUpload} type="file" accept="image/*"/>
-            </div>
           </div>
-          <button className="editprofile-btn" onClick={checkEmailPassword}>Guardar Cambios</button>
-          <button className = "editprofile-btn margen"  onClick ={watch}>Subir foto</button>
+          <div className="editprofile-btns">
+          <button className="editprofile-btn" onClick={checkEmailPassword}>
+            Guardar Cambios
+          </button>
+          <div className="inputimagen">
+              <label htmlFor="file-upload">Subir foto</label>
+              <input
+                id="file-upload"
+                onChange={doUpload}
+                type="file"
+                accept="image/*"
+              />
+            </div>
+          <button className="editprofile-btn margen" onClick={watch}>
+            Guardar foto
+          </button>
+          </div>
         </div>
       </div>
     </div>
