@@ -1,0 +1,163 @@
+.container {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  background: #fff9ec;
+  padding: 4rem 8rem;
+}
+
+.backButton {
+  position: absolute;
+  top: 0;
+  left: 0;
+  margin: 1rem;
+  padding: 0.5rem 1rem;
+  border: none;
+  border-radius: 0.5rem;
+  cursor: pointer;
+}
+
+.title {
+  margin-top: 90px;
+  display: flex;
+  justify-content: flex-start;
+}
+
+.title h1 {
+  font-size: 70px;
+  font-weight: 700;
+  color: #000000b2;
+}
+
+.subtitle {
+  margin-top: 80px;
+  display: flex;
+  justify-content: flex-start;
+  color: #000000b2;
+  font-size: 20px;
+  font-weight: 400;
+}
+
+.descripcion {
+  margin-top: 20px;
+  display: flex;
+  gap: 40px;
+}
+
+.leftColumn,
+.rightColumn {
+  width: 50%;
+}
+
+.leftParagraph,
+.rightParagraph {
+  margin: 0;
+  padding: 0;
+  font-size: 16px;
+  text-align: justify;
+}
+
+.reservebt {
+  margin-top: 60px;
+  display: flex;
+  justify-content: center;
+  font-size: 20px;
+  font-weight: 400;
+}
+
+.buttonContainer {
+  margin-top: 80px;
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  flex-direction: row-reverse;
+}
+
+.reserveButton {
+  display: flex;
+  justify-content: flex-start;
+}
+
+.favButton {
+  display: flex;
+  justify-content: flex-end;
+}
+
+.reserveButton button {
+  width: 220px;
+  height: 50px;
+  border: none;
+  border-radius: 10px;
+  font-size: 20px;
+  font-weight: 600;
+  color: #ffffff;
+  cursor: pointer;
+  justify-content: center;
+  border-radius: 10px;
+  background: #f27f0c;
+  box-shadow: 0px 4px 20px 0px rgba(0, 0, 0, 0.35);
+}
+
+.favButton button {
+  width: 220px;
+  height: 50px;
+  border: none;
+  border-radius: 10px;
+  font-size: 18px;
+  font-weight: 600;
+  color: #ffffff;
+  cursor: pointer;
+  justify-content: center;
+  border-radius: 10px;
+  background: #1a3e5a;
+  box-shadow: 0px 4px 20px 0px rgba(0, 0, 0, 0.35);
+}
+
+.cardContainer {
+  margin-top: 80px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 600px;
+}
+
+.infoContainer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 600px;
+  gap: 380px;
+}
+
+.infoContainer h2 {
+  font-size: 35px;
+  font-weight: 700;
+  color: #000000b2;
+  margin-bottom: 20px;
+}
+
+@media (max-width: 768px) {
+  .container {
+    padding: 2rem 3rem;
+  }
+  .descripcion {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .infoContainer {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 5px;
+    height: auto;
+  }
+
+  .buttonContainer {
+    flex-direction: column;
+    align-items: center;
+    gap: 35px;
+  }
+}

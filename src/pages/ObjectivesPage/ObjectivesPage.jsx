@@ -1,12 +1,16 @@
+import { Link } from "react-router-dom";
 import Title from "../../components/Title/Title";
 import "../MisionPage/MisionPage.css"
+import { HOME_URL } from "../../constants/urls";
 
 
 const ObjectivesPage = () => {
     return (
         <div className="App">
             <header className="back-header">
-                <i className="fa-solid fa-arrow-left"></i>
+                <Link to={HOME_URL}>
+                    <i className="fa-solid fa-arrow-left"></i>
+                </Link>
             </header>
             <Title title="Objetivos" />
             <div className="text-container">
@@ -20,8 +24,8 @@ const ObjectivesPage = () => {
                         <li>3. Comunidad: Fomentar una comunidad de amantes del arte que participen activamente en la exploración y apreciación del arte. Creemos en el poder de la comunidad para inspirar y motivar a las personas a aprender y crecer juntas.</li>
                         <li>4. Innovación: Continuar innovando y mejorando nuestra plataforma para proporcionar la mejor experiencia de usuario posible. Estamos comprometidos con la adopción de nuevas tecnologías y enfoques para mejorar la forma en que las personas interactúan con el arte.</li>
                         <li>5. Expansión: Expandir nuestra plataforma para incluir tours de arte y culturales en otras universidades e instituciones. Creemos en el poder del arte para unir a las personas y aspiramos a llevar nuestra plataforma a tantas personas como sea posible.</li>
-                        </ul>
-                        </p>
+                    </ul>
+                    </p>
                 </div>
             </div>
         </div>

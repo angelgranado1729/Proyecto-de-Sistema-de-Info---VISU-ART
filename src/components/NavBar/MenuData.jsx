@@ -1,13 +1,14 @@
 import {
   CONTACT_URL,
   HOME_URL,
-  LOGIN_URL,
   MISION_URL,
   OBJECTIVES_URL,
   REGISTER_URL,
   USER_PROFILE_URL,
   VISION_URL,
-  RESERVE_LOOK_URL
+  RESERVE_LOOK_URL,
+  ADMIN_URL,
+  LOGIN_URL
 } from "../../constants/urls";
 import { logout } from "../../firebase/auth";
 
@@ -36,12 +37,23 @@ const getMenuData = (user) => {
   ];
 
   if (user) {
-    menuData.push({
-      title: "Perfil",
-      url: RESERVE_LOOK_URL,
-      cName: "navbar-links"
-    });
+
    
+   
+    if (user.type === "admin") {
+      menuData.push({
+        title: "Admin",
+        url: ADMIN_URL,
+        cName: "navbar-links"
+      });
+    }else {
+      menuData.push({
+        title: "Perfil",
+        url: RESERVE_LOOK_URL,
+        cName: "navbar-links"
+      });
+    }
+
     menuData.push({
       title: "Cerrar sesión",
       url: HOME_URL,

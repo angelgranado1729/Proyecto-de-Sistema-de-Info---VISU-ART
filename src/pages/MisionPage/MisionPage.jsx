@@ -1,14 +1,20 @@
 import { useState } from "react";
 import Title from "../../components/Title/Title";
 import "./MisionPage.css"
+import { Link } from "react-router-dom";
+import { HOME_URL } from "../../constants/urls";
 
 
 const MisionPage = () => {
     return (
         <div className="App">
             <header className="back-header">
-                <i className="fa-solid fa-arrow-left"></i>
+                <Link to={HOME_URL}>
+                    <i className="fa-solid fa-arrow-left"></i>
+                </Link>
             </header>
+
+
             <Title title="Misión" />
             <div className="text-container">
                 <div className="info-container">

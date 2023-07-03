@@ -32,7 +32,7 @@ const LandingPage = () => {
         const toursSnapshot = await getDocs(toursCollection);
         const toursData = toursSnapshot.docs.map((doc) => doc.data());
         setTours(toursData);
-        console.log(tours);
+        console.log(toursData);
       } catch (error) {
         console.error("Error fetching tours:", error);
       }
@@ -63,7 +63,6 @@ const LandingPage = () => {
   const applyFilter = (e) => {
     if (e.target.value === "Filtrar por") {
       enableInput.disabled = true;
-      enableInput.value = "";
     }
     if (e.target.value === "nombre") {
       setSearchFilter("nombre");
@@ -144,6 +143,7 @@ const LandingPage = () => {
           {checkResults()}
           {results.map((tour) => (
             <Card
+              key={tour.id}
               tourTitle={tour.nombre}
               tourDescription={tour.resumen}
               tourImage={tour.imagen}

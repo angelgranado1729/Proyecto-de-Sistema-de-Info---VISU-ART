@@ -26,12 +26,13 @@ const handlereserve = () => {
 };
 
   return (
-    <div style={{ background: '#fff9ec'}}>
+    <div className="App">
       <AdminNavbar />
-      <div style={{ marginLeft: '10%', marginRight: '10%', marginBottom: '5%', background: '#fff9ec' }}>
+      <div style={{ marginLeft: '10%', marginRight: '10%', marginBottom: '5%'}}>
         <br /> <br /> <br />
         <Title title="Bienvenido Administrador" />
 
+        <div className="admin-columns">
         <CardGroup>
           <Card className="shadow-block"
             body
@@ -90,6 +91,7 @@ const handlereserve = () => {
             <Button onClick={() => handlereserve()}> Ir a Gestor de Reservas  </Button>
           </Card>
         </CardGroup>
+        </div>
       </div>
     </div>
   );
