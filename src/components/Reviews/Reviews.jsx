@@ -118,7 +118,7 @@ const Reviews = () => {
         <div className="container">
         <div className="reviews-navegation">
           <button className="prev" onClick={handlePreviousSlide}>
-            <i className="fa-solid fa-arrow-left"></i>
+            <i style={{color: "white"}} className="fa-solid fa-arrow-left"></i>
           </button>
           <button className="next" onClick={handleNextSlide}>
             <i className="fa-solid fa-arrow-right"></i>

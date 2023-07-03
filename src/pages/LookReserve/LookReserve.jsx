@@ -3,10 +3,10 @@ import { app, auth, db, storage } from "../../firebase/firebase-config";
 import { query, collection, getDocs, doc, getDoc, where } from "firebase/firestore";
 import Title from "../../components/Title/Title";
 import { useNavigate } from "react-router-dom";
-
 import { Table, Button, Label } from "reactstrap";
 import { useUserContext } from "../../contexts/UserContext";
-import Navbar from "../../components/NavBar/Navbar";
+import "./LookReserve.css"
+
 
 const LookReserve = () => {
   const { user } = useUserContext(); // Obtener el usuario actual del contexto
@@ -84,9 +84,9 @@ const LookReserve = () => {
       <Title title="Mis Reservas" />
       <div style={{ marginLeft: "10%", marginRight: "10%" }}>
         <div className="edit-profile-button-left">
-          <Button color="primary" onClick={handleEditProfile}>
+          <button className="reserve-btn" onClick={handleEditProfile}>
             Editar Perfil
-          </Button>
+          </button>
         </div>
         <div>
             <br /><br />
